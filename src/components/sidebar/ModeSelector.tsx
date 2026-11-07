@@ -11,49 +11,43 @@ export const ModeSelector: React.FC = () => {
     label: string;
     sublabel: string;
     icon: React.ReactNode;
-    color: string;
   }> = [
     {
       id: 'shading',
       label: '마네킹 (Shading)',
       sublabel: 'PBR 기본 3D 뷰',
-      icon: <Sun className="w-4 h-4" />,
-      color: 'border-neutral-500 bg-neutral-800/80',
+      icon: <Sun className="w-3.5 h-3.5" />,
     },
     {
       id: 'openpose',
       label: 'OpenPose',
       sublabel: 'COCO 18 키포인트',
-      icon: <Activity className="w-4 h-4 text-emerald-400" />,
-      color: 'border-emerald-500/80 bg-emerald-950/40 text-emerald-300',
+      icon: <Activity className="w-3.5 h-3.5 text-[#0066ff]" />,
     },
     {
       id: 'depth',
       label: 'Depth Map',
       sublabel: '선형 Z-버퍼 명암',
-      icon: <Layers className="w-4 h-4 text-sky-400" />,
-      color: 'border-sky-500/80 bg-sky-950/40 text-sky-300',
+      icon: <Layers className="w-3.5 h-3.5" />,
     },
     {
       id: 'normal',
       label: 'Surface Normal',
       sublabel: '뷰 공간 법선 RGB',
-      icon: <Box className="w-4 h-4 text-purple-400" />,
-      color: 'border-purple-500/80 bg-purple-950/40 text-purple-300',
+      icon: <Box className="w-3.5 h-3.5" />,
     },
     {
       id: 'canny',
       label: 'Canny / Lineart',
       sublabel: '외곽선 윤곽선 엣지',
-      icon: <Grid className="w-4 h-4 text-amber-400" />,
-      color: 'border-amber-500/80 bg-amber-950/40 text-amber-300',
+      icon: <Grid className="w-3.5 h-3.5" />,
     },
   ];
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between text-xs font-semibold text-neutral-400 uppercase tracking-wider px-1">
-        <span>ControlNet 렌더링 모드</span>
+      <div className="text-[11px] font-semibold text-[#707070] uppercase tracking-wider px-1">
+        ControlNet 렌더링 모드
       </div>
 
       <div className="grid grid-cols-1 gap-1.5">
@@ -63,23 +57,33 @@ export const ModeSelector: React.FC = () => {
             <button
               key={m.id}
               onClick={() => setRenderMode(m.id)}
-              className={`flex items-center justify-between p-2.5 rounded-xl border text-left transition-all ${
+              className={`flex items-center justify-between p-2 rounded-[16px] border text-left transition-all ${
                 isSelected
-                  ? `${m.color} shadow-lg ring-1 ring-white/10`
-                  : 'border-neutral-800/80 bg-neutral-900/60 hover:bg-neutral-800/80 hover:border-neutral-700 text-neutral-300'
+                  ? 'bg-[#141414] text-[#ffffff] border-[#141414]'
+                  : 'bg-[#ffffff] text-[#141414] border-[#e0e0e0] hover:bg-[#f3f3f3]'
               }`}
             >
-              <div className="flex items-center gap-2.5">
-                <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-white/10' : 'bg-neutral-800'}`}>
+              <div className="flex items-center gap-2">
+                <div
+                  className={`p-1.5 rounded-full ${
+                    isSelected ? 'bg-[#262626] text-[#ffffff]' : 'bg-[#f0f0f0] text-[#707070]'
+                  }`}
+                >
                   {m.icon}
                 </div>
                 <div>
                   <div className="text-xs font-semibold leading-tight">{m.label}</div>
-                  <div className="text-[11px] text-neutral-400">{m.sublabel}</div>
+                  <div
+                    className={`text-[10px] ${
+                      isSelected ? 'text-[#adadad]' : 'text-[#707070]'
+                    }`}
+                  >
+                    {m.sublabel}
+                  </div>
                 </div>
               </div>
               {isSelected && (
-                <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-[#0066ff]" />
               )}
             </button>
           );
@@ -88,4 +92,3 @@ export const ModeSelector: React.FC = () => {
     </div>
   );
 };
-

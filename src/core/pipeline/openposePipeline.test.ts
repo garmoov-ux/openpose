@@ -37,3 +37,4 @@ describe('OpenPose 렌더링 파이프라인 (openposePipeline)', () => {
     expect(person.pose_keypoints_2d[2]).toBe(1.0);
   });
 });
+

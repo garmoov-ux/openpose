@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Copy, Download, Send, Check, AlertCircle, FileCode } from 'lucide-react';
 import { useEditorStore } from '@/stores/useEditorStore';
+import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
+import { buildThemeSoloPrompt } from '@/services/comfyui/promptBuilder';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { dataURLtoBlob, copyBlobToClipboard, downloadBlobAsFile, downloadJson } from '@/utils/exportUtils';
 import { getJointScreenPositions, exportOpenPoseJson } from '@/core/pipeline/openposePipeline';
@@ -22,6 +24,8 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     generationStatus,
     setGenerationProgress,
   } = useEditorStore();
+
+  const themeStore = useThemeSoloStore();
 
   const [copied, setCopied] = useState(false);
   const [comfyStatus, setComfyStatus] = useState<string | null>(null);
@@ -75,6 +79,19 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       const blob = dataURLtoBlob(dataUrl);
       const filename = await comfyClient.uploadImage(blob);
 
+      // 현재 테마와 프롬프트 생성
+      const promptText = buildThemeSoloPrompt({
+        themeId: themeStore.selectedThemeId,
+        envIndex: themeStore.selectedEnvIndex,
+        lightIndex: themeStore.selectedLightIndex,
+        outfitId: themeStore.selectedOutfitId,
+        outfitCategory: themeStore.selectedOutfitCategory,
+        postureId: themeStore.selectedPostureId,
+        shotPrefixIndex: themeStore.selectedShotPrefixIndex,
+        isWildcardMode: themeStore.isWildcardMode,
+      });
+
+      console.log('ComfyUI 업로드 완료:', filename, '프롬프트:', promptText.slice(0, 80));
       setComfyStatus(`업로드 완료: ${filename}`);
 
       // WebSocket 실시간 진행도 수신
@@ -93,22 +110,22 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 p-3 bg-neutral-900/90 rounded-2xl border border-neutral-800 shadow-xl">
-      <div className="text-xs font-semibold text-neutral-400 uppercase tracking-wider px-1">
-        내보내기 및 AI 연동
+    <div className="flex flex-col gap-3 p-3.5 bg-[#ffffff] rounded-[24px] border border-[#e0e0e0] text-xs">
+      <div className="text-[11px] font-semibold text-[#707070] uppercase tracking-wider px-1">
+        내보내기 및 ComfyUI 연동
       </div>
 
-      {/* 해상도 선택 */}
-      <div className="flex items-center gap-1.5 p-1 bg-neutral-950 rounded-xl border border-neutral-800 text-xs">
-        <span className="text-neutral-400 px-2 font-medium">해상도:</span>
+      {/* 해상도 선택 (세그먼트 컨트롤 스타일) */}
+      <div className="flex items-center gap-1 p-1 bg-[#f0f0f0] rounded-full">
+        <span className="text-[#707070] px-2 text-[11px] font-medium">해상도:</span>
         {resolutions.map((res) => (
           <button
             key={res}
             onClick={() => setExportResolution(res)}
-            className={`flex-1 py-1 rounded-lg font-medium transition-all ${
+            className={`flex-1 py-1 rounded-full text-[11px] font-medium transition-all ${
               exportResolution === res
-                ? 'bg-neutral-800 text-white shadow-sm'
-                : 'text-neutral-400 hover:text-neutral-200'
+                ? 'bg-[#ffffff] text-[#141414] shadow-sm'
+                : 'text-[#707070] hover:text-[#141414]'
             }`}
           >
             {res}px
@@ -120,17 +137,17 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       <div className="grid grid-cols-2 gap-2">
         <button
           onClick={handleCopyClipboard}
-          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium rounded-xl shadow-md transition-all active:scale-[0.98]"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#141414] hover:bg-[#262626] text-[#ffffff] font-medium rounded-full transition-all active:scale-[0.98]"
         >
-          {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+          {copied ? <Check className="w-3.5 h-3.5 text-[#00e676]" /> : <Copy className="w-3.5 h-3.5" />}
           <span>{copied ? '복사 완료' : '클립보드 복사'}</span>
         </button>
 
         <button
           onClick={handleDownloadPng}
-          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-medium rounded-xl border border-neutral-700 shadow-sm transition-all"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#ffffff] hover:bg-[#f3f3f3] text-[#141414] font-medium rounded-full border border-[#e0e0e0] transition-all active:scale-[0.98]"
         >
-          <Download className="w-3.5 h-3.5" />
+          <Download className="w-3.5 h-3.5 text-[#707070]" />
           <span>PNG 저장</span>
         </button>
       </div>
@@ -138,36 +155,36 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       {/* OpenPose JSON 내보내기 */}
       <button
         onClick={handleExportJson}
-        className="flex items-center justify-center gap-1.5 py-1.5 px-3 bg-neutral-800/60 hover:bg-neutral-800 text-neutral-300 text-xs font-medium rounded-xl border border-neutral-800 transition-all"
+        className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#f3f3f3] hover:bg-[#e0e0e0] text-[#141414] font-medium rounded-full transition-all"
       >
-        <FileCode className="w-3.5 h-3.5 text-emerald-400" />
+        <FileCode className="w-3.5 h-3.5 text-[#0066ff]" />
         <span>OpenPose JSON 다운로드</span>
       </button>
 
       {/* ComfyUI 직결 섹션 */}
-      <div className="pt-2 border-t border-neutral-800/80 flex flex-col gap-2">
-        <div className="flex items-center justify-between text-xs text-neutral-400">
-          <span>ComfyUI 서버:</span>
+      <div className="pt-2 border-t border-[#f0f0f0] flex flex-col gap-2">
+        <div className="flex items-center justify-between text-[#707070]">
+          <span className="font-medium">ComfyUI 로컬:</span>
           <input
             type="text"
             value={comfyUrl}
             onChange={(e) => setComfyUrl(e.target.value)}
-            className="w-40 px-2 py-0.5 bg-neutral-950 border border-neutral-800 rounded text-[11px] text-neutral-200 font-mono focus:outline-none focus:border-blue-500"
+            className="w-36 px-2.5 py-1 bg-[#f0f0f0] rounded-[12px] text-[11px] text-[#141414] font-mono focus:outline-none focus:ring-1 focus:ring-[#141414]"
           />
         </div>
 
         <button
           onClick={handleSendToComfy}
           disabled={isGenerating}
-          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-medium rounded-xl shadow-md transition-all active:scale-[0.98]"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#141414] hover:bg-[#262626] disabled:opacity-50 text-[#ffffff] font-medium rounded-full transition-all active:scale-[0.98]"
         >
-          <Send className="w-3.5 h-3.5" />
+          <Send className="w-3.5 h-3.5 text-[#0066ff]" />
           <span>{isGenerating ? `생성 중 (${generationProgress}%)` : 'ComfyUI로 전송'}</span>
         </button>
 
         {comfyStatus && (
-          <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 bg-neutral-950 p-2 rounded-lg border border-neutral-800">
-            <AlertCircle className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[11px] text-[#707070] bg-[#f0f0f0] p-2 rounded-[12px]">
+            <AlertCircle className="w-3.5 h-3.5 text-[#0066ff] flex-shrink-0" />
             <span className="truncate">{generationStatus || comfyStatus}</span>
           </div>
         )}
@@ -175,4 +192,3 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     </div>
   );
 };
-

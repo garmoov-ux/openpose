@@ -174,6 +174,29 @@ export function createProceduralHumanoid(): HumanoidRigResult {
   return { group, skeleton, bones: bonesMap, colliders: collidersMap, skinnedMesh };
 }
 
+// 155cm 단신 아시안 여성 체형 스케일 적용 함수 (85mm 망원 렌즈 및 themes_solo 규격)
+export function applyBodyProportions(bones: Map<string, THREE.Bone>, isPetite155: boolean): void {
+  const root = bones.get('Hips');
+  if (!root) return;
+
+  if (isPetite155) {
+    // 155cm 슬림 체형: 전체 신장 약 0.88x, 골반 및 사지 비율 섬세화
+    root.scale.set(0.92, 0.88, 0.90);
+    const leftArm = bones.get('LeftArm');
+    const rightArm = bones.get('RightArm');
+    if (leftArm) leftArm.scale.set(0.90, 0.90, 0.90);
+    if (rightArm) rightArm.scale.set(0.90, 0.90, 0.90);
+  } else {
+    // 표준 체형 (1.0x)
+    root.scale.set(1.0, 1.0, 1.0);
+    const leftArm = bones.get('LeftArm');
+    const rightArm = bones.get('RightArm');
+    if (leftArm) leftArm.scale.set(1.0, 1.0, 1.0);
+    if (rightArm) rightArm.scale.set(1.0, 1.0, 1.0);
+  }
+  root.updateMatrixWorld(true);
+}
+
 function mergeGeometriesManually(geometries: THREE.BufferGeometry[]): THREE.BufferGeometry {
   const merged = new THREE.BufferGeometry();
   let totalPos = 0;

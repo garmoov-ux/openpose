@@ -15,15 +15,15 @@ export const CameraToolbar: React.FC = () => {
   ];
 
   return (
-    <div className="absolute top-4 right-4 z-10 flex items-center gap-1 p-1.5 bg-neutral-900/90 backdrop-blur-md rounded-xl border border-neutral-800 shadow-xl">
+    <div className="absolute top-4 right-4 z-10 flex items-center gap-1 p-1 bg-[#ffffff]/90 backdrop-blur-md rounded-full border border-[#e0e0e0] text-xs">
       {presets.map((p) => (
         <button
           key={p.id}
           onClick={() => setCameraPreset(p.id)}
-          className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
+          className={`flex items-center gap-1 px-3 py-1.5 font-medium rounded-full transition-all ${
             cameraPreset === p.id
-              ? 'bg-neutral-800 text-white shadow-sm'
-              : 'text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/60'
+              ? 'bg-[#141414] text-[#ffffff]'
+              : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'
           }`}
           title={`${p.label} 시점`}
         >
@@ -32,16 +32,15 @@ export const CameraToolbar: React.FC = () => {
         </button>
       ))}
 
-      <div className="w-px h-4 bg-neutral-800 mx-1" />
+      <div className="w-px h-4 bg-[#e0e0e0] mx-0.5" />
 
       <button
         onClick={() => setCameraPreset('front')}
         title="카메라 리셋"
-        className="p-1.5 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-all"
+        className="p-1.5 text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3] rounded-full transition-all"
       >
         <RotateCcw className="w-3.5 h-3.5" />
       </button>
     </div>
   );
 };
-

@@ -38,3 +38,8 @@ export function downloadJson(data: object, filename: string): void {
   downloadBlobAsFile(blob, filename);
 }
 
+export function downloadTextFile(text: string, filename: string): void {
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  downloadBlobAsFile(blob, filename);
+}
+

@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { RenderMode, GizmoMode, GizmoSpace, CameraPreset } from '@/types';
-import { createProceduralHumanoid, HumanoidRigResult } from '@/core/mannequin/humanoidRig';
+import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
+import { CameraController } from './CameraController';
 import {
   createDefaultShadingMaterial,
   createDepthShaderMaterial,
@@ -20,6 +21,7 @@ export class SceneManager {
   public renderer: THREE.WebGLRenderer;
   public orbitControls: OrbitControls;
   public transformControls: TransformControls;
+  public cameraController: CameraController;
   public humanoid: HumanoidRigResult;
   public skeletonHelper: THREE.SkeletonHelper;
   public gridHelper: THREE.GridHelper;
@@ -81,6 +83,8 @@ export class SceneManager {
     this.orbitControls = new OrbitControls(this.camera, canvas);
     this.orbitControls.enableDamping = true;
     this.orbitControls.target.set(0, 0.95, 0);
+
+    this.cameraController = new CameraController(this.camera, this.orbitControls);
 
     this.transformControls = new TransformControls(this.camera, canvas);
     this.transformControls.size = 0.75;
@@ -196,27 +200,15 @@ export class SceneManager {
   }
 
   public setCameraPreset(preset: CameraPreset): void {
-    const target = new THREE.Vector3(0, 0.95, 0);
-    switch (preset) {
-      case 'front':
-        this.camera.position.set(0, 1.0, 3.2);
-        break;
-      case 'side':
-        this.camera.position.set(3.2, 1.0, 0);
-        break;
-      case 'top':
-        this.camera.position.set(0, 4.0, 0.05);
-        break;
-      case 'closeup':
-        target.set(0, 1.45, 0);
-        this.camera.position.set(0, 1.45, 1.2);
-        break;
-      case 'fullbody':
-        this.camera.position.set(0, 0.95, 3.8);
-        break;
-    }
-    this.orbitControls.target.copy(target);
-    this.camera.lookAt(target);
+    this.cameraController.setStandardPreset(preset);
+  }
+
+  public setSoloThemeShot(targetHeight: number, distance: number, fov = 28): void {
+    this.cameraController.setSoloThemeShot(targetHeight, distance, fov);
+  }
+
+  public setPetiteProportions(isPetite: boolean): void {
+    applyBodyProportions(this.humanoid.bones, isPetite);
   }
 
   public resize(width: number, height: number): void {
