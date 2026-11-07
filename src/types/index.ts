@@ -5,6 +5,27 @@ export type GizmoSpace = 'local' | 'world';
 
 export type CameraPreset = 'front' | 'side' | 'top' | 'closeup' | 'fullbody';
 
+export type MannequinModelId =
+  | 'procedural'
+  | 'anime_female'
+  | 'realistic_woman'
+  | 'realistic_muscular_male'
+  | 'anime_basic_male'
+  | 'male_mannequin'
+  | 'chibi_male';
+
+export type MaterialStyle = 'matte_white' | 'toon_outline' | 'clay' | 'chrome';
+
+export interface MannequinModelInfo {
+  id: MannequinModelId;
+  name: string;
+  category: 'realistic' | 'anime' | 'stylized' | 'procedural';
+  gender: 'female' | 'male' | 'neutral';
+  description: string;
+  file?: string;
+  badge?: string;
+}
+
 export interface BoneJointInfo {
   name: string;
   label: string;

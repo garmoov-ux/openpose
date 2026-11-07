@@ -15,7 +15,7 @@ export const CameraToolbar: React.FC = () => {
   ];
 
   return (
-    <div className="absolute top-4 right-4 z-10 flex items-center gap-1 p-1 bg-[#ffffff]/90 backdrop-blur-md rounded-full border border-[#e0e0e0] text-xs">
+    <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1 p-1 bg-[#ffffff]/90 backdrop-blur-md rounded-full border border-[#e0e0e0] text-xs">
       {presets.map((p) => (
         <button
           key={p.id}

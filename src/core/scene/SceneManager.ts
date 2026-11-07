@@ -1,15 +1,21 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
-import { RenderMode, GizmoMode, GizmoSpace, CameraPreset } from '@/types';
+import { RenderMode, GizmoMode, GizmoSpace, CameraPreset, MannequinModelId, MaterialStyle } from '@/types';
 import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
+import { loadFbxMannequin } from '@/core/mannequin/modelLoader';
 import { CameraController } from './CameraController';
 import {
-  createDefaultShadingMaterial,
   createDepthShaderMaterial,
   createNormalShaderMaterial,
   createCannyMaterial,
+  createMaterialByStyle,
 } from '@/core/shaders/materials';
+import {
+  backupBoneRotations,
+  restoreBoneRotations,
+  applyMaterialToHierarchy,
+} from './modelSwapHelper';
 import {
   getJointScreenPositions,
   drawOpenPoseSkeleton,
@@ -32,8 +38,10 @@ export class SceneManager {
   private mouse = new THREE.Vector2();
   private onBoneSelectedCallback?: (boneName: string | null) => void;
   private currentMode: RenderMode = 'shading';
+  public currentModelId: MannequinModelId = 'procedural';
+  public currentMaterialStyle: MaterialStyle = 'matte_white';
 
-  private defaultMaterial = createDefaultShadingMaterial();
+  private defaultMaterial = createMaterialByStyle('matte_white');
   private depthMaterial = createDepthShaderMaterial();
   private normalMaterial = createNormalShaderMaterial();
   private cannyMaterial = createCannyMaterial();
@@ -153,41 +161,82 @@ export class SceneManager {
 
   public setRenderMode(mode: RenderMode): void {
     this.currentMode = mode;
-    const mesh = this.humanoid.skinnedMesh;
 
     switch (mode) {
       case 'depth':
         this.scene.background = new THREE.Color(0x000000);
         this.gridHelper.visible = false;
         this.skeletonHelper.visible = false;
-        mesh.material = this.depthMaterial;
+        applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial);
         break;
       case 'normal':
         this.scene.background = new THREE.Color(0x8080ff);
         this.gridHelper.visible = false;
         this.skeletonHelper.visible = false;
-        mesh.material = this.normalMaterial;
+        applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial);
         break;
       case 'canny':
         this.scene.background = new THREE.Color(0x000000);
         this.gridHelper.visible = false;
         this.skeletonHelper.visible = false;
-        mesh.material = this.cannyMaterial;
+        applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial);
         break;
       case 'openpose':
         this.scene.background = new THREE.Color(0x000000);
         this.gridHelper.visible = false;
         this.skeletonHelper.visible = false;
-        mesh.visible = false;
+        this.humanoid.group.visible = false;
         break;
       case 'shading':
       default:
         this.scene.background = new THREE.Color(0x18181b);
         this.gridHelper.visible = true;
         this.skeletonHelper.visible = true;
-        mesh.visible = true;
-        mesh.material = this.defaultMaterial;
+        this.humanoid.group.visible = true;
+        applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial);
         break;
+    }
+  }
+
+  public async loadMannequinModel(
+    modelId: MannequinModelId,
+    onProgress?: (percent: number) => void
+  ): Promise<void> {
+    if (this.currentModelId === modelId) return;
+
+    const boneBackup = backupBoneRotations(this.humanoid.bones);
+    const prevSelected = this.transformControls.object?.name || null;
+    this.transformControls.detach();
+
+    let newRig: HumanoidRigResult;
+    if (modelId === 'procedural') {
+      newRig = createProceduralHumanoid();
+    } else {
+      newRig = await loadFbxMannequin(modelId, this.currentMaterialStyle, onProgress);
+    }
+
+    this.scene.remove(this.humanoid.group);
+    this.scene.remove(this.skeletonHelper);
+
+    restoreBoneRotations(newRig.bones, boneBackup);
+
+    this.humanoid = newRig;
+    this.currentModelId = modelId;
+    this.scene.add(this.humanoid.group);
+
+    this.skeletonHelper = new THREE.SkeletonHelper(this.humanoid.group);
+    (this.skeletonHelper.material as THREE.LineBasicMaterial).linewidth = 2;
+    this.scene.add(this.skeletonHelper);
+
+    this.setRenderMode(this.currentMode);
+    if (prevSelected) this.selectBone(prevSelected);
+  }
+
+  public setMaterialStyle(style: MaterialStyle): void {
+    this.currentMaterialStyle = style;
+    this.defaultMaterial = createMaterialByStyle(style);
+    if (this.currentMode === 'shading') {
+      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial);
     }
   }
 

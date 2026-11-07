@@ -16,7 +16,7 @@ export const GizmoToolbar: React.FC = () => {
   const selectedJointInfo = JOINT_DEFINITIONS.find((j) => j.name === selectedBoneName);
 
   return (
-    <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none text-xs">
+    <div className="absolute bottom-4 left-4 z-10 flex flex-col gap-2 pointer-events-none text-xs">
       <div className="flex items-center gap-1.5 p-1 bg-[#ffffff]/90 backdrop-blur-md rounded-full border border-[#e0e0e0] pointer-events-auto">
         <button
           onClick={() => setGizmoMode('rotate')}

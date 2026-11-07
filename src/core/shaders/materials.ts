@@ -87,3 +87,33 @@ export function createDefaultShadingMaterial(): THREE.MeshStandardMaterial {
   });
 }
 
+// 5. 스타일별 마네킹 머티리얼 팩토리
+export function createMaterialByStyle(style: string): THREE.Material {
+  switch (style) {
+    case 'clay':
+      return new THREE.MeshStandardMaterial({
+        color: 0xb08968,
+        roughness: 0.9,
+        metalness: 0.0,
+      });
+    case 'toon_outline':
+      return new THREE.MeshToonMaterial({
+        color: 0xf1f5f9,
+      });
+    case 'chrome':
+      return new THREE.MeshStandardMaterial({
+        color: 0x334155,
+        roughness: 0.15,
+        metalness: 0.9,
+      });
+    case 'matte_white':
+    default:
+      return new THREE.MeshStandardMaterial({
+        color: 0xf8fafc,
+        roughness: 0.8,
+        metalness: 0.05,
+      });
+  }
+}
+
+
