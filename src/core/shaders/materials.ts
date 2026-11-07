@@ -86,3 +86,4 @@ export function createDefaultShadingMaterial(): THREE.MeshStandardMaterial {
     metalness: 0.1,
   });
 }
+

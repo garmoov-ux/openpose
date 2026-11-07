@@ -37,3 +37,4 @@ export function downloadJson(data: object, filename: string): void {
   const blob = new Blob([jsonStr], { type: 'application/json' });
   downloadBlobAsFile(blob, filename);
 }
+

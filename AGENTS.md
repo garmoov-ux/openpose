@@ -47,6 +47,8 @@
    - ComfyUI 로컬 서버(`127.0.0.1:8188`) REST API(`/upload/image`, `/prompt`), WebSocket 진행률 구독, ControlNet 워크플로우 JSON 템플릿 주입 가이드.
 4. **`offscreen-canvas-exporter`**:
    - 해상도 독립적(512~2048px) 오프스크린 캔버스 캡처, `navigator.clipboard.write` 클립보드 PNG 복사, 포즈 JSON 직렬화/역직렬화 가이드.
+5. **`webapp-testing`** (Anthropic 공식 검증 스킬):
+   - Playwright 기반 웹 애플리케이션 E2E 인터랙션 검증, 3D 뷰포트 캔버스 스크린샷 비교, 콘솔 로그 감시.
 
 ### 2.2. 공용 글로벌 MCP 도구 (%USERPROFILE%\.gemini\config\mcp_config.json)
 기존 공용 글로벌 환경에 이미 등록되어 Antigravity에 상주하는 3대 MCP를 그대로 활용합니다 (중복 설치 불필요):
@@ -81,6 +83,12 @@
    - 초당 60회 실행되는 `requestAnimationFrame` 내부에서는 React `useState` 호출을 일체 금지하며, Ref 및 Three.js 내부 속성만을 갱신하여 렌더 병목을 방지합니다.
 3. **이모지 전면 금지**:
    - 소스 코드 주석, 마크다운 문서, UI 텍스트에 이모지를 사용하지 않고 명확한 한국어 텍스트와 전문 용어, 아이콘 라이브러리(`lucide-react`)를 사용합니다.
+4. **환경 변수 및 보안 원칙 (`security.md`)**:
+   - 실제 시크릿 키나 `.env` 파일은 Git 커밋을 원천 차단하며 `.env.example` 템플릿만을 관리합니다.
+   - 외부 포즈 JSON 파싱 시 스키마 유효성을 검증하며, ComfyUI 연결 주소는 로컬 호스트를 기본으로 합니다.
+5. **테스트 및 품질 검증 원칙 (`testing.md`)**:
+   - 3D 기하 연산 순수 함수 단위 검증 및 오프스크린 캔버스 캡처 해상도 무결성을 상시 검증합니다.
+   - 코드 커밋 전 반드시 `npm run build`를 통과해야 합니다.
 
 ---
 

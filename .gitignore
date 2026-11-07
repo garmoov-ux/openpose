@@ -22,6 +22,14 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
 # Temporary and build
 .temp
 .cache

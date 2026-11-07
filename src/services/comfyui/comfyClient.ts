@@ -90,3 +90,4 @@ export class ComfyClient {
 }
 
 export const comfyClient = new ComfyClient();
+

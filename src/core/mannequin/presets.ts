@@ -127,3 +127,4 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     bone.updateMatrixWorld(true);
   });
 }
+

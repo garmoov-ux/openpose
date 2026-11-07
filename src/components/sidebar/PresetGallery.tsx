@@ -47,3 +47,4 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
     </div>
   );
 };
+

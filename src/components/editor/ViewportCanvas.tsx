@@ -71,3 +71,4 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     </div>
   );
 };
+
