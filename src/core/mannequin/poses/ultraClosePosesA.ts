@@ -256,3 +256,4 @@ export const ULTRA_CLOSE_POSES_A: Record<number, PoseKeyframe> = {
     RightLeg: { rotation: q(-120, 0, 0) },
   },
 };
+

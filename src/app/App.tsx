@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { ViewportCanvas } from '@/components/editor/ViewportCanvas';
 import { GizmoToolbar } from '@/components/editor/GizmoToolbar';
 import { CameraToolbar } from '@/components/editor/CameraToolbar';
@@ -14,6 +14,10 @@ import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 export const App: React.FC = () => {
   const [sceneManager, setSceneManager] = useState<SceneManager | null>(null);
   const themeStore = useThemeSoloStore();
+
+  const handleSceneReady = useCallback((manager: SceneManager) => {
+    setSceneManager(manager);
+  }, []);
 
   const handleResetPose = () => {
     if (!sceneManager) return;
@@ -67,7 +71,7 @@ export const App: React.FC = () => {
 
         {/* 중앙: 3D 뷰포트 영역 */}
         <main className="flex-1 relative h-full bg-[#f3f3f3]">
-          <ViewportCanvas onSceneReady={(manager) => setSceneManager(manager)} />
+          <ViewportCanvas onSceneReady={handleSceneReady} />
           <GizmoToolbar />
           <CameraToolbar />
         </main>

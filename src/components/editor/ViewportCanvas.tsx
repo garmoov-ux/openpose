@@ -9,6 +9,8 @@ interface ViewportCanvasProps {
 export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const managerRef = useRef<SceneManager | null>(null);
+  const onSceneReadyRef = useRef(onSceneReady);
+  onSceneReadyRef.current = onSceneReady;
 
   const {
     renderMode,
@@ -26,7 +28,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     });
 
     managerRef.current = manager;
-    onSceneReady?.(manager);
+    onSceneReadyRef.current?.(manager);
 
     const handleResize = () => {
       if (!canvasRef.current || !managerRef.current) return;
@@ -43,7 +45,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       manager.dispose();
       managerRef.current = null;
     };
-  }, [setSelectedBoneName, onSceneReady]);
+  }, [setSelectedBoneName]);
 
   // 스토어 상태 변경 시 씬 매니저에 반영
   useEffect(() => {

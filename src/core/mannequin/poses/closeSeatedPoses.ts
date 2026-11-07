@@ -278,3 +278,4 @@ export const CLOSE_SEATED_POSES: Record<number, PoseKeyframe> = {
     RightArm: { rotation: q(5, 0, 30) },
   },
 };
+

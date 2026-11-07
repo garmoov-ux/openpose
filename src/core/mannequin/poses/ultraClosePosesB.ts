@@ -237,3 +237,4 @@ export const ULTRA_CLOSE_POSES_B: Record<number, PoseKeyframe> = {
     LeftArm: { rotation: q(20, 0, -25) },
   },
 };
+

@@ -104,3 +104,4 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     set({ selectedPostureId: rand });
   },
 }));
+

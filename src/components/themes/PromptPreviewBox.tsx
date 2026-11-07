@@ -132,3 +132,4 @@ export const PromptPreviewBox: React.FC<PromptPreviewBoxProps> = ({ sceneManager
     </div>
   );
 };
+

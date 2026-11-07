@@ -273,3 +273,4 @@ export const CLOSE_LOUNGE_POSES: Record<number, PoseKeyframe> = {
     RightArm: { rotation: q(20, 0, 20) },
   },
 };
+

@@ -30,3 +30,4 @@ export function createBaseKeyframe(hipPos: [number, number, number] = [0, 0.95, 
     RightLeg: { rotation: q(0, 0, 0) },
   };
 }
+

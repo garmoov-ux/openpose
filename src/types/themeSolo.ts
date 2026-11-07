@@ -65,3 +65,4 @@ export interface PromptBuildConfig {
   shotPrefixIndex: number;
   isWildcardMode: boolean;
 }
+

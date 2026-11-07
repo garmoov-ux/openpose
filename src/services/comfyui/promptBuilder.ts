@@ -59,3 +59,4 @@ export function buildWildcardPrompt(params: PromptBuildParams): string {
 export function buildThemeSoloPrompt(params: PromptBuildParams): string {
   return params.isWildcardMode ? buildWildcardPrompt(params) : buildResolvedPrompt(params);
 }
+

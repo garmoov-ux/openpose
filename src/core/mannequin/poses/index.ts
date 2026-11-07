@@ -22,3 +22,4 @@ export const SOLO_THEME_POSES_MAP: Record<number, PoseKeyframe> = {
 export function getSoloThemePoseKeyframe(id: number): PoseKeyframe | null {
   return SOLO_THEME_POSES_MAP[id] || null;
 }
+

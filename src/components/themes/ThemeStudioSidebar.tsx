@@ -51,3 +51,4 @@ export const ThemeStudioSidebar: React.FC<ThemeStudioSidebarProps> = ({ sceneMan
     </aside>
   );
 };
+

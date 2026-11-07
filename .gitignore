@@ -33,5 +33,5 @@ dist-ssr
 # Temporary and build
 .temp
 .cache
-
+.playwright-mcp
 *.tsbuildinfo
