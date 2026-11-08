@@ -35,3 +35,7 @@ dist-ssr
 .cache
 .playwright-mcp
 *.tsbuildinfo
+
+# Local reference material
+res_image/
+docs/
