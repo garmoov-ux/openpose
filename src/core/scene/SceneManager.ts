@@ -53,7 +53,7 @@ export class SceneManager {
   private partnerFbxLoaded = false;
   private partnerFbxLoading = false;
   private lastPartnerPreset?: (typeof POSE_PRESETS)[number];
-  private currentThemeBgHex = 0x1c1917;
+  private currentThemeBgHex = 0x18181b;
   private currentOutfitId: number | null = null;
   private currentAccessoryConfig: BodyAccessoryConfig = {
     nailColorId: 'nail_none', footwearId: 'foot_bare', neckItemId: 'neck_none', wristItemId: 'wrist_none', legItemId: 'leg_none',
@@ -189,8 +189,8 @@ export class SceneManager {
     this.overlayCanvas.classList.toggle('hidden', mode !== 'openpose');
     const isShading = mode === 'shading';
     this.gridHelper.visible = isShading && this.showGridState;
-    this.studioLights.stageFloor.visible = isShading && this.showGridState;
-    this.studioLights.stageRing.visible = isShading && this.showGridState;
+    this.studioLights.stageFloor.visible = false;
+    this.studioLights.stageRing.visible = false;
     this.studioLights.themePropsGroup.visible = isShading && this.showThemePropsState;
     this.skeletonHelper.visible = isShading && this.showSkeletonState;
     this.humanoid.group.visible = mode !== 'openpose';
@@ -287,7 +287,7 @@ export class SceneManager {
   }
   public setShowGrid(show: boolean): void {
     this.showGridState = show;
-    if (this.currentMode === 'shading') this.gridHelper.visible = this.studioLights.stageFloor.visible = this.studioLights.stageRing.visible = show;
+    if (this.currentMode === 'shading') this.gridHelper.visible = show;
   }
   public setShowSkeleton(show: boolean): void {
     this.showSkeletonState = show;

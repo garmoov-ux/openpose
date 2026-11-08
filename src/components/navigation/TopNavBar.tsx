@@ -12,7 +12,6 @@ import {
   Bookmark,
   Sparkles,
   Download,
-  Sofa,
   Gem,
   Dices,
   Ban,
@@ -41,11 +40,11 @@ const TOP_DOCK_ITEMS: Array<{
 ];
 
 const QUICK_MODES: Array<{ id: RenderMode; label: string; icon: React.ReactNode }> = [
-  { id: 'shading', label: '마네킹', icon: <Sun className="w-3.5 h-3.5" /> },
-  { id: 'openpose', label: '관절선', icon: <Activity className="w-3.5 h-3.5" /> },
-  { id: 'depth', label: '깊이', icon: <Layers className="w-3.5 h-3.5" /> },
-  { id: 'normal', label: '법선', icon: <Box className="w-3.5 h-3.5" /> },
-  { id: 'canny', label: '윤곽선', icon: <Grid className="w-3.5 h-3.5" /> },
+  { id: 'shading', label: '마네킹 3D 셰이딩', icon: <Sun className="w-4 h-4" /> },
+  { id: 'openpose', label: 'OpenPose 관절선', icon: <Activity className="w-4 h-4" /> },
+  { id: 'depth', label: 'Depth 깊이맵', icon: <Layers className="w-4 h-4" /> },
+  { id: 'normal', label: 'Normal 법선맵', icon: <Box className="w-4 h-4" /> },
+  { id: 'canny', label: 'Canny 윤곽선', icon: <Grid className="w-4 h-4" /> },
 ];
 
 export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
@@ -133,7 +132,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
           <button
             onClick={handleTogglePropsSection}
             aria-label="아이템 & 소품"
-            title="아이템 & 소품 (방 가구·성인기구 55종 / 바디 착용·성인토이 84종)"
+            title="아이템 & 소품 (가구·성인기구 55종 / 바디 착용·성인토이 84종)"
             className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
               isPropsTabActive
                 ? 'bg-zinc-900 text-pink-400 shadow-sm scale-105'
@@ -150,98 +149,96 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
 
           <button
             onClick={() => themeStore.rollRandomAll()}
-            aria-label="전체 랜덤 세트"
-            title="전체 랜덤 세트 (배경·의상·아이템·자세 무작위 조합)"
+            aria-label="랜덤 코디·자세 세트"
+            title="랜덤 코디·자세 세트 (의상·아이템·자세 무작위 조합)"
             className="group relative flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 hover:bg-zinc-800 text-amber-400 shadow-sm transition-all active:scale-95"
           >
             <Dices className="w-4 h-4" />
             <span className="pointer-events-none absolute top-11 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
-              전체 랜덤 세트
+              랜덤 코디·자세
             </span>
           </button>
         </div>
       </div>
 
-      {/* 2. 우측: 빠른 화면 모드 아이콘 스위치 & 순수 마네킹 모드 / 사물 / 관절선 토글 & 초기화 */}
-      <div className="flex items-center gap-1.5 pointer-events-auto">
-        <div className="flex items-center gap-0.5 p-1 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
+      {/* 2. 우측: 깔끔한 원형 아이콘 전용 스위치 독 (5대 렌더 모드 + 순수 마네킹 + 관절선 + 초기화) */}
+      <div className="flex items-center pointer-events-auto">
+        <div className="flex items-center gap-1 p-1.5 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-full shadow-md">
           {QUICK_MODES.map((m) => {
             const isActive = renderMode === m.id;
             return (
               <button
                 key={m.id}
                 onClick={() => setRenderMode(m.id)}
-                title={`${m.label} 화면 모드로 전환`}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+                aria-label={m.label}
+                title={m.label}
+                className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
                   isActive
-                    ? 'bg-zinc-900 text-white shadow-sm'
+                    ? 'bg-zinc-900 text-white shadow-sm scale-105'
                     : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
                 }`}
               >
                 {m.icon}
-                <span className="hidden md:inline">{m.label}</span>
+                <span className="pointer-events-none absolute top-11 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
+                  {m.label}
+                </span>
               </button>
             );
           })}
+
+          <div className="w-px h-5 bg-zinc-200 mx-0.5" />
+
+          {/* 순수 마네킹 모드 (올클린 미착용) 아이콘 스위치 */}
+          <button
+            onClick={() => themeStore.toggleBareMannequinMode()}
+            aria-label="순수 마네킹 모드"
+            title={
+              themeStore.isBareMannequinMode
+                ? '순수 마네킹 모드 ON (클릭 시 이전 의상·아이템 복원)'
+                : '올클린 미착용 (모든 의상·바디 아이템 한 번에 해제)'
+            }
+            className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
+              themeStore.isBareMannequinMode
+                ? 'bg-zinc-900 text-emerald-400 ring-2 ring-emerald-500/40 shadow-sm'
+                : 'text-rose-600 hover:bg-rose-50'
+            }`}
+          >
+            <Ban className="w-4 h-4" />
+            <span className="pointer-events-none absolute top-11 right-0 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
+              {themeStore.isBareMannequinMode ? '순수 마네킹 ON (복원)' : '올클린 미착용'}
+            </span>
+          </button>
+
+          {/* 관절 조절점 및 포즈선 표시 아이콘 토글 */}
+          <button
+            onClick={() => setShowSkeleton(!showSkeleton)}
+            aria-label="관절선 표시 토글"
+            title={showSkeleton ? '관절선 및 조절점 숨기기' : '관절선 및 조절점 표시하기'}
+            className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
+              showSkeleton
+                ? 'bg-zinc-900 text-blue-400 shadow-sm'
+                : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100'
+            }`}
+          >
+            {showSkeleton ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+            <span className="pointer-events-none absolute top-11 right-0 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
+              {showSkeleton ? '관절선 숨기기' : '관절선 표시'}
+            </span>
+          </button>
+
+          {/* 자세 초기화 아이콘 버튼 */}
+          <button
+            onClick={handleResetPose}
+            aria-label="자세 초기화"
+            title="마네킹 기본 자세 및 전신 풀샷으로 초기화"
+            className="group relative flex items-center justify-center w-9 h-9 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-all active:scale-95"
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span className="pointer-events-none absolute top-11 right-0 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
+              자세 초기화
+            </span>
+          </button>
         </div>
-
-        {/* 순수 마네킹 모드 (올클린 미착용) 스마트 토글 */}
-        <button
-          onClick={() => themeStore.toggleBareMannequinMode()}
-          title={
-            themeStore.isBareMannequinMode
-              ? '순수 마네킹 모드 켜짐 (클릭 시 이전 의상·아이템 복원)'
-              : '모든 의상 및 바디 아이템 한 번에 미착용 (순수 마네킹 모드)'
-          }
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all ${
-            themeStore.isBareMannequinMode
-              ? 'bg-zinc-900 border-emerald-500/80 text-emerald-400'
-              : 'bg-white/95 border-zinc-200/90 text-rose-600 hover:bg-white'
-          }`}
-        >
-          <Ban className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">
-            {themeStore.isBareMannequinMode ? '순수 마네킹 ON' : '올클린 미착용'}
-          </span>
-        </button>
-
-        {/* 방 가구 3D 사물 표시 토글 */}
-        <button
-          onClick={() => themeStore.setShowThemeProps(!themeStore.showThemeProps)}
-          title={themeStore.showThemeProps ? '방 가구·사물 숨기기' : '방 가구·사물 표시하기'}
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all ${
-            themeStore.showThemeProps
-              ? 'bg-white/95 border-zinc-200/90 text-amber-600 hover:bg-white'
-              : 'bg-zinc-900/90 border-zinc-800 text-zinc-300 hover:text-white'
-          }`}
-        >
-          <Sofa className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">테마 사물</span>
-        </button>
-
-        {/* 관절 조절점 및 포즈선 표시 토글 */}
-        <button
-          onClick={() => setShowSkeleton(!showSkeleton)}
-          title={showSkeleton ? '관절선 및 조절점 숨기기' : '관절선 및 조절점 표시하기'}
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all ${
-            showSkeleton
-              ? 'bg-white/95 border-zinc-200/90 text-blue-600 hover:bg-white'
-              : 'bg-zinc-900/90 border-zinc-800 text-zinc-300 hover:text-white'
-          }`}
-        >
-          {showSkeleton ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
-          <span className="hidden sm:inline">관절선</span>
-        </button>
-
-        {/* 자세 초기화 */}
-        <button
-          onClick={handleResetPose}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 bg-white/95 hover:bg-white backdrop-blur-md rounded-full border border-zinc-200/90 text-zinc-800 hover:text-zinc-950 text-xs font-semibold shadow-sm transition-all active:scale-95"
-          title="마네킹 기본 자세 및 전신 풀샷으로 초기화"
-        >
-          <RotateCcw className="w-3.5 h-3.5 text-zinc-600" />
-          <span className="hidden sm:inline">초기화</span>
-        </button>
       </div>
     </header>
   );

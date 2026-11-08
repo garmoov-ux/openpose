@@ -4,7 +4,7 @@ import { THEMES_DATA } from '@/data/themesSolo/themesData';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { NAIL_ITEMS, FOOTWEAR_ITEMS, NECK_ITEMS, WRIST_ITEMS, LEG_ITEMS, TOY_SPECIAL_ITEMS, EXTRA_SCENE_PROPS } from '@/data/themesSolo/accessoriesAndPropsData';
-import { RoomPropInstance, ROOM_PROP_CATALOG, findRoomPropById, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
+import { RoomPropInstance, findRoomPropById, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
 import { BodyAccessoryCategoryKey } from '@/core/mannequin/bodyAccessoryMeshes';
 
 export type BodyProfileMode = 'mannequin' | 'free' | 'petite155';
@@ -131,7 +131,7 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   activeCouplePresetId: 'couple-back-hug',
   isBareMannequinMode: true,
   savedAppearanceBackup: null,
-  roomProps: getDefaultRoomPropsForTheme('house_indoor_room', 0),
+  roomProps: [],
   selectedPropUid: null,
   nailColorId: 'none',
   footwearId: 'bare_feet',
@@ -274,36 +274,15 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     })),
 
   rollRandomAll: () => {
-    const randTheme = pickRandom(Object.keys(THEMES_DATA) as SoloThemeId[]);
-    const theme = THEMES_DATA[randTheme];
-    const randEnv = Math.floor(Math.random() * theme.environments.length);
-    const baseRoomProps = getDefaultRoomPropsForTheme(randTheme, randEnv);
-    const extra = pickRandom(ROOM_PROP_CATALOG);
-    if (!baseRoomProps.some((p) => p.propId === extra.id)) {
-      baseRoomProps.push({
-        uid: `${extra.id}_rand`,
-        propId: extra.id,
-        visible: true,
-        position: [...extra.defaultPos],
-        rotationY: extra.defaultRotY || 0,
-        scale: 1.0,
-      });
-    }
     set({
-      selectedThemeId: randTheme,
-      selectedEnvIndex: randEnv,
-      selectedLightIndex: Math.floor(Math.random() * theme.lightings.length),
       selectedOutfitId: Math.floor(Math.random() * OUTFITS_DATA.length) + 1,
       selectedPostureId: Math.floor(Math.random() * POSTURES_DATA.length) + 1,
       isBareMannequinMode: false,
-      roomProps: baseRoomProps,
-      selectedPropUid: null,
       nailColorId: pickRandom(NAIL_ITEMS.slice(1)).id,
       footwearId: pickRandom(FOOTWEAR_ITEMS.slice(1)).id,
       neckItemId: pickRandom(NECK_ITEMS.slice(1)).id,
       wristItemId: pickRandom(WRIST_ITEMS.slice(1)).id,
       legItemId: pickRandom(LEG_ITEMS.slice(1)).id,
-      showThemeProps: true,
     });
   },
   rollRandomOutfit: () => {

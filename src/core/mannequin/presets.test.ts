@@ -95,10 +95,10 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     });
   });
 
-  it('테마 사물 생성기와 장면 핵심 태그 요약기가 정상 동작해야 한다', () => {
+  it('사물 생성기(기본 빈 스튜디오)와 장면 핵심 태그 요약기가 정상 동작해야 한다', () => {
     const group = new THREE.Group();
     rebuildThemePropsGroup(group, 'alley_downtown_street', 0);
-    expect(group.children.length).toBeGreaterThan(0);
+    expect(group.children.length).toBe(0);
 
     const tags = buildCompactSceneTagSummary({
       modelId: 'realistic_muscular_male',
