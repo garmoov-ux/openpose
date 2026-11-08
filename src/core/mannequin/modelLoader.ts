@@ -149,16 +149,26 @@ export async function loadFbxMannequin(
 
   const skinnedMesh = foundMeshes[0] || null;
 
-  // 바운딩 박스를 계산하여 높이 정규화 (표준 성인 키 약 1.75m)
+  // 바운딩 박스를 계산하여 높이 정규화 (연령/체형별 목표 키 적용)
   const box = new THREE.Box3().setFromObject(fbxGroup);
   const size = new THREE.Vector3();
   box.getSize(size);
 
   let scaleFactor = 1.0;
   if (size.y > 0) {
-    const targetHeight = modelId === 'chibi_male' ? 1.25 : 1.75;
+    const targetHeight = meta.targetHeight || (modelId === 'chibi_male' ? 1.2 : 1.75);
     scaleFactor = targetHeight / size.y;
     fbxGroup.scale.multiplyScalar(scaleFactor);
+  }
+
+  // 연령/체형별 본 스케일 변형 (어린이 대두 비율, 노년 체형, 플러스 사이즈, 9등신 등)
+  if (meta.boneScales) {
+    Object.entries(meta.boneScales).forEach(([bName, sVec]) => {
+      const targetBone = bonesMap.get(bName);
+      if (targetBone) {
+        targetBone.scale.set(sVec[0], sVec[1], sVec[2]);
+      }
+    });
   }
 
   fbxGroup.updateMatrixWorld(true);

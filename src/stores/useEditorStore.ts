@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { RenderMode, GizmoMode, GizmoSpace, CameraPreset, MannequinModelId, MaterialStyle } from '@/types';
 
+export type LeftSidebarSection = 'mannequin' | 'poses' | 'themes' | 'export' | null;
+
 interface EditorState {
   renderMode: RenderMode;
   gizmoMode: GizmoMode;
@@ -14,7 +16,8 @@ interface EditorState {
   currentMaterialStyle: MaterialStyle;
   modelLoadingProgress: number | null;
 
-  // 플로팅 UI 모달 및 드로어 상태
+  // 좌측 통합 사이드바 및 플로팅 UI 모달 상태
+  activeLeftSection: LeftSidebarSection;
   isModelModalOpen: boolean;
   isThemesDrawerOpen: boolean;
   isPresetsDrawerOpen: boolean;
@@ -39,6 +42,7 @@ interface EditorState {
   setCurrentModelId: (id: MannequinModelId) => void;
   setCurrentMaterialStyle: (style: MaterialStyle) => void;
   setModelLoadingProgress: (progress: number | null) => void;
+  setActiveLeftSection: (section: LeftSidebarSection) => void;
   setIsModelModalOpen: (open: boolean) => void;
   setIsThemesDrawerOpen: (open: boolean) => void;
   setIsPresetsDrawerOpen: (open: boolean) => void;
@@ -64,6 +68,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   currentMaterialStyle: 'matte_white',
   modelLoadingProgress: null,
 
+  activeLeftSection: null,
   isModelModalOpen: false,
   isThemesDrawerOpen: false,
   isPresetsDrawerOpen: false,
@@ -87,10 +92,34 @@ export const useEditorStore = create<EditorState>((set) => ({
   setCurrentModelId: (currentModelId) => set({ currentModelId }),
   setCurrentMaterialStyle: (currentMaterialStyle) => set({ currentMaterialStyle }),
   setModelLoadingProgress: (modelLoadingProgress) => set({ modelLoadingProgress }),
-  setIsModelModalOpen: (isModelModalOpen) => set({ isModelModalOpen }),
-  setIsThemesDrawerOpen: (isThemesDrawerOpen) => set({ isThemesDrawerOpen }),
-  setIsPresetsDrawerOpen: (isPresetsDrawerOpen) => set({ isPresetsDrawerOpen }),
-  setIsExportDrawerOpen: (isExportDrawerOpen) => set({ isExportDrawerOpen }),
+  setActiveLeftSection: (activeLeftSection) =>
+    set({
+      activeLeftSection,
+      isModelModalOpen: activeLeftSection === 'mannequin',
+      isPresetsDrawerOpen: activeLeftSection === 'poses',
+      isThemesDrawerOpen: activeLeftSection === 'themes',
+      isExportDrawerOpen: activeLeftSection === 'export',
+    }),
+  setIsModelModalOpen: (isModelModalOpen) =>
+    set((s) => ({
+      isModelModalOpen,
+      activeLeftSection: isModelModalOpen ? 'mannequin' : s.activeLeftSection === 'mannequin' ? null : s.activeLeftSection,
+    })),
+  setIsThemesDrawerOpen: (isThemesDrawerOpen) =>
+    set((s) => ({
+      isThemesDrawerOpen,
+      activeLeftSection: isThemesDrawerOpen ? 'themes' : s.activeLeftSection === 'themes' ? null : s.activeLeftSection,
+    })),
+  setIsPresetsDrawerOpen: (isPresetsDrawerOpen) =>
+    set((s) => ({
+      isPresetsDrawerOpen,
+      activeLeftSection: isPresetsDrawerOpen ? 'poses' : s.activeLeftSection === 'poses' ? null : s.activeLeftSection,
+    })),
+  setIsExportDrawerOpen: (isExportDrawerOpen) =>
+    set((s) => ({
+      isExportDrawerOpen,
+      activeLeftSection: isExportDrawerOpen ? 'export' : s.activeLeftSection === 'export' ? null : s.activeLeftSection,
+    })),
   setComfyUrl: (comfyUrl) => set({ comfyUrl }),
   setIsComfyConnected: (isComfyConnected) => set({ isComfyConnected }),
   setIsGenerating: (isGenerating) => set({ isGenerating }),

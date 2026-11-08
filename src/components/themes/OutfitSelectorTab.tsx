@@ -2,30 +2,90 @@ import React, { useState, useMemo } from 'react';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { OutfitCategory } from '@/types/themeSolo';
-import { Dices, Search, Check } from 'lucide-react';
+import { Dices, Search, Check, Sparkles, Shirt, Gem, Sun, Layers, Crown, Palette } from 'lucide-react';
 
-const CATEGORIES: { id: OutfitCategory | 'all'; label: string }[] = [
-  { id: 'all', label: '전체 (200)' },
-  { id: 'lingerie', label: '실크 슬립 (30)' },
-  { id: 'micro_bikini', label: '비치웨어 (30)' },
-  { id: 'body_jewelry', label: '바디 주얼리 (20)' },
-  { id: 'crop_hotpants', label: '크롭 & 쇼츠 (20)' },
-  { id: 'top_only', label: '오버핏 셔츠 (25)' },
-  { id: 'topless_bottom', label: '모던 바텀 (25)' },
-  { id: 'costume_dress', label: '드레스 & 코스튬 (25)' },
-  { id: 'color_contrast', label: '컬러 배색 (25)' },
+const CATEGORIES: { id: OutfitCategory | 'all'; label: string; icon: React.ReactNode }[] = [
+  { id: 'all', label: '전체 (200)', icon: <Layers className="w-3 h-3" /> },
+  { id: 'lingerie', label: '실크 슬립 (30)', icon: <Sparkles className="w-3 h-3" /> },
+  { id: 'micro_bikini', label: '비치웨어 (30)', icon: <Sun className="w-3 h-3" /> },
+  { id: 'body_jewelry', label: '주얼리 (20)', icon: <Gem className="w-3 h-3" /> },
+  { id: 'crop_hotpants', label: '크롭·쇼츠 (20)', icon: <Shirt className="w-3 h-3" /> },
+  { id: 'top_only', label: '오버핏 셔츠 (25)', icon: <Shirt className="w-3 h-3" /> },
+  { id: 'topless_bottom', label: '모던 바텀 (25)', icon: <Layers className="w-3 h-3" /> },
+  { id: 'costume_dress', label: '드레스 (25)', icon: <Crown className="w-3 h-3" /> },
+  { id: 'color_contrast', label: '컬러 배색 (25)', icon: <Palette className="w-3 h-3" /> },
 ];
 
-const CATEGORY_DESC_KO: Record<string, string> = {
-  lingerie: '고급 실크와 섬세한 레이스 디테일의 라운지 스타일링',
-  micro_bikini: '리조트 및 풀사이드 콘셉트에 어울리는 비치웨어 스타일링',
-  body_jewelry: '우아한 메탈 체인과 크리스탈 포인트 주얼리 연출',
-  crop_hotpants: '경쾌하고 활동적인 스트리트 캐주얼 크롭 매치',
-  top_only: '자연스러운 루즈핏 실루엣의 실내 내추럴 스타일링',
-  topless_bottom: '세련된 하이웨이스트 라인 중심의 모던 화보 스타일링',
-  costume_dress: '파티 및 무대 화보용 이브닝 드레스와 콘셉트 의상',
-  color_contrast: '선명한 색감 대비로 시선을 사로잡는 포인트 배색 의상',
+const CATEGORY_VISUALS: Record<string, { bg: string; color: string; label: string }> = {
+  lingerie: { bg: 'from-rose-950 via-pink-950 to-zinc-950', color: '#fb7185', label: '실크 라운지' },
+  micro_bikini: { bg: 'from-cyan-950 via-sky-950 to-zinc-950', color: '#38bdf8', label: '리조트 비치' },
+  body_jewelry: { bg: 'from-amber-950 via-yellow-950 to-zinc-950', color: '#fbbf24', label: '크리스탈 체인' },
+  crop_hotpants: { bg: 'from-indigo-950 via-blue-950 to-zinc-950', color: '#818cf8', label: '스트리트 크롭' },
+  top_only: { bg: 'from-slate-800 via-zinc-900 to-zinc-950', color: '#e2e8f0', label: '루즈핏 셔츠' },
+  topless_bottom: { bg: 'from-violet-950 via-purple-950 to-zinc-950', color: '#c084fc', label: '하이웨이스트' },
+  costume_dress: { bg: 'from-fuchsia-950 via-rose-950 to-zinc-950', color: '#f472b6', label: '이브닝 드레스' },
+  color_contrast: { bg: 'from-emerald-950 via-teal-950 to-zinc-950', color: '#34d399', label: '포인트 배색' },
 };
+
+// 의상 카테고리별 실루엣 SVG 렌더러
+function renderOutfitSilhouette(category: string, accent: string) {
+  switch (category) {
+    case 'costume_dress':
+      return (
+        <path
+          d="M38 24 L62 24 L57 45 L72 82 L28 82 L43 45 Z"
+          fill={accent}
+          fillOpacity="0.8"
+          stroke="#ffffff"
+          strokeWidth="1.2"
+        />
+      );
+    case 'micro_bikini':
+      return (
+        <g fill={accent} fillOpacity="0.85" stroke="#ffffff" strokeWidth="1.2">
+          <polygon points="36,36 48,36 42,26" />
+          <polygon points="52,36 64,36 58,26" />
+          <polygon points="36,56 64,56 50,70" />
+        </g>
+      );
+    case 'crop_hotpants':
+      return (
+        <g fill={accent} fillOpacity="0.85" stroke="#ffffff" strokeWidth="1.2">
+          <rect x="35" y="24" width="30" height="16" rx="3" />
+          <path d="M35 50 L65 50 L67 68 L52 68 L50 58 L48 68 L33 68 Z" />
+        </g>
+      );
+    case 'top_only':
+      return (
+        <path
+          d="M26 28 L38 22 L62 22 L74 28 L68 44 L62 42 L64 70 L36 70 L38 42 L32 44 Z"
+          fill={accent}
+          fillOpacity="0.82"
+          stroke="#ffffff"
+          strokeWidth="1.2"
+        />
+      );
+    default:
+      return (
+        <path
+          d="M36 24 L64 24 L60 46 L66 74 L34 74 L40 46 Z"
+          fill={accent}
+          fillOpacity="0.8"
+          stroke="#ffffff"
+          strokeWidth="1.2"
+        />
+      );
+  }
+}
+
+function cleanOutfitKoreanName(rawName: string): string {
+  return rawName
+    .replace(/\s*\([^)]*\)/g, '')
+    .replace(/란제리 세트/g, '실크 슬립 세트')
+    .replace(/마이크로 비키니/g, '리조트 비치웨어')
+    .replace(/#(\d+)/g, '$1번')
+    .trim();
+}
 
 export const OutfitSelectorTab: React.FC = () => {
   const {
@@ -51,90 +111,96 @@ export const OutfitSelectorTab: React.FC = () => {
   }, [selectedOutfitCategory, searchQuery]);
 
   return (
-    <div className="flex flex-col gap-3 text-xs">
+    <div className="block space-y-3 text-xs pb-4">
       {/* 상단 헤더 & 무작위 추천 */}
       <div className="flex items-center justify-between">
-        <span className="font-semibold text-[#141414] text-[13px] tracking-tight">
-          200종 콘셉트 의상 보관함
+        <span className="font-bold text-zinc-900 text-xs tracking-tight">
+          200종 콘셉트 의상 미리보기
         </span>
         <button
           onClick={rollRandomOutfit}
-          className="flex items-center gap-1.5 px-3 py-1 bg-[#f3f3f3] hover:bg-[#e0e0e0] text-[#141414] font-medium rounded-full transition-colors active:scale-95"
+          className="flex items-center gap-1.5 px-3 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-full transition-colors active:scale-95"
           title="현재 분류 내 무작위 의상 추천"
         >
-          <Dices className="w-3.5 h-3.5 text-[#0066ff]" />
+          <Dices className="w-3.5 h-3.5 text-blue-600" />
           <span>무작위 의상</span>
         </button>
       </div>
 
       {/* 검색창 */}
       <div className="relative">
-        <Search className="w-3.5 h-3.5 text-[#707070] absolute left-3 top-2.5 pointer-events-none" />
+        <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="의상 번호, 실크, 드레스, 데님 등 검색..."
-          className="w-full bg-[#f0f0f0] text-[#141414] placeholder-[#adadad] rounded-[16px] pl-8 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#141414]"
+          placeholder="의상 번호, 실크, 드레스, 셔츠 등 검색..."
+          className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-2xl pl-8 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900"
         />
       </div>
 
-      {/* 카테고리 필터 필 */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+      {/* 아이콘 카테고리 필터 (줄바꿈 가능한 칩 레이아웃) */}
+      <div className="flex flex-wrap items-center gap-1">
         {CATEGORIES.map((c) => {
           const isActive = selectedOutfitCategory === c.id;
           return (
             <button
               key={c.id}
               onClick={() => setSelectedOutfitCategory(c.id)}
-              className={`flex-shrink-0 px-3 py-1 rounded-full text-[11px] font-medium transition-all ${
+              className={`flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold transition-all ${
                 isActive
-                  ? 'bg-[#141414] text-[#ffffff]'
-                  : 'bg-[#f3f3f3] text-[#707070] hover:text-[#141414] hover:bg-[#e0e0e0]'
+                  ? 'bg-zinc-900 text-white shadow-sm'
+                  : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
               }`}
             >
-              {c.label}
+              {c.icon}
+              <span>{c.label}</span>
             </button>
           );
         })}
       </div>
 
-      {/* 의상 리스트 (200종 - 2열 그리드로 공간 활용 극대화) */}
-      <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto pr-1">
+      {/* 높이 제한 없이 전체 스크롤되는 2열 비주얼 의상 그리드 */}
+      <div className="grid grid-cols-2 gap-2.5">
         {filteredOutfits.map((item) => {
           const isSelected = selectedOutfitId === item.id;
+          const vis = CATEGORY_VISUALS[item.category] || CATEGORY_VISUALS.lingerie;
+
           return (
             <button
               key={item.id}
               onClick={() => setSelectedOutfitId(item.id)}
-              className={`p-2.5 rounded-[16px] text-left transition-all border flex flex-col justify-between gap-1.5 ${
+              className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
                 isSelected
-                  ? 'bg-[#141414] text-[#ffffff] border-[#141414] shadow-sm'
-                  : 'bg-[#ffffff] text-[#141414] border-[#e0e0e0] hover:bg-[#f3f3f3]'
+                  ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25 shadow-md'
+                  : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400 hover:shadow-sm'
               }`}
             >
-              <div className="flex items-center justify-between gap-1">
-                <span
-                  className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
-                    isSelected ? 'bg-[#0066ff] text-[#ffffff]' : 'bg-[#f0f0f0] text-[#707070]'
-                  }`}
-                >
-                  {item.id}번
+              {/* 의상 실루엣 미리보기 썸네일 */}
+              <div
+                className={`relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${vis.bg} flex items-center justify-center border border-white/10`}
+              >
+                <span className="absolute top-1.5 left-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/45 text-white/90">
+                  {String(item.id).padStart(3, '0')}번
                 </span>
                 {isSelected && (
-                  <div className="p-0.5 rounded-full bg-[#0066ff] text-[#ffffff] flex-shrink-0">
+                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center shadow">
                     <Check className="w-2.5 h-2.5" />
-                  </div>
+                  </span>
                 )}
+                <svg viewBox="0 0 100 95" className="w-16 h-16">
+                  {renderOutfitSilhouette(item.category, vis.color)}
+                </svg>
               </div>
-              <div className="font-bold text-[11px] truncate">{item.nameKo}</div>
-              <p
-                className={`text-[10px] line-clamp-1 leading-relaxed ${
-                  isSelected ? 'text-[#adadad]' : 'text-[#707070]'
-                }`}
-              >
-                {CATEGORY_DESC_KO[item.category] || '프리미엄 화보 스타일링 의상'}
-              </p>
+
+              <div className="font-bold text-[11px] truncate mt-0.5">
+                {cleanOutfitKoreanName(item.nameKo)}
+              </div>
+              <div className="flex items-center justify-between text-[10px]">
+                <span className={isSelected ? 'text-zinc-400' : 'text-zinc-500'}>
+                  {vis.label}
+                </span>
+              </div>
             </button>
           );
         })}

@@ -4,7 +4,8 @@ import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
 import { PoseKeyframe } from '@/types';
 
 interface PosePreviewThumbnailProps {
-  postureId: number;
+  postureId?: number;
+  customPose?: PoseKeyframe;
   isSelected?: boolean;
 }
 
@@ -127,8 +128,11 @@ const LIMB_CONNECTIONS: Array<{ from: string; to: string; color: string; width: 
 ];
 
 export const PosePreviewThumbnail: React.FC<PosePreviewThumbnailProps> = React.memo(
-  ({ postureId, isSelected = false }) => {
-    const poseKeyframe = useMemo(() => getSoloThemePoseKeyframe(postureId), [postureId]);
+  ({ postureId, customPose, isSelected = false }) => {
+    const poseKeyframe = useMemo(
+      () => customPose || (postureId ? getSoloThemePoseKeyframe(postureId) : null),
+      [postureId, customPose]
+    );
     const skeleton = useMemo(() => computeAccurateSkeleton2D(poseKeyframe), [poseKeyframe]);
 
     return (

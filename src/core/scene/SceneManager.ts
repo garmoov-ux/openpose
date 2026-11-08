@@ -39,6 +39,8 @@ export class SceneManager {
   private animId: number | null = null;
   private raycaster = new THREE.Raycaster();
   private mouse = new THREE.Vector2();
+  private pointerDownPos = { x: 0, y: 0 };
+  private isDraggingGizmo = false;
   private onBoneSelectedCallback?: (boneName: string | null) => void;
   private currentMode: RenderMode = 'shading';
   private showGridState = true;
@@ -99,9 +101,13 @@ export class SceneManager {
     this.scene.add(this.transformControls.getHelper());
     this.transformControls.addEventListener('dragging-changed', (e) => {
       this.orbitControls.enabled = !e.value;
+      if (e.value) {
+        this.isDraggingGizmo = true;
+      }
     });
 
     this.canvas.addEventListener('pointerdown', this.onPointerDown);
+    this.canvas.addEventListener('pointerup', this.onPointerUp);
     this.startLoop();
     this.loadMannequinModel('realistic_woman').catch(() => {});
   }
@@ -119,14 +125,36 @@ export class SceneManager {
   }
 
   private onPointerDown = (event: PointerEvent): void => {
-    if (this.transformControls.dragging || event.button !== 0) return;
+    if (event.button !== 0) return;
+    this.pointerDownPos = { x: event.clientX, y: event.clientY };
+    this.isDraggingGizmo = this.transformControls.dragging;
+  };
+
+  private onPointerUp = (event: PointerEvent): void => {
+    if (event.button !== 0) return;
+    if (this.isDraggingGizmo || this.transformControls.dragging) {
+      this.isDraggingGizmo = false;
+      return;
+    }
+
+    // 마우스 이동 거리가 5px 초과이면 카메라 회전(Orbit)으로 간주하여 관절 선택/해제 무시
+    const dx = event.clientX - this.pointerDownPos.x;
+    const dy = event.clientY - this.pointerDownPos.y;
+    if (Math.hypot(dx, dy) > 5) return;
+
+    // 기즈모 축 위에 마우스가 올려져 있는 경우 클릭 시 선택 해제 방지
+    if ((this.transformControls as unknown as { axis: string | null }).axis !== null) {
+      return;
+    }
+
     const rect = this.canvas.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const colliders = Array.from(this.humanoid.colliders.values());
     const boneName = pickBoneFromRaycast(this.raycaster, colliders, this.humanoid.group, this.humanoid.bones);
-    if (boneName) this.selectBone(boneName);
+    // 마네킹 외부 배경 클릭 시 null을 전달하여 기즈모 및 관절 선택 즉시 해제
+    this.selectBone(boneName);
   };
 
   public selectBone(boneName: string | null): void {
@@ -295,6 +323,7 @@ export class SceneManager {
   public dispose(): void {
     if (this.animId !== null) cancelAnimationFrame(this.animId);
     this.canvas.removeEventListener('pointerdown', this.onPointerDown);
+    this.canvas.removeEventListener('pointerup', this.onPointerUp);
     this.overlayCanvas.parentElement?.removeChild(this.overlayCanvas);
     this.orbitControls.dispose();
     this.transformControls.dispose();

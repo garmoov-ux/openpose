@@ -89,27 +89,28 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
   };
 
   return (
-    <div className="flex flex-col gap-3 text-xs">
-      {/* 1. 기본 6대 표준 동작 빠른 선택 */}
+    <div className="block space-y-3 text-xs">
+      {/* 1. 기본 6대 표준 동작 빠른 미리보기 */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs tracking-tight">
           <UserCheck className="w-3.5 h-3.5 text-blue-600" />
           <span>기본 표준 자세 (6종)</span>
         </div>
-        <div className="grid grid-cols-3 gap-1.5">
+        <div className="grid grid-cols-3 gap-2">
           {POSE_PRESETS.map((preset) => {
             const isSelected = activeStandardId === preset.id;
             return (
               <button
                 key={preset.id}
                 onClick={() => handleApplyStandardPreset(preset)}
-                className={`px-2.5 py-2 rounded-xl text-[11px] font-semibold border transition-all text-center truncate ${
+                className={`group p-1.5 rounded-2xl text-[11px] font-semibold border transition-all flex flex-col gap-1 items-center ${
                   isSelected
-                    ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
-                    : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100'
+                    ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25 shadow-sm'
+                    : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-400'
                 }`}
               >
-                {preset.title}
+                <PosePreviewThumbnail customPose={preset.pose} isSelected={isSelected} />
+                <span className="truncate w-full text-center py-0.5">{preset.title}</span>
               </button>
             );
           })}
@@ -145,14 +146,14 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
       </div>
 
       {/* 카테고리 필터 */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+      <div className="flex flex-wrap items-center gap-1">
         {GROUPS.map((g) => {
           const isActive = selectedGroup === g.id;
           return (
             <button
               key={g.id}
               onClick={() => setSelectedGroup(g.id)}
-              className={`flex-shrink-0 px-3 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              className={`px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all ${
                 isActive
                   ? 'bg-zinc-900 text-white shadow-sm'
                   : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
@@ -164,8 +165,8 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
         })}
       </div>
 
-      {/* 포즈 2열 비주얼 그리드 */}
-      <div className="grid grid-cols-2 gap-2.5 max-h-[340px] overflow-y-auto pr-1">
+      {/* 포즈 2열 비주얼 그리드 (내부 높이 제한 제거) */}
+      <div className="grid grid-cols-2 gap-2.5 pb-4">
         {filteredPostures.map((p) => {
           const isSelected = activeStandardId === null && selectedPostureId === p.id;
           const cleanTitle = formatKoreanPoseTitle(p.labelKo);

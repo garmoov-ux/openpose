@@ -1,9 +1,6 @@
 import React from 'react';
 import {
   Sparkles,
-  Palette,
-  Bookmark,
-  Download,
   RotateCcw,
   Activity,
   Sun,
@@ -12,7 +9,6 @@ import {
   Grid,
   Eye,
   EyeOff,
-  User,
 } from 'lucide-react';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
@@ -36,14 +32,8 @@ const QUICK_MODES: Array<{ id: RenderMode; label: string; icon: React.ReactNode 
 export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
   const {
     currentModelId,
-    isModelModalOpen,
-    setIsModelModalOpen,
-    isThemesDrawerOpen,
-    setIsThemesDrawerOpen,
-    isPresetsDrawerOpen,
-    setIsPresetsDrawerOpen,
-    isExportDrawerOpen,
-    setIsExportDrawerOpen,
+    activeLeftSection,
+    setActiveLeftSection,
     renderMode,
     setRenderMode,
     showSkeleton,
@@ -66,95 +56,36 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
 
   return (
     <header className="absolute top-3 left-4 right-4 z-30 flex items-center justify-between gap-2 pointer-events-none">
-      {/* 1. 좌측: 브랜드 및 현재 마네킹 선택 알약 */}
+      {/* 1. 좌측: 브랜드 및 현재 착용 마네킹 표시 뱃지 (클릭 시 왼쪽 마네킹 사이드바 토글) */}
       <div className="flex items-center gap-2 pointer-events-auto">
         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
           <div className="w-6 h-6 rounded-full bg-zinc-900 text-white flex items-center justify-center font-bold text-xs">
             <Activity className="w-3.5 h-3.5 text-blue-500" />
           </div>
-          <span className="font-bold text-xs tracking-tight text-zinc-900 hidden xl:inline">
+          <span className="font-bold text-xs tracking-tight text-zinc-900 hidden sm:inline">
             인체 포즈 스튜디오
           </span>
         </div>
 
         <button
-          onClick={() => setIsModelModalOpen(true)}
+          onClick={() =>
+            setActiveLeftSection(activeLeftSection === 'mannequin' ? null : 'mannequin')
+          }
           className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm transition-all active:scale-95"
-          title="마네킹 모델 및 표면 질감 변경"
+          title="좌측 마네킹 체형 보관함 열기"
         >
           <Sparkles className="w-3.5 h-3.5 text-blue-200" />
           <span>{currentModelMeta?.name || '마네킹 선택'}</span>
           <span className="text-[10px] px-1.5 py-0.2 bg-blue-700/80 rounded-full font-normal hidden sm:inline">
-            변경
+            {currentModelMeta?.heightCm ? `${currentModelMeta.heightCm}cm` : '변경'}
           </span>
         </button>
       </div>
 
-      {/* 2. 중앙: 아이콘 중심 뷰 메뉴 독 (클릭 시 각 기능 뷰 토글) */}
-      <nav className="pointer-events-auto flex items-center gap-1 p-1 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
-        <button
-          onClick={() => setIsModelModalOpen(!isModelModalOpen)}
-          title="마네킹 모델 보관함 열기"
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-            isModelModalOpen
-              ? 'bg-zinc-900 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
-          }`}
-        >
-          <User className="w-3.5 h-3.5" />
-          <span>마네킹</span>
-        </button>
-
-        <button
-          onClick={() => {
-            setIsPresetsDrawerOpen(!isPresetsDrawerOpen);
-            if (isThemesDrawerOpen) setIsThemesDrawerOpen(false);
-          }}
-          title="100종 자세 프리뷰 보관함 열기"
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-            isPresetsDrawerOpen
-              ? 'bg-zinc-900 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
-          }`}
-        >
-          <Bookmark className="w-3.5 h-3.5" />
-          <span>자세 보관함</span>
-        </button>
-
-        <button
-          onClick={() => {
-            setIsThemesDrawerOpen(!isThemesDrawerOpen);
-            if (isPresetsDrawerOpen) setIsPresetsDrawerOpen(false);
-          }}
-          title="16대 테마 공간 및 200종 의상 열기"
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-            isThemesDrawerOpen
-              ? 'bg-zinc-900 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
-          }`}
-        >
-          <Palette className="w-3.5 h-3.5" />
-          <span>테마 & 의상</span>
-        </button>
-
-        <button
-          onClick={() => setIsExportDrawerOpen(!isExportDrawerOpen)}
-          title="이미지 저장 및 생성 서버 연동 열기"
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-            isExportDrawerOpen
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
-          }`}
-        >
-          <Download className="w-3.5 h-3.5" />
-          <span>저장 & 연동</span>
-        </button>
-      </nav>
-
-      {/* 3. 우측: 빠른 화면 모드 아이콘 스위치 & 관절선 토글 & 초기화 */}
+      {/* 2. 우측: 빠른 화면 모드 아이콘 스위치 & 관절선 토글 & 초기화 */}
       <div className="flex items-center gap-1.5 pointer-events-auto">
         {/* 5대 렌더 모드 원클릭 아이콘 바 */}
-        <div className="hidden md:flex items-center gap-0.5 p-1 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
+        <div className="flex items-center gap-0.5 p-1 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
           {QUICK_MODES.map((m) => {
             const isActive = renderMode === m.id;
             return (
@@ -169,7 +100,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
                 }`}
               >
                 {m.icon}
-                <span className="hidden lg:inline">{m.label}</span>
+                <span className="hidden md:inline">{m.label}</span>
               </button>
             );
           })}

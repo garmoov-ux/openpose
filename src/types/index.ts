@@ -12,18 +12,35 @@ export type MannequinModelId =
   | 'realistic_muscular_male'
   | 'anime_basic_male'
   | 'male_mannequin'
-  | 'chibi_male';
+  | 'chibi_male'
+  | 'child_toddler'
+  | 'child_elementary'
+  | 'teen_girl'
+  | 'teen_boy'
+  | 'elderly_grandpa'
+  | 'elderly_grandma'
+  | 'plus_size_body'
+  | 'heroic_tall';
 
 export type MaterialStyle = 'matte_white' | 'toon_outline' | 'clay' | 'chrome';
+
+export interface MannequinBoneScaleMap {
+  [boneName: string]: [number, number, number];
+}
 
 export interface MannequinModelInfo {
   id: MannequinModelId;
   name: string;
-  category: 'realistic' | 'anime' | 'stylized' | 'procedural';
+  ageGroup: string;
+  heightCm: number;
+  headRatio: string;
+  category: 'realistic' | 'anime' | 'age_body' | 'stylized';
   gender: 'female' | 'male' | 'neutral';
   description: string;
   file?: string;
   badge?: string;
+  targetHeight?: number;
+  boneScales?: MannequinBoneScaleMap;
 }
 
 export interface BoneJointInfo {
