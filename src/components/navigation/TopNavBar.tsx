@@ -37,11 +37,11 @@ const TOP_DOCK_ITEMS: Array<{
   shortLabel: string;
   icon: React.ReactNode;
 }> = [
-  { id: 'mannequin', label: '마네킹 선택', shortLabel: '인물', icon: <User className="w-3.5 h-3.5" /> },
-  { id: 'poses', label: '자세 보관함', shortLabel: '자세', icon: <Bookmark className="w-3.5 h-3.5" /> },
-  { id: 'themes', label: '맞춤 의상', shortLabel: '의상', icon: <Sparkles className="w-3.5 h-3.5" /> },
-  { id: 'props', label: '장신구와 소품', shortLabel: '소품', icon: <Gem className="w-3.5 h-3.5" /> },
-  { id: 'export', label: '저장과 연동', shortLabel: '저장', icon: <Download className="w-3.5 h-3.5" /> },
+  { id: 'mannequin', label: '마네킹', shortLabel: '마네킹', icon: <User className="w-3.5 h-3.5" /> },
+  { id: 'poses', label: '자세', shortLabel: '자세', icon: <Bookmark className="w-3.5 h-3.5" /> },
+  { id: 'themes', label: '의상', shortLabel: '의상', icon: <Sparkles className="w-3.5 h-3.5" /> },
+  { id: 'props', label: '공간 꾸미기', shortLabel: '공간', icon: <Gem className="w-3.5 h-3.5" /> },
+  { id: 'export', label: '내보내기', shortLabel: '내보내기', icon: <Download className="w-3.5 h-3.5" /> },
 ];
 
 const QUICK_MODES: Array<{ id: RenderMode; label: string; icon: React.ReactNode }> = [
@@ -159,14 +159,14 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
                 aria-label={item.label}
                 aria-pressed={isActive}
                 title={item.label}
-                className={`group relative flex flex-col items-center justify-center gap-0.5 w-9 h-9 rounded-full transition-all ${
+                className={`group relative flex flex-col items-center justify-center gap-0.5 min-w-11 h-11 px-1 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-blue-600 ${
                   isActive
                     ? `bg-zinc-900 ${item.id === 'props' ? 'text-pink-400' : 'text-blue-400'} shadow-sm scale-105`
                     : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
                 }`}
               >
                 {item.icon}
-                <span className="text-[9px] leading-none">{item.shortLabel}</span>
+                <span className="text-[10px] leading-none font-semibold">{item.shortLabel}</span>
                 <span className="pointer-events-none absolute top-11 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
                   {item.label}
                 </span>

@@ -9,6 +9,7 @@ import { copyBlobToClipboard, downloadBlobAsFile, downloadJson } from '@/utils/e
 import { RenderSpec } from '@/types/sceneDocument';
 import { ComfyWorkflowSection } from './ComfyWorkflowSection';
 import { SceneDocumentIoSection } from './SceneDocumentIoSection';
+import { ModelExportSection } from './ModelExportSection';
 
 interface ExportPanelProps {
   sceneManager: SceneManager | null;
@@ -19,6 +20,11 @@ const SIZE_PRESETS = [
   { label: '768×1024 (3:4)', width: 768, height: 1024 },
   { label: '1024×1024 (1:1)', width: 1024, height: 1024 },
 ];
+
+const RENDER_MODE_LABELS: Record<string, string> = {
+  shading: '입체 보기', openpose: '관절선', depth: '깊이',
+  normal: '표면 방향', lineart: '윤곽선', canny: '선명한 윤곽선',
+};
 
 export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
   const {
@@ -117,8 +123,8 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     <div className="flex flex-col gap-3.5 text-xs">
       <div className="flex flex-col gap-3 p-4 bg-white rounded-3xl border border-zinc-200/90 shadow-xs">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-zinc-900">1. 출력 규격 (RenderSpec) & 맵 내보내기</span>
-          <span className="text-xs font-semibold text-zinc-600">인물 {activeActorIds.length}명 · rev #{sceneRevision}</span>
+          <span className="text-xs font-bold text-zinc-900">이미지 내보내기</span>
+          <span className="text-xs font-semibold text-zinc-600">인물 {activeActorIds.length}명</span>
         </div>
 
         <div className="grid grid-cols-3 gap-1.5 p-1 bg-zinc-100 rounded-2xl">
@@ -141,8 +147,8 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
 
         <div className="flex items-center justify-between gap-2 px-3 py-2 bg-zinc-50 rounded-2xl border border-zinc-200/80">
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-zinc-800">OpenPose 규격</span>
-            <span className="text-xs text-zinc-500">14개 신체·코 유효 투영 (미지원 점은 0,0,0)</span>
+            <span className="text-xs font-bold text-zinc-800">관절 지도 형식</span>
+            <span className="text-xs text-zinc-500">지원되지 않는 관절점은 빈 값으로 저장됩니다</span>
           </div>
           <div className="flex items-center gap-1 bg-zinc-200/80 p-1 rounded-xl">
             <button
@@ -164,8 +170,8 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
 
         <div className="flex items-center justify-between gap-2 px-3 py-2 bg-zinc-50 rounded-2xl border border-zinc-200/80">
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-zinc-800">외형 투영 모드 (appearanceMode)</span>
-            <span className="text-xs text-zinc-500">Depth/Normal/Lineart에 의상 포함 여부</span>
+            <span className="text-xs font-bold text-zinc-800">의상 포함 여부</span>
+            <span className="text-xs text-zinc-500">깊이·표면·윤곽선 지도에 의상을 반영합니다</span>
           </div>
           <div className="flex items-center gap-1 bg-zinc-200/80 p-1 rounded-xl">
             <button
@@ -173,21 +179,21 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
               onClick={() => setAppearanceMode('dressed')}
               className={`px-2.5 py-1 rounded-lg text-xs font-bold ${appearanceMode === 'dressed' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-600'}`}
             >
-              의상 포함 (dressed)
+              의상 포함
             </button>
             <button
               type="button"
               onClick={() => setAppearanceMode('body')}
               className={`px-2.5 py-1 rounded-lg text-xs font-bold ${appearanceMode === 'body' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-600'}`}
             >
-              순수 체형 (body)
+              체형만
             </button>
           </div>
         </div>
 
         {mainComposed.promptOnlyItemIds.length > 0 && (
           <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-            3D 미표시(prompt-only) 품목은 제어 맵에 반영되지 않으며 프롬프트에만 포함됩니다: {mainComposed.promptOnlyItemIds.join(', ')}
+            화면에 보이지 않는 의상은 이미지에 포함되지 않고 생성 요청에만 반영됩니다: {mainComposed.promptOnlyItemIds.join(', ')}
           </div>
         )}
 
@@ -200,7 +206,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
             <Eye className="w-3.5 h-3.5" />
             <span>출력 미리보기 갱신 ({exportWidth}×{exportHeight})</span>
           </button>
-          <span className="text-xs text-zinc-500">모드: {renderMode}</span>
+          <span className="text-xs text-zinc-500">현재 보기: {RENDER_MODE_LABELS[renderMode]}</span>
         </div>
 
         {previewUrl && (
@@ -246,6 +252,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       </div>
 
       <SceneDocumentIoSection sceneManager={sceneManager} compactSceneTags={compactSceneTags} />
+      <ModelExportSection sceneManager={sceneManager} />
 
       <ComfyWorkflowSection sceneManager={sceneManager} />
     </div>

@@ -15,6 +15,7 @@ import { getModelAgeClass } from '@/core/mannequin/wardrobe/compatibility';
 import { RoomPropsManagerView } from './RoomPropsManagerView';
 import { ColorPaletteBar } from '../common/ColorPaletteBar';
 import { Dices, Ban, Check, Sparkles, Sofa, X } from 'lucide-react';
+import { ROOM_PROP_CATALOG } from '@/data/themesSolo/roomPropCatalog';
 
 type MainMode = 'room_props' | 'body_items';
 
@@ -98,7 +99,7 @@ export const PropsAndAccessoriesTab: React.FC = () => {
 
   return (
     <div className="block space-y-3 text-xs pb-4">
-      {/* 상단 2대 모드 전환 (방 가구 & 성인스테이지 55종 vs 바디 착용 & 성인기구 84종) */}
+      {/* 공간 배치와 착용 아이템 전환 */}
       <div className="grid grid-cols-2 gap-1.5 p-1 bg-zinc-100 rounded-2xl border border-zinc-200/80">
         <button
           onClick={() => setMainMode('room_props')}
@@ -109,7 +110,7 @@ export const PropsAndAccessoriesTab: React.FC = () => {
           }`}
         >
           <Sofa className="w-3.5 h-3.5 text-amber-400" />
-          <span>방 가구·소품 ({roomProps.length}/55)</span>
+          <span>공간 배치 ({roomProps.length}개 · {ROOM_PROP_CATALOG.length}종)</span>
         </button>
         <button
           onClick={() => setMainMode('body_items')}
@@ -120,7 +121,7 @@ export const PropsAndAccessoriesTab: React.FC = () => {
           }`}
         >
           <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-          <span>바디 착용·성인기구 (84)</span>
+          <span>착용 아이템</span>
         </button>
       </div>
 

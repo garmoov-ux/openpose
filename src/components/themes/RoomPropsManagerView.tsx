@@ -4,11 +4,12 @@ import { useEditorStore } from '@/stores/useEditorStore';
 import { ROOM_PROP_CATALOG, ROOM_PROP_CATEGORIES, RoomPropCategory, getRoomPropDef } from '@/data/themesSolo/roomPropCatalog';
 import { ColorPaletteBar } from '../common/ColorPaletteBar';
 import { TransformControlBox } from '../common/TransformControlBox';
-import { Sofa, Plus, Trash2, Eye, EyeOff, Ban, User, Users } from 'lucide-react';
+import { Sofa, Plus, Trash2, Eye, EyeOff, Ban, User, Users, Search } from 'lucide-react';
 import { GizmoMode } from '@/types';
 
 export const RoomPropsManagerView: React.FC = () => {
   const [activeCat, setActiveCat] = useState<'all' | RoomPropCategory>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const { setGizmoMode, gizmoMode, setSelectedBoneName } = useEditorStore();
   const {
     roomProps, selectedPropUid, activeTransformTarget, mainMannequinTransform, partnerMannequinTransform,
@@ -19,8 +20,12 @@ export const RoomPropsManagerView: React.FC = () => {
 
   const selectedPropInstance = roomProps.find((p) => p.uid === selectedPropUid) || roomProps[0];
   const selectedPropDef = selectedPropInstance ? getRoomPropDef(selectedPropInstance.propId) : undefined;
-  const filteredCatalog =
-    activeCat === 'all' ? ROOM_PROP_CATALOG : ROOM_PROP_CATALOG.filter((item) => item.category === activeCat);
+  const filteredCatalog = ROOM_PROP_CATALOG.filter((item) => {
+    const matchesCategory = activeCat === 'all' || item.category === activeCat;
+    const query = searchQuery.trim().toLocaleLowerCase();
+    const matchesSearch = !query || `${item.nameKo} ${item.badge} ${item.promptEn}`.toLocaleLowerCase().includes(query);
+    return matchesCategory && matchesSearch;
+  });
 
   const handleSelectInstance = (uid: string) => {
     setSelectedBoneName(null);
@@ -108,13 +113,13 @@ export const RoomPropsManagerView: React.FC = () => {
         <div className="flex items-center justify-between gap-1.5">
           <div className="flex items-center gap-1.5 font-bold text-zinc-900">
             <Sofa className="w-4 h-4 text-amber-600" />
-            <span>현재 방 배치 사물 ({roomProps.length}개)</span>
+            <span>현재 공간 배치 ({roomProps.length}개)</span>
           </div>
           <button
             onClick={clearAllRoomProps}
             disabled={roomProps.length === 0}
             className="flex items-center gap-1 px-2.5 py-1 bg-rose-600 hover:bg-rose-500 disabled:bg-zinc-200 disabled:text-zinc-400 text-white rounded-full text-[10.5px] font-bold transition-colors shadow-xs"
-            title="방 안의 모든 배치 사물 전체 해제"
+            title="모든 공간 배치 해제"
           >
             <Ban className="w-3 h-3" />
             <span>전체 해제</span>
@@ -122,7 +127,7 @@ export const RoomPropsManagerView: React.FC = () => {
         </div>
 
         <p className="text-[10.5px] text-zinc-500 leading-snug">
-          아래 사물을 추가·클릭하면 색상 변경 및 X/Y/Z 이동·회전·크기 기즈모 조절이 가능합니다.
+          아래 항목을 추가한 뒤 선택하면 색상과 위치, 방향, 크기를 조절할 수 있습니다.
         </p>
 
         {roomProps.length > 0 && (
@@ -223,7 +228,19 @@ export const RoomPropsManagerView: React.FC = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <label className="relative block">
+        <Search className="absolute left-3 top-3 h-4 w-4 text-zinc-400" />
+        <input
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          placeholder="공간 항목 검색"
+          aria-label="공간 항목 검색"
+          className="min-h-10 w-full rounded-xl border border-zinc-200 bg-white py-2 pl-9 pr-3 text-sm text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900"
+        />
+      </label>
+
+      <div className="grid max-h-[min(52vh,520px)] grid-cols-3 gap-2 overflow-y-auto pr-1">
+        {filteredCatalog.length === 0 && <p role="status" className="col-span-3 rounded-xl border border-dashed border-zinc-300 bg-white p-4 text-center text-sm text-zinc-600">검색 결과가 없습니다. 검색어나 분류를 바꿔 보세요.</p>}
         {filteredCatalog.map((item) => {
           const matching = roomProps.filter((p) => p.propId === item.id);
           const count = matching.length;

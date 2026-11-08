@@ -43,18 +43,17 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
       }`}
     >
       <div
-        onClick={onToggleOpen}
-        className={`w-full px-3.5 py-3 flex items-center justify-between cursor-pointer transition-colors ${
+        className={`w-full px-3.5 py-3 flex items-center justify-between gap-2 transition-colors ${
           isOpen
             ? 'bg-zinc-900 text-white'
             : 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-800'
         }`}
       >
-        <div className="flex items-center gap-2">
+        <button type="button" onClick={onToggleOpen} aria-expanded={isOpen} aria-controls="couple-pose-list" className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-2 focus-visible:outline-rose-500">
           <Users className="w-4 h-4 text-rose-400 shrink-0" />
           <div>
             <div className="font-bold text-xs flex items-center gap-1.5">
-              <span>1. 남·여 커플 자세 (140종)</span>
+              <span>두 사람 자세 (140종)</span>
               {isOpen && (
                 <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-rose-600 text-white font-bold">
                   제어 중
@@ -62,38 +61,35 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
               )}
             </div>
             <p className="text-[10px] text-zinc-400">
-              클릭 시 남녀 2인 마네킹 모드로 전환 (개인 자세 자동 해제)
+              두 사람의 자세를 함께 고릅니다
             </p>
           </div>
-        </div>
+        </button>
         <div className="flex items-center gap-1.5">
           {isOpen && (
             <button
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 if (filteredCouplePresets.length > 0) {
                   onApplyPreset(
                     filteredCouplePresets[Math.floor(Math.random() * filteredCouplePresets.length)]
                   );
                 }
               }}
-              className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-600 hover:bg-rose-500 text-white text-[10px] font-bold"
+              className="flex items-center gap-1 px-2.5 py-2 rounded-full bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold focus-visible:outline-2 focus-visible:outline-white"
             >
               <Dices className="w-3 h-3" />
-              <span>체위 셔플</span>
+              <span>무작위 자세</span>
             </button>
           )}
-          {isOpen ? (
-            <ChevronUp className="w-4 h-4 text-rose-400" />
-          ) : (
-            <ChevronDown className="w-4 h-4 text-zinc-500" />
-          )}
+          <button type="button" onClick={onToggleOpen} aria-label={isOpen ? '두 사람 자세 접기' : '두 사람 자세 펼치기'} className="p-2 focus-visible:outline-2 focus-visible:outline-rose-500">
+            {isOpen ? <ChevronUp className="w-4 h-4 text-rose-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+          </button>
         </div>
       </div>
 
       {isOpen && (
-        <div className="p-3 space-y-2.5">
+        <div id="couple-pose-list" className="p-3 space-y-2.5">
           <div className="relative">
             <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
             <input
@@ -101,7 +97,8 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
               value={coupleSearch}
               onChange={(e) => setCoupleSearch(e.target.value)}
               placeholder="자세 번호(01~140), 손잡기, 앉기, 리프트 등 검색..."
-              className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-rose-500"
+              aria-label="두 사람 자세 검색"
+              className="w-full min-h-10 bg-zinc-100 text-zinc-900 placeholder-zinc-500 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
           </div>
 
@@ -110,7 +107,8 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
               <button
                 key={sg.id}
                 onClick={() => setCoupleSubGroup(sg.id)}
-                className={`px-2 py-1.5 rounded-xl text-[10px] font-bold transition-all border truncate ${
+                  aria-pressed={coupleSubGroup === sg.id}
+                  className={`px-2 py-2 rounded-xl text-xs font-bold transition-all border truncate ${
                   coupleSubGroup === sg.id
                     ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
                     : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:border-zinc-400'
@@ -121,13 +119,15 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
             ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-0.5">
+          {filteredCouplePresets.length === 0 && <p role="status" className="rounded-xl bg-zinc-50 p-4 text-sm text-zinc-600">찾은 자세가 없습니다. 검색어나 분류를 바꿔 보세요.</p>}
+          <div className="grid grid-cols-3 gap-2">
             {filteredCouplePresets.map((preset) => {
               const isSelected = activeCouplePresetId === preset.id;
               return (
                 <button
                   key={preset.id}
                   onClick={() => onApplyPreset(preset)}
+                  aria-pressed={isSelected}
                   className={`group p-2 rounded-2xl text-[10.5px] font-semibold border transition-all flex flex-col gap-1 items-center ${
                     isSelected
                       ? 'bg-zinc-900 text-white border-rose-500 ring-2 ring-rose-500/25 shadow-sm'

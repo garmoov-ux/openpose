@@ -28,6 +28,7 @@ import { StudioLights, createStudioLightsAndStage, applyStudioThemeEnvironment }
 import { findPropGroupByUid, pickSceneEntityAtPointer } from './smartPicker';
 import { getJointScreenPositions, drawOpenPoseSkeleton } from '@/core/pipeline/openposePipeline';
 import { applyActorV1ToRig, buildSceneDocumentSnapshot, extractRestDeltaQuat, runSceneRenderJob } from './sceneDocumentSync';
+import { buildEditableModelScene, buildStaticModelScene, ModelExportFormat } from './modelExport';
 
 export class SceneManager {
   public scene: THREE.Scene;
@@ -240,6 +241,18 @@ export class SceneManager {
   }
 
   public setShowThemeProps(show: boolean): void { this.showThemePropsState = show; if (this.currentMode === 'shading') this.studioLights.themePropsGroup.visible = show; }
+  public createPoseExportScene(format: ModelExportFormat): THREE.Scene {
+    const previousMode = this.currentMode;
+    if (previousMode !== 'shading') this.setRenderMode('shading');
+    try {
+      const actors = [this.humanoid.group, ...(this.showPartnerState ? [this.partnerHumanoid.group] : [])];
+      return format === 'glb' || format === 'fbx'
+        ? buildEditableModelScene(actors)
+        : buildStaticModelScene(actors);
+    } finally {
+      if (previousMode !== 'shading') this.setRenderMode(previousMode);
+    }
+  }
   public applyOutfit(outfitId: number | null): void {
     this.currentOutfitId = outfitId && outfitId > 0 ? outfitId : null;
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);

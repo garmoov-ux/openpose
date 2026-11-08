@@ -50,6 +50,13 @@
 }
 
 /* 편집 도구는 화면 폭이 줄어도 서로 겹치지 않게 독립된 줄을 사용한다. */
+.editor-sidebar-panel {
+  width: clamp(360px, 32vw, 480px);
+  max-width: calc(100vw - 32px);
+}
+.editor-sidebar-content {
+  scrollbar-gutter: stable;
+}
 .editor-gizmo {
   max-width: min(58vw, 780px);
 }
@@ -109,8 +116,9 @@
   .editor-sidebar {
     left: 8px;
     right: 8px;
-    top: 128px;
-    bottom: 210px;
+    top: auto;
+    bottom: 8px;
+    height: min(68svh, 680px);
   }
   .editor-sidebar-panel {
     width: 100%;

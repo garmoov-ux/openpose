@@ -3,7 +3,6 @@ import { SceneManager } from '@/core/scene/SceneManager';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
-import { SOLO_EXTRA_SUBGROUPS } from '@/core/mannequin/coupleAndGlamourPoses';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
@@ -11,42 +10,10 @@ import { PosePreviewThumbnail } from './PosePreviewThumbnail';
 import { CouplePoseAccordion } from './CouplePoseAccordion';
 import { User, Search, Dices, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import { PosePreset } from '@/types';
+import { GLAMOUR_GROUP_IDS, SOLO_GROUPS, formatKoreanPoseTitle } from './poseGalleryConfig';
 
 interface PresetGalleryProps {
   sceneManager: SceneManager | null;
-}
-
-const GLAMOUR_GROUP_IDS = new Set(SOLO_EXTRA_SUBGROUPS.map((g) => g.id));
-
-const SOLO_GROUPS = [
-  ...SOLO_EXTRA_SUBGROUPS,
-  { id: 'all', label: '테마 베이직 (100)' },
-  { id: 'standing', label: '기본 기립 (10)' },
-  { id: 'furniture_straddle', label: '기본 착석 (15)' },
-  { id: 'lounging', label: '기대어 휴식 (10)' },
-  { id: 'seated_m', label: '좌식 다리굽힘 (15)' },
-  { id: 'v_split', label: '스트레칭 (10)' },
-  { id: 'deep_m_squat', label: '깊은 스쿼트 (10)' },
-  { id: 'rear_arch', label: '측후면 아치 (10)' },
-  { id: 'bolster_ride', label: '쿠션 기대기 (10)' },
-  { id: 'high_leg', label: '다리 들기 (10)' },
-  { id: 'basic_std', label: '표준·액션 (9)' },
-  { id: 'solo_everyday', label: '일상 자세 (36)' },
-];
-
-function formatKoreanPoseTitle(rawLabel: string): string {
-  return rawLabel
-    .replace(/\[포즈 \d+\]\s*/g, '')
-    .replace(/M자/g, '다리굽힘')
-    .replace(/V-스플릿/g, '스트레칭')
-    .replace(/딥 M-스쿼트/g, '깊은 스쿼트')
-    .replace(/3\/4 캣아치/g, '측후면 아치')
-    .replace(/볼스터 라이딩/g, '쿠션 기대기')
-    .replace(/하이 레그프롭/g, '다리 들기')
-    .replace(/가구 스트래들/g, '의자 착석')
-    .replace(/리클라이닝/g, '기대어 휴식')
-    .replace(/#/g, '')
-    .trim();
 }
 
 export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) => {
@@ -59,7 +26,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
   const profile = useMemo(() => getMannequinProfile(currentModelId), [currentModelId]);
   const isYouthModel = profile.outfitProfile === 'youth_casual';
 
-  const [selectedSoloGroup, setSelectedSoloGroup] = useState<string>('solo_all_glamour');
+  const [selectedSoloGroup, setSelectedSoloGroup] = useState<string>('basic_std');
   const [soloSearch, setSoloSearch] = useState('');
   const [activeSoloStdId, setActiveSoloStdId] = useState<string | null>(null);
 
@@ -163,59 +130,60 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
         }`}
       >
         <div
-          onClick={() => handleSwitchAccordion('solo')}
-          className={`w-full px-3.5 py-3 flex items-center justify-between cursor-pointer transition-colors ${
+          className={`w-full px-3.5 py-3 flex items-center justify-between gap-2 transition-colors ${
             activePoseAccordion === 'solo' ? 'bg-zinc-900 text-white' : 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-800'
           }`}
         >
-          <div className="flex items-center gap-2">
+          <button type="button" onClick={() => handleSwitchAccordion('solo')} aria-expanded={activePoseAccordion === 'solo'} aria-controls="solo-pose-list" className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-2 focus-visible:outline-blue-500">
             <User className="w-4 h-4 text-blue-400 shrink-0" />
             <div>
               <div className="font-bold text-xs flex items-center gap-1.5">
-                <span>2. 개인 솔로 자세 (365종)</span>
+                <span>한 사람 자세 (365종)</span>
                 {activePoseAccordion === 'solo' && (
                   <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-blue-600 text-white font-bold">제어 중</span>
                 )}
               </div>
-              <p className="text-[10px] text-zinc-400">클릭 시 1인 마네킹 전용 모드로 전환 (파트너 마네킹 자동 숨김)</p>
+              <p className="text-[10px] text-zinc-400">한 사람의 자세를 고릅니다</p>
             </div>
-          </div>
+          </button>
           <div className="flex items-center gap-1.5">
             {activePoseAccordion === 'solo' && (
               <button
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   if (filteredSoloPresets.length > 0) {
                     handleApplySoloStandard(filteredSoloPresets[Math.floor(Math.random() * filteredSoloPresets.length)]);
                   } else if (filteredSoloPostures.length > 0) {
                     handleSelectSoloPosture(filteredSoloPostures[Math.floor(Math.random() * filteredSoloPostures.length)].id);
                   }
                 }}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold"
+                className="flex items-center gap-1 px-2.5 py-2 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold focus-visible:outline-2 focus-visible:outline-white"
               >
                 <Dices className="w-3 h-3" />
-                <span>솔로 셔플</span>
+                <span>무작위 자세</span>
               </button>
             )}
-            {activePoseAccordion === 'solo' ? <ChevronUp className="w-4 h-4 text-blue-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            <button type="button" onClick={() => handleSwitchAccordion('solo')} aria-label={activePoseAccordion === 'solo' ? '한 사람 자세 접기' : '한 사람 자세 펼치기'} className="p-2 focus-visible:outline-2 focus-visible:outline-blue-500">
+              {activePoseAccordion === 'solo' ? <ChevronUp className="w-4 h-4 text-blue-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            </button>
           </div>
         </div>
 
         {activePoseAccordion === 'solo' && (
-          <div className="p-3 space-y-2.5">
+          <div id="solo-pose-list" className="p-3 space-y-2.5">
             <div className="relative">
               <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
               <input
                 type="text"
                 value={soloSearch}
                 onChange={(e) => setSoloSearch(e.target.value)}
-                placeholder="양반다리, 측면, 후면, 기대기, 눕기, 한쪽 무릎 등 검색..."
-                className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="자세 이름 검색"
+                aria-label="한 사람 자세 검색"
+                className="w-full min-h-10 bg-zinc-100 text-zinc-900 placeholder-zinc-500 rounded-xl pl-8 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-1 max-h-[126px] overflow-y-auto pr-0.5">
+            <div className="grid grid-cols-3 gap-1">
               {SOLO_GROUPS.filter(
                 (g) =>
                   !isYouthModel ||
@@ -225,7 +193,8 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
                 <button
                   key={g.id}
                   onClick={() => setSelectedSoloGroup(g.id)}
-                  className={`px-2 py-1.5 rounded-xl text-[10px] font-bold transition-all border truncate ${
+                  aria-pressed={selectedSoloGroup === g.id}
+                  className={`px-2 py-2 rounded-xl text-xs font-bold transition-all border truncate ${
                     selectedSoloGroup === g.id
                       ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                       : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:border-zinc-400'
@@ -236,14 +205,16 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
               ))}
             </div>
 
+            {filteredSoloPresets.length === 0 && filteredSoloPostures.length === 0 && <p role="status" className="rounded-xl bg-zinc-50 p-4 text-sm text-zinc-600">찾은 자세가 없습니다. 검색어나 분류를 바꿔 보세요.</p>}
             {filteredSoloPresets.length > 0 ? (
-              <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-0.5">
+              <div className="grid grid-cols-3 gap-2">
                 {filteredSoloPresets.map((preset) => {
                   const isSelected = activeSoloStdId === preset.id;
                   return (
                     <button
                       key={preset.id}
                       onClick={() => handleApplySoloStandard(preset)}
+                      aria-pressed={isSelected}
                       className={`group p-2 rounded-2xl text-[10.5px] font-semibold border transition-all flex flex-col gap-1 items-center ${
                         isSelected
                           ? 'bg-zinc-900 text-white border-pink-500 ring-2 ring-pink-500/25 shadow-sm'
@@ -259,13 +230,14 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
                 })}
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-0.5">
+              <div className="grid grid-cols-3 gap-2">
                 {filteredSoloPostures.map((p) => {
                   const isSelected = activeSoloStdId === null && selectedPostureId === p.id;
                   return (
                     <button
                       key={p.id}
                       onClick={() => handleSelectSoloPosture(p.id)}
+                      aria-pressed={isSelected}
                       className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
                         isSelected
                           ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/30 shadow-md'

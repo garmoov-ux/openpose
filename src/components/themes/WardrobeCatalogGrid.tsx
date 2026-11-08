@@ -68,6 +68,14 @@ export const WardrobeCatalogGrid: React.FC<WardrobeCatalogGridProps> = ({
   onToggleItem,
   onApplySet,
 }) => {
+  if ((mode === 'items' ? items : sets).length === 0) {
+    return (
+      <div role="status" className="rounded-2xl border border-dashed border-zinc-300 bg-white px-4 py-8 text-center text-sm text-zinc-600">
+        찾은 의상이 없습니다. 검색어나 분류를 바꿔 보세요.
+      </div>
+    );
+  }
+
   if (mode === 'items') {
     return (
       <div className="grid grid-cols-3 gap-2">
@@ -80,6 +88,7 @@ export const WardrobeCatalogGrid: React.FC<WardrobeCatalogGridProps> = ({
               key={item.id}
               type="button"
               onClick={() => onToggleItem(item.id)}
+              aria-pressed={isEquipped}
               className={`p-2 rounded-2xl border text-left transition-all flex flex-col justify-between gap-1.5 ${
                 isEquipped
                   ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25 shadow-sm'
@@ -135,6 +144,7 @@ export const WardrobeCatalogGrid: React.FC<WardrobeCatalogGridProps> = ({
             key={setItem.id}
             type="button"
             onClick={() => onApplySet(setItem.id)}
+            aria-pressed={allEquipped}
             className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between gap-2 ${
               allEquipped
                 ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25'

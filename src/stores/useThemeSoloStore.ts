@@ -25,7 +25,7 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   selectedOutfitId: 0, selectedOutfitCategory: 'all', selectedPostureId: 1, selectedShotPrefixIndex: 0,
   isWildcardMode: false, isPetite155: false, bodyProfileMode: 'mannequin',
   includeMasterRef: false, showThemeProps: true, showPartnerGuide: false,
-  activeSidebarTab: 'outfit', activePoseAccordion: 'couple', activeCouplePresetId: 'couple-back-hug',
+  activeSidebarTab: 'outfit', activePoseAccordion: 'solo', activeCouplePresetId: null,
   isBareMannequinMode: true, savedAppearanceBackup: null,
   outfitCompositions: {
     main: { schemaVersion: 1, actorId: 'main', itemIds: [] },
