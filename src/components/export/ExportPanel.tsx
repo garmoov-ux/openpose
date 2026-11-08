@@ -111,13 +111,13 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
 
   return (
     <div className="flex flex-col gap-3 p-3.5 bg-[#ffffff] rounded-[24px] border border-[#e0e0e0] text-xs">
-      <div className="text-[11px] font-semibold text-[#707070] uppercase tracking-wider px-1">
-        내보내기 및 ComfyUI 연동
+      <div className="text-[11px] font-semibold text-[#707070] tracking-wider px-1">
+        화면 캡처 저장 및 생성 서버 연동
       </div>
 
       {/* 해상도 선택 (세그먼트 컨트롤 스타일) */}
       <div className="flex items-center gap-1 p-1 bg-[#f0f0f0] rounded-full">
-        <span className="text-[#707070] px-2 text-[11px] font-medium">해상도:</span>
+        <span className="text-[#707070] px-2 text-[11px] font-medium">출력 크기:</span>
         {resolutions.map((res) => (
           <button
             key={res}
@@ -128,7 +128,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
                 : 'text-[#707070] hover:text-[#141414]'
             }`}
           >
-            {res}px
+            {res} 화소
           </button>
         ))}
       </div>
@@ -148,23 +148,23 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
           className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#ffffff] hover:bg-[#f3f3f3] text-[#141414] font-medium rounded-full border border-[#e0e0e0] transition-all active:scale-[0.98]"
         >
           <Download className="w-3.5 h-3.5 text-[#707070]" />
-          <span>PNG 저장</span>
+          <span>이미지 저장</span>
         </button>
       </div>
 
-      {/* OpenPose JSON 내보내기 */}
+      {/* 관절 좌표 데이터 내보내기 */}
       <button
         onClick={handleExportJson}
         className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#f3f3f3] hover:bg-[#e0e0e0] text-[#141414] font-medium rounded-full transition-all"
       >
         <FileCode className="w-3.5 h-3.5 text-[#0066ff]" />
-        <span>OpenPose JSON 다운로드</span>
+        <span>관절 좌표 데이터 저장</span>
       </button>
 
-      {/* ComfyUI 직결 섹션 */}
+      {/* 인공지능 생성 서버 직결 섹션 */}
       <div className="pt-2 border-t border-[#f0f0f0] flex flex-col gap-2">
         <div className="flex items-center justify-between text-[#707070]">
-          <span className="font-medium">ComfyUI 로컬:</span>
+          <span className="font-medium">생성 서버 주소:</span>
           <input
             type="text"
             value={comfyUrl}
@@ -179,7 +179,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
           className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#141414] hover:bg-[#262626] disabled:opacity-50 text-[#ffffff] font-medium rounded-full transition-all active:scale-[0.98]"
         >
           <Send className="w-3.5 h-3.5 text-[#0066ff]" />
-          <span>{isGenerating ? `생성 중 (${generationProgress}%)` : 'ComfyUI로 전송'}</span>
+          <span>{isGenerating ? `생성 진행 중 (${generationProgress}%)` : '생성 서버로 즉시 전송'}</span>
         </button>
 
         {comfyStatus && (

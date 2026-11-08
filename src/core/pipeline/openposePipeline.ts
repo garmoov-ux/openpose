@@ -95,10 +95,10 @@ export function drawOpenPoseSkeleton(
     }
   });
 
-  // 2. 관절 포인트(Joints) 드로잉 - 표준 COCO 키포인트 컬러 매핑
-  positions.forEach((pos, name) => {
-    if (!pos.visible) return;
-    const color = JOINT_COLORS[name] || '#00ff88';
+  // 2. 관절 포인트(Joints) 드로잉 - 표준 COCO 핵심 키포인트만 렌더링
+  Object.entries(JOINT_COLORS).forEach(([name, color]) => {
+    const pos = positions.get(name);
+    if (!pos || !pos.visible) return;
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(pos.x, pos.y, jointRadius, 0, Math.PI * 2);

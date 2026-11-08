@@ -24,7 +24,7 @@ export const ThemeStudioDrawer: React.FC<ThemeStudioDrawerProps> = ({ sceneManag
   ];
 
   return (
-    <div className="absolute top-16 left-4 bottom-4 w-96 max-w-[calc(100vw-2rem)] z-20 flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-left duration-200">
+    <div className="absolute top-16 left-4 bottom-16 w-96 max-w-[calc(100vw-2rem)] z-20 flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-left duration-200">
       {/* 드로어 헤더 */}
       <div className="px-5 py-4 border-b border-zinc-100 flex items-center justify-between">
         <div className="flex items-center gap-2">

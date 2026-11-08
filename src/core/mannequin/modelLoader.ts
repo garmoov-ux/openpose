@@ -5,16 +5,25 @@ import { MANNEQUIN_MODELS } from './models';
 import { MannequinModelId, MaterialStyle } from '@/types';
 import { createMaterialByStyle } from '@/core/shaders/materials';
 
-// 표준 본 이름 매핑 헬퍼 (prefix 제거 및 대체명 처리)
-function normalizeBoneName(rawName: string): string {
-  const clean = rawName.replace(/^mixamorig[0-9]*:_?|^Character1:_?|^Armature:_?|FBXASC032/gi, '');
+// 표준 본 이름 매핑 헬퍼 (mixamorig, mixamorig1 등 모든 접두사 제거)
+export function normalizeBoneName(rawName: string): string {
+  const clean = rawName
+    .replace(/^mixamorig[0-9]*:?_?|^Character1:?_?|^Armature:?_?|FBXASC032/gi, '')
+    .trim();
+
+  // IK 타겟이나 OpenPose 보조 본, 끝단 본은 표준 본 매핑에서 제외
+  if (/IKTarget|_end$|OP$/i.test(clean)) {
+    return clean;
+  }
+
   const mapping: Record<string, string> = {
+    hips: 'Hips',
     hip: 'Hips',
     pelvis: 'Hips',
     spine: 'Spine',
     spine1: 'Spine1',
+    spine2: 'Spine2',
     chest: 'Spine1',
-    spine2: 'Spine1',
     neck: 'Neck',
     head: 'Head',
     leftshoulder: 'LeftShoulder',
@@ -35,18 +44,39 @@ function normalizeBoneName(rawName: string): string {
   return mapping[clean.toLowerCase()] || clean;
 }
 
-// 본 주변 피킹용 투명 구체 콜라이더 생성
-function createColliderSphere(radius = 0.12): THREE.Mesh {
-  const geom = new THREE.SphereGeometry(radius, 12, 12);
+// 본 주변 피킹용 투명 콜라이더 및 시각적 관절 포인트 생성
+function createJointColliderAndDot(
+  boneName: string,
+  worldRadius: number,
+  scaleFactor: number
+): THREE.Mesh {
+  const localRadius = worldRadius / (scaleFactor || 1);
+  const geom = new THREE.SphereGeometry(localRadius, 12, 12);
   const mat = new THREE.MeshBasicMaterial({
     visible: true,
     transparent: true,
     opacity: 0.0,
     depthWrite: false,
   });
-  const mesh = new THREE.Mesh(geom, mat);
-  mesh.renderOrder = 999;
-  return mesh;
+  const collider = new THREE.Mesh(geom, mat);
+  collider.renderOrder = 999;
+  collider.userData = { boneName, isCollider: true };
+
+  // 시각적 관절 조절점 (Joint Control Dot)
+  const dotRadius = (boneName === 'Hips' ? 0.026 : 0.02) / (scaleFactor || 1);
+  const dotGeom = new THREE.SphereGeometry(dotRadius, 16, 16);
+  const dotMat = new THREE.MeshBasicMaterial({
+    color: boneName === 'Hips' ? 0x0066ff : 0x38bdf8,
+    transparent: true,
+    opacity: 0.85,
+    depthTest: false,
+  });
+  const dotMesh = new THREE.Mesh(dotGeom, dotMat);
+  dotMesh.renderOrder = 1000;
+  dotMesh.userData = { boneName, isJointDot: true };
+  collider.add(dotMesh);
+
+  return collider;
 }
 
 // FBX 모델 로드 및 HumanoidRigResult 정규화
@@ -74,12 +104,14 @@ export async function loadFbxMannequin(
     );
   });
 
+  // 월드 행렬 갱신 후 바인드 포즈(Rest Pose) 저장
+  fbxGroup.updateMatrixWorld(true);
+
   const bonesMap = new Map<string, THREE.Bone>();
   const collidersMap = new Map<string, THREE.Mesh>();
   const boneList: THREE.Bone[] = [];
   const foundMeshes: THREE.SkinnedMesh[] = [];
 
-  // 메시 및 본 탐색
   const material = createMaterialByStyle(style);
   fbxGroup.traverse((child) => {
     if ((child as THREE.SkinnedMesh).isSkinnedMesh) {
@@ -88,12 +120,29 @@ export async function loadFbxMannequin(
       sm.material = material;
       sm.castShadow = true;
       sm.receiveShadow = true;
+      sm.frustumCulled = false;
+    } else if ((child as THREE.Mesh).isMesh) {
+      const m = child as THREE.Mesh;
+      m.material = material;
+      m.castShadow = true;
+      m.receiveShadow = true;
     }
+
     if ((child as THREE.Bone).isBone) {
       const bone = child as THREE.Bone;
       const normalized = normalizeBoneName(bone.name);
-      bone.name = normalized;
-      bonesMap.set(normalized, bone);
+
+      // 초기 바인드 회전 및 위치 백업
+      const worldRest = new THREE.Quaternion();
+      bone.getWorldQuaternion(worldRest);
+      bone.userData.localRestQuat = bone.quaternion.clone();
+      bone.userData.worldRestQuat = worldRest;
+      bone.userData.restPos = bone.position.clone();
+
+      if (!bonesMap.has(normalized)) {
+        bone.name = normalized;
+        bonesMap.set(normalized, bone);
+      }
       boneList.push(bone);
     }
   });
@@ -105,23 +154,23 @@ export async function loadFbxMannequin(
   const size = new THREE.Vector3();
   box.getSize(size);
 
+  let scaleFactor = 1.0;
   if (size.y > 0) {
-    const targetHeight = modelId === 'chibi_male' ? 1.2 : 1.75;
-    const scaleFactor = targetHeight / size.y;
+    const targetHeight = modelId === 'chibi_male' ? 1.25 : 1.75;
+    scaleFactor = targetHeight / size.y;
     fbxGroup.scale.multiplyScalar(scaleFactor);
   }
 
-  // 발바닥을 바닥(y=0)에 정렬
+  fbxGroup.updateMatrixWorld(true);
   const updatedBox = new THREE.Box3().setFromObject(fbxGroup);
   fbxGroup.position.y -= updatedBox.min.y;
 
-  // 콜라이더 생성 및 바인딩
+  // 주요 19개 관절에 스케일 보정된 콜라이더 및 관절 조절점 부착
   JOINT_DEFINITIONS.forEach((def) => {
     const bone = bonesMap.get(def.name);
     if (bone) {
-      const radius = def.name === 'Head' ? 0.18 : def.name === 'Hips' ? 0.16 : 0.12;
-      const collider = createColliderSphere(radius);
-      collider.userData = { boneName: def.name };
+      const worldRadius = def.name === 'Head' ? 0.14 : def.name === 'Hips' ? 0.13 : 0.095;
+      const collider = createJointColliderAndDot(def.name, worldRadius, scaleFactor);
       bone.add(collider);
       collidersMap.set(def.name, collider);
     }

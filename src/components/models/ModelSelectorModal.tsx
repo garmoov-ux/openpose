@@ -28,9 +28,9 @@ export const ModelSelectorModal: React.FC<ModelSelectorModalProps> = ({ sceneMan
 
   const categories = [
     { id: 'all', label: '전체 모델' },
-    { id: 'realistic', label: '리얼리스틱' },
+    { id: 'realistic', label: '실사 체형' },
     { id: 'anime', label: '애니메이션' },
-    { id: 'stylized', label: 'SD/캐주얼' },
+    { id: 'stylized', label: '소형/캐주얼' },
   ];
 
   const filteredModels = MANNEQUIN_MODELS.filter((m) =>
@@ -187,7 +187,7 @@ export const ModelSelectorModal: React.FC<ModelSelectorModalProps> = ({ sceneMan
 
                 <div className="mt-4 pt-3 border-t border-zinc-800/80 flex items-center justify-between text-[11px] text-zinc-500">
                   <span>{model.gender === 'female' ? '여성 체형' : model.gender === 'male' ? '남성 체형' : '중립 체형'}</span>
-                  <span className="font-mono text-zinc-400">FBX Rig 100% 호환</span>
+                  <span className="font-semibold text-zinc-400">전신 관절 100% 호환</span>
                 </div>
               </button>
             );

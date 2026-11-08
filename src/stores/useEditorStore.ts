@@ -60,7 +60,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   showGrid: true,
   showSkeleton: true,
   exportResolution: 1024,
-  currentModelId: 'procedural',
+  currentModelId: 'realistic_woman',
   currentMaterialStyle: 'matte_white',
   modelLoadingProgress: null,
 

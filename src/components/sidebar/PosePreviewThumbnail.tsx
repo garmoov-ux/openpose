@@ -13,160 +13,141 @@ interface Point2D {
   y: number;
 }
 
-// 2D 스켈레톤 프리뷰 좌표 산출 (초경량 정방향 기하 연산)
-function computeSkeleton2D(pose: PoseKeyframe | null): Record<string, Point2D> {
-  const points: Record<string, Point2D> = {
-    Hips: { x: 50, y: 52 },
-    Spine: { x: 50, y: 44 },
-    Spine1: { x: 50, y: 35 },
-    Neck: { x: 50, y: 27 },
-    Head: { x: 50, y: 19 },
-    LeftShoulder: { x: 60, y: 34 },
-    LeftArm: { x: 67, y: 45 },
-    LeftForeArm: { x: 64, y: 57 },
-    LeftHand: { x: 59, y: 62 },
-    RightShoulder: { x: 40, y: 34 },
-    RightArm: { x: 33, y: 45 },
-    RightForeArm: { x: 36, y: 57 },
-    RightHand: { x: 41, y: 62 },
-    LeftUpLeg: { x: 59, y: 54 },
-    LeftLeg: { x: 67, y: 70 },
-    LeftFoot: { x: 70, y: 86 },
-    RightUpLeg: { x: 41, y: 54 },
-    RightLeg: { x: 33, y: 70 },
-    RightFoot: { x: 30, y: 86 },
+// 3D 쿼터니언 정방향 운동학(FK)을 통한 정확한 2D 정면/반측면 투영 좌표 산출
+function computeAccurateSkeleton2D(pose: PoseKeyframe | null): Record<string, Point2D> {
+  const getQuat = (name: string): THREE.Quaternion => {
+    const r = pose?.[name]?.rotation;
+    return r ? new THREE.Quaternion(r[0], r[1], r[2], r[3]) : new THREE.Quaternion();
   };
 
-  if (!pose) return points;
+  const hipPos3D = new THREE.Vector3(0, pose?.Hips?.position?.[1] ?? 0.58, 0);
+  const qHips = getQuat('Hips');
+  const qSpine = qHips.clone().multiply(getQuat('Spine'));
+  const qSpine1 = qSpine.clone().multiply(getQuat('Spine1'));
+  const qNeck = qSpine1.clone().multiply(getQuat('Neck'));
+  const qHead = qNeck.clone().multiply(getQuat('Head'));
 
-  // 쿼터니언 회전에 따른 사지 관절 벡터 변위 계산
-  const applyBoneRotation = (
-    boneName: string,
-    parentPos: Point2D,
-    defaultVec: [number, number],
-    length = 1.0
-  ): Point2D => {
-    const rot = pose[boneName]?.rotation;
-    let dx = defaultVec[0] * length;
-    let dy = defaultVec[1] * length;
+  const spinePos = hipPos3D.clone().add(new THREE.Vector3(0, 0.14, 0).applyQuaternion(qHips));
+  const spine1Pos = spinePos.clone().add(new THREE.Vector3(0, 0.18, 0).applyQuaternion(qSpine));
+  const neckPos = spine1Pos.clone().add(new THREE.Vector3(0, 0.18, 0).applyQuaternion(qSpine1));
+  const headPos = neckPos.clone().add(new THREE.Vector3(0, 0.14, 0).applyQuaternion(qHead));
 
-    if (rot) {
-      const q = new THREE.Quaternion(rot[0], rot[1], rot[2], rot[3]);
-      const e = new THREE.Euler().setFromQuaternion(q, 'YXZ');
-      // 2D 평면 투영 각도 계산
-      const cos = Math.cos(e.z - e.x * 0.5);
-      const sin = Math.sin(e.z - e.x * 0.5);
-      const rx = dx * cos - dy * sin;
-      const ry = dx * sin + dy * cos;
-      dx = rx;
-      dy = ry;
-    }
+  const lShoulderPos = spine1Pos.clone().add(new THREE.Vector3(0.14, 0.12, 0).applyQuaternion(qSpine1));
+  const rShoulderPos = spine1Pos.clone().add(new THREE.Vector3(-0.14, 0.12, 0).applyQuaternion(qSpine1));
 
-    return {
-      x: Math.max(10, Math.min(90, parentPos.x + dx)),
-      y: Math.max(10, Math.min(90, parentPos.y + dy)),
+  const qLArm = qSpine1.clone().multiply(getQuat('LeftArm'));
+  const qLFore = qLArm.clone().multiply(getQuat('LeftForeArm'));
+  const lElbowPos = lShoulderPos.clone().add(new THREE.Vector3(0.22, 0, 0).applyQuaternion(qLArm));
+  const lHandPos = lElbowPos.clone().add(new THREE.Vector3(0.20, 0, 0).applyQuaternion(qLFore));
+
+  const qRArm = qSpine1.clone().multiply(getQuat('RightArm'));
+  const qRFore = qRArm.clone().multiply(getQuat('RightForeArm'));
+  const rElbowPos = rShoulderPos.clone().add(new THREE.Vector3(-0.22, 0, 0).applyQuaternion(qRArm));
+  const rHandPos = rElbowPos.clone().add(new THREE.Vector3(-0.20, 0, 0).applyQuaternion(qRFore));
+
+  const lHipPos = hipPos3D.clone().add(new THREE.Vector3(0.11, -0.04, 0).applyQuaternion(qHips));
+  const rHipPos = hipPos3D.clone().add(new THREE.Vector3(-0.11, -0.04, 0).applyQuaternion(qHips));
+
+  const qLUpLeg = qHips.clone().multiply(getQuat('LeftUpLeg'));
+  const qLLeg = qLUpLeg.clone().multiply(getQuat('LeftLeg'));
+  const lKneePos = lHipPos.clone().add(new THREE.Vector3(0, -0.36, 0).applyQuaternion(qLUpLeg));
+  const lFootPos = lKneePos.clone().add(new THREE.Vector3(0, -0.35, 0).applyQuaternion(qLLeg));
+
+  const qRUpLeg = qHips.clone().multiply(getQuat('RightUpLeg'));
+  const qRLeg = qRUpLeg.clone().multiply(getQuat('RightLeg'));
+  const rKneePos = rHipPos.clone().add(new THREE.Vector3(0, -0.36, 0).applyQuaternion(qRUpLeg));
+  const rFootPos = rKneePos.clone().add(new THREE.Vector3(0, -0.35, 0).applyQuaternion(qRLeg));
+
+  const raw3D: Record<string, THREE.Vector3> = {
+    Hips: hipPos3D,
+    Spine: spinePos,
+    Spine1: spine1Pos,
+    Neck: neckPos,
+    Head: headPos,
+    LeftShoulder: lShoulderPos,
+    LeftArm: lElbowPos,
+    LeftHand: lHandPos,
+    RightShoulder: rShoulderPos,
+    RightArm: rElbowPos,
+    RightHand: rHandPos,
+    LeftUpLeg: lHipPos,
+    LeftLeg: lKneePos,
+    LeftFoot: lFootPos,
+    RightUpLeg: rHipPos,
+    RightLeg: rKneePos,
+    RightFoot: rFootPos,
+  };
+
+  // 바운딩 박스 중심 정규화하여 100x100 SVG 안에 항상 알맞게 배치
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  Object.values(raw3D).forEach((v) => {
+    const px = v.x + v.z * 0.28; // 약간의 입체 사선 투영으로 앞뒤 굽힘 표현
+    const py = v.y - v.z * 0.18;
+    if (px < minX) minX = px;
+    if (px > maxX) maxX = px;
+    if (py < minY) minY = py;
+    if (py > maxY) maxY = py;
+  });
+
+  const span = Math.max(maxX - minX, maxY - minY, 0.75);
+  const scale = 64 / span;
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+
+  const result: Record<string, Point2D> = {};
+  Object.entries(raw3D).forEach(([k, v]) => {
+    const px = v.x + v.z * 0.28;
+    const py = v.y - v.z * 0.18;
+    result[k] = {
+      x: 50 + (px - cx) * scale,
+      y: 52 - (py - cy) * scale,
     };
-  };
+  });
 
-  const hips = points.Hips;
-  const spine1 = applyBoneRotation('Spine1', hips, [0, -17]);
-  const neck = applyBoneRotation('Neck', spine1, [0, -8]);
-  const head = applyBoneRotation('Head', neck, [0, -8]);
-
-  points.Spine1 = spine1;
-  points.Neck = neck;
-  points.Head = head;
-
-  // 팔
-  const lShoulder = { x: spine1.x + 9, y: spine1.y };
-  const rShoulder = { x: spine1.x - 9, y: spine1.y };
-  points.LeftShoulder = lShoulder;
-  points.RightShoulder = rShoulder;
-
-  const lArm = applyBoneRotation('LeftArm', lShoulder, [7, 11]);
-  const lForeArm = applyBoneRotation('LeftForeArm', lArm, [-3, 12]);
-  const lHand = applyBoneRotation('LeftHand', lForeArm, [-5, 6]);
-
-  const rArm = applyBoneRotation('RightArm', rShoulder, [-7, 11]);
-  const rForeArm = applyBoneRotation('RightForeArm', rArm, [3, 12]);
-  const rHand = applyBoneRotation('RightHand', rForeArm, [5, 6]);
-
-  points.LeftArm = lArm;
-  points.LeftForeArm = lForeArm;
-  points.LeftHand = lHand;
-  points.RightArm = rArm;
-  points.RightForeArm = rForeArm;
-  points.RightHand = rHand;
-
-  // 다리
-  const lUpLeg = { x: hips.x + 8, y: hips.y + 2 };
-  const rUpLeg = { x: hips.x - 8, y: hips.y + 2 };
-  points.LeftUpLeg = lUpLeg;
-  points.RightUpLeg = rUpLeg;
-
-  const lLeg = applyBoneRotation('LeftLeg', lUpLeg, [8, 16]);
-  const lFoot = applyBoneRotation('LeftFoot', lLeg, [3, 16]);
-
-  const rLeg = applyBoneRotation('RightLeg', rUpLeg, [-8, 16]);
-  const rFoot = applyBoneRotation('RightFoot', rLeg, [-3, 16]);
-
-  points.LeftLeg = lLeg;
-  points.LeftFoot = lFoot;
-  points.RightLeg = rLeg;
-  points.RightFoot = rFoot;
-
-  return points;
+  return result;
 }
 
-const LIMB_CONNECTIONS = [
-  ['Head', 'Neck'],
-  ['Neck', 'Spine1'],
-  ['Spine1', 'Hips'],
-  ['Spine1', 'LeftShoulder'],
-  ['LeftShoulder', 'LeftArm'],
-  ['LeftArm', 'LeftForeArm'],
-  ['LeftForeArm', 'LeftHand'],
-  ['Spine1', 'RightShoulder'],
-  ['RightShoulder', 'RightArm'],
-  ['RightArm', 'RightForeArm'],
-  ['RightForeArm', 'RightHand'],
-  ['Hips', 'LeftUpLeg'],
-  ['LeftUpLeg', 'LeftLeg'],
-  ['LeftLeg', 'LeftFoot'],
-  ['Hips', 'RightUpLeg'],
-  ['RightUpLeg', 'RightLeg'],
-  ['RightLeg', 'RightFoot'],
+const LIMB_CONNECTIONS: Array<{ from: string; to: string; color: string; width: number }> = [
+  { from: 'Head', to: 'Neck', color: '#f43f5e', width: 2.6 },
+  { from: 'Neck', to: 'Spine1', color: '#38bdf8', width: 3.0 },
+  { from: 'Spine1', to: 'Spine', color: '#38bdf8', width: 3.0 },
+  { from: 'Spine', to: 'Hips', color: '#38bdf8', width: 3.0 },
+  { from: 'Neck', to: 'LeftShoulder', color: '#a3e635', width: 2.4 },
+  { from: 'LeftShoulder', to: 'LeftArm', color: '#4ade80', width: 2.4 },
+  { from: 'LeftArm', to: 'LeftHand', color: '#2dd4bf', width: 2.2 },
+  { from: 'Neck', to: 'RightShoulder', color: '#fb923c', width: 2.4 },
+  { from: 'RightShoulder', to: 'RightArm', color: '#facc15', width: 2.4 },
+  { from: 'RightArm', to: 'RightHand', color: '#fde047', width: 2.2 },
+  { from: 'Hips', to: 'LeftUpLeg', color: '#38bdf8', width: 2.6 },
+  { from: 'LeftUpLeg', to: 'LeftLeg', color: '#60a5fa', width: 2.6 },
+  { from: 'LeftLeg', to: 'LeftFoot', color: '#818cf8', width: 2.4 },
+  { from: 'Hips', to: 'RightUpLeg', color: '#34d399', width: 2.6 },
+  { from: 'RightUpLeg', to: 'RightLeg', color: '#2dd4bf', width: 2.6 },
+  { from: 'RightLeg', to: 'RightFoot', color: '#22d3ee', width: 2.4 },
 ];
 
 export const PosePreviewThumbnail: React.FC<PosePreviewThumbnailProps> = React.memo(
   ({ postureId, isSelected = false }) => {
     const poseKeyframe = useMemo(() => getSoloThemePoseKeyframe(postureId), [postureId]);
-    const skeleton = useMemo(() => computeSkeleton2D(poseKeyframe), [poseKeyframe]);
-
-    const strokeColor = isSelected ? '#38bdf8' : '#94a3b8';
-    const jointColor = isSelected ? '#ffffff' : '#64748b';
-    const headColor = isSelected ? '#38bdf8' : '#cbd5e1';
+    const skeleton = useMemo(() => computeAccurateSkeleton2D(poseKeyframe), [poseKeyframe]);
 
     return (
-      <div className="relative w-full aspect-square bg-zinc-950 rounded-xl overflow-hidden flex items-center justify-center border border-zinc-800/80 group-hover:border-zinc-700 transition-colors">
-        {/* 미세 그리드 배경 */}
-        <div className="absolute inset-0 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:10px_10px] opacity-40" />
+      <div className="relative w-full aspect-square bg-zinc-950 rounded-xl overflow-hidden flex items-center justify-center border border-zinc-800/80 group-hover:border-zinc-600 transition-colors">
+        <div className="absolute inset-0 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:10px_10px] opacity-45" />
 
-        <svg viewBox="0 0 100 100" className="w-full h-full p-2 relative z-10">
-          {/* 머리 원형 */}
-          <circle
-            cx={skeleton.Head.x}
-            cy={skeleton.Head.y}
-            r="5"
-            fill={headColor}
-            stroke={isSelected ? '#0284c7' : '#475569'}
-            strokeWidth="1.2"
+        <svg viewBox="0 0 100 100" className="w-full h-full p-1.5 relative z-10">
+          {/* 몸통 실루엣 폴리곤 (입체 마네킹 느낌 부여) */}
+          <polygon
+            points={`${skeleton.LeftShoulder.x},${skeleton.LeftShoulder.y} ${skeleton.RightShoulder.x},${skeleton.RightShoulder.y} ${skeleton.RightUpLeg.x},${skeleton.RightUpLeg.y} ${skeleton.LeftUpLeg.x},${skeleton.LeftUpLeg.y}`}
+            fill={isSelected ? 'rgba(56, 189, 248, 0.18)' : 'rgba(148, 163, 184, 0.12)'}
+            stroke={isSelected ? 'rgba(56, 189, 248, 0.35)' : 'rgba(148, 163, 184, 0.2)'}
+            strokeWidth="0.8"
           />
 
-          {/* 본 연결선 */}
-          {LIMB_CONNECTIONS.map(([p1Key, p2Key], idx) => {
-            const p1 = skeleton[p1Key];
-            const p2 = skeleton[p2Key];
+          {/* 본 연결선 (고급 컬러 스켈레톤) */}
+          {LIMB_CONNECTIONS.map((limb, idx) => {
+            const p1 = skeleton[limb.from];
+            const p2 = skeleton[limb.to];
             if (!p1 || !p2) return null;
             return (
               <line
@@ -175,12 +156,22 @@ export const PosePreviewThumbnail: React.FC<PosePreviewThumbnailProps> = React.m
                 y1={p1.y}
                 x2={p2.x}
                 y2={p2.y}
-                stroke={strokeColor}
-                strokeWidth={isSelected ? '2.4' : '1.8'}
+                stroke={limb.color}
+                strokeWidth={isSelected ? limb.width + 0.5 : limb.width}
                 strokeLinecap="round"
               />
             );
           })}
+
+          {/* 머리 원형 */}
+          <circle
+            cx={skeleton.Head.x}
+            cy={skeleton.Head.y}
+            r="6.2"
+            fill={isSelected ? '#38bdf8' : '#e2e8f0'}
+            stroke="#0f172a"
+            strokeWidth="1.2"
+          />
 
           {/* 주요 관절 조인트 점 */}
           {Object.entries(skeleton).map(([key, pt]) => {
@@ -190,8 +181,10 @@ export const PosePreviewThumbnail: React.FC<PosePreviewThumbnailProps> = React.m
                 key={key}
                 cx={pt.x}
                 cy={pt.y}
-                r={isSelected ? '2.2' : '1.6'}
-                fill={jointColor}
+                r={isSelected ? '2.2' : '1.8'}
+                fill="#ffffff"
+                stroke="#0f172a"
+                strokeWidth="0.6"
               />
             );
           })}

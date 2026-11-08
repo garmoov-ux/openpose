@@ -29,7 +29,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({ sceneManager }) => {
               <Download className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-zinc-900 tracking-tight">내보내기 & ComfyUI 연동</h2>
+              <h2 className="text-sm font-bold text-zinc-900 tracking-tight">화면 저장 및 생성 서버 연동</h2>
               <p className="text-[11px] text-zinc-500">클립보드 즉시 복사 및 원클릭 이미지 생성 파이프라인</p>
             </div>
           </div>

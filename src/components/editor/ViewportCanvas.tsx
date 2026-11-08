@@ -17,6 +17,8 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     gizmoMode,
     gizmoSpace,
     cameraPreset,
+    showGrid,
+    showSkeleton,
     selectedBoneName,
     setSelectedBoneName,
   } = useEditorStore();
@@ -64,6 +66,14 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   useEffect(() => {
     managerRef.current?.setCameraPreset(cameraPreset);
   }, [cameraPreset]);
+
+  useEffect(() => {
+    managerRef.current?.setShowGrid(showGrid);
+  }, [showGrid]);
+
+  useEffect(() => {
+    managerRef.current?.setShowSkeleton(showSkeleton);
+  }, [showSkeleton]);
 
   useEffect(() => {
     const currentAttached = managerRef.current?.transformControls?.object?.name || null;
