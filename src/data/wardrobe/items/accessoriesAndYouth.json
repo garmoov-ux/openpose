@@ -1,0 +1,1427 @@
+[
+  {
+    "id": "acc.canvas-tote",
+    "version": 1,
+    "nameKo": "캔버스 토트백",
+    "nameEn": "Canvas Tote",
+    "category": "accessory",
+    "slots": [
+      "bag"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "shoulder_side"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton canvas tote"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 367
+  },
+  {
+    "id": "acc.mini-shoulder-bag",
+    "version": 1,
+    "nameKo": "미니 숄더백",
+    "nameEn": "Mini Shoulder Bag",
+    "category": "accessory",
+    "slots": [
+      "bag"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "shoulder_side"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mini shoulder bag"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 368
+  },
+  {
+    "id": "acc.crossbody-bag",
+    "version": 1,
+    "nameKo": "크로스백",
+    "nameEn": "Crossbody Bag",
+    "category": "accessory",
+    "slots": [
+      "bag"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "shoulder_side"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crossbody bag"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 369
+  },
+  {
+    "id": "acc.leather-belt",
+    "version": 1,
+    "nameKo": "가죽 벨트",
+    "nameEn": "Leather Belt",
+    "category": "accessory",
+    "slots": [
+      "wrist_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "waist"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather leather belt"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 370
+  },
+  {
+    "id": "acc.slim-belt",
+    "version": 1,
+    "nameKo": "슬림 벨트",
+    "nameEn": "Slim Belt",
+    "category": "accessory",
+    "slots": [
+      "wrist_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "waist"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slim belt"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 371
+  },
+  {
+    "id": "acc.baseball-cap",
+    "version": 1,
+    "nameKo": "볼캡",
+    "nameEn": "Baseball Cap",
+    "category": "accessory",
+    "slots": [
+      "head_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "head"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton baseball cap"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 372
+  },
+  {
+    "id": "acc.bucket-hat",
+    "version": 1,
+    "nameKo": "버킷햇",
+    "nameEn": "Bucket Hat",
+    "category": "accessory",
+    "slots": [
+      "head_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "head"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bucket hat"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 373
+  },
+  {
+    "id": "acc.silk-scarf",
+    "version": 1,
+    "nameKo": "실크 스카프",
+    "nameEn": "Silk Scarf",
+    "category": "accessory",
+    "slots": [
+      "neck_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "neck"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin silk scarf"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 374
+  },
+  {
+    "id": "acc.chain-necklace",
+    "version": 1,
+    "nameKo": "체인 목걸이",
+    "nameEn": "Chain Necklace",
+    "category": "accessory",
+    "slots": [
+      "neck_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "neck"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace chain necklace"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 375
+  },
+  {
+    "id": "acc.pearl-necklace",
+    "version": 1,
+    "nameKo": "진주 목걸이",
+    "nameEn": "Pearl Necklace",
+    "category": "accessory",
+    "slots": [
+      "neck_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "neck"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace pearl necklace"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 376
+  },
+  {
+    "id": "acc.small-hoop-earrings",
+    "version": 1,
+    "nameKo": "작은 링 귀걸이",
+    "nameEn": "Small Hoop Earrings",
+    "category": "accessory",
+    "slots": [
+      "head_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "head"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton small hoop earrings"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 377
+  },
+  {
+    "id": "acc.simple-bracelet",
+    "version": 1,
+    "nameKo": "심플 팔찌",
+    "nameEn": "Simple Bracelet",
+    "category": "accessory",
+    "slots": [
+      "wrist_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "wrists"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton simple bracelet"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 378
+  },
+  {
+    "id": "acc.wrist-watch",
+    "version": 1,
+    "nameKo": "손목시계",
+    "nameEn": "Wrist Watch",
+    "category": "accessory",
+    "slots": [
+      "wrist_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "wrists"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton wrist watch"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 379
+  },
+  {
+    "id": "acc.sunglasses",
+    "version": 1,
+    "nameKo": "선글라스",
+    "nameEn": "Sunglasses",
+    "category": "accessory",
+    "slots": [
+      "face_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "face"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sunglasses"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 380
+  },
+  {
+    "id": "youth.cotton-tee",
+    "version": 1,
+    "nameKo": "코튼 반팔 티셔츠",
+    "nameEn": "Cotton Tee",
+    "category": "youth",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 381
+  },
+  {
+    "id": "youth.long-sleeve-tee",
+    "version": 1,
+    "nameKo": "긴팔 티셔츠",
+    "nameEn": "Long Sleeve Tee",
+    "category": "youth",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton long sleeve tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 382
+  },
+  {
+    "id": "youth.school-cardigan",
+    "version": 1,
+    "nameKo": "기본 카디건",
+    "nameEn": "School Cardigan",
+    "category": "youth",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit school cardigan"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 383
+  },
+  {
+    "id": "youth.zip-hoodie",
+    "version": 1,
+    "nameKo": "집업 후디",
+    "nameEn": "Zip Hoodie",
+    "category": "youth",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton zip hoodie"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 384
+  },
+  {
+    "id": "youth.sport-jacket",
+    "version": 1,
+    "nameKo": "체육복 재킷",
+    "nameEn": "Sport Jacket",
+    "category": "youth",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 385
+  },
+  {
+    "id": "youth.denim-overalls",
+    "version": 1,
+    "nameKo": "데님 멜빵바지",
+    "nameEn": "Denim Overalls",
+    "category": "youth",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim denim overalls"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 386
+  },
+  {
+    "id": "youth.cotton-shorts",
+    "version": 1,
+    "nameKo": "코튼 반바지",
+    "nameEn": "Cotton Shorts",
+    "category": "youth",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 387
+  },
+  {
+    "id": "youth.straight-pants",
+    "version": 1,
+    "nameKo": "일자 바지",
+    "nameEn": "Straight Pants",
+    "category": "youth",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton straight pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 388
+  },
+  {
+    "id": "youth.pleated-skirt",
+    "version": 1,
+    "nameKo": "일반 플리츠 스커트",
+    "nameEn": "Pleated Skirt",
+    "category": "youth",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pleated skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 389
+  },
+  {
+    "id": "youth.crew-socks",
+    "version": 1,
+    "nameKo": "크루 양말",
+    "nameEn": "Crew Socks",
+    "category": "youth",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crew socks"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 390
+  },
+  {
+    "id": "youth.school-sneaker",
+    "version": 1,
+    "nameKo": "기본 스니커즈",
+    "nameEn": "School Sneaker",
+    "category": "youth",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton school sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 391,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 1.5,
+      "shaftHeightCm": 0,
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "youth.rain-boots",
+    "version": 1,
+    "nameKo": "레인부츠",
+    "nameEn": "Rain Boots",
+    "category": "youth",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler",
+      "chibi_male"
+    ],
+    "adultOnly": false,
+    "fitProfile": "youth",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather rain boots"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 392,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 1.5,
+      "shaftHeightCm": 18,
+      "leftRightPair": true
+    }
+  }
+]

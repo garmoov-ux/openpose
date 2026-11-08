@@ -1,6 +1,7 @@
 import { SoloThemeId } from '@/types/themeSolo';
 import { THEMES_DATA } from './themesData';
 import { translateEnvironmentItem } from './environmentTranslator';
+import { EXTRA_ROOM_PROPS } from './roomPropCatalogExtra';
 
 export type RoomPropCategory =
   | 'main_furniture'
@@ -34,13 +35,13 @@ export interface RoomPropInstance {
 }
 
 export const ROOM_PROP_CATEGORIES: { id: RoomPropCategory | 'all'; label: string }[] = [
-  { id: 'all', label: '전체 사물 (55)' },
-  { id: 'adult_stage', label: '성인·기구·스테이지 (14)' },
-  { id: 'main_furniture', label: '침대·소파·데스크 (8)' },
-  { id: 'sub_furniture', label: '의자·거울·옷장 (11)' },
-  { id: 'bath_wellness', label: '욕조·샤워·스파 (7)' },
-  { id: 'lighting_arch', label: '조명·창문·러그 (8)' },
-  { id: 'table_props', label: '테이블·소품·잔 (7)' },
+  { id: 'all', label: '전체 사물' },
+  { id: 'adult_stage', label: '성인·기구·스테이지' },
+  { id: 'main_furniture', label: '침대·소파·데스크' },
+  { id: 'sub_furniture', label: '의자·거울·옷장' },
+  { id: 'bath_wellness', label: '욕조·샤워·스파' },
+  { id: 'lighting_arch', label: '조명·창문·러그' },
+  { id: 'table_props', label: '테이블·소품·잔' },
 ];
 
 export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
@@ -110,7 +111,15 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'rose_vase', nameKo: '크림슨 장미 부케 크리스탈 화병', category: 'table_props', badge: '장미 화병', colorHex: 0xe11d48, promptEn: 'crystal vase with fresh crimson red roses', defaultPos: [1.05, 0, -0.65] },
   { id: 'hinoki_bucket', nameKo: '히노끼 목욕 바가지 & 스파 타월', category: 'table_props', badge: '스파 소품', colorHex: 0xb45309, promptEn: 'wooden hinoki bath bucket and rolled white spa towels', defaultPos: [-0.75, 0, -0.15] },
   { id: 'coffee_bag', nameKo: '아이스 커피컵 & 디자이너 미니백', category: 'table_props', badge: '일상 소품', colorHex: 0x78350f, promptEn: 'iced coffee cup and leather designer handbag', defaultPos: [0.68, 0, -0.15] },
+  ...EXTRA_ROOM_PROPS,
 ];
+
+ROOM_PROP_CATEGORIES.forEach((category) => {
+  const count = category.id === 'all'
+    ? ROOM_PROP_CATALOG.length
+    : ROOM_PROP_CATALOG.filter((item) => item.category === category.id).length;
+  category.label += ` (${count})`;
+});
 
 export function findRoomPropById(propId: string): RoomPropCatalogItem | undefined {
   return ROOM_PROP_CATALOG.find((item) => item.id === propId);
@@ -181,6 +190,12 @@ export function getDefaultRoomPropsForTheme(themeId: SoloThemeId, envIndex: numb
     case 'library_bookshelves':
       ids.push('ceo_desk', 'leather_chair', 'bookshelf_wall', 'wall_window_frame', 'plush_rug', 'floor_lamp', 'whiskey_decanter', 'coffee_bag');
       break;
+    case 'jet_oval_recliner':
+      ids.push('limo_seat', 'jet_oval_window', 'jet_service_console', 'champagne_cart', 'plush_rug');
+      break;
+    case 'limo_jseat_bar':
+      ids.push('limo_seat', 'onyx_limo_bar', 'champagne_set', 'neon_arch');
+      break;
     case 'cafe_bench_table':
     case 'storefront_window':
     case 'spiral_stairs_steps':
@@ -192,5 +207,34 @@ export function getDefaultRoomPropsForTheme(themeId: SoloThemeId, envIndex: numb
       break;
   }
 
-  return ids.map((id, idx) => makeInstance(id, idx));
+  const extraByKind: Partial<Record<typeof info.furnitureKind, string[]>> = {
+    cafe_bench_table: ['storefront_facade', 'street_awning'],
+    storefront_window: ['storefront_facade', 'street_awning'],
+    spiral_stairs_steps: ['stone_steps'],
+    street_railing_lamp: ['stone_steps', 'street_awning'],
+    vanity_bulb_mirror: ['fitting_pedestal', 'makeup_case'],
+    triptych_mirror_pedestal: ['fitting_pedestal', 'champagne_cart'],
+    velvet_sofa_salon: ['rococo_fireplace', 'harpsichord'],
+    wardrobe_closet_bed: ['chest_drawers', 'laundry_basket'],
+    kitchen_island_bar: ['coffee_machine'],
+    sunbed_pool_deck: ['beach_cabana', 'yacht_railing'],
+    hinoki_onsen_bath: ['andon_lantern', 'bamboo_screen'],
+    tatami_shoji_room: ['tea_table', 'andon_lantern'],
+    pilates_reformer: ['pilates_mat', 'ladder_barrel'],
+    ballet_barre_mirror: ['pilates_mat'],
+    cadillac_trapeze: ['ladder_barrel'],
+    gym_weight_rack: ['dumbbell_rack'],
+    sauna_cedar_bench: ['sauna_heater'],
+    spa_massage_bed: ['spa_oil_warmer', 'hammam_bench'],
+    ceo_desk_chair: ['boardroom_table', 'drafting_table'],
+    library_bookshelves: ['boardroom_table'],
+  };
+  ids.push(...(extraByKind[info.furnitureKind] ?? []));
+
+  if (themeId === 'glasshouse_sunroom_lounge') ids.push('rattan_daybed', 'hanging_swing_sofa', 'planter_cluster');
+  if (themeId === 'infinity_pool_yacht') ids.push('yacht_helm', 'tiki_bar');
+  if (themeId === 'maldives_beach_villa') ids.push('bamboo_screen', 'tiki_bar');
+  if (themeId === 'luxury_hotel_penthouse') ids.push('hotel_bar_cart');
+
+  return [...new Set(ids)].map((id, idx) => makeInstance(id, idx));
 }

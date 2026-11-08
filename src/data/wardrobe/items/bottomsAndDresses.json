@@ -1,0 +1,2767 @@
+[
+  {
+    "id": "bottom.straight-jeans",
+    "version": 1,
+    "nameKo": "스트레이트 데님",
+    "nameEn": "Straight Jeans",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim straight jeans"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 37,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.slim-jeans",
+    "version": 1,
+    "nameKo": "슬림 데님",
+    "nameEn": "Slim Jeans",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim slim jeans"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 38,
+    "shape": {
+      "rise": "mid",
+      "legCut": "slim",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.wide-jeans",
+    "version": 1,
+    "nameKo": "와이드 데님",
+    "nameEn": "Wide Jeans",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim wide jeans"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 39,
+    "shape": {
+      "rise": "mid",
+      "legCut": "wide",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.bootcut-jeans",
+    "version": 1,
+    "nameKo": "부츠컷 데님",
+    "nameEn": "Bootcut Jeans",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim bootcut jeans"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 40,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.cargo-pants",
+    "version": 1,
+    "nameKo": "카고 팬츠",
+    "nameEn": "Cargo Pants",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#b45309",
+        "fabric": "cotton-twill"
+      }
+    ],
+    "promptTags": [
+      "cotton-twill cargo pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 41,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.chino-pants",
+    "version": 1,
+    "nameKo": "치노 팬츠",
+    "nameEn": "Chino Pants",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#b45309",
+        "fabric": "cotton-twill"
+      }
+    ],
+    "promptTags": [
+      "cotton-twill chino pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 42,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.tailored-slacks",
+    "version": 1,
+    "nameKo": "테일러드 슬랙스",
+    "nameEn": "Tailored Slacks",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tailored slacks"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 43,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.wide-slacks",
+    "version": 1,
+    "nameKo": "와이드 슬랙스",
+    "nameEn": "Wide Slacks",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend wide slacks"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 44,
+    "shape": {
+      "rise": "mid",
+      "legCut": "wide",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.jogger-pants",
+    "version": 1,
+    "nameKo": "조거 팬츠",
+    "nameEn": "Jogger Pants",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey jogger pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 45,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.track-pants",
+    "version": 1,
+    "nameKo": "트랙 팬츠",
+    "nameEn": "Track Pants",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey track pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 46,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.linen-pants",
+    "version": 1,
+    "nameKo": "린넨 팬츠",
+    "nameEn": "Linen Pants",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f5f5f4",
+        "fabric": "linen"
+      }
+    ],
+    "promptTags": [
+      "linen linen pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 47,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.leggings",
+    "version": 1,
+    "nameKo": "기본 레깅스",
+    "nameEn": "Leggings",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey leggings"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 48,
+    "shape": {
+      "rise": "mid",
+      "legCut": "slim",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.bike-shorts",
+    "version": 1,
+    "nameKo": "바이커 쇼츠",
+    "nameEn": "Bike Shorts",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bike shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 49,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.denim-shorts",
+    "version": 1,
+    "nameKo": "데님 반바지",
+    "nameEn": "Denim Shorts",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim denim shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 50,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.tailored-shorts",
+    "version": 1,
+    "nameKo": "테일러드 반바지",
+    "nameEn": "Tailored Shorts",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tailored shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 51,
+    "shape": {
+      "rise": "mid",
+      "legCut": "straight",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.pleated-mini-skirt",
+    "version": 1,
+    "nameKo": "플리츠 미니 스커트",
+    "nameEn": "Pleated Mini Skirt",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pleated mini skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 52,
+    "shape": {
+      "rise": "mid",
+      "legCut": "skirt",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.a-line-skirt",
+    "version": 1,
+    "nameKo": "A라인 스커트",
+    "nameEn": "A Line Skirt",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl",
+      "teen_middle_f"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton a line skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 53,
+    "shape": {
+      "rise": "mid",
+      "legCut": "skirt",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.pencil-skirt",
+    "version": 1,
+    "nameKo": "펜슬 스커트",
+    "nameEn": "Pencil Skirt",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl",
+      "teen_middle_f"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pencil skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 54,
+    "shape": {
+      "rise": "mid",
+      "legCut": "slim",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.satin-midi-skirt",
+    "version": 1,
+    "nameKo": "새틴 미디 스커트",
+    "nameEn": "Satin Midi Skirt",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl",
+      "teen_middle_f"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin midi skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 55,
+    "shape": {
+      "rise": "mid",
+      "legCut": "skirt",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "bottom.maxi-skirt",
+    "version": 1,
+    "nameKo": "맥시 스커트",
+    "nameEn": "Maxi Skirt",
+    "category": "bottom",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl",
+      "teen_middle_f"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton maxi skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 56,
+    "shape": {
+      "rise": "mid",
+      "legCut": "skirt",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.tshirt-dress",
+    "version": 1,
+    "nameKo": "티셔츠 원피스",
+    "nameEn": "Tshirt Dress",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton tshirt dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 57,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.shirt-dress",
+    "version": 1,
+    "nameKo": "셔츠 원피스",
+    "nameEn": "Shirt Dress",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton shirt dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 58,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.wrap-dress",
+    "version": 1,
+    "nameKo": "랩 원피스",
+    "nameEn": "Wrap Dress",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton wrap dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 59,
+    "shape": {
+      "neckline": "wrap",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.a-line-midi",
+    "version": 1,
+    "nameKo": "A라인 미디 원피스",
+    "nameEn": "A Line Midi",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton a line midi"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 60,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.flared-maxi",
+    "version": 1,
+    "nameKo": "플레어 맥시 원피스",
+    "nameEn": "Flared Maxi",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton flared maxi"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 61,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.sleeveless-knit",
+    "version": 1,
+    "nameKo": "민소매 니트 원피스",
+    "nameEn": "Sleeveless Knit",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit sleeveless knit"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 62,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.ribbed-long",
+    "version": 1,
+    "nameKo": "골지 롱 원피스",
+    "nameEn": "Ribbed Long",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ribbed long"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 63,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.satin-slip",
+    "version": 1,
+    "nameKo": "새틴 슬립 원피스",
+    "nameEn": "Satin Slip",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin slip"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 64,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.off-shoulder",
+    "version": 1,
+    "nameKo": "오프숄더 원피스",
+    "nameEn": "Off Shoulder",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton off shoulder"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 65,
+    "shape": {
+      "neckline": "off-shoulder",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.bodycon-midi",
+    "version": 1,
+    "nameKo": "바디콘 미디 원피스",
+    "nameEn": "Bodycon Midi",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bodycon midi"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 66,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.denim-overall",
+    "version": 1,
+    "nameKo": "데님 멜빵 원피스",
+    "nameEn": "Denim Overall",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim denim overall"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 67,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "dress.utility-jumpsuit",
+    "version": 1,
+    "nameKo": "유틸리티 점프수트",
+    "nameEn": "Utility Jumpsuit",
+    "category": "one_piece",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "elderly_grandma",
+      "anime_female",
+      "teen_girl"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend utility jumpsuit"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 68,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.denim-jacket",
+    "version": 1,
+    "nameKo": "데님 재킷",
+    "nameEn": "Denim Jacket",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim denim jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 69,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.bomber-jacket",
+    "version": 1,
+    "nameKo": "봄버 재킷",
+    "nameEn": "Bomber Jacket",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bomber jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 70,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.leather-jacket",
+    "version": 1,
+    "nameKo": "레더 재킷",
+    "nameEn": "Leather Jacket",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather leather jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 71,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.cropped-jacket",
+    "version": 1,
+    "nameKo": "크롭 재킷",
+    "nameEn": "Cropped Jacket",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cropped jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 72,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.tailored-blazer",
+    "version": 1,
+    "nameKo": "테일러드 블레이저",
+    "nameEn": "Tailored Blazer",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tailored blazer"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 73,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.double-breasted-blazer",
+    "version": 1,
+    "nameKo": "더블 브레스티드 블레이저",
+    "nameEn": "Double Breasted Blazer",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend double breasted blazer"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 74,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.knit-cardigan",
+    "version": 1,
+    "nameKo": "니트 카디건",
+    "nameEn": "Knit Cardigan",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit knit cardigan"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 75,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.long-cardigan",
+    "version": 1,
+    "nameKo": "롱 카디건",
+    "nameEn": "Long Cardigan",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit long cardigan"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 76,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.trench-coat",
+    "version": 1,
+    "nameKo": "트렌치코트",
+    "nameEn": "Trench Coat",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#b45309",
+        "fabric": "cotton-twill"
+      }
+    ],
+    "promptTags": [
+      "cotton-twill trench coat"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 77,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.wool-coat",
+    "version": 1,
+    "nameKo": "울 코트",
+    "nameEn": "Wool Coat",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit wool coat"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 78,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.puffer-vest",
+    "version": 1,
+    "nameKo": "패딩 베스트",
+    "nameEn": "Puffer Vest",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton puffer vest"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 79,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "outer.windbreaker",
+    "version": 1,
+    "nameKo": "윈드브레이커",
+    "nameEn": "Windbreaker",
+    "category": "outerwear",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton windbreaker"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 80,
+    "shape": {
+      "closureState": "open",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  }
+]

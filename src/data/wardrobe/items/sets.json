@@ -1,0 +1,508 @@
+[
+  {
+    "id": "set.casual-denim",
+    "nameKo": "라운드 티 + 스트레이트 데님 + 캔버스 스니커즈",
+    "itemIds": [
+      "top.crew-tee",
+      "bottom.straight-jeans",
+      "shoe.canvas-sneaker"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set.weekend-linen",
+    "nameKo": "린넨 셔츠 + 린넨 팬츠 + 스트랩 샌들",
+    "itemIds": [
+      "top.linen-shirt",
+      "bottom.linen-pants",
+      "shoe.strappy-sandal"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set.office-classic",
+    "nameKo": "옥스퍼드 셔츠 + 테일러드 슬랙스 + 로퍼",
+    "itemIds": [
+      "top.oxford-shirt",
+      "bottom.tailored-slacks",
+      "shoe.penny-loafer"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "오피스"
+    ]
+  },
+  {
+    "id": "set.office-skirt",
+    "nameKo": "블라우스 + 펜슬 스커트 + 블록힐",
+    "itemIds": [
+      "top.sleeveless-blouse",
+      "bottom.pencil-skirt",
+      "shoe.block-heel"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "오피스"
+    ]
+  },
+  {
+    "id": "set.sport-training",
+    "nameKo": "컴프레션 상의 + 조거 팬츠 + 러닝화",
+    "itemIds": [
+      "top.compression-top",
+      "bottom.jogger-pants",
+      "shoe.running-sneaker"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "스포츠"
+    ]
+  },
+  {
+    "id": "set.street-layered",
+    "nameKo": "기본 티 + 데님 재킷 + 카고 팬츠 + 하이탑",
+    "itemIds": [
+      "top.crew-tee",
+      "outer.denim-jacket",
+      "bottom.cargo-pants",
+      "shoe.high-top-sneaker"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set.knit-autumn",
+    "nameKo": "얇은 니트 + 와이드 데님 + 앵클부츠",
+    "itemIds": [
+      "top.fine-knit",
+      "bottom.wide-jeans",
+      "shoe.ankle-boot"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set.date-satin",
+    "nameKo": "새틴 캐미솔 + 새틴 미디 스커트 + 슬링백 힐",
+    "itemIds": [
+      "adult-top.satin-camisole",
+      "bottom.satin-midi-skirt",
+      "shoe.slingback-heel"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set.evening-minimal",
+    "nameKo": "랩 블라우스 + 슬랙스 + 스틸레토 힐",
+    "itemIds": [
+      "adult-top.wrap-blouse",
+      "bottom.tailored-slacks",
+      "shoe.stiletto-heel"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set.lounge-soft",
+    "nameKo": "니트 홈웨어 + 코튼 양말",
+    "itemIds": [
+      "lounge.knit-home-set",
+      "sock.crew-cotton"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "라운지"
+    ]
+  },
+  {
+    "id": "set.rainy-day",
+    "nameKo": "맨투맨 + 스트레이트 데님 + 첼시 부츠 + 트렌치코트",
+    "itemIds": [
+      "top.sweatshirt",
+      "bottom.straight-jeans",
+      "shoe.chelsea-boot",
+      "outer.trench-coat"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set.summer-dress",
+    "nameKo": "셔츠 원피스 + 발목 양말 + 메리제인 슈즈",
+    "itemIds": [
+      "dress.shirt-dress",
+      "sock.ankle-cotton",
+      "shoe.mary-jane"
+    ],
+    "adultOnly": false,
+    "styleTags": [
+      "일상"
+    ]
+  },
+  {
+    "id": "set-f.pool-sport",
+    "nameKo": "스포츠 비키니 상·하의+슬라이드",
+    "itemIds": [
+      "swim-f.sport-top",
+      "swim-f.sport-bottom",
+      "shoe.slide-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "수영복",
+      "리조트"
+    ]
+  },
+  {
+    "id": "set-f.resort-halter",
+    "nameKo": "홀터 비키니 상의+하이웨이스트 하의+샌들",
+    "itemIds": [
+      "swim-f.halter-top",
+      "swim-f.high-waist-bottom",
+      "shoe.strappy-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-f.surf-day",
+    "nameKo": "긴팔 래시가드+보드쇼츠+리커버리 슬라이드",
+    "itemIds": [
+      "swim-f.rashguard-long",
+      "swim-f.board-short",
+      "shoe.slide-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "수영복",
+      "리조트"
+    ]
+  },
+  {
+    "id": "set-f.swim-classic",
+    "nameKo": "기본 원피스 수영복+플랫 샌들",
+    "itemIds": [
+      "swim-f.classic-one-piece",
+      "shoe.slide-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "수영복",
+      "리조트"
+    ]
+  },
+  {
+    "id": "set-f.satin-evening",
+    "nameKo": "새틴 이브닝 드레스+슬링백 힐",
+    "itemIds": [
+      "adult-f.satin-evening-dress",
+      "shoe-f.slingback-kitten"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-f.modern-office",
+    "nameKo": "페플럼 블라우스+펜슬 스커트+키튼힐",
+    "itemIds": [
+      "adult-f.peplum-blouse",
+      "bottom.pencil-skirt",
+      "shoe-f.kitten-heel-pump"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "오피스"
+    ]
+  },
+  {
+    "id": "set-m.pool-classic",
+    "nameKo": "기본 수영 트렁크+슬라이드",
+    "itemIds": [
+      "swim-m.classic-trunks",
+      "shoe-m.recovery-slide"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "수영복",
+      "리조트"
+    ]
+  },
+  {
+    "id": "set-m.surf-day",
+    "nameKo": "긴팔 래시가드+보드쇼츠+리커버리 슬라이드",
+    "itemIds": [
+      "swim-m.rashguard-long",
+      "swim-m.boardshort-mid",
+      "shoe-m.recovery-slide"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "수영복",
+      "리조트"
+    ]
+  },
+  {
+    "id": "set-m.resort-linen",
+    "nameKo": "캠프 칼라 셔츠+린넨 팬츠+가죽 샌들",
+    "itemIds": [
+      "adult-m.camp-collar-shirt",
+      "adult-m.linen-summer-pants",
+      "shoe-m.leather-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-m.business-formal",
+    "nameKo": "슬림 드레스 셔츠+수트 팬츠+캡토 옥스퍼드",
+    "itemIds": [
+      "adult-m.slim-dress-shirt",
+      "adult-m.suit-trousers",
+      "shoe-m.cap-toe-oxford"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "오피스"
+    ]
+  },
+  {
+    "id": "set-m.date-casual",
+    "nameKo": "니트 폴로+테이퍼드 슬랙스+스웨이드 페니 로퍼",
+    "itemIds": [
+      "adult-m.knitted-polo",
+      "adult-m.tapered-slacks",
+      "shoe-m.suede-penny-loafer"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-m.evening-formal",
+    "nameKo": "턱시도 재킷+수트 팬츠+홀컷 옥스퍼드",
+    "itemIds": [
+      "adult-m.tuxedo-jacket",
+      "adult-m.suit-trousers",
+      "shoe-m.wholecut-oxford"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-adult.lace-lounge",
+    "nameKo": "레이스 이너웨어와 레그웨어",
+    "itemIds": [
+      "inner-top.lace-bralette",
+      "inner-f.lace-thong",
+      "leg-adult.lace-top-stockings",
+      "shoe-f.kitten-heel-pump"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이너웨어",
+      "라운지"
+    ]
+  },
+  {
+    "id": "set-adult.satin-lounge",
+    "nameKo": "새틴 이너웨어와 로브",
+    "itemIds": [
+      "inner-top.satin-bralette",
+      "inner-f.satin-thong",
+      "lounge.robe-satin"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이너웨어",
+      "라운지"
+    ]
+  },
+  {
+    "id": "set-adult.bustier-evening",
+    "nameKo": "뷔스티에와 슬릿 스커트",
+    "itemIds": [
+      "adult-top.bustier-style-top",
+      "adult-f.slit-midi-skirt",
+      "shoe-f.strappy-heel-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이브닝",
+      "파티"
+    ]
+  },
+  {
+    "id": "set-adult.corset-tailored",
+    "nameKo": "코르셋 스타일과 테일러드 팬츠",
+    "itemIds": [
+      "adult-top.corset-style-top",
+      "bottom.tailored-slacks",
+      "shoe-f.pointed-pump"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이브닝",
+      "오피스"
+    ]
+  },
+  {
+    "id": "set-adult.sheer-layer",
+    "nameKo": "시스루 상의와 이너 레이어",
+    "itemIds": [
+      "inner-top.soft-cup-bra",
+      "adult-top.sheer-overlay-blouse",
+      "bottom.pencil-skirt",
+      "shoe-f.slingback-kitten"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이브닝",
+      "데이트"
+    ]
+  },
+  {
+    "id": "set-adult.backless-satin",
+    "nameKo": "백리스 니트와 새틴 스커트",
+    "itemIds": [
+      "adult-top.backless-knit",
+      "bottom.satin-midi-skirt",
+      "shoe-f.mule-heel"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "데이트",
+      "이브닝"
+    ]
+  },
+  {
+    "id": "set-adult.bodycon-evening",
+    "nameKo": "바디콘 원피스와 힐",
+    "itemIds": [
+      "dress.bodycon-midi",
+      "shoe-f.ankle-strap-heel"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "이브닝",
+      "파티"
+    ]
+  },
+  {
+    "id": "set-adult.resort-mesh",
+    "nameKo": "비키니와 비치 커버업",
+    "itemIds": [
+      "swim-f.triangle-top",
+      "swim-f.side-tie-bottom",
+      "swim-acc.mesh-coverup",
+      "shoe.strappy-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "리조트",
+      "수영복"
+    ]
+  },
+  {
+    "id": "set-adult.fitted-date",
+    "nameKo": "피트되는 상의와 슬랙스",
+    "itemIds": [
+      "adult-m.fitted-vneck-tee",
+      "adult-m.tapered-slacks",
+      "shoe-m.chelsea-leather"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "데이트",
+      "일상"
+    ]
+  },
+  {
+    "id": "set-adult.resort-shirt",
+    "nameKo": "오픈 칼라와 테일러드 쇼츠",
+    "itemIds": [
+      "adult-m.camp-collar-shirt",
+      "adult-m.tailored-short",
+      "shoe-m.leather-sandal"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "리조트",
+      "데이트"
+    ]
+  },
+  {
+    "id": "set-adult.campus-preppy-f",
+    "nameKo": "성인 대학·프레피 스타일",
+    "itemIds": [
+      "top.sleeveless-blouse",
+      "outer.knit-cardigan",
+      "adult-f.pleated-midi-skirt",
+      "shoe.penny-loafer"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "대학·프레피",
+      "일상"
+    ]
+  },
+  {
+    "id": "set-adult.campus-preppy-m",
+    "nameKo": "성인 대학·프레피 스타일",
+    "itemIds": [
+      "top.oxford-shirt",
+      "adult-m.waistcoat",
+      "adult-m.pleated-trousers",
+      "shoe-m.suede-penny-loafer"
+    ],
+    "adultOnly": true,
+    "styleTags": [
+      "성인 스타일",
+      "대학·프레피",
+      "일상"
+    ]
+  }
+]

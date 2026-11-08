@@ -1,0 +1,2185 @@
+[
+  {
+    "id": "top.crew-tee",
+    "version": 1,
+    "nameKo": "라운드 반팔 티셔츠",
+    "nameEn": "Crew Tee",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crew tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 1,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.vneck-tee",
+    "version": 1,
+    "nameKo": "브이넥 반팔 티셔츠",
+    "nameEn": "Vneck Tee",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton vneck tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 2,
+    "shape": {
+      "neckline": "v-neck",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.long-sleeve-tee",
+    "version": 1,
+    "nameKo": "긴팔 기본 티셔츠",
+    "nameEn": "Long Sleeve Tee",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton long sleeve tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 3,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.ribbed-tank",
+    "version": 1,
+    "nameKo": "골지 민소매",
+    "nameEn": "Ribbed Tank",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ribbed tank"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 4,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.sleeveless-blouse",
+    "version": 1,
+    "nameKo": "민소매 블라우스",
+    "nameEn": "Sleeveless Blouse",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sleeveless blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 5,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.oxford-shirt",
+    "version": 1,
+    "nameKo": "옥스퍼드 셔츠",
+    "nameEn": "Oxford Shirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather oxford shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 6,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.linen-shirt",
+    "version": 1,
+    "nameKo": "린넨 셔츠",
+    "nameEn": "Linen Shirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f5f5f4",
+        "fabric": "linen"
+      }
+    ],
+    "promptTags": [
+      "linen linen shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 7,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.denim-shirt",
+    "version": 1,
+    "nameKo": "데님 셔츠",
+    "nameEn": "Denim Shirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#2563eb",
+        "fabric": "denim"
+      }
+    ],
+    "promptTags": [
+      "denim denim shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 8,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.striped-shirt",
+    "version": 1,
+    "nameKo": "스트라이프 셔츠",
+    "nameEn": "Striped Shirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton striped shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 9,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.polo-shirt",
+    "version": 1,
+    "nameKo": "폴로 셔츠",
+    "nameEn": "Polo Shirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton polo shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 10,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.henley",
+    "version": 1,
+    "nameKo": "헨리넥 티셔츠",
+    "nameEn": "Henley",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton henley"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 11,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.turtleneck",
+    "version": 1,
+    "nameKo": "터틀넥 니트",
+    "nameEn": "Turtleneck",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit turtleneck"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 12,
+    "shape": {
+      "neckline": "turtleneck",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.mock-neck",
+    "version": 1,
+    "nameKo": "모크넥 니트",
+    "nameEn": "Mock Neck",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mock neck"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 13,
+    "shape": {
+      "neckline": "mock-neck",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.fine-knit",
+    "version": 1,
+    "nameKo": "얇은 라운드 니트",
+    "nameEn": "Fine Knit",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit fine knit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 14,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.chunky-knit",
+    "version": 1,
+    "nameKo": "두꺼운 케이블 니트",
+    "nameEn": "Chunky Knit",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit chunky knit"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 15,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.sweatshirt",
+    "version": 1,
+    "nameKo": "기본 맨투맨",
+    "nameEn": "Sweatshirt",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sweatshirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 16,
+    "shape": {
+      "neckline": "collared",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.zip-hoodie",
+    "version": 1,
+    "nameKo": "집업 후디",
+    "nameEn": "Zip Hoodie",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton zip hoodie"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 17,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque",
+      "closureState": "closed"
+    }
+  },
+  {
+    "id": "top.pullover-hoodie",
+    "version": 1,
+    "nameKo": "풀오버 후디",
+    "nameEn": "Pullover Hoodie",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pullover hoodie"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 18,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.sport-jersey",
+    "version": 1,
+    "nameKo": "스포츠 저지",
+    "nameEn": "Sport Jersey",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport jersey"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 19,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "top.compression-top",
+    "version": 1,
+    "nameKo": "기능성 컴프레션 상의",
+    "nameEn": "Compression Top",
+    "category": "top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey compression top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 20,
+    "shape": {
+      "neckline": "crew",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.crop-tee",
+    "version": 1,
+    "nameKo": "크롭 반팔 티셔츠",
+    "nameEn": "Crop Tee",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crop tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 21,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.crop-knit",
+    "version": 1,
+    "nameKo": "크롭 니트",
+    "nameEn": "Crop Knit",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit crop knit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 22,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.off-shoulder-knit",
+    "version": 1,
+    "nameKo": "오프숄더 니트",
+    "nameEn": "Off Shoulder Knit",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit off shoulder knit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 23,
+    "shape": {
+      "neckline": "off-shoulder",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.one-shoulder-top",
+    "version": 1,
+    "nameKo": "원숄더 탑",
+    "nameEn": "One Shoulder Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton one shoulder top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 24,
+    "shape": {
+      "neckline": "one-shoulder",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.halter-top",
+    "version": 1,
+    "nameKo": "홀터넥 탑",
+    "nameEn": "Halter Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton halter top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 25,
+    "shape": {
+      "neckline": "halter",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.satin-camisole",
+    "version": 1,
+    "nameKo": "새틴 캐미솔",
+    "nameEn": "Satin Camisole",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin camisole"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 26,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.lace-trim-camisole",
+    "version": 1,
+    "nameKo": "레이스 트림 캐미솔",
+    "nameEn": "Lace Trim Camisole",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace trim camisole"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 27,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.wrap-blouse",
+    "version": 1,
+    "nameKo": "랩 블라우스",
+    "nameEn": "Wrap Blouse",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton wrap blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 28,
+    "shape": {
+      "neckline": "wrap",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.tie-front-blouse",
+    "version": 1,
+    "nameKo": "앞매듭 블라우스",
+    "nameEn": "Tie Front Blouse",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton tie front blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 29,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "long",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.sheer-overlay-blouse",
+    "version": 1,
+    "nameKo": "시스루 오버레이 블라우스",
+    "nameEn": "Sheer Overlay Blouse",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh sheer overlay blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 30,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "long",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "adult-top.mesh-layer-top",
+    "version": 1,
+    "nameKo": "메시 레이어드 탑",
+    "nameEn": "Mesh Layer Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh mesh layer top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 31,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "long",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "adult-top.sweetheart-top",
+    "version": 1,
+    "nameKo": "스위트하트 넥라인 탑",
+    "nameEn": "Sweetheart Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sweetheart top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 32,
+    "shape": {
+      "neckline": "sweetheart",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.bustier-style-top",
+    "version": 1,
+    "nameKo": "뷔스티에 스타일 상의",
+    "nameEn": "Bustier Style Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bustier style top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 33,
+    "shape": {
+      "neckline": "sweetheart",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.corset-style-top",
+    "version": 1,
+    "nameKo": "코르셋 스타일 상의",
+    "nameEn": "Corset Style Top",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton corset style top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 34,
+    "shape": {
+      "neckline": "sweetheart",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-top.backless-knit",
+    "version": 1,
+    "nameKo": "백리스 니트",
+    "nameEn": "Backless Knit",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit backless knit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 35,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "long",
+      "opacity": "opaque",
+      "cutoutLayout": "backless"
+    }
+  },
+  {
+    "id": "adult-top.fitted-bodysuit",
+    "version": 1,
+    "nameKo": "피트되는 바디수트 상의",
+    "nameEn": "Fitted Bodysuit",
+    "category": "adult_top",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "데이트",
+      "파티",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend fitted bodysuit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 36,
+    "shape": {
+      "neckline": "camisole",
+      "sleeve": "sleeveless",
+      "opacity": "opaque"
+    }
+  }
+]

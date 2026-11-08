@@ -1,0 +1,2782 @@
+[
+  {
+    "id": "swim-f.triangle-top",
+    "version": 1,
+    "nameKo": "트라이앵글 비키니 상의",
+    "nameEn": "Triangle Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra triangle top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 157,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.bandeau-top",
+    "version": 1,
+    "nameKo": "밴도 비키니 상의",
+    "nameEn": "Bandeau Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra bandeau top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 158,
+    "shape": {
+      "strapLayout": "strapless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.halter-top",
+    "version": 1,
+    "nameKo": "홀터넥 비키니 상의",
+    "nameEn": "Halter Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra halter top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 159,
+    "shape": {
+      "strapLayout": "halter",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.sport-top",
+    "version": 1,
+    "nameKo": "스포츠형 비키니 상의",
+    "nameEn": "Sport Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sport top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 160,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.longline-top",
+    "version": 1,
+    "nameKo": "롱라인 비키니 상의",
+    "nameEn": "Longline Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra longline top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 161,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.rashguard-crop",
+    "version": 1,
+    "nameKo": "크롭 래시가드 상의",
+    "nameEn": "Rashguard Crop",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra rashguard crop"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 162,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.rashguard-long",
+    "version": 1,
+    "nameKo": "긴팔 래시가드 상의",
+    "nameEn": "Rashguard Long",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra rashguard long"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 163,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.tankini-top",
+    "version": 1,
+    "nameKo": "탱키니 상의",
+    "nameEn": "Tankini Top",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra tankini top"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 164,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.classic-bottom",
+    "version": 1,
+    "nameKo": "기본 비키니 하의",
+    "nameEn": "Classic Bottom",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra classic bottom"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 165,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.high-waist-bottom",
+    "version": 1,
+    "nameKo": "하이웨이스트 비키니 하의",
+    "nameEn": "High Waist Bottom",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra high waist bottom"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 166,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.side-tie-bottom",
+    "version": 1,
+    "nameKo": "옆매듭 비키니 하의",
+    "nameEn": "Side Tie Bottom",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra side tie bottom"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 167,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.sport-bottom",
+    "version": 1,
+    "nameKo": "스포츠형 비키니 하의",
+    "nameEn": "Sport Bottom",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sport bottom"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 168,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.skirted-bottom",
+    "version": 1,
+    "nameKo": "스커트형 수영 하의",
+    "nameEn": "Skirted Bottom",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra skirted bottom"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 169,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.board-short",
+    "version": 1,
+    "nameKo": "여성형 보드쇼츠",
+    "nameEn": "Board Short",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra board short"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 170,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.classic-one-piece",
+    "version": 1,
+    "nameKo": "기본 원피스 수영복",
+    "nameEn": "Classic One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra classic one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 171,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.sport-one-piece",
+    "version": 1,
+    "nameKo": "스포츠 원피스 수영복",
+    "nameEn": "Sport One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sport one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 172,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.halter-one-piece",
+    "version": 1,
+    "nameKo": "홀터 원피스 수영복",
+    "nameEn": "Halter One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra halter one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 173,
+    "shape": {
+      "strapLayout": "halter",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.one-shoulder-one-piece",
+    "version": 1,
+    "nameKo": "원숄더 원피스 수영복",
+    "nameEn": "One Shoulder One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra one shoulder one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 174,
+    "shape": {
+      "strapLayout": "one-shoulder",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.square-neck-one-piece",
+    "version": 1,
+    "nameKo": "스퀘어넥 원피스 수영복",
+    "nameEn": "Square Neck One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra square neck one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 175,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.cutout-one-piece",
+    "version": 1,
+    "nameKo": "컷아웃 원피스 수영복",
+    "nameEn": "Cutout One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra cutout one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 176,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "cutoutLayout": "side-cutout",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.high-neck-one-piece",
+    "version": 1,
+    "nameKo": "하이넥 원피스 수영복",
+    "nameEn": "High Neck One Piece",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra high neck one piece"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 177,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.short-sleeve-surf-suit",
+    "version": 1,
+    "nameKo": "반팔 서프 수트",
+    "nameEn": "Short Sleeve Surf Suit",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra short sleeve surf suit"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 178,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.long-sleeve-surf-suit",
+    "version": 1,
+    "nameKo": "긴팔 서프 수트",
+    "nameEn": "Long Sleeve Surf Suit",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra long sleeve surf suit"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 179,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-f.swim-dress",
+    "version": 1,
+    "nameKo": "스윔 드레스",
+    "nameEn": "Swim Dress",
+    "category": "swimwear_f",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra swim dress"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 180,
+    "shape": {
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "swim-m.classic-trunks",
+    "version": 1,
+    "nameKo": "기본 수영 트렁크",
+    "nameEn": "Classic Trunks",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra classic trunks"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 181
+  },
+  {
+    "id": "swim-m.short-trunks",
+    "version": 1,
+    "nameKo": "짧은 수영 트렁크",
+    "nameEn": "Short Trunks",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra short trunks"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 182
+  },
+  {
+    "id": "swim-m.long-trunks",
+    "version": 1,
+    "nameKo": "긴 수영 트렁크",
+    "nameEn": "Long Trunks",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra long trunks"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 183
+  },
+  {
+    "id": "swim-m.boardshort-mid",
+    "version": 1,
+    "nameKo": "미디 보드쇼츠",
+    "nameEn": "Boardshort Mid",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra boardshort mid"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 184
+  },
+  {
+    "id": "swim-m.boardshort-long",
+    "version": 1,
+    "nameKo": "롱 보드쇼츠",
+    "nameEn": "Boardshort Long",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra boardshort long"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 185
+  },
+  {
+    "id": "swim-m.elastic-waist-short",
+    "version": 1,
+    "nameKo": "밴딩 수영 쇼츠",
+    "nameEn": "Elastic Waist Short",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra elastic waist short"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 186
+  },
+  {
+    "id": "swim-m.drawstring-short",
+    "version": 1,
+    "nameKo": "드로스트링 수영 쇼츠",
+    "nameEn": "Drawstring Short",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra drawstring short"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 187
+  },
+  {
+    "id": "swim-m.square-cut",
+    "version": 1,
+    "nameKo": "스퀘어컷 수영복",
+    "nameEn": "Square Cut",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra square cut"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 188
+  },
+  {
+    "id": "swim-m.classic-brief",
+    "version": 1,
+    "nameKo": "기본 수영 브리프",
+    "nameEn": "Classic Brief",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra classic brief"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 189
+  },
+  {
+    "id": "swim-m.sport-brief",
+    "version": 1,
+    "nameKo": "스포츠 수영 브리프",
+    "nameEn": "Sport Brief",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sport brief"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 190
+  },
+  {
+    "id": "swim-m.low-rise-brief",
+    "version": 1,
+    "nameKo": "로우라이즈 수영 브리프",
+    "nameEn": "Low Rise Brief",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra low rise brief"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 191
+  },
+  {
+    "id": "swim-m.jammer",
+    "version": 1,
+    "nameKo": "무릎 위 재머 수영복",
+    "nameEn": "Jammer",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra jammer"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 192
+  },
+  {
+    "id": "swim-m.long-jammer",
+    "version": 1,
+    "nameKo": "무릎 길이 재머 수영복",
+    "nameEn": "Long Jammer",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra long jammer"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 193
+  },
+  {
+    "id": "swim-m.compression-swim-short",
+    "version": 1,
+    "nameKo": "컴프레션 수영 쇼츠",
+    "nameEn": "Compression Swim Short",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra compression swim short"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 194
+  },
+  {
+    "id": "swim-m.surf-legging",
+    "version": 1,
+    "nameKo": "서프 레깅스",
+    "nameEn": "Surf Legging",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "swim-bottom",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra surf legging"
+    ],
+    "iconKey": "swim-bottom",
+    "sortOrder": 195
+  },
+  {
+    "id": "swim-m.rashguard-short",
+    "version": 1,
+    "nameKo": "반팔 래시가드 상의",
+    "nameEn": "Rashguard Short",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra rashguard short"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 196
+  },
+  {
+    "id": "swim-m.rashguard-long",
+    "version": 1,
+    "nameKo": "긴팔 래시가드 상의",
+    "nameEn": "Rashguard Long",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "arms"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra rashguard long"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 197
+  },
+  {
+    "id": "swim-m.sleeveless-rashguard",
+    "version": 1,
+    "nameKo": "민소매 래시가드 상의",
+    "nameEn": "Sleeveless Rashguard",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_top"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "swim-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sleeveless rashguard"
+    ],
+    "iconKey": "swim-top",
+    "sortOrder": 198
+  },
+  {
+    "id": "swim-m.short-surf-suit",
+    "version": 1,
+    "nameKo": "반팔 서프 수트",
+    "nameEn": "Short Surf Suit",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra short surf suit"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 199
+  },
+  {
+    "id": "swim-m.full-surf-suit",
+    "version": 1,
+    "nameKo": "긴팔 서프 수트",
+    "nameEn": "Full Surf Suit",
+    "category": "swimwear_m",
+    "slots": [
+      "swim_one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "스포츠"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "swim-one-piece",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra full surf suit"
+    ],
+    "iconKey": "swim-one-piece",
+    "sortOrder": 200
+  },
+  {
+    "id": "swim-acc.beach-coverup",
+    "version": 1,
+    "nameKo": "비치 커버업",
+    "nameEn": "Beach Coverup",
+    "category": "swim_accessory",
+    "slots": [
+      "swim_cover"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra beach coverup"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 201,
+    "shape": {
+      "opacity": "opaque",
+      "closureState": "open"
+    }
+  },
+  {
+    "id": "swim-acc.light-kimono",
+    "version": 1,
+    "nameKo": "얇은 비치 가운",
+    "nameEn": "Light Kimono",
+    "category": "swim_accessory",
+    "slots": [
+      "swim_cover"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra light kimono"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 202,
+    "shape": {
+      "opacity": "semi-sheer",
+      "closureState": "open"
+    }
+  },
+  {
+    "id": "swim-acc.mesh-coverup",
+    "version": 1,
+    "nameKo": "메시 비치 커버업",
+    "nameEn": "Mesh Coverup",
+    "category": "swim_accessory",
+    "slots": [
+      "swim_cover"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh mesh coverup"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 203,
+    "shape": {
+      "opacity": "semi-sheer",
+      "closureState": "open"
+    }
+  },
+  {
+    "id": "swim-acc.sarong",
+    "version": 1,
+    "nameKo": "사롱",
+    "nameEn": "Sarong",
+    "category": "swim_accessory",
+    "slots": [
+      "swim_cover"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra sarong"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 204,
+    "shape": {
+      "opacity": "opaque",
+      "closureState": "open"
+    }
+  },
+  {
+    "id": "swim-acc.beach-shorts",
+    "version": 1,
+    "nameKo": "비치 쇼츠",
+    "nameEn": "Beach Shorts",
+    "category": "swim_accessory",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra beach shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 205
+  },
+  {
+    "id": "swim-acc.wide-brim-hat",
+    "version": 1,
+    "nameKo": "와이드 브림 햇",
+    "nameEn": "Wide Brim Hat",
+    "category": "swim_accessory",
+    "slots": [
+      "head_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "head"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra wide brim hat"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 206
+  },
+  {
+    "id": "swim-acc.swim-cap",
+    "version": 1,
+    "nameKo": "수모",
+    "nameEn": "Swim Cap",
+    "category": "swim_accessory",
+    "slots": [
+      "head_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "head"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra swim cap"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 207
+  },
+  {
+    "id": "swim-acc.swim-goggles",
+    "version": 1,
+    "nameKo": "수경",
+    "nameEn": "Swim Goggles",
+    "category": "swim_accessory",
+    "slots": [
+      "face_accessory"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "face"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra swim goggles"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 208
+  },
+  {
+    "id": "swim-acc.beach-tote",
+    "version": 1,
+    "nameKo": "비치 토트백",
+    "nameEn": "Beach Tote",
+    "category": "swim_accessory",
+    "slots": [
+      "bag"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "shoulder_side"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra beach tote"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 209
+  },
+  {
+    "id": "swim-acc.waterproof-pouch",
+    "version": 1,
+    "nameKo": "방수 파우치",
+    "nameEn": "Waterproof Pouch",
+    "category": "swim_accessory",
+    "slots": [
+      "bag"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "shoulder_side"
+    ],
+    "geometryKey": "accessory",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra waterproof pouch"
+    ],
+    "iconKey": "accessory",
+    "sortOrder": 210
+  },
+  {
+    "id": "swim-acc.flip-flops",
+    "version": 1,
+    "nameKo": "플립플롭",
+    "nameEn": "Flip Flops",
+    "category": "swim_accessory",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra flip flops"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 211,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 1,
+      "shaftHeightCm": 0,
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "swim-acc.water-shoes",
+    "version": 1,
+    "nameKo": "아쿠아 슈즈",
+    "nameEn": "Water Shoes",
+    "category": "swim_accessory",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "수영복",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra water shoes"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 212,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 1,
+      "shaftHeightCm": 0,
+      "leftRightPair": true
+    }
+  }
+]

@@ -10,7 +10,6 @@ import {
 import { useEditorStore, LeftSidebarSection } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
-import { SidebarQuickOptionsBar } from '../common/SidebarQuickOptionsBar';
 
 const MannequinSidebarTab = lazy(() =>
   import('../models/MannequinSidebarTab').then((m) => ({ default: m.MannequinSidebarTab }))
@@ -40,26 +39,26 @@ const NAV_ITEMS: Array<{
 }> = [
   {
     id: 'mannequin',
-    label: '마네킹 선택',
-    subtitle: '유년·초중고·대학생·솔로·직장인·유부남녀·시니어 27종 체형',
+    label: '마네킹',
+    subtitle: '모델과 체형 선택',
     icon: <User className="w-4 h-4" />,
   },
   {
     id: 'poses',
-    label: '자세 보관함 (커플 100 · 솔로 129)',
-    subtitle: '남녀 커플 체위 100종 & 개인 솔로·셀프플레이 아코디언 제어',
+    label: '자세',
+    subtitle: '자세 프리셋 선택',
     icon: <Bookmark className="w-4 h-4" />,
   },
   {
     id: 'themes',
-    label: '맞춤 의상 · 아이템 & 소품 (확장 공간)',
-    subtitle: '맞춤 의상, 방 가구 55종, 바디 착용 아이템 84종',
+    label: '의상과 소품',
+    subtitle: '의상, 액세서리, 소품 선택',
     icon: <Sparkles className="w-4 h-4" />,
   },
   {
     id: 'export',
-    label: '결과 확인 · 내보내기 & 연동',
-    subtitle: '동일 RenderSpec 캡처, SceneDocumentV1 저장 및 ComfyUI 연동',
+    label: '내보내기',
+    subtitle: '이미지와 장면 저장, ComfyUI 연동',
     icon: <Download className="w-4 h-4" />,
   },
 ];
@@ -85,18 +84,14 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
 
   const isPropsTab = activeLeftSection === 'themes' && effectiveThemeTab === 'props';
   const headerIcon = isPropsTab ? <Gem className="w-4 h-4 text-pink-400" /> : currentMeta.icon;
-  const headerTitle = isPropsTab
-    ? '아이템 & 소품 (확장 작업 공간)'
-    : activeLeftSection === 'themes'
-    ? '맞춤 의상 & 바디 코디 (확장 작업 공간)'
-    : currentMeta.label;
+  const headerTitle = isPropsTab ? '아이템과 소품' : currentMeta.label;
   const headerSub = isPropsTab
-    ? '방 가구(55종) 및 바디 착용 아이템(84종) 색상·착탈 제어'
+    ? '액세서리와 장면 소품 선택'
     : currentMeta.subtitle;
 
   return (
-    <aside className="absolute top-16 left-4 bottom-20 z-20 flex items-start pointer-events-none">
-      <div className="pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-[#F7F8FA]/95 backdrop-blur-xl border border-[#D9DEE5] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+    <aside className="editor-sidebar absolute top-16 left-4 bottom-20 z-20 flex items-start pointer-events-none" aria-label="편집 사이드바">
+      <div className="editor-sidebar-panel pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-[#F7F8FA]/95 backdrop-blur-xl border border-[#D9DEE5] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
         {/* 사이드바 상단 고정 헤더 */}
         <div className="px-4 py-3 border-b border-[#D9DEE5] flex items-center justify-between gap-2 flex-shrink-0 bg-white">
           <div className="flex items-center gap-2.5 min-w-0">
@@ -121,8 +116,24 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
           </button>
         </div>
 
-        {/* 사이드바 내부 상시 노출 빠른 옵션 스위치 바 */}
-        <SidebarQuickOptionsBar sceneManager={sceneManager} />
+        <nav className="grid grid-cols-4 gap-1 px-3 py-2 bg-white border-b border-[#D9DEE5] shrink-0" aria-label="사이드바 섹션">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveLeftSection(item.id)}
+              aria-current={activeLeftSection === item.id ? 'page' : undefined}
+              className={`flex items-center justify-center gap-1.5 min-w-0 min-h-9 px-1 rounded-lg text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-blue-600 ${
+                activeLeftSection === item.id
+                  ? 'bg-zinc-900 text-white'
+                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
+              }`}
+            >
+              {item.icon}
+              <span className="truncate">{item.label}</span>
+            </button>
+          ))}
+        </nav>
 
         {/* 맞춤 의상 vs 아이템 & 소품 2분할 탭 메뉴 */}
         {activeLeftSection === 'themes' && (

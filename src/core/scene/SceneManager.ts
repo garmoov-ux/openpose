@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { RenderMode, GizmoMode, GizmoSpace, CameraPreset, MannequinModelId, MaterialStyle } from '@/types';
 import { BodyFormat, Quat, RenderResult, RenderSpec, SceneDocumentV1 } from '@/types/sceneDocument';
+import { OutfitCompositionV1 } from '@/types/wardrobe';
 import { SoloThemeId } from '@/types/themeSolo';
 import { RoomPropInstance } from '@/data/themesSolo/roomPropCatalog';
 import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
@@ -11,6 +12,7 @@ import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { applyOutfitToMannequin } from '@/core/mannequin/outfitVisualizer';
+import { applyWardrobeCompositionToRig } from '@/core/mannequin/wardrobe/garmentRenderer';
 import { BodyAccessoryConfig, applyBodyAccessoriesToRig } from '@/core/mannequin/bodyAccessoryMeshes';
 import { CameraController } from './CameraController';
 import {
@@ -66,6 +68,8 @@ export class SceneManager {
   private lastPartnerPreset?: (typeof POSE_PRESETS)[number];
   private currentThemeBgHex = 0x18181b;
   private currentOutfitId: number | null = null;
+  private currentMainWardrobe: OutfitCompositionV1 = { schemaVersion: 1, actorId: 'main', itemIds: [] };
+  private currentPartnerWardrobe: OutfitCompositionV1 = { schemaVersion: 1, actorId: 'partner', itemIds: [] };
   private currentAccessoryConfig: BodyAccessoryConfig = {
     nailColorId: 'nail_none', footwearId: 'foot_bare', neckItemId: 'neck_none', wristItemId: 'wrist_none', legItemId: 'leg_none',
   };
@@ -241,6 +245,21 @@ export class SceneManager {
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') this.setRenderMode(this.currentMode);
   }
+  public applyWardrobeComposition(composition: OutfitCompositionV1, actorId: 'main' | 'partner' = 'main'): void {
+    if (actorId === 'partner') {
+      this.currentPartnerWardrobe = composition;
+      applyWardrobeCompositionToRig(
+        this.partnerHumanoid.group,
+        this.partnerHumanoid.bones,
+        composition,
+        this.partnerLoadedModelId || 'realistic_muscular_male'
+      );
+    } else {
+      this.currentMainWardrobe = composition;
+      applyWardrobeCompositionToRig(this.humanoid.group, this.humanoid.bones, composition, this.currentModelId);
+    }
+    if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') this.setRenderMode(this.currentMode);
+  }
   public applyBodyAccessories(config: BodyAccessoryConfig): void { this.currentAccessoryConfig = config; applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, config); }
 
   public setPartnerGuide(show: boolean, partnerPreset?: (typeof POSE_PRESETS)[number]): void {
@@ -294,6 +313,7 @@ export class SceneManager {
     const defaultPreset = POSE_PRESETS.find((p) => p.id === profile.defaultStandardPoseId) || POSE_PRESETS[0];
     applyPosePreset(this.humanoid.bones, defaultPreset);
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
+    applyWardrobeCompositionToRig(this.humanoid.group, this.humanoid.bones, this.currentMainWardrobe, modelId);
     applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, this.currentAccessoryConfig);
     this.scene.add(this.humanoid.group);
     if (this.showPartnerState && this.lastPartnerPreset) this.setPartnerGuide(true, this.lastPartnerPreset);
@@ -334,7 +354,8 @@ export class SceneManager {
   public runRenderJob(spec: RenderSpec): RenderResult {
     return runSceneRenderJob(spec, {
       scene: this.scene, camera: this.camera, renderer: this.renderer, currentMode: this.currentMode,
-      mainRig: this.humanoid, partnerRig: this.partnerHumanoid, partnerVisible: this.showPartnerState,
+      mainRig: this.humanoid, mainOutfit: this.currentMainWardrobe,
+      partnerRig: this.partnerHumanoid, partnerOutfit: this.currentPartnerWardrobe, partnerVisible: this.showPartnerState,
       transformHelper: this.transformControls.getHelper(), skeletonHelper: this.skeletonHelper,
       depthMaterial: this.depthMaterial, restoreDots: this.showSkeletonState && this.currentMode === 'shading',
       selectedBoneName: this.selectedBoneName,
@@ -347,8 +368,8 @@ export class SceneManager {
 
   public extractSceneDocument(revision = 1, width = 1024, height = 1024, bodyFormat: BodyFormat = 'coco18'): SceneDocumentV1 {
     return buildSceneDocumentSnapshot({
-      revision, mainRig: this.humanoid, mainModelId: this.currentModelId,
-      partnerRig: this.partnerHumanoid, partnerModelId: this.partnerLoadedModelId || 'realistic_muscular_male',
+      revision, mainRig: this.humanoid, mainModelId: this.currentModelId, mainOutfit: this.currentMainWardrobe,
+      partnerRig: this.partnerHumanoid, partnerModelId: this.partnerLoadedModelId || 'realistic_muscular_male', partnerOutfit: this.currentPartnerWardrobe,
       partnerVisible: this.showPartnerState, camera: this.camera, target: this.orbitControls.target,
       exportWidth: width, exportHeight: height, bodyFormat,
     });
@@ -356,12 +377,16 @@ export class SceneManager {
 
   public applySceneDocument(doc: SceneDocumentV1): void {
     const mainActor = doc.actors.find((a) => a.id === 'main') || doc.actors[0];
-    if (mainActor) applyActorV1ToRig(mainActor, this.humanoid);
+    if (mainActor) {
+      applyActorV1ToRig(mainActor, this.humanoid);
+      if (mainActor.outfit) this.applyWardrobeComposition(mainActor.outfit, 'main');
+    }
     const partnerActor = doc.actors.find((a) => a.id === 'partner');
     if (partnerActor) {
       this.showPartnerState = partnerActor.visible;
       this.partnerHumanoid.group.visible = partnerActor.visible && this.currentMode !== 'openpose';
       applyActorV1ToRig(partnerActor, this.partnerHumanoid);
+      if (partnerActor.outfit) this.applyWardrobeComposition(partnerActor.outfit, 'partner');
     }
     this.camera.position.set(doc.camera.position[0], doc.camera.position[1], doc.camera.position[2]);
     this.orbitControls.target.set(doc.camera.target[0], doc.camera.target[1], doc.camera.target[2]);

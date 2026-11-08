@@ -10,7 +10,10 @@ import {
   SceneDocumentV1,
   Vec3,
 } from '@/types/sceneDocument';
+import { OutfitCompositionV1 } from '@/types/wardrobe';
 import { HumanoidRigResult } from '@/core/mannequin/humanoidRig';
+import { composeOutfit } from '@/core/mannequin/wardrobe/composition';
+import { setDressedMeshesVisibility } from '@/core/mannequin/wardrobe/garmentRenderer';
 import { applyMannequinGroupTransform, renderOffscreenSceneSnapshot } from './modelSwapHelper';
 import { computeCameraSpaceDepthBounds } from '@/core/shaders/materials';
 import { createRenderCamera, executeRenderJob } from '@/core/pipeline/renderJob';
@@ -81,7 +84,8 @@ export function extractActorV1FromRig(
   name: string,
   modelId: MannequinModelId,
   rig: HumanoidRigResult,
-  visible: boolean
+  visible: boolean,
+  outfit?: OutfitCompositionV1
 ): SceneActorV1 {
   const g = rig.group;
   const baseScale: number = g.userData?.baseScale || 1.0;
@@ -108,6 +112,7 @@ export function extractActorV1FromRig(
       scale: Math.max(0.2, Math.min(3.0, scale || 1.0)),
     },
     bones: extractActorBonesMap(rig.bones),
+    ...(outfit ? { outfit } : {}),
   };
 }
 
@@ -133,8 +138,10 @@ export function buildSceneDocumentSnapshot(params: {
   revision: number;
   mainRig: HumanoidRigResult;
   mainModelId: MannequinModelId;
+  mainOutfit?: OutfitCompositionV1;
   partnerRig: HumanoidRigResult;
   partnerModelId: MannequinModelId;
+  partnerOutfit?: OutfitCompositionV1;
   partnerVisible: boolean;
   camera: THREE.PerspectiveCamera;
   target: THREE.Vector3;
@@ -142,13 +149,21 @@ export function buildSceneDocumentSnapshot(params: {
   exportHeight: number;
   bodyFormat: BodyFormat;
 }): SceneDocumentV1 {
-  const mainActor = extractActorV1FromRig('main', '메인 인물', params.mainModelId, params.mainRig, true);
+  const mainActor = extractActorV1FromRig(
+    'main',
+    '메인 인물',
+    params.mainModelId,
+    params.mainRig,
+    true,
+    params.mainOutfit
+  );
   const partnerActor = extractActorV1FromRig(
     'partner',
     '파트너 인물',
     params.partnerModelId,
     params.partnerRig,
-    params.partnerVisible
+    params.partnerVisible,
+    params.partnerOutfit
   );
 
   const pos: Vec3 = [
@@ -192,7 +207,9 @@ export function runSceneRenderJob(
     renderer: THREE.WebGLRenderer;
     currentMode: RenderMode;
     mainRig: HumanoidRigResult;
+    mainOutfit?: OutfitCompositionV1;
     partnerRig: HumanoidRigResult;
+    partnerOutfit?: OutfitCompositionV1;
     partnerVisible: boolean;
     transformHelper: THREE.Object3D;
     skeletonHelper: THREE.Object3D;
@@ -201,48 +218,77 @@ export function runSceneRenderJob(
     selectedBoneName: string | null;
   }
 ): RenderResult {
+  const appearanceMode = spec.appearanceMode || 'dressed';
   const actors = [
     { id: 'main', visible: true, group: env.mainRig.group, bones: env.mainRig.bones },
     { id: 'partner', visible: env.partnerVisible, group: env.partnerRig.group, bones: env.partnerRig.bones },
   ];
   const renderCam = createRenderCamera(env.camera, spec.width, spec.height);
-  const depthRange = computeCameraSpaceDepthBounds(renderCam, [
-    env.mainRig.group,
-    ...(env.partnerVisible ? [env.partnerRig.group] : []),
-  ]);
 
-  return executeRenderJob(spec, {
-    camera: env.camera,
-    actors,
-    depthRange,
-    captureCanvasDataUrl: (w, h, cam) => {
-      const offCanvas = Object.assign(document.createElement('canvas'), { width: w, height: h });
-      if (env.currentMode === 'openpose' || spec.mode === 'openpose') {
-        const maps = actors
-          .filter((a) => a.visible && spec.actorIds.includes(a.id))
-          .map((a) => getJointScreenPositions(a.bones, cam, w, h));
-        drawOpenPoseSkeleton(offCanvas.getContext('2d')!, maps, w, h);
-      } else {
-        if (env.currentMode === 'depth') {
-          env.depthMaterial.uniforms.cameraNear.value = depthRange.near;
-          env.depthMaterial.uniforms.cameraFar.value = depthRange.far;
+  if (appearanceMode === 'body') {
+    setDressedMeshesVisibility(env.mainRig.group, false);
+    if (env.partnerVisible) setDressedMeshesVisibility(env.partnerRig.group, false);
+  }
+
+  let res: RenderResult;
+  try {
+    const depthRange = computeCameraSpaceDepthBounds(renderCam, [
+      env.mainRig.group,
+      ...(env.partnerVisible ? [env.partnerRig.group] : []),
+    ]);
+
+    res = executeRenderJob(spec, {
+      camera: env.camera,
+      actors,
+      depthRange,
+      captureCanvasDataUrl: (w, h, cam) => {
+        const offCanvas = Object.assign(document.createElement('canvas'), { width: w, height: h });
+        if (env.currentMode === 'openpose' || spec.mode === 'openpose') {
+          const maps = actors
+            .filter((a) => a.visible && spec.actorIds.includes(a.id))
+            .map((a) => getJointScreenPositions(a.bones, cam, w, h));
+          drawOpenPoseSkeleton(offCanvas.getContext('2d')!, maps, w, h);
+        } else {
+          if (env.currentMode === 'depth') {
+            env.depthMaterial.uniforms.cameraNear.value = depthRange.near;
+            env.depthMaterial.uniforms.cameraFar.value = depthRange.far;
+          }
+          renderOffscreenSceneSnapshot(
+            env.scene,
+            cam,
+            env.mainRig.group,
+            env.transformHelper,
+            env.skeletonHelper,
+            offCanvas,
+            w,
+            env.restoreDots,
+            env.selectedBoneName,
+            h,
+            env.renderer,
+            env.partnerRig.group
+          );
         }
-        renderOffscreenSceneSnapshot(
-          env.scene,
-          cam,
-          env.mainRig.group,
-          env.transformHelper,
-          env.skeletonHelper,
-          offCanvas,
-          w,
-          env.restoreDots,
-          env.selectedBoneName,
-          h,
-          env.renderer,
-          env.partnerRig.group
-        );
-      }
-      return offCanvas.toDataURL('image/png');
-    },
-  });
+        return offCanvas.toDataURL('image/png');
+      },
+    });
+  } finally {
+    if (appearanceMode === 'body') {
+      setDressedMeshesVisibility(env.mainRig.group, true);
+      if (env.partnerVisible) setDressedMeshesVisibility(env.partnerRig.group, true);
+    }
+  }
+
+  const promptOnlyItemIds: string[] = [];
+  if (env.mainOutfit) {
+    promptOnlyItemIds.push(...composeOutfit(env.mainOutfit.itemIds).promptOnlyItemIds);
+  }
+  if (env.partnerVisible && env.partnerOutfit) {
+    promptOnlyItemIds.push(...composeOutfit(env.partnerOutfit.itemIds).promptOnlyItemIds);
+  }
+
+  return {
+    ...res,
+    appearanceMode,
+    promptOnlyItemIds: Array.from(new Set(promptOnlyItemIds)),
+  };
 }

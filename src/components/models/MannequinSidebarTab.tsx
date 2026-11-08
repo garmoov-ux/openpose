@@ -3,7 +3,7 @@ import { Check, Loader2, Sparkles, User, Users, Baby, Crown } from 'lucide-react
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { MANNEQUIN_MODELS, MATERIAL_OPTIONS } from '@/core/mannequin/models';
-import { getMannequinProfile, getOutfitsForMannequin } from '@/core/mannequin/mannequinProfiles';
+import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { MannequinModelId, MaterialStyle } from '@/types';
 import { MannequinPreviewThumbnail } from '../sidebar/MannequinPreviewThumbnail';
@@ -30,7 +30,12 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
     setModelLoadingProgress,
   } = useEditorStore();
 
-  const { selectedOutfitId, setSelectedOutfitId, setSelectedOutfitCategory } = useThemeSoloStore();
+  const {
+    selectedOutfitId,
+    setSelectedOutfitCategory,
+    syncWardrobeForModelChange,
+    heldItemsByActor,
+  } = useThemeSoloStore();
 
   const [activeStage, setActiveStage] = useState<string>('all');
   const [genderFilter, setGenderFilter] = useState<'all' | 'female' | 'male'>('all');
@@ -54,13 +59,7 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
     setModelLoadingProgress(10);
     try {
       setSelectedOutfitCategory('all');
-      // 기본은 무의상(0) 상태 유지. 만약 기존 착용 의상이 새 마네킹과 호환되지 않으면 무의상(0)으로 해제
-      if (selectedOutfitId > 0) {
-        const compatible = getOutfitsForMannequin(modelId).some((o) => o.id === selectedOutfitId);
-        if (!compatible) {
-          setSelectedOutfitId(0);
-        }
-      }
+      syncWardrobeForModelChange(modelId, 'main');
 
       await sceneManager.loadMannequinModel(modelId, (progress) => {
         setModelLoadingProgress(progress);
@@ -168,8 +167,23 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
       {/* 현재 마네킹 안내 배너 */}
       <div className="px-3 py-2 bg-zinc-900 text-white rounded-2xl flex items-center justify-between text-[11px]">
         <span className="font-bold text-blue-400 truncate">{activeProfile.profileTitleKo}</span>
-        <span className="text-zinc-400 shrink-0 ml-2">기본 무의상</span>
+        <span className="text-zinc-400 shrink-0 ml-2">
+          {selectedOutfitId > 0 ? '레거시 착용' : '부위별 착장 지원'}
+        </span>
       </div>
+
+      {heldItemsByActor.main.length > 0 && (
+        <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-2xl text-[11px] text-amber-900 space-y-1">
+          <div className="font-bold">모델 변경으로 보류된 의상 ({heldItemsByActor.main.length}건)</div>
+          <ul className="list-disc list-inside text-[10.5px] text-amber-800 space-y-0.5">
+            {heldItemsByActor.main.map((h) => (
+              <li key={h.itemId}>
+                <span className="font-semibold">{h.nameKo}</span>: {h.reason}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {isLoading && (
         <div className="px-3 py-2 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-blue-700 font-semibold">

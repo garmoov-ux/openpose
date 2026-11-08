@@ -48,6 +48,8 @@ export interface MannequinModelInfo {
   headRatio: string;
   category: 'realistic' | 'anime' | 'age_body' | 'stylized';
   lifeStage?: 'youth' | 'young_adult' | 'married_senior' | 'model_art';
+  ageClass?: 'adult' | 'minor' | 'unknown';
+  fitProfile?: 'adult-feminine' | 'adult-masculine' | 'adult-unisex' | 'youth';
   gender: 'female' | 'male' | 'neutral';
   description: string;
   file?: string;
