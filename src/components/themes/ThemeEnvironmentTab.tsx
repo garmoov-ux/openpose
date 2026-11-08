@@ -53,6 +53,8 @@ const THEME_VISUALS: Record<string, ThemeVisualStyle> = {
   vip_gym_sauna_suite: { gradient: 'from-blue-950 via-slate-900 to-zinc-950', propsLabel: '웨이트벤치·덤벨랙·건식사우나', icon: <Building2 className="w-4 h-4 text-sky-300" /> },
 };
 
+const TOTAL_ENVIRONMENT_COUNT = Object.values(THEMES_DATA).reduce((sum, theme) => sum + theme.environments.length, 0);
+
 export const ThemeEnvironmentTab: React.FC = () => {
   const {
     selectedThemeId,
@@ -89,11 +91,12 @@ export const ThemeEnvironmentTab: React.FC = () => {
             <Sofa className="w-4 h-4 text-amber-600" />
             <span>테마 16개 · 배치 사물 {ROOM_PROP_CATALOG.length}종</span>
           </span>
+          <span className="text-[11px] font-bold text-blue-700">장소 {TOTAL_ENVIRONMENT_COUNT}개</span>
           <div className="flex items-center gap-1.5">
             <button
               onClick={rollRandomEnvironment}
               className="flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-zinc-200 text-zinc-800 font-semibold rounded-full border border-zinc-200 text-[11px] transition-colors"
-              title="380종 배경 무작위 추천"
+              title={`${TOTAL_ENVIRONMENT_COUNT}개 장소 중 무작위 추천`}
             >
               <Dices className="w-3.5 h-3.5 text-blue-600" />
               <span>랜덤</span>
