@@ -42,6 +42,12 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       envIndex: themeStore.selectedEnvIndex,
       lightIndex: themeStore.selectedLightIndex,
       postureId: themeStore.selectedPostureId,
+      nailColorId: themeStore.nailColorId,
+      footwearId: themeStore.footwearId,
+      neckItemId: themeStore.neckItemId,
+      wristItemId: themeStore.wristItemId,
+      legItemId: themeStore.legItemId,
+      extraSceneProps: themeStore.extraSceneProps,
     });
   }, [
     currentModelId,
@@ -50,6 +56,12 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     themeStore.selectedEnvIndex,
     themeStore.selectedLightIndex,
     themeStore.selectedPostureId,
+    themeStore.nailColorId,
+    themeStore.footwearId,
+    themeStore.neckItemId,
+    themeStore.wristItemId,
+    themeStore.legItemId,
+    themeStore.extraSceneProps,
   ]);
 
   const handleCopyClipboard = async () => {

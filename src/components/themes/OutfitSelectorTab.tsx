@@ -159,24 +159,12 @@ export const OutfitSelectorTab: React.FC = () => {
         <p className="text-[11px] text-zinc-300 leading-snug">{profile.profileDescKo}</p>
       </div>
 
-      {/* 상단 헤더 & 기본 복장 / 의상 해제 / 무작위 추천 */}
+      {/* 상단 헤더 & 기본 미착용 / 추천 복장 / 무작위 추천 */}
       <div className="flex items-center justify-between gap-1.5">
         <span className="font-bold text-zinc-900 text-xs tracking-tight">
           마네킹 맞춤 3D 의상 (3열)
         </span>
         <div className="flex items-center gap-1.5">
-          {profile.defaultOutfitId > 0 && (
-            <button
-              onClick={() => setSelectedOutfitId(profile.defaultOutfitId)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                selectedOutfitId === profile.defaultOutfitId
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800'
-              }`}
-            >
-              기본 복장
-            </button>
-          )}
           <button
             onClick={() => setSelectedOutfitId(0)}
             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
@@ -184,11 +172,23 @@ export const OutfitSelectorTab: React.FC = () => {
                 ? 'bg-zinc-900 text-white shadow-xs'
                 : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
             }`}
-            title="의상 벗기기 (순수 교보재 바디)"
+            title="기본 의상 미착용 (순수 마네킹 바디 상태)"
           >
             <Ban className="w-3.5 h-3.5" />
-            <span>의상 해제</span>
+            <span>미착용 (기본)</span>
           </button>
+          {profile.recommendedOutfitId > 0 && (
+            <button
+              onClick={() => setSelectedOutfitId(profile.recommendedOutfitId)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                selectedOutfitId === profile.recommendedOutfitId
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800'
+              }`}
+            >
+              추천 의상
+            </button>
+          )}
           <button
             onClick={handleRollRandomCompatible}
             className="flex items-center gap-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-semibold rounded-full transition-colors active:scale-95"

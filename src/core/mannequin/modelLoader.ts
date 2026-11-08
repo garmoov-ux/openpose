@@ -146,9 +146,9 @@ export function measureHumanoidWorldYBounds(
 
   const boneSpan = Math.max(0.2, maxBoneY - minBoneY);
   const headExtraRatio =
-    modelId === 'chibi_male' || modelId === 'child_toddler'
+    modelId === 'chibi_male' || modelId === 'child_toddler' || modelId === 'child_toddler_f'
       ? 0.46
-      : modelId === 'child_elementary'
+      : modelId === 'child_elementary' || modelId === 'child_elementary_f'
         ? 0.25
         : 0.16;
 

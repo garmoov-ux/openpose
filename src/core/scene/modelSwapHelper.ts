@@ -73,7 +73,11 @@ export function applyMaterialToHierarchy(
       if (mesh.userData?.boneName || mesh.userData?.isCollider || mesh.userData?.isJointDot) {
         return; // 피킹 콜라이더 및 관절 도트 제외
       }
-      if (preserveOutfitMaterials && mesh.userData?.isOutfitMesh && mesh.userData?.outfitMaterial) {
+      if (
+        preserveOutfitMaterials &&
+        (mesh.userData?.isOutfitMesh || mesh.userData?.isBodyAccessory) &&
+        mesh.userData?.outfitMaterial
+      ) {
         mesh.material = mesh.userData.outfitMaterial;
         return;
       }

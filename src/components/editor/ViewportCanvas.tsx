@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
+import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
+import { applyPosePreset } from '@/core/mannequin/presets';
 
 interface ViewportCanvasProps {
   onSceneReady?: (manager: SceneManager) => void;
@@ -29,7 +31,15 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     selectedEnvIndex,
     selectedLightIndex,
     selectedOutfitId,
+    selectedPostureId,
     showThemeProps,
+    showPartnerGuide,
+    nailColorId,
+    footwearId,
+    neckItemId,
+    wristItemId,
+    legItemId,
+    extraSceneProps,
   } = useThemeSoloStore();
 
   useEffect(() => {
@@ -90,24 +100,55 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     }
   }, [selectedBoneName]);
 
-  // 16대 테마, 세부 장소, 조명이 변경될 때 3D 스튜디오 조명 및 배경 즉시 반영
+  // 16대 테마, 380종 세부 장소, 시간대 조명 및 추가 3D 소품 즉시 반영
   useEffect(() => {
     managerRef.current?.applyThemeEnvironment(
       selectedThemeId,
       selectedEnvIndex,
-      selectedLightIndex
+      selectedLightIndex,
+      extraSceneProps
     );
-  }, [selectedThemeId, selectedEnvIndex, selectedLightIndex]);
+  }, [selectedThemeId, selectedEnvIndex, selectedLightIndex, extraSceneProps]);
 
-  // 200종 의상 변경 시 3D 마네킹 골격에 의상 파츠 실시간 착용/해제
+  // 의상 변경 시 3D 마네킹 골격에 의상 파츠 실시간 착용/해제 (0 = 무의상)
   useEffect(() => {
-    managerRef.current?.applyOutfit(selectedOutfitId);
+    managerRef.current?.applyOutfit(selectedOutfitId > 0 ? selectedOutfitId : null);
   }, [selectedOutfitId]);
+
+  // 신체 부위별 아이템(네일, 신발/스타킹/맨발, 목걸이/초커, 팔찌/커프, 가터링/앵클릿) 실시간 부착
+  useEffect(() => {
+    managerRef.current?.applyBodyAccessories({
+      nailColorId,
+      footwearId,
+      neckItemId,
+      wristItemId,
+      legItemId,
+    });
+  }, [nailColorId, footwearId, neckItemId, wristItemId, legItemId]);
+
+  // 자세 ID 변경(전체 랜덤 세트 등) 시 3D 마네킹 골격 회전 동기화
+  useEffect(() => {
+    if (!managerRef.current || selectedPostureId <= 1) return;
+    const kf = getSoloThemePoseKeyframe(selectedPostureId);
+    if (!kf) return;
+    applyPosePreset(managerRef.current.humanoid.bones, {
+      id: `solo-${selectedPostureId}`,
+      title: `테마 포즈 ${selectedPostureId}`,
+      category: 'standing',
+      description: '',
+      pose: kf,
+    });
+  }, [selectedPostureId]);
 
   // 테마 3D 배경 사물(가구/오브젝트) 표시 ON/OFF 동기화
   useEffect(() => {
     managerRef.current?.setShowThemeProps(showThemeProps);
   }, [showThemeProps]);
+
+  // 커플 파트너 가이드 마네킹 표시 ON/OFF 동기화
+  useEffect(() => {
+    managerRef.current?.setPartnerGuide(showPartnerGuide);
+  }, [showPartnerGuide]);
 
   return (
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">

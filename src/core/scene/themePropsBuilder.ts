@@ -31,12 +31,15 @@ export function disposeThemePropsGroup(group: THREE.Group): void {
 export function rebuildThemePropsGroup(
   group: THREE.Group,
   themeId: SoloThemeId,
-  envIndex: number
+  envIndex: number,
+  lightIndex = 0,
+  extraSceneProps: string[] = []
 ): void {
   disposeThemePropsGroup(group);
 
   const theme = THEMES_DATA[themeId];
   const envText = theme?.environments[envIndex] || theme?.environments[0] || '';
+  const lightText = theme?.lightings[lightIndex] || theme?.lightings[0] || '';
   const info = translateEnvironmentItem(envText, envIndex, themeId);
 
   const hueShift = ((envIndex % 7) - 3) * 0.032;
@@ -232,5 +235,74 @@ export function rebuildThemePropsGroup(
       box(group, 0.14, 0.48, 0.56, 0.68, 0.34, -0.32, leatherMat);
       break;
     }
+  }
+
+  // 와일드카드 조명 문구 내 세부 소품 자동 배치 + 사용자 선택 추가 3D 소품 배치
+  appendExtraSceneProps(group, lightText, extraSceneProps);
+}
+
+function appendExtraSceneProps(
+  group: THREE.Group,
+  lightText: string,
+  extraProps: string[]
+): void {
+  const has = (id: string, regex: RegExp) => extraProps.includes(id) || regex.test(lightText);
+  const goldMat = mat(0xfbbf24, 0.2, 0.85);
+  const silverMat = mat(0xe2e8f0, 0.18, 0.9);
+  const glassMat = mat(0xbae6fd, 0.1, 0.85, 0x38bdf8, 0.25, 0.78);
+  const redMat = mat(0xe11d48, 0.45, 0.2);
+  const glowMat = mat(0xfef08a, 0.2, 0.1, 0xf97316, 1.5);
+
+  if (has('champagne_set', /champagne|ice bucket|flute/i)) {
+    cyl(group, 0.11, 0.08, 0.22, 0.82, 0.11, -0.05, silverMat);
+    cyl(group, 0.025, 0.03, 0.28, 0.82, 0.26, -0.05, mat(0x065f46, 0.2, 0.5));
+    cyl(group, 0.022, 0.018, 0.16, 0.68, 0.08, -0.02, glassMat);
+  }
+  if (has('perfume_cosmetics', /perfume|lipstick|jewelry box/i)) {
+    box(group, 0.22, 0.02, 0.14, -0.78, 0.01, -0.05, goldMat);
+    box(group, 0.05, 0.11, 0.04, -0.82, 0.065, -0.05, glassMat);
+    cyl(group, 0.014, 0.014, 0.08, -0.73, 0.05, -0.04, redMat);
+  }
+  if (has('aroma_candles', /candle|diffuser|oil warmer/i)) {
+    cyl(group, 0.04, 0.04, 0.16, -0.62, 0.08, 0.08, glowMat);
+    cyl(group, 0.035, 0.035, 0.11, -0.52, 0.055, 0.12, glowMat);
+  }
+  if (has('velvet_stool', /stool|ottoman/i)) {
+    cyl(group, 0.25, 0.25, 0.36, -0.68, 0.18, -0.18, redMat);
+    cyl(group, 0.26, 0.26, 0.03, -0.68, 0.015, -0.18, goldMat);
+  }
+  if (has('standing_mirror', /standing mirror|floor mirror/i)) {
+    box(group, 0.62, 1.68, 0.04, 0.96, 0.84, -0.35, goldMat, 0, -0.35, 0);
+    box(group, 0.54, 1.6, 0.05, 0.95, 0.84, -0.34, silverMat, 0, -0.35, 0);
+  }
+  if (has('silk_bolster', /bolster|throw pillow/i)) {
+    cyl(group, 0.11, 0.11, 0.68, 0, 0.11, -0.18, redMat, 0, 0, Math.PI / 2);
+  }
+  if (has('rose_vase', /rose|flower|bouquet/i)) {
+    cyl(group, 0.05, 0.035, 0.22, 0.72, 0.11, 0.08, glassMat);
+    sphere(group, 0.075, 0.72, 0.26, 0.08, redMat);
+  }
+  if (has('ring_light', /ring-light|camera flash/i)) {
+    cyl(group, 0.015, 0.015, 1.45, -0.95, 0.725, 0.15, silverMat);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.018, 12, 28), glowMat);
+    ring.position.set(-0.95, 1.52, 0.15);
+    ring.rotation.y = 0.45;
+    group.add(ring);
+  }
+  if (has('coffee_bag', /coffee|tote bag|cross-body bag|purse/i)) {
+    cyl(group, 0.035, 0.026, 0.12, 0.56, 0.06, 0.12, mat(0xfef3c7, 0.4, 0.1));
+    box(group, 0.18, 0.14, 0.07, 0.68, 0.07, 0.1, mat(0x451a03, 0.5, 0.2));
+  }
+  if (has('whiskey_decanter', /whiskey|decanter|carafe/i)) {
+    box(group, 0.08, 0.18, 0.08, -0.58, 0.09, -0.08, glassMat);
+    cyl(group, 0.03, 0.028, 0.08, -0.48, 0.04, -0.06, glowMat);
+  }
+  if (has('hinoki_bucket', /hinoki bucket|sauna bucket|towel/i)) {
+    cyl(group, 0.11, 0.095, 0.15, -0.64, 0.075, 0.05, mat(0xb45309, 0.55, 0.1));
+    box(group, 0.24, 0.06, 0.16, -0.42, 0.03, 0.08, mat(0xf8fafc, 0.7, 0.05));
+  }
+  if (extraProps.includes('pole_stage')) {
+    cyl(group, 0.024, 0.024, 2.2, 0.28, 1.1, -0.12, silverMat);
+    cyl(group, 0.68, 0.72, 0.06, 0, 0.03, -0.1, mat(0x18181b, 0.3, 0.6));
   }
 }

@@ -13,6 +13,8 @@ import {
   Palette,
   Download,
   Sofa,
+  Gem,
+  Dices,
 } from 'lucide-react';
 import { useEditorStore, LeftSidebarSection } from '@/stores/useEditorStore';
 import { SceneManager } from '@/core/scene/SceneManager';
@@ -102,7 +104,33 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
               </button>
             );
           })}
+          <button
+            onClick={() => {
+              setActiveLeftSection('themes');
+              themeStore.setActiveSidebarTab('props');
+            }}
+            title="바디 아이템 & 소품 (네일·구두·초커·가터·3D소품)"
+            className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
+              activeLeftSection === 'themes' && themeStore.activeSidebarTab === 'props'
+                ? 'bg-zinc-900 text-pink-400 shadow-sm scale-105'
+                : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
+            }`}
+          >
+            <Gem className="w-4 h-4" />
+            <span className="pointer-events-none absolute top-11 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
+              아이템 & 소품
+            </span>
+          </button>
         </div>
+
+        <button
+          onClick={() => themeStore.rollRandomAll()}
+          title="테마·세부장소·조명·의상·아이템·자세 전체 랜덤 세트"
+          className="flex items-center gap-1.5 px-3.5 py-2 bg-zinc-900/95 hover:bg-zinc-800 text-amber-400 rounded-full border border-zinc-700 text-xs font-bold shadow-md transition-all active:scale-95"
+        >
+          <Dices className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">전체 랜덤 세트</span>
+        </button>
       </div>
 
       {/* 2. 우측: 빠른 화면 모드 아이콘 스위치 & 테마 사물/관절선 토글 & 초기화 */}

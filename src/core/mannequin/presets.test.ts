@@ -18,7 +18,9 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     POSE_PRESETS.forEach((preset) => {
       expect(preset.id).toBeTruthy();
       expect(preset.title).toBeTruthy();
-      expect(['standing', 'sitting', 'action', 'hands']).toContain(preset.category);
+      expect(['standing', 'sitting', 'action', 'hands', 'glamour', 'couple']).toContain(
+        preset.category
+      );
       expect(Object.keys(preset.pose).length).toBeGreaterThan(0);
     });
   });
@@ -70,17 +72,19 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     }
   });
 
-  it('14종 마네킹 각각에 전용 복장 및 전용 기본 자세가 매핑되어 있어야 한다', () => {
+  it('27종 마네킹 각각에 기본 의상 미착용(0) 및 전용 추천 복장·자세가 매핑되어 있어야 한다', () => {
+    expect(MANNEQUIN_MODELS.length).toBe(27);
     MANNEQUIN_MODELS.forEach((model) => {
       const profile = getMannequinProfile(model.id);
       expect(profile).toBeDefined();
+      expect(profile.defaultOutfitId).toBe(0);
       expect(POSE_PRESETS.some((p) => p.id === profile.defaultStandardPoseId)).toBe(true);
 
       const outfits = getOutfitsForMannequin(model.id);
       expect(outfits.length).toBeGreaterThan(0);
 
-      if (profile.defaultOutfitId > 0) {
-        expect(findOutfitById(profile.defaultOutfitId)).toBeDefined();
+      if (profile.recommendedOutfitId > 0) {
+        expect(findOutfitById(profile.recommendedOutfitId)).toBeDefined();
       }
 
       // 유아/아동/남성/시니어는 성인 여성 란제리·마이크로비키니가 포함되지 않아야 함

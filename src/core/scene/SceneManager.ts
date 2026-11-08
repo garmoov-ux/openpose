@@ -8,18 +8,13 @@ import { loadFbxMannequin, measureHumanoidWorldYBounds } from '@/core/mannequin/
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { applyOutfitToMannequin } from '@/core/mannequin/outfitVisualizer';
+import { BodyAccessoryConfig, applyBodyAccessoriesToRig } from '@/core/mannequin/bodyAccessoryMeshes';
 import { CameraController } from './CameraController';
 import {
-  createDepthShaderMaterial,
-  createNormalShaderMaterial,
-  createCannyMaterial,
-  createMaterialByStyle,
+  createDepthShaderMaterial, createNormalShaderMaterial, createCannyMaterial, createMaterialByStyle,
 } from '@/core/shaders/materials';
 import {
-  applyMaterialToHierarchy,
-  createStylizedSkeletonHelper,
-  updateStylizedSkeletonHelper,
-  setJointDotsVisible,
+  applyMaterialToHierarchy, createStylizedSkeletonHelper, updateStylizedSkeletonHelper, setJointDotsVisible,
 } from './modelSwapHelper';
 import { StudioLights, createStudioLightsAndStage, applyStudioThemeEnvironment } from './environmentStudio';
 import { pickBoneFromRaycast } from './smartPicker';
@@ -33,6 +28,7 @@ export class SceneManager {
   public transformControls: TransformControls;
   public cameraController: CameraController;
   public humanoid: HumanoidRigResult;
+  public partnerHumanoid: HumanoidRigResult;
   public skeletonHelper: THREE.LineSegments;
   public gridHelper: THREE.GridHelper;
 
@@ -51,7 +47,10 @@ export class SceneManager {
   private showThemePropsState = true;
   private selectedBoneName: string | null = null;
   private currentThemeBgHex = 0x1c1917;
-  private currentOutfitId: number | null = 1001;
+  private currentOutfitId: number | null = null;
+  private currentAccessoryConfig: BodyAccessoryConfig = {
+    nailColorId: 'nail_none', footwearId: 'foot_bare', neckItemId: 'neck_none', wristItemId: 'wrist_none', legItemId: 'leg_none',
+  };
 
   public currentModelId: MannequinModelId = 'procedural';
   public currentMaterialStyle: MaterialStyle = 'matte_white';
@@ -64,7 +63,6 @@ export class SceneManager {
   constructor(canvas: HTMLCanvasElement, onBoneSelect?: (name: string | null) => void) {
     this.canvas = canvas;
     this.onBoneSelectedCallback = onBoneSelect;
-
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(this.currentThemeBgHex);
 
@@ -87,15 +85,13 @@ export class SceneManager {
 
     this.studioLights = createStudioLightsAndStage(this.scene);
     this.gridHelper = new THREE.GridHelper(10, 20, 0x3f3f46, 0x27272a);
-    this.scene.add(this.gridHelper);
-
     this.humanoid = createProceduralHumanoid();
     applyPosePreset(this.humanoid.bones, POSE_PRESETS[0]);
-    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
-    this.scene.add(this.humanoid.group);
-
+    this.partnerHumanoid = createProceduralHumanoid();
+    setJointDotsVisible(this.partnerHumanoid.group, false, null);
+    this.partnerHumanoid.group.visible = false;
     this.skeletonHelper = createStylizedSkeletonHelper();
-    this.scene.add(this.skeletonHelper);
+    this.scene.add(this.gridHelper, this.humanoid.group, this.partnerHumanoid.group, this.skeletonHelper);
 
     this.orbitControls = new OrbitControls(this.camera, canvas);
     this.orbitControls.enableDamping = true;
@@ -129,19 +125,14 @@ export class SceneManager {
       this.isDraggingGizmo = false;
       return;
     }
-
-    const dx = event.clientX - this.pointerDownPos.x;
-    const dy = event.clientY - this.pointerDownPos.y;
-    if (Math.hypot(dx, dy) > 5) return;
+    if (Math.hypot(event.clientX - this.pointerDownPos.x, event.clientY - this.pointerDownPos.y) > 5) return;
     if ((this.transformControls as unknown as { axis: string | null }).axis !== null) return;
 
     const rect = this.canvas.getBoundingClientRect();
-    this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    this.mouse.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const colliders = Array.from(this.humanoid.colliders.values());
-    const boneName = pickBoneFromRaycast(this.raycaster, colliders, this.humanoid.group, this.humanoid.bones);
-    this.selectBone(boneName);
+    this.selectBone(pickBoneFromRaycast(this.raycaster, colliders, this.humanoid.group, this.humanoid.bones));
   };
 
   public selectBone(boneName: string | null): void {
@@ -173,25 +164,20 @@ export class SceneManager {
     this.humanoid.group.visible = mode !== 'openpose';
     setJointDotsVisible(this.humanoid.group, isShading && this.showSkeletonState, this.selectedBoneName);
 
-    if (mode === 'depth') {
-      this.scene.background = new THREE.Color(0x000000);
-      applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial, false);
-    } else if (mode === 'normal') {
-      this.scene.background = new THREE.Color(0x8080ff);
-      applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial, false);
-    } else if (mode === 'canny') {
-      this.scene.background = new THREE.Color(0x000000);
-      applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial, false);
-    } else if (mode === 'openpose') {
-      this.scene.background = new THREE.Color(0x000000);
-    } else {
-      this.scene.background = new THREE.Color(this.currentThemeBgHex);
-      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
-    }
+    const bgMap: Record<RenderMode, number> = {
+      depth: 0x000000, normal: 0x8080ff, canny: 0x000000, openpose: 0x000000, shading: this.currentThemeBgHex,
+    };
+    this.scene.background = new THREE.Color(bgMap[mode]);
+    if (mode === 'depth') applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial, false);
+    else if (mode === 'normal') applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial, false);
+    else if (mode === 'canny') applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial, false);
+    else if (mode === 'shading') applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
   }
 
-  public applyThemeEnvironment(themeId: SoloThemeId, envIndex: number, lightIndex: number): void {
-    this.currentThemeBgHex = applyStudioThemeEnvironment(this.scene, this.studioLights, themeId, envIndex, lightIndex, this.currentMode === 'shading');
+  public applyThemeEnvironment(themeId: SoloThemeId, envIndex: number, lightIndex: number, extraSceneProps: string[] = []): void {
+    this.currentThemeBgHex = applyStudioThemeEnvironment(
+      this.scene, this.studioLights, themeId, envIndex, lightIndex, this.currentMode === 'shading', extraSceneProps
+    );
   }
 
   public setShowThemeProps(show: boolean): void {
@@ -200,9 +186,27 @@ export class SceneManager {
   }
 
   public applyOutfit(outfitId: number | null): void {
-    this.currentOutfitId = outfitId;
-    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, outfitId);
+    this.currentOutfitId = outfitId && outfitId > 0 ? outfitId : null;
+    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') this.setRenderMode(this.currentMode);
+  }
+
+  public applyBodyAccessories(config: BodyAccessoryConfig): void {
+    this.currentAccessoryConfig = config;
+    applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, config);
+  }
+
+  public setPartnerGuide(show: boolean, partnerPreset?: (typeof POSE_PRESETS)[number]): void {
+    this.partnerHumanoid.group.visible = show && this.currentMode !== 'openpose';
+    if (!show) return;
+    if (partnerPreset?.partnerPose) {
+      applyPosePreset(this.partnerHumanoid.bones, { ...partnerPreset, pose: partnerPreset.partnerPose });
+      const [ox, oy, oz] = partnerPreset.partnerOffset || [0.22, 0, -0.22];
+      this.partnerHumanoid.group.position.set(ox, oy, oz);
+    } else {
+      applyPosePreset(this.partnerHumanoid.bones, POSE_PRESETS[0]);
+      this.partnerHumanoid.group.position.set(0.28, 0, -0.24);
+    }
   }
 
   public async loadMannequinModel(modelId: MannequinModelId, onProgress?: (percent: number) => void): Promise<void> {
@@ -222,9 +226,8 @@ export class SceneManager {
     const profile = getMannequinProfile(modelId);
     const defaultPreset = POSE_PRESETS.find((p) => p.id === profile.defaultStandardPoseId) || POSE_PRESETS[0];
     applyPosePreset(this.humanoid.bones, defaultPreset);
-
-    this.currentOutfitId = profile.defaultOutfitId;
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
+    applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, this.currentAccessoryConfig);
     this.scene.add(this.humanoid.group);
 
     const bounds = measureHumanoidWorldYBounds(this.humanoid.group, this.humanoid.bones, modelId);
@@ -235,9 +238,7 @@ export class SceneManager {
   public setMaterialStyle(style: MaterialStyle): void {
     this.currentMaterialStyle = style;
     this.defaultMaterial = createMaterialByStyle(style);
-    if (this.currentMode === 'shading') {
-      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
-    }
+    if (this.currentMode === 'shading') applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
   }
 
   public setShowGrid(show: boolean): void {
@@ -290,14 +291,11 @@ export class SceneManager {
       this.camera.updateProjectionMatrix();
 
       const helper = this.transformControls.getHelper();
-      const prevHelperVis = helper.visible;
-      const prevSkelVis = this.skeletonHelper.visible;
+      const [prevHelperVis, prevSkelVis] = [helper.visible, this.skeletonHelper.visible];
       helper.visible = false;
       this.skeletonHelper.visible = false;
       setJointDotsVisible(this.humanoid.group, false);
-
       offRenderer.render(this.scene, this.camera);
-
       helper.visible = prevHelperVis;
       this.skeletonHelper.visible = prevSkelVis;
       setJointDotsVisible(this.humanoid.group, this.showSkeletonState && this.currentMode === 'shading', this.selectedBoneName);

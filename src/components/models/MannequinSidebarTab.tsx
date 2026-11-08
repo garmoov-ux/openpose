@@ -3,7 +3,7 @@ import { Check, Loader2, Sparkles, User, Users, Baby, Crown } from 'lucide-react
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { MANNEQUIN_MODELS, MATERIAL_OPTIONS } from '@/core/mannequin/models';
-import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
+import { getMannequinProfile, getOutfitsForMannequin } from '@/core/mannequin/mannequinProfiles';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { MannequinModelId, MaterialStyle } from '@/types';
 import { MannequinPreviewThumbnail } from '../sidebar/MannequinPreviewThumbnail';
@@ -12,12 +12,12 @@ interface MannequinSidebarTabProps {
   sceneManager: SceneManager | null;
 }
 
-const CATEGORIES = [
-  { id: 'all', label: '전체 (14)', icon: <Users className="w-3.5 h-3.5" /> },
-  { id: 'age_body', label: '연령·체형 (7)', icon: <Baby className="w-3.5 h-3.5" /> },
-  { id: 'realistic', label: '실사 (2)', icon: <User className="w-3.5 h-3.5" /> },
-  { id: 'anime', label: '애니 (2)', icon: <Sparkles className="w-3.5 h-3.5" /> },
-  { id: 'stylized', label: '특수·교보재 (3)', icon: <Crown className="w-3.5 h-3.5" /> },
+const LIFE_STAGE_TABS = [
+  { id: 'all', label: '전체 (27)', icon: <Users className="w-3.5 h-3.5" /> },
+  { id: 'young_adult', label: '솔로·대학생·직장인 (6)', icon: <User className="w-3.5 h-3.5" /> },
+  { id: 'married_senior', label: '유부남녀·할머니·할아버지 (5)', icon: <Crown className="w-3.5 h-3.5" /> },
+  { id: 'youth', label: '유년·초·중·고교 (8)', icon: <Baby className="w-3.5 h-3.5" /> },
+  { id: 'model_art', label: '실사·애니·교보재 (8)', icon: <Sparkles className="w-3.5 h-3.5" /> },
 ];
 
 export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneManager }) => {
@@ -30,14 +30,17 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
     setModelLoadingProgress,
   } = useEditorStore();
 
-  const { setSelectedOutfitId, setSelectedOutfitCategory } = useThemeSoloStore();
+  const { selectedOutfitId, setSelectedOutfitId, setSelectedOutfitCategory } = useThemeSoloStore();
 
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeStage, setActiveStage] = useState<string>('all');
+  const [genderFilter, setGenderFilter] = useState<'all' | 'female' | 'male'>('all');
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredModels = MANNEQUIN_MODELS.filter((m) =>
-    activeCategory === 'all' ? true : m.category === activeCategory
-  );
+  const filteredModels = MANNEQUIN_MODELS.filter((m) => {
+    const stageOk = activeStage === 'all' ? true : m.lifeStage === activeStage;
+    const genderOk = genderFilter === 'all' ? true : m.gender === genderFilter;
+    return stageOk && genderOk;
+  });
 
   const handleSelectModel = async (modelId: MannequinModelId) => {
     if (!sceneManager || isLoading) return;
@@ -50,9 +53,14 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
     setIsLoading(true);
     setModelLoadingProgress(10);
     try {
-      const profile = getMannequinProfile(modelId);
       setSelectedOutfitCategory('all');
-      setSelectedOutfitId(profile.defaultOutfitId);
+      // 기본은 무의상(0) 상태 유지. 만약 기존 착용 의상이 새 마네킹과 호환되지 않으면 무의상(0)으로 해제
+      if (selectedOutfitId > 0) {
+        const compatible = getOutfitsForMannequin(modelId).some((o) => o.id === selectedOutfitId);
+        if (!compatible) {
+          setSelectedOutfitId(0);
+        }
+      }
 
       await sceneManager.loadMannequinModel(modelId, (progress) => {
         setModelLoadingProgress(progress);
@@ -76,51 +84,75 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
 
   return (
     <div className="block space-y-3 text-xs">
-      {/* 1. 표면 질감(머티리얼) 선택 바 */}
-      <div className="p-2.5 bg-zinc-100/80 rounded-2xl flex items-center justify-between gap-2">
-        <span className="text-xs font-bold text-zinc-700 whitespace-nowrap">표면 재질</span>
-        <div className="grid grid-cols-4 gap-1.5 flex-1">
-          {MATERIAL_OPTIONS.map((mat) => {
-            const isSelected = currentMaterialStyle === mat.id;
-            const shortName =
-              mat.id === 'matte_white'
-                ? '석고'
-                : mat.id === 'clay'
-                  ? '황토'
-                  : mat.id === 'toon_outline'
-                    ? '만화풍'
-                    : '메탈릭';
-            return (
+      {/* 1. 표면 질감 & 남/여 성별 구분 스위치 */}
+      <div className="p-2.5 bg-zinc-100/80 rounded-2xl space-y-2">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs font-bold text-zinc-700 whitespace-nowrap">표면 재질</span>
+          <div className="grid grid-cols-4 gap-1.5 flex-1">
+            {MATERIAL_OPTIONS.map((mat) => {
+              const isSelected = currentMaterialStyle === mat.id;
+              const shortName =
+                mat.id === 'matte_white'
+                  ? '석고'
+                  : mat.id === 'clay'
+                    ? '황토'
+                    : mat.id === 'toon_outline'
+                      ? '만화풍'
+                      : '메탈릭';
+              return (
+                <button
+                  key={mat.id}
+                  onClick={() => handleSelectMaterial(mat.id)}
+                  className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-full border text-[11px] font-semibold whitespace-nowrap transition-all ${
+                    isSelected
+                      ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
+                      : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                  }`}
+                >
+                  <span
+                    className="w-2.5 h-2.5 rounded-full border border-zinc-400/50 flex-shrink-0"
+                    style={{ backgroundColor: mat.color }}
+                  />
+                  <span>{shortName}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-zinc-200/70">
+          <span className="text-xs font-bold text-zinc-700 whitespace-nowrap">성별 필터</span>
+          <div className="grid grid-cols-3 gap-1.5 flex-1">
+            {[
+              { id: 'all', label: '남·여 전체' },
+              { id: 'female', label: '여성 체형' },
+              { id: 'male', label: '남성 체형' },
+            ].map((g) => (
               <button
-                key={mat.id}
-                onClick={() => handleSelectMaterial(mat.id)}
-                title={`${mat.name}: ${mat.description}`}
-                className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-full border text-[11px] font-semibold whitespace-nowrap transition-all ${
-                  isSelected
-                    ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
-                    : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                key={g.id}
+                onClick={() => setGenderFilter(g.id as 'all' | 'female' | 'male')}
+                className={`py-1.5 px-2 rounded-full text-[11px] font-bold transition-all ${
+                  genderFilter === g.id
+                    ? 'bg-blue-600 text-white shadow-xs'
+                    : 'bg-white text-zinc-600 border border-zinc-200 hover:text-zinc-900'
                 }`}
               >
-                <span
-                  className="w-2.5 h-2.5 rounded-full border border-zinc-400/50 flex-shrink-0"
-                  style={{ backgroundColor: mat.color }}
-                />
-                <span>{shortName}</span>
+                {g.label}
               </button>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* 2. 연령/체형 카테고리 아이콘 필터 (탭 메뉴 크기 확대) */}
+      {/* 2. 생애주기·연령·역할 세분화 탭 */}
       <div className="flex flex-wrap items-center gap-1.5">
-        {CATEGORIES.map((c) => {
-          const isActive = activeCategory === c.id;
+        {LIFE_STAGE_TABS.map((c) => {
+          const isActive = activeStage === c.id;
           return (
             <button
               key={c.id}
-              onClick={() => setActiveCategory(c.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              onClick={() => setActiveStage(c.id)}
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all ${
                 isActive
                   ? 'bg-zinc-900 text-white shadow-sm'
                   : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
@@ -133,18 +165,17 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
         })}
       </div>
 
-      {/* 현재 마네킹 전용 복장/자세 프로필 안내 */}
+      {/* 현재 마네킹 안내 배너 */}
       <div className="px-3 py-2 bg-zinc-900 text-white rounded-2xl flex items-center justify-between text-[11px]">
-        <span className="font-bold text-blue-400">{activeProfile.profileTitleKo}</span>
-        <span className="text-zinc-400">전신 풀샷 자동 정렬</span>
+        <span className="font-bold text-blue-400 truncate">{activeProfile.profileTitleKo}</span>
+        <span className="text-zinc-400 shrink-0 ml-2">기본 무의상</span>
       </div>
 
-      {/* 로딩 상태 표시 */}
       {isLoading && (
         <div className="px-3 py-2 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-blue-700 font-semibold">
           <div className="flex items-center gap-2">
             <Loader2 className="w-3.5 h-3.5 animate-spin text-blue-600" />
-            <span>3D 체형 및 전용 복장·자세 불러오는 중...</span>
+            <span>3D 체형 불러오는 중...</span>
           </div>
           {modelLoadingProgress !== null && <span>{modelLoadingProgress}%</span>}
         </div>
@@ -154,6 +185,13 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
       <div className="grid grid-cols-3 gap-2.5 pb-4">
         {filteredModels.map((model) => {
           const isSelected = currentModelId === model.id;
+          const genderBadgeColor =
+            model.gender === 'female'
+              ? 'bg-rose-500/15 text-rose-600'
+              : model.gender === 'male'
+                ? 'bg-blue-500/15 text-blue-600'
+                : 'bg-zinc-200 text-zinc-700';
+
           return (
             <button
               key={model.id}
@@ -165,13 +203,12 @@ export const MannequinSidebarTab: React.FC<MannequinSidebarTabProps> = ({ sceneM
                   : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400 hover:shadow-sm'
               }`}
             >
-              {/* 전신 풀샷 썸네일 미리보기 */}
               <MannequinPreviewThumbnail modelId={model.id} isSelected={isSelected} />
 
               <div className="flex items-center justify-between mt-0.5">
                 <span
                   className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md truncate ${
-                    isSelected ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-600'
+                    isSelected ? 'bg-blue-600 text-white' : genderBadgeColor
                   }`}
                 >
                   {model.badge}

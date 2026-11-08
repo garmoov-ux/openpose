@@ -14,9 +14,21 @@ export type MannequinModelId =
   | 'male_mannequin'
   | 'chibi_male'
   | 'child_toddler'
+  | 'child_toddler_f'
   | 'child_elementary'
+  | 'child_elementary_f'
+  | 'teen_middle_m'
+  | 'teen_middle_f'
   | 'teen_girl'
   | 'teen_boy'
+  | 'college_female'
+  | 'college_male'
+  | 'solo_female'
+  | 'solo_male'
+  | 'office_female'
+  | 'office_male'
+  | 'married_wife'
+  | 'married_husband'
   | 'elderly_grandpa'
   | 'elderly_grandma'
   | 'plus_size_body'
@@ -35,6 +47,7 @@ export interface MannequinModelInfo {
   heightCm: number;
   headRatio: string;
   category: 'realistic' | 'anime' | 'age_body' | 'stylized';
+  lifeStage?: 'youth' | 'young_adult' | 'married_senior' | 'model_art';
   gender: 'female' | 'male' | 'neutral';
   description: string;
   file?: string;
@@ -61,9 +74,11 @@ export interface PoseKeyframe {
 export interface PosePreset {
   id: string;
   title: string;
-  category: 'standing' | 'sitting' | 'action' | 'hands';
+  category: 'standing' | 'sitting' | 'action' | 'glamour' | 'couple';
   description: string;
   pose: PoseKeyframe;
+  partnerPose?: PoseKeyframe;
+  partnerOffset?: [number, number, number];
 }
 
 export interface ComfyUISettings {
@@ -94,4 +109,3 @@ export interface OpenPoseExportData {
   canvas_width: number;
   canvas_height: number;
 }
-

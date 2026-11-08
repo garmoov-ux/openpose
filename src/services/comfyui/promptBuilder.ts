@@ -6,6 +6,14 @@ import { MASTER_PREFIX, MASTER_SUFFIX, SHOT_PREFIXES } from '@/data/themesSolo/m
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { THEMES_DATA } from '@/data/themesSolo/themesData';
+import {
+  NAIL_ITEMS,
+  FOOTWEAR_ITEMS,
+  NECK_ITEMS,
+  WRIST_ITEMS,
+  LEG_ITEMS,
+  EXTRA_SCENE_PROPS,
+} from '@/data/themesSolo/accessoriesAndPropsData';
 import { BodyProfileMode } from '@/stores/useThemeSoloStore';
 
 export interface PromptBuildParams {
@@ -20,6 +28,12 @@ export interface PromptBuildParams {
   bodyProfileMode?: BodyProfileMode;
   modelId?: MannequinModelId;
   includeMasterRef?: boolean;
+  nailColorId?: string;
+  footwearId?: string;
+  neckItemId?: string;
+  wristItemId?: string;
+  legItemId?: string;
+  extraSceneProps?: string[];
 }
 
 const MODEL_PROMPT_PROFILES: Record<MannequinModelId, string> = {
@@ -27,18 +41,63 @@ const MODEL_PROMPT_PROFILES: Record<MannequinModelId, string> = {
   realistic_muscular_male: '1boy, solo, realistic athletic muscular adult man, 185cm 8-head proportions',
   anime_female: '1girl, solo, anime illustration style female character, 165cm 7-head proportions',
   anime_basic_male: '1boy, solo, anime illustration style male character, 178cm 7.5-head proportions',
-  child_toddler: 'solo, young toddler child character, cute 108cm 4.5-head proportions',
-  child_elementary: 'solo, elementary school child character, 138cm 5.5-head proportions',
-  teen_girl: '1girl, solo, teenage girl, slender 158cm 6.5-head proportions',
-  teen_boy: '1boy, solo, teenage boy, 166cm 6.8-head proportions',
-  elderly_grandpa: '1boy, solo, elderly senior man, 164cm 6.5-head proportions',
-  elderly_grandma: '1girl, solo, elderly senior woman, 152cm 6-head proportions',
-  plus_size_body: '1girl, solo, curvy plus-size adult woman, 170cm full-figured proportions',
+  child_toddler: '1boy, solo, young toddler boy character, cute 108cm 4.5-head proportions',
+  child_toddler_f: '1girl, solo, young toddler girl character, cute 106cm 4.5-head proportions',
+  child_elementary: '1boy, solo, elementary school boy character, 138cm 5.5-head proportions',
+  child_elementary_f: '1girl, solo, elementary school girl character, 136cm 5.5-head proportions',
+  teen_middle_m: '1boy, solo, middle school teenage boy, 158cm 6.3-head proportions',
+  teen_middle_f: '1girl, solo, middle school teenage girl, 154cm 6.3-head proportions',
+  teen_girl: '1girl, solo, high school teenage girl, slender 161cm 6.7-head proportions',
+  teen_boy: '1boy, solo, high school teenage boy, 172cm 7-head proportions',
+  college_female: '1girl, solo, young college student woman in her early 20s, 166cm 7.3-head proportions',
+  college_male: '1boy, solo, young college student man in his early 20s, 177cm 7.5-head proportions',
+  solo_female: '1girl, solo, stylish single woman in her 20s, 168cm 7.5-head proportions',
+  solo_male: '1boy, solo, stylish single man in his 20s, 179cm 7.6-head proportions',
+  office_female: '1girl, solo, professional office worker woman in her 30s, 167cm 7.4-head proportions',
+  office_male: '1boy, solo, professional office worker man in his 30s, 178cm 7.5-head proportions',
+  married_wife: '1girl, solo, mature married adult woman in her late 30s, 164cm 7.2-head proportions',
+  married_husband: '1boy, solo, mature married adult man in his late 30s, 176cm 7.3-head proportions',
+  elderly_grandpa: '1boy, solo, elderly senior grandfather, 164cm 6.5-head proportions',
+  elderly_grandma: '1girl, solo, elderly senior grandmother, 152cm 6-head proportions',
+  plus_size_body: '1girl, solo, curvy glamorous plus-size adult woman, 170cm full-figured proportions',
   heroic_tall: 'solo, tall 194cm 9-head runway fashion model proportions',
   chibi_male: 'solo, cute chibi SD 3-head deformed character, 95cm proportions',
   male_mannequin: '1boy, solo, standard 176cm 7.5-head anatomical proportions',
   procedural: 'solo, standard 175cm 7.5-head figure proportions',
 };
+
+function buildAccessoryAndPropTags(params: {
+  nailColorId?: string;
+  footwearId?: string;
+  neckItemId?: string;
+  wristItemId?: string;
+  legItemId?: string;
+  extraSceneProps?: string[];
+}): string[] {
+  const tags: string[] = [];
+  const nail = NAIL_ITEMS.find((i) => i.id === params.nailColorId && i.id !== 'nail_none');
+  if (nail && nail.promptEn) tags.push(nail.promptEn);
+
+  const foot = FOOTWEAR_ITEMS.find((i) => i.id === params.footwearId && i.id !== 'foot_bare');
+  if (foot && foot.promptEn) tags.push(foot.promptEn);
+
+  const neck = NECK_ITEMS.find((i) => i.id === params.neckItemId && i.id !== 'neck_none');
+  if (neck && neck.promptEn) tags.push(neck.promptEn);
+
+  const wrist = WRIST_ITEMS.find((i) => i.id === params.wristItemId && i.id !== 'wrist_none');
+  if (wrist && wrist.promptEn) tags.push(wrist.promptEn);
+
+  const leg = LEG_ITEMS.find((i) => i.id === params.legItemId && i.id !== 'leg_none');
+  if (leg && leg.promptEn) tags.push(leg.promptEn);
+
+  if (params.extraSceneProps && params.extraSceneProps.length > 0) {
+    params.extraSceneProps.forEach((propId) => {
+      const prop = EXTRA_SCENE_PROPS.find((p) => p.id === propId);
+      if (prop && prop.promptEn) tags.push(prop.promptEn);
+    });
+  }
+  return tags;
+}
 
 function buildSubjectPrefix(params: PromptBuildParams): string {
   // 구버전 호환: bodyProfileMode가 지정되지 않았거나 includeMasterRef가 켜진 경우
@@ -102,7 +161,7 @@ function cleanReferenceBoilerplate(raw: string, keepRef: boolean): string {
     .trim();
 }
 
-// 방안 A: 저장 & 연동 탭용 핵심 장면 태그 한 줄 요약기 (카메라·마네킹·복장·테마·조명)
+// 방안 A: 저장 & 연동 탭용 핵심 장면 태그 한 줄 요약기 (카메라·마네킹·복장·아이템·테마·조명)
 export function buildCompactSceneTagSummary(params: {
   modelId: MannequinModelId;
   outfitId: number;
@@ -110,6 +169,12 @@ export function buildCompactSceneTagSummary(params: {
   envIndex: number;
   lightIndex: number;
   postureId: number;
+  nailColorId?: string;
+  footwearId?: string;
+  neckItemId?: string;
+  wristItemId?: string;
+  legItemId?: string;
+  extraSceneProps?: string[];
 }): string {
   const subject = MODEL_PROMPT_PROFILES[params.modelId] || MODEL_PROMPT_PROFILES.realistic_woman;
   const outfit = params.outfitId > 0 ? findOutfitById(params.outfitId) : null;
@@ -117,13 +182,15 @@ export function buildCompactSceneTagSummary(params: {
   const posture = POSTURES_DATA.find((p) => p.id === params.postureId) || POSTURES_DATA[0];
 
   const outfitTag = outfit
-    ? `wearing ${ outfit.id >= 1000 ? outfit.text : outfit.nameEn.toLowerCase() }`
-    : 'anatomical art mannequin reference';
+    ? `wearing ${outfit.id >= 1000 ? outfit.text : outfit.nameEn.toLowerCase()}`
+    : 'unclothed bare mannequin figure';
+  const itemTags = buildAccessoryAndPropTags(params);
+  const itemClause = itemTags.length > 0 ? `, ${itemTags.join(', ')}` : '';
   const themeTag = `${theme.titleEn.toLowerCase()} setting`;
   const lightRaw = theme.lightings[params.lightIndex] || theme.lightings[0] || '';
   const lightTag = lightRaw.replace(/^with\s+/i, '').split(',')[0].trim();
 
-  return `full body shot, ${posture.fov}mm lens, ${subject}, ${outfitTag}, ${themeTag}, ${lightTag}, high-resolution studio quality`;
+  return `full body shot, ${posture.fov}mm lens, ${subject}, ${outfitTag}${itemClause}, ${themeTag}, ${lightTag}, high-resolution studio quality`;
 }
 
 // 단일 확정 프롬프트 생성 (현재 3D 뷰포트 상태와 1:1 일치)

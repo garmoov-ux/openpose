@@ -86,12 +86,12 @@ export function clearOutfitMeshes(root: THREE.Object3D): void {
   });
 }
 
-interface CachedTriData {
+export interface CachedTriData {
   triCoords: Float32Array;
   thickness: number;
 }
 
-function getOrComputeTriData(skinnedMesh: THREE.SkinnedMesh): CachedTriData {
+export function getOrComputeTriData(skinnedMesh: THREE.SkinnedMesh): CachedTriData {
   if (skinnedMesh.userData.cachedTriData) {
     return skinnedMesh.userData.cachedTriData as CachedTriData;
   }

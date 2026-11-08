@@ -236,13 +236,14 @@ export function applyStudioThemeEnvironment(
   themeId: SoloThemeId,
   envIndex: number,
   lightIndex: number,
-  isShadingMode: boolean
+  isShadingMode: boolean,
+  extraSceneProps: string[] = []
 ): number {
   const base = THEME_PALETTES[themeId] || THEME_PALETTES.alley_downtown_street;
   const themeData = THEMES_DATA[themeId] || THEMES_DATA.alley_downtown_street;
   const lightText = themeData.lightings[lightIndex] || '';
 
-  rebuildThemePropsGroup(lights.themePropsGroup, themeId, envIndex);
+  rebuildThemePropsGroup(lights.themePropsGroup, themeId, envIndex, lightIndex, extraSceneProps);
 
   // 세부 장소(envIndex)에 따른 색조 미세 변화
   const envColorShift = ((envIndex % 5) - 2) * 0.03;

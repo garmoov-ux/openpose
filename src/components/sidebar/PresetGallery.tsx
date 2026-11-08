@@ -7,7 +7,7 @@ import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { PosePreviewThumbnail } from './PosePreviewThumbnail';
-import { Bookmark, Search, Check, Dices, UserCheck } from 'lucide-react';
+import { Bookmark, Search, Check, Dices, Users } from 'lucide-react';
 import { PosePreset } from '@/types';
 
 interface PresetGalleryProps {
@@ -44,25 +44,32 @@ function formatKoreanPoseTitle(rawLabel: string): string {
 
 export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) => {
   const currentModelId = useEditorStore((s) => s.currentModelId);
-  const { selectedPostureId, setSelectedPostureId } = useThemeSoloStore();
-
+  const { selectedPostureId, setSelectedPostureId, showPartnerGuide, setShowPartnerGuide } = useThemeSoloStore();
   const profile = useMemo(() => getMannequinProfile(currentModelId), [currentModelId]);
+  const [presetTab, setPresetTab] = useState<'all' | 'glamour' | 'couple' | 'basic'>('all');
   const [selectedGroup, setSelectedGroup] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeStandardId, setActiveStandardId] = useState<string | null>(
-    profile.defaultStandardPoseId
-  );
+  const [activeStandardId, setActiveStandardId] = useState<string | null>(profile.defaultStandardPoseId);
 
   useEffect(() => {
     setActiveStandardId(profile.defaultStandardPoseId);
     setSelectedGroup('all');
   }, [profile.defaultStandardPoseId]);
 
-  const availableGroups = useMemo(() => {
-    return ALL_GROUPS.filter(
-      (g) => g.id === 'all' || profile.allowedPostureGroups.includes(g.id)
-    );
-  }, [profile.allowedPostureGroups]);
+  const filteredTopPresets = useMemo(() => {
+    return POSE_PRESETS.filter((p) => {
+      if (profile.outfitProfile === 'youth_casual' && (p.category === 'glamour' || p.category === 'couple')) return false;
+      if (presetTab === 'all') return true;
+      if (presetTab === 'glamour') return p.category === 'glamour';
+      if (presetTab === 'couple') return p.category === 'couple';
+      return p.category === 'standing' || p.category === 'sitting' || p.category === 'action';
+    });
+  }, [presetTab, profile.outfitProfile]);
+
+  const availableGroups = useMemo(
+    () => ALL_GROUPS.filter((g) => g.id === 'all' || profile.allowedPostureGroups.includes(g.id)),
+    [profile.allowedPostureGroups]
+  );
 
   const filteredPostures = useMemo(() => {
     return POSTURES_DATA.filter((p) => {
@@ -81,6 +88,12 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
     setActiveStandardId(preset.id);
     if (!sceneManager) return;
     applyPosePreset(sceneManager.humanoid.bones, preset);
+    if (preset.category === 'couple') {
+      setShowPartnerGuide(true);
+      sceneManager.setPartnerGuide(true, preset);
+    } else if (!showPartnerGuide) {
+      sceneManager.setPartnerGuide(false);
+    }
   };
 
   const handleSelectPosture = (postureId: number) => {
@@ -110,67 +123,112 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
 
   return (
     <div className="block space-y-3.5 text-xs">
-      {/* 1. 기본 9대 표준 동작 3열 빠른 미리보기 */}
+      {/* 1. 화보 · 글래머 · 커플 듀오 · 표준 프리셋 (3열 그리드) */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs tracking-tight">
-            <UserCheck className="w-4 h-4 text-blue-600" />
-            <span>기본 표준·액션 자세 (9종 · 3열)</span>
+            <Users className="w-4 h-4 text-rose-600" />
+            <span>화보 · 글래머 · 커플 듀오 · 표준 프리셋 (3열)</span>
           </div>
-          <span className="text-[11px] font-semibold text-blue-600">
-            전 마네킹 공용 호환
-          </span>
+          <button
+            onClick={() => {
+              const next = !showPartnerGuide;
+              setShowPartnerGuide(next);
+              sceneManager?.setPartnerGuide(next);
+            }}
+            className={`px-2.5 py-1 rounded-full text-[10.5px] font-bold transition-all ${
+              showPartnerGuide
+                ? 'bg-rose-600 text-white shadow-xs'
+                : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
+            }`}
+          >
+            {showPartnerGuide ? '파트너 표시 중' : '커플 파트너 ON'}
+          </button>
         </div>
-        <div className="grid grid-cols-3 gap-2.5">
-          {POSE_PRESETS.map((preset) => {
+
+        <div className="grid grid-cols-4 gap-1.5">
+          {[
+            { id: 'all', label: '전체' },
+            { id: 'glamour', label: '화보·글래머' },
+            { id: 'couple', label: '커플·듀오' },
+            { id: 'basic', label: '기본·액션' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setPresetTab(tab.id as typeof presetTab)}
+              className={`py-1.5 px-2 rounded-xl text-[11px] font-bold transition-all ${
+                presetTab === tab.id
+                  ? 'bg-zinc-900 text-white shadow-xs'
+                  : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-3 gap-2">
+          {filteredTopPresets.map((preset) => {
             const isSelected = activeStandardId === preset.id;
+            const isCouple = preset.category === 'couple';
+            const isGlamour = preset.category === 'glamour';
             return (
               <button
                 key={preset.id}
                 onClick={() => handleApplyStandardPreset(preset)}
-                className={`group p-2 rounded-2xl text-[11px] font-semibold border transition-all flex flex-col gap-1.5 items-center ${
+                className={`group p-2 rounded-2xl text-[11px] font-semibold border transition-all flex flex-col gap-1 items-center ${
                   isSelected
                     ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25 shadow-sm'
                     : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-400'
                 }`}
               >
                 <PosePreviewThumbnail customPose={preset.pose} isSelected={isSelected} />
-                <span className="truncate w-full text-center py-0.5">{preset.title}</span>
+                <div className="flex items-center justify-between w-full px-0.5 mt-0.5">
+                  <span
+                    className={`text-[8.5px] font-bold px-1.5 py-0.5 rounded ${
+                      isCouple
+                        ? 'bg-rose-500/20 text-rose-500'
+                        : isGlamour
+                          ? 'bg-pink-500/20 text-pink-500'
+                          : 'bg-zinc-100 text-zinc-500'
+                    }`}
+                  >
+                    {isCouple ? '커플듀오' : isGlamour ? '글래머' : '표준'}
+                  </span>
+                </div>
+                <span className="truncate w-full text-center font-bold">{preset.title}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* 2. 마네킹 맞춤 자세 카탈로그 (3열 그리드) */}
+      {/* 2. 마네킹 맞춤 테마 자세 카탈로그 (3열 그리드) */}
       <div className="flex items-center justify-between pt-3 border-t border-zinc-100">
         <div className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs tracking-tight">
           <Bookmark className="w-4 h-4 text-blue-600" />
-          <span>현재 마네킹 맞춤 자세 ({filteredPostures.length}종)</span>
+          <span>세부 테마 자세 라이브러리 ({filteredPostures.length}종)</span>
         </div>
         <button
           onClick={handleRollRandom}
           className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-semibold rounded-full transition-colors active:scale-95"
-          title="현재 마네킹 맞춤 자세 중 무작위 적용"
         >
           <Dices className="w-3.5 h-3.5 text-blue-600" />
-          <span>무작위 추천</span>
+          <span>자세 랜덤</span>
         </button>
       </div>
 
-      {/* 검색창 */}
       <div className="relative">
         <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="자세 번호(001), 기립, 착석, 휴식 등 검색..."
+          placeholder="자세 번호(001), 아치, 스쿼트, 착석 등 검색..."
           className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-2xl pl-9 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900"
         />
       </div>
 
-      {/* 확대된 카테고리 필터 버튼 */}
       <div className="flex flex-wrap items-center gap-1.5">
         {availableGroups.map((g) => {
           const isActive = selectedGroup === g.id;
@@ -190,7 +248,6 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
         })}
       </div>
 
-      {/* 포즈 3열 비주얼 그리드 (grid-cols-3) */}
       <div className="grid grid-cols-3 gap-2.5 pb-4">
         {filteredPostures.map((p) => {
           const isSelected = activeStandardId === null && selectedPostureId === p.id;
