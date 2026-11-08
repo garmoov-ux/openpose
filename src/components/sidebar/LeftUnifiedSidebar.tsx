@@ -90,7 +90,7 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
     : currentMeta.subtitle;
 
   return (
-    <aside className="editor-sidebar absolute top-16 left-4 bottom-20 z-20 flex items-start pointer-events-none" aria-label="편집 사이드바">
+    <aside className="editor-sidebar absolute top-16 left-4 bottom-[118px] z-20 flex items-start pointer-events-none" aria-label="편집 사이드바">
       <div className="editor-sidebar-panel pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-[#F7F8FA]/95 backdrop-blur-xl border border-[#D9DEE5] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
         {/* 사이드바 상단 고정 헤더 */}
         <div className="px-4 py-3 border-b border-[#D9DEE5] flex items-center justify-between gap-2 flex-shrink-0 bg-white">

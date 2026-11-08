@@ -263,14 +263,17 @@ export class SceneManager {
   public applyBodyAccessories(config: BodyAccessoryConfig): void { this.currentAccessoryConfig = config; applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, config); }
 
   public setPartnerGuide(show: boolean, partnerPreset?: (typeof POSE_PRESETS)[number]): void {
+    const wasShowingPartner = this.showPartnerState;
     this.showPartnerState = show;
     if (partnerPreset) this.lastPartnerPreset = partnerPreset;
     const activePreset = partnerPreset || this.lastPartnerPreset || POSE_PRESETS.find((p) => p.category === 'couple');
     this.partnerHumanoid.group.visible = show && this.currentMode !== 'openpose';
     if (!show) {
       if (this.selectedActorId === 'partner') this.selectBone(null, 'main');
-      applyMannequinGroupTransform(this.humanoid.group, [0, 0, 0], [0, 0, 0], 1.0);
-      this.onMannequinTransformCallback?.('main', [0, 0, 0], [0, 0, 0], 1.0);
+      if (wasShowingPartner) {
+        applyMannequinGroupTransform(this.humanoid.group, [0, 0, 0], [0, 0, 0], 1.0);
+        this.onMannequinTransformCallback?.('main', [0, 0, 0], [0, 0, 0], 1.0);
+      }
       return;
     }
     const isMainMale = MANNEQUIN_MODELS.find((m) => m.id === this.currentModelId)?.gender === 'male';
@@ -283,6 +286,7 @@ export class SceneManager {
           this.scene.remove(this.partnerHumanoid.group);
           disposeObjectHierarchy(this.partnerHumanoid.group);
           this.partnerHumanoid = fbxRig;
+          this.partnerHumanoid.group.visible = this.showPartnerState && this.currentMode !== 'openpose';
           setJointDotsVisible(this.partnerHumanoid.group, false, null);
           this.scene.add(this.partnerHumanoid.group);
           this.partnerLoadedModelId = desiredPartnerModel;

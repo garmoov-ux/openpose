@@ -72,7 +72,8 @@ export function makeCouplePreset(
 }
 
 export const COUPLE_SUBGROUPS: { id: string; label: string }[] = [
-  { id: 'all', label: '전체 커플 (130)' },
+  { id: 'all', label: '전체 커플 (140)' },
+  { id: 'couple_everyday', label: '일상 커플 (10)' },
   { id: 'couple_standing', label: '기립·벽면·리프트 (10)' },
   { id: 'couple_chair', label: '의자·소파·랩시팅 (10)' },
   { id: 'couple_bed_front', label: '침대 대면·온탑 (10)' },

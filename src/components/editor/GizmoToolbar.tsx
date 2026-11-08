@@ -24,7 +24,6 @@ export const GizmoToolbar: React.FC = () => {
     symmetryEnabled,
     romEnabled,
     lastCommandWarning,
-    activeLeftSection,
     setGizmoMode,
     setGizmoSpace,
     setSelectedBoneName,
@@ -62,7 +61,7 @@ export const GizmoToolbar: React.FC = () => {
   };
 
   return (
-    <div className={`editor-gizmo absolute bottom-4 left-4 z-10 flex flex-col gap-2 pointer-events-none text-xs ${activeLeftSection ? 'editor-gizmo--sidebar-open' : ''}`}>
+    <div className="editor-gizmo absolute bottom-4 left-4 z-10 flex flex-col gap-2 pointer-events-none text-xs">
       <div className="editor-gizmo-actions flex flex-wrap items-center gap-1 p-1.5 bg-white/95 backdrop-blur-md rounded-2xl border border-zinc-200 pointer-events-auto shadow-sm">
         <button
           type="button"

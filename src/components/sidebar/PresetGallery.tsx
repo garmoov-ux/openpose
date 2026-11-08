@@ -31,6 +31,7 @@ const SOLO_GROUPS = [
   { id: 'bolster_ride', label: '쿠션 기대기 (10)' },
   { id: 'high_leg', label: '다리 들기 (10)' },
   { id: 'basic_std', label: '표준·액션 (9)' },
+  { id: 'solo_everyday', label: '일상 자세 (36)' },
 ];
 
 function formatKoreanPoseTitle(rawLabel: string): string {
@@ -76,10 +77,14 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
         return matchSub && matchQ;
       });
     }
+    if (selectedSoloGroup === 'solo_everyday') {
+      return POSE_PRESETS.filter((p) => p.subGroup === 'solo_everyday' && (!q || p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)));
+    }
     if (selectedSoloGroup === 'basic_std') {
       return POSE_PRESETS.filter(
         (p) =>
           (p.category === 'standing' || p.category === 'sitting' || p.category === 'action') &&
+          p.subGroup !== 'solo_everyday' &&
           (!q || p.title.toLowerCase().includes(q))
       );
     }
@@ -110,8 +115,8 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
     setActivePoseAccordion('solo');
     if (!sceneManager) return;
     sceneManager.setPartnerGuide(false);
-    sceneManager.humanoid.group.position.set(0, 0, 0);
-    sceneManager.humanoid.group.rotation.set(0, 0, 0);
+    useThemeSoloStore.getState().setMainMannequinTransform({ position: preset.mainOffset || [0, 0, 0], rotation: [0, preset.mainRotationY ?? 0, 0], scale: 1 });
+    sceneManager.applyMannequinTransform('main', preset.mainOffset || [0, 0, 0], [0, preset.mainRotationY ?? 0, 0], 1);
     applyPosePreset(sceneManager.humanoid.bones, preset);
   };
 
@@ -167,7 +172,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
             <User className="w-4 h-4 text-blue-400 shrink-0" />
             <div>
               <div className="font-bold text-xs flex items-center gap-1.5">
-                <span>2. 개인 솔로 자세 · 셀프플레이 (329종)</span>
+                <span>2. 개인 솔로 자세 (365종)</span>
                 {activePoseAccordion === 'solo' && (
                   <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-blue-600 text-white font-bold">제어 중</span>
                 )}
@@ -205,7 +210,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
                 type="text"
                 value={soloSearch}
                 onChange={(e) => setSoloSearch(e.target.value)}
-                placeholder="솔로 자세 번호(01~220), 핀업, 캣아치, 셀프, 시바리, 스플릿, 샤워 등 검색..."
+                placeholder="양반다리, 측면, 후면, 기대기, 눕기, 한쪽 무릎 등 검색..."
                 className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
@@ -215,7 +220,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
                 (g) =>
                   !isYouthModel ||
                   (!GLAMOUR_GROUP_IDS.has(g.id) &&
-                    (g.id === 'all' || g.id === 'basic_std' || profile.allowedPostureGroups.includes(g.id)))
+                    (g.id === 'all' || g.id === 'basic_std' || g.id === 'solo_everyday' || profile.allowedPostureGroups.includes(g.id)))
               ).map((g) => (
                 <button
                   key={g.id}

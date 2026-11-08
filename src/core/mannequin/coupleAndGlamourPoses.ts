@@ -6,6 +6,7 @@ import { SOLO_EXTRA_PART2_PRESETS } from './soloExtraPosesPart2';
 import { COUPLE_BED_AND_FLOOR_PRESETS } from './couplePosesBedAndFloor';
 import { COUPLE_EXTREME_AND_SPECIAL_PRESETS } from './couplePosesExtremeAndSpecial';
 import { COUPLE_LOUNGE_AND_PASSION_PRESETS } from './couplePosesLoungeAndPassion';
+import { COUPLE_EVERYDAY_PRESETS } from './coupleEverydayPoses';
 
 export { COUPLE_SUBGROUPS, SOLO_EXTRA_SUBGROUPS };
 
@@ -164,4 +165,5 @@ export const GLAMOUR_AND_COUPLE_PRESETS: PosePreset[] = [
   ...COUPLE_BED_AND_FLOOR_PRESETS,
   ...COUPLE_EXTREME_AND_SPECIAL_PRESETS,
   ...COUPLE_LOUNGE_AND_PASSION_PRESETS,
+  ...COUPLE_EVERYDAY_PRESETS,
 ];

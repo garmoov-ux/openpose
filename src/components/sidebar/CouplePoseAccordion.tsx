@@ -54,7 +54,7 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
           <Users className="w-4 h-4 text-rose-400 shrink-0" />
           <div>
             <div className="font-bold text-xs flex items-center gap-1.5">
-              <span>1. 남·여 커플 & 스페셜 체위 (130종)</span>
+              <span>1. 남·여 커플 자세 (140종)</span>
               {isOpen && (
                 <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-rose-600 text-white font-bold">
                   제어 중
@@ -100,7 +100,7 @@ export const CouplePoseAccordion: React.FC<CouplePoseAccordionProps> = ({
               type="text"
               value={coupleSearch}
               onChange={(e) => setCoupleSearch(e.target.value)}
-              placeholder="체위 번호(01~130), 리프트, 아크로바틱, 결박, 스윙, 69, 라운지 등 검색..."
+              placeholder="자세 번호(01~140), 손잡기, 앉기, 리프트 등 검색..."
               className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
           </div>

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PosePreset } from '@/types';
 import { q, sanitizePoseKeyframe } from './poses/poseMath';
 import { GLAMOUR_AND_COUPLE_PRESETS } from './coupleAndGlamourPoses';
+import { SOLO_EVERYDAY_PRESETS } from './soloEverydayPoses';
 
 export const POSE_PRESETS: PosePreset[] = [
   {
@@ -178,6 +179,7 @@ export const POSE_PRESETS: PosePreset[] = [
     },
   },
   ...GLAMOUR_AND_COUPLE_PRESETS,
+  ...SOLO_EVERYDAY_PRESETS,
 ];
 
 // 모든 본을 초기 바인드 포즈(Rest Pose)로 복원

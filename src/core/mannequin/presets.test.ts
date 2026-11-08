@@ -113,11 +113,21 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     expect(tags.toLowerCase()).not.toContain('picture 1');
   });
 
-  it('130종 남·여 커플 체위, 220종 스페셜 솔로 자세, 55종 가구·소품 카탈로그가 무결해야 한다', () => {
+  it('140종 남·여 커플 자세, 220종 스페셜 솔로 자세, 36종 일상 솔로 자세가 무결해야 한다', () => {
     const couplePresets = POSE_PRESETS.filter((p) => p.category === 'couple');
-    expect(couplePresets.length).toBe(130);
+    expect(couplePresets.length).toBe(140);
     const coupleIds = new Set(couplePresets.map((p) => p.id));
-    expect(coupleIds.size).toBe(130);
+    expect(coupleIds.size).toBe(140);
+    const everydaySolo = POSE_PRESETS.filter((p) => p.subGroup === 'solo_everyday');
+    const everydayCouple = couplePresets.filter((p) => p.subGroup === 'couple_everyday');
+    expect(everydaySolo).toHaveLength(36);
+    expect(new Set(everydaySolo.map((p) => p.id)).size).toBe(36);
+    expect(everydaySolo.some((p) => p.mainRotationY === Math.PI)).toBe(true);
+    expect(everydayCouple).toHaveLength(10);
+    everydayCouple.forEach((p) => {
+      const [x, , z] = p.partnerOffset!;
+      expect(Math.hypot(x, z)).toBeGreaterThanOrEqual(0.4);
+    });
     couplePresets.forEach((cp) => {
       expect(cp.partnerPose).toBeDefined();
       expect(cp.partnerOffset).toBeDefined();
