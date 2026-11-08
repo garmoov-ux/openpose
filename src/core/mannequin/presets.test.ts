@@ -4,6 +4,10 @@ import { POSE_PRESETS, applyPosePreset } from './presets';
 import { createProceduralHumanoid } from './humanoidRig';
 import { getSoloThemePoseKeyframe } from './poses';
 import { quatToDeg } from './poses/poseMath';
+import { MANNEQUIN_MODELS } from './models';
+import { getMannequinProfile, getOutfitsForMannequin, findOutfitById } from './mannequinProfiles';
+import { rebuildThemePropsGroup } from '@/core/scene/themePropsBuilder';
+import { buildCompactSceneTagSummary } from '@/services/comfyui/promptBuilder';
 
 describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (presets)', () => {
   it('사전 정의된 포즈 프리셋이 5개 이상 존재해야 한다', () => {
@@ -64,5 +68,42 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
       expect(lKneePos.y).toBeGreaterThan(0.03);
       expect(rKneePos.y).toBeGreaterThan(0.03);
     }
+  });
+
+  it('14종 마네킹 각각에 전용 복장 및 전용 기본 자세가 매핑되어 있어야 한다', () => {
+    MANNEQUIN_MODELS.forEach((model) => {
+      const profile = getMannequinProfile(model.id);
+      expect(profile).toBeDefined();
+      expect(POSE_PRESETS.some((p) => p.id === profile.defaultStandardPoseId)).toBe(true);
+
+      const outfits = getOutfitsForMannequin(model.id);
+      expect(outfits.length).toBeGreaterThan(0);
+
+      if (profile.defaultOutfitId > 0) {
+        expect(findOutfitById(profile.defaultOutfitId)).toBeDefined();
+      }
+
+      // 유아/아동/남성/시니어는 성인 여성 란제리·마이크로비키니가 포함되지 않아야 함
+      if (profile.outfitProfile !== 'adult_female') {
+        expect(outfits.some((o) => o.category === 'lingerie' || o.category === 'micro_bikini')).toBe(false);
+      }
+    });
+  });
+
+  it('테마 사물 생성기와 장면 핵심 태그 요약기가 정상 동작해야 한다', () => {
+    const group = new THREE.Group();
+    rebuildThemePropsGroup(group, 'alley_downtown_street', 0);
+    expect(group.children.length).toBeGreaterThan(0);
+
+    const tags = buildCompactSceneTagSummary({
+      modelId: 'realistic_muscular_male',
+      outfitId: 1011,
+      themeId: 'alley_downtown_street',
+      envIndex: 0,
+      lightIndex: 0,
+      postureId: 1,
+    });
+    expect(tags).toContain('185cm');
+    expect(tags.toLowerCase()).not.toContain('picture 1');
   });
 });

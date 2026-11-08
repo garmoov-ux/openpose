@@ -44,7 +44,7 @@ export const MannequinPreviewThumbnail: React.FC<MannequinPreviewThumbnailProps>
 
     return (
       <div
-        className={`relative w-full aspect-[4/3] bg-zinc-950 rounded-xl overflow-hidden flex items-center justify-center border transition-colors ${
+        className={`relative w-full aspect-square bg-zinc-950 rounded-xl overflow-hidden flex items-center justify-center border transition-colors ${
           isSelected
             ? 'border-blue-500/80'
             : 'border-zinc-800/80 group-hover:border-zinc-600'
@@ -62,7 +62,7 @@ export const MannequinPreviewThumbnail: React.FC<MannequinPreviewThumbnailProps>
           <img
             src={imageUrl}
             alt={`${modelId} 3D 마네킹 미리보기`}
-            className="w-full h-full object-cover relative z-20 transition-transform duration-200 group-hover:scale-105"
+            className="w-full h-full object-contain relative z-20 transition-transform duration-200 group-hover:scale-105"
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-1 text-zinc-500 relative z-20">

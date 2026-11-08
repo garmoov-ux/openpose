@@ -4,8 +4,9 @@ import { TransformControls } from 'three/examples/jsm/controls/TransformControls
 import { RenderMode, GizmoMode, GizmoSpace, CameraPreset, MannequinModelId, MaterialStyle } from '@/types';
 import { SoloThemeId } from '@/types/themeSolo';
 import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
-import { loadFbxMannequin } from '@/core/mannequin/modelLoader';
+import { loadFbxMannequin, measureHumanoidWorldYBounds } from '@/core/mannequin/modelLoader';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
+import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { applyOutfitToMannequin } from '@/core/mannequin/outfitVisualizer';
 import { CameraController } from './CameraController';
 import {
@@ -15,18 +16,12 @@ import {
   createMaterialByStyle,
 } from '@/core/shaders/materials';
 import {
-  backupBoneRotations,
-  restoreBoneRotations,
   applyMaterialToHierarchy,
   createStylizedSkeletonHelper,
   updateStylizedSkeletonHelper,
   setJointDotsVisible,
 } from './modelSwapHelper';
-import {
-  StudioLights,
-  createStudioLightsAndStage,
-  applyStudioThemeEnvironment,
-} from './environmentStudio';
+import { StudioLights, createStudioLightsAndStage, applyStudioThemeEnvironment } from './environmentStudio';
 import { pickBoneFromRaycast } from './smartPicker';
 import { getJointScreenPositions, drawOpenPoseSkeleton } from '@/core/pipeline/openposePipeline';
 
@@ -53,9 +48,10 @@ export class SceneManager {
   private currentMode: RenderMode = 'shading';
   private showGridState = true;
   private showSkeletonState = true;
+  private showThemePropsState = true;
   private selectedBoneName: string | null = null;
   private currentThemeBgHex = 0x1c1917;
-  private currentOutfitId: number | null = 1;
+  private currentOutfitId: number | null = 1001;
 
   public currentModelId: MannequinModelId = 'procedural';
   public currentMaterialStyle: MaterialStyle = 'matte_white';
@@ -74,11 +70,11 @@ export class SceneManager {
 
     const width = canvas.clientWidth || window.innerWidth || 800;
     const height = canvas.clientHeight || window.innerHeight || 600;
-    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 50);
-    this.camera.position.set(0, 1.15, 3.1);
+    this.camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 50);
+    this.camera.position.set(0, 0.92, 3.75);
 
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.shadowMap.enabled = true;
@@ -103,7 +99,7 @@ export class SceneManager {
 
     this.orbitControls = new OrbitControls(this.camera, canvas);
     this.orbitControls.enableDamping = true;
-    this.orbitControls.target.set(0, 0.95, 0);
+    this.orbitControls.target.set(0, 0.86, 0);
     this.cameraController = new CameraController(this.camera, this.orbitControls);
 
     this.transformControls = new TransformControls(this.camera, canvas);
@@ -112,9 +108,7 @@ export class SceneManager {
     this.scene.add(this.transformControls.getHelper());
     this.transformControls.addEventListener('dragging-changed', (e) => {
       this.orbitControls.enabled = !e.value;
-      if (e.value) {
-        this.isDraggingGizmo = true;
-      }
+      if (e.value) this.isDraggingGizmo = true;
     });
 
     this.canvas.addEventListener('pointerdown', this.onPointerDown);
@@ -139,10 +133,7 @@ export class SceneManager {
     const dx = event.clientX - this.pointerDownPos.x;
     const dy = event.clientY - this.pointerDownPos.y;
     if (Math.hypot(dx, dy) > 5) return;
-
-    if ((this.transformControls as unknown as { axis: string | null }).axis !== null) {
-      return;
-    }
+    if ((this.transformControls as unknown as { axis: string | null }).axis !== null) return;
 
     const rect = this.canvas.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -177,6 +168,7 @@ export class SceneManager {
     this.gridHelper.visible = isShading && this.showGridState;
     this.studioLights.stageFloor.visible = isShading && this.showGridState;
     this.studioLights.stageRing.visible = isShading && this.showGridState;
+    this.studioLights.themePropsGroup.visible = isShading && this.showThemePropsState;
     this.skeletonHelper.visible = isShading && this.showSkeletonState;
     this.humanoid.group.visible = mode !== 'openpose';
     setJointDotsVisible(this.humanoid.group, isShading && this.showSkeletonState, this.selectedBoneName);
@@ -199,43 +191,45 @@ export class SceneManager {
   }
 
   public applyThemeEnvironment(themeId: SoloThemeId, envIndex: number, lightIndex: number): void {
-    this.currentThemeBgHex = applyStudioThemeEnvironment(
-      this.scene,
-      this.studioLights,
-      themeId,
-      envIndex,
-      lightIndex,
-      this.currentMode === 'shading'
-    );
+    this.currentThemeBgHex = applyStudioThemeEnvironment(this.scene, this.studioLights, themeId, envIndex, lightIndex, this.currentMode === 'shading');
+  }
+
+  public setShowThemeProps(show: boolean): void {
+    this.showThemePropsState = show;
+    if (this.currentMode === 'shading') this.studioLights.themePropsGroup.visible = show;
   }
 
   public applyOutfit(outfitId: number | null): void {
     this.currentOutfitId = outfitId;
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, outfitId);
-    if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') {
-      this.setRenderMode(this.currentMode);
-    }
+    if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') this.setRenderMode(this.currentMode);
   }
 
   public async loadMannequinModel(modelId: MannequinModelId, onProgress?: (percent: number) => void): Promise<void> {
     if (this.currentModelId === modelId) return;
-    const boneBackup = backupBoneRotations(this.humanoid.bones);
-    const prevSelected = this.selectedBoneName;
     this.transformControls.detach();
+    this.selectedBoneName = null;
+    this.onBoneSelectedCallback?.(null);
 
     const newRig = modelId === 'procedural'
       ? createProceduralHumanoid()
       : await loadFbxMannequin(modelId, this.currentMaterialStyle, onProgress);
 
     this.scene.remove(this.humanoid.group);
-    restoreBoneRotations(newRig.bones, boneBackup);
     this.humanoid = newRig;
     this.currentModelId = modelId;
+
+    const profile = getMannequinProfile(modelId);
+    const defaultPreset = POSE_PRESETS.find((p) => p.id === profile.defaultStandardPoseId) || POSE_PRESETS[0];
+    applyPosePreset(this.humanoid.bones, defaultPreset);
+
+    this.currentOutfitId = profile.defaultOutfitId;
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     this.scene.add(this.humanoid.group);
 
+    const bounds = measureHumanoidWorldYBounds(this.humanoid.group, this.humanoid.bones, modelId);
+    this.cameraController.frameFullBody(bounds.spanY, Math.min(0, bounds.minY));
     this.setRenderMode(this.currentMode);
-    if (prevSelected) this.selectBone(prevSelected);
   }
 
   public setMaterialStyle(style: MaterialStyle): void {
@@ -267,14 +261,14 @@ export class SceneManager {
   public setGizmoSpace(space: GizmoSpace): void { this.transformControls.setSpace(space); }
   public setCameraPreset(preset: CameraPreset): void { this.cameraController.setStandardPreset(preset); }
   public setSoloThemeShot(targetHeight: number, distance: number, fov = 35): void {
-    this.cameraController.setSoloThemeShot(targetHeight, Math.max(2.1, distance), fov);
+    this.cameraController.setSoloThemeShot(targetHeight, Math.max(2.5, distance), fov);
   }
   public setPetiteProportions(isPetite: boolean): void { applyBodyProportions(this.humanoid.bones, isPetite); }
 
   public resize(width: number, height: number): void {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
     this.overlayCanvas.width = width;
     this.overlayCanvas.height = height;
   }

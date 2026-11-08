@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Copy, Download, Send, Check, AlertCircle, FileCode } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Copy, Download, Send, Check, AlertCircle, FileCode, Tag } from 'lucide-react';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
-import { buildThemeSoloPrompt } from '@/services/comfyui/promptBuilder';
+import { buildCompactSceneTagSummary } from '@/services/comfyui/promptBuilder';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { dataURLtoBlob, copyBlobToClipboard, downloadBlobAsFile, downloadJson } from '@/utils/exportUtils';
 import { getJointScreenPositions, exportOpenPoseJson } from '@/core/pipeline/openposePipeline';
@@ -23,14 +23,34 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     generationProgress,
     generationStatus,
     setGenerationProgress,
+    currentModelId,
   } = useEditorStore();
 
   const themeStore = useThemeSoloStore();
 
-  const [copied, setCopied] = useState(false);
+  const [copiedImg, setCopiedImg] = useState(false);
+  const [copiedTags, setCopiedTags] = useState(false);
   const [comfyStatus, setComfyStatus] = useState<string | null>(null);
 
   const resolutions = [512, 768, 1024];
+
+  const compactSceneTags = useMemo(() => {
+    return buildCompactSceneTagSummary({
+      modelId: currentModelId,
+      outfitId: themeStore.selectedOutfitId,
+      themeId: themeStore.selectedThemeId,
+      envIndex: themeStore.selectedEnvIndex,
+      lightIndex: themeStore.selectedLightIndex,
+      postureId: themeStore.selectedPostureId,
+    });
+  }, [
+    currentModelId,
+    themeStore.selectedOutfitId,
+    themeStore.selectedThemeId,
+    themeStore.selectedEnvIndex,
+    themeStore.selectedLightIndex,
+    themeStore.selectedPostureId,
+  ]);
 
   const handleCopyClipboard = async () => {
     if (!sceneManager) return;
@@ -38,8 +58,18 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     const blob = dataURLtoBlob(dataUrl);
     const success = await copyBlobToClipboard(blob);
     if (success) {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopiedImg(true);
+      setTimeout(() => setCopiedImg(false), 2000);
+    }
+  };
+
+  const handleCopySceneTags = async () => {
+    try {
+      await navigator.clipboard.writeText(compactSceneTags);
+      setCopiedTags(true);
+      setTimeout(() => setCopiedTags(false), 2000);
+    } catch {
+      // 클립보드 권한 실패 무시
     }
   };
 
@@ -79,22 +109,9 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       const blob = dataURLtoBlob(dataUrl);
       const filename = await comfyClient.uploadImage(blob);
 
-      // 현재 테마와 프롬프트 생성
-      const promptText = buildThemeSoloPrompt({
-        themeId: themeStore.selectedThemeId,
-        envIndex: themeStore.selectedEnvIndex,
-        lightIndex: themeStore.selectedLightIndex,
-        outfitId: themeStore.selectedOutfitId,
-        outfitCategory: themeStore.selectedOutfitCategory,
-        postureId: themeStore.selectedPostureId,
-        shotPrefixIndex: themeStore.selectedShotPrefixIndex,
-        isWildcardMode: themeStore.isWildcardMode,
-      });
-
-      console.log('ComfyUI 업로드 완료:', filename, '프롬프트:', promptText.slice(0, 80));
+      console.log('ComfyUI 업로드 완료:', filename, '장면 태그:', compactSceneTags);
       setComfyStatus(`업로드 완료: ${filename}`);
 
-      // WebSocket 실시간 진행도 수신
       comfyClient.connect((percent, status) => {
         setGenerationProgress(percent, status);
         if (percent >= 100) {
@@ -110,81 +127,121 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 p-3.5 bg-[#ffffff] rounded-[24px] border border-[#e0e0e0] text-xs">
-      <div className="text-[11px] font-semibold text-[#707070] tracking-wider px-1">
-        화면 캡처 저장 및 생성 서버 연동
-      </div>
+    <div className="flex flex-col gap-3.5 text-xs">
+      {/* 1. 고해상도 캔버스 캡처 & 클립보드 복사 카드 */}
+      <div className="flex flex-col gap-3 p-4 bg-white rounded-3xl border border-zinc-200/90 shadow-xs">
+        <div className="text-xs font-bold text-zinc-900 tracking-tight">
+          1. 3D 뷰포트 & ControlNet 맵 캡처
+        </div>
 
-      {/* 해상도 선택 (세그먼트 컨트롤 스타일) */}
-      <div className="flex items-center gap-1 p-1 bg-[#f0f0f0] rounded-full">
-        <span className="text-[#707070] px-2 text-[11px] font-medium">출력 크기:</span>
-        {resolutions.map((res) => (
+        {/* 해상도 선택 */}
+        <div className="flex items-center gap-1.5 p-1 bg-zinc-100 rounded-full">
+          <span className="text-zinc-600 px-2.5 text-xs font-semibold">출력 해상도</span>
+          {resolutions.map((res) => (
+            <button
+              key={res}
+              onClick={() => setExportResolution(res)}
+              className={`flex-1 py-1.5 rounded-full text-xs font-bold transition-all ${
+                exportResolution === res
+                  ? 'bg-zinc-900 text-white shadow-xs'
+                  : 'text-zinc-600 hover:text-zinc-900'
+              }`}
+            >
+              {res}px
+            </button>
+          ))}
+        </div>
+
+        {/* 원클릭 클립보드 복사 및 PNG 저장 */}
+        <div className="grid grid-cols-2 gap-2">
           <button
-            key={res}
-            onClick={() => setExportResolution(res)}
-            className={`flex-1 py-1 rounded-full text-[11px] font-medium transition-all ${
-              exportResolution === res
-                ? 'bg-[#ffffff] text-[#141414] shadow-sm'
-                : 'text-[#707070] hover:text-[#141414]'
-            }`}
+            onClick={handleCopyClipboard}
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-full transition-all active:scale-95"
           >
-            {res} 화소
+            {copiedImg ? (
+              <Check className="w-4 h-4 text-emerald-400" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+            <span>{copiedImg ? '이미지 복사됨' : '클립보드 이미지 복사'}</span>
           </button>
-        ))}
-      </div>
 
-      {/* 원클릭 클립보드 복사 및 다운로드 */}
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          onClick={handleCopyClipboard}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#141414] hover:bg-[#262626] text-[#ffffff] font-medium rounded-full transition-all active:scale-[0.98]"
-        >
-          {copied ? <Check className="w-3.5 h-3.5 text-[#00e676]" /> : <Copy className="w-3.5 h-3.5" />}
-          <span>{copied ? '복사 완료' : '클립보드 복사'}</span>
-        </button>
+          <button
+            onClick={handleDownloadPng}
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-white hover:bg-zinc-100 text-zinc-900 font-bold rounded-full border border-zinc-200 transition-all active:scale-95"
+          >
+            <Download className="w-4 h-4 text-zinc-700" />
+            <span>PNG 파일 저장</span>
+          </button>
+        </div>
 
         <button
-          onClick={handleDownloadPng}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#ffffff] hover:bg-[#f3f3f3] text-[#141414] font-medium rounded-full border border-[#e0e0e0] transition-all active:scale-[0.98]"
+          onClick={handleExportJson}
+          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-full transition-all"
         >
-          <Download className="w-3.5 h-3.5 text-[#707070]" />
-          <span>이미지 저장</span>
+          <FileCode className="w-4 h-4 text-blue-600" />
+          <span>OpenPose 관절 좌표 JSON 내보내기</span>
         </button>
       </div>
 
-      {/* 관절 좌표 데이터 내보내기 */}
-      <button
-        onClick={handleExportJson}
-        className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#f3f3f3] hover:bg-[#e0e0e0] text-[#141414] font-medium rounded-full transition-all"
-      >
-        <FileCode className="w-3.5 h-3.5 text-[#0066ff]" />
-        <span>관절 좌표 데이터 저장</span>
-      </button>
+      {/* 2. 방안 A: 현재 3D 장면 핵심 태그 요약기 (경량화 통합) */}
+      <div className="flex flex-col gap-2.5 p-4 bg-zinc-50 rounded-3xl border border-zinc-200/90">
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs">
+            <Tag className="w-4 h-4 text-blue-600" />
+            <span>2. 현재 3D 장면 핵심 태그 요약</span>
+          </span>
+          <span className="text-[10px] font-semibold text-zinc-500">
+            마네킹 · 복장 · 조명 자동 반영
+          </span>
+        </div>
 
-      {/* 인공지능 생성 서버 직결 섹션 */}
-      <div className="pt-2 border-t border-[#f0f0f0] flex flex-col gap-2">
-        <div className="flex items-center justify-between text-[#707070]">
-          <span className="font-medium">생성 서버 주소:</span>
+        <div className="p-2.5 bg-white border border-zinc-200 rounded-2xl text-[11px] text-zinc-700 font-mono leading-relaxed select-all">
+          {compactSceneTags}
+        </div>
+
+        <button
+          onClick={handleCopySceneTags}
+          className="flex items-center justify-center gap-1.5 py-2 px-3 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-full transition-all active:scale-95"
+        >
+          {copiedTags ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              <span>핵심 태그 복사 완료</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3.5 h-3.5" />
+              <span>핵심 장면 태그 한 줄 복사</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* 3. ComfyUI 로컬 생성 서버 직결 섹션 */}
+      <div className="p-4 bg-white rounded-3xl border border-zinc-200/90 flex flex-col gap-2.5">
+        <div className="flex items-center justify-between text-zinc-700">
+          <span className="font-bold text-zinc-900">3. ComfyUI 서버 직결</span>
           <input
             type="text"
             value={comfyUrl}
             onChange={(e) => setComfyUrl(e.target.value)}
-            className="w-36 px-2.5 py-1 bg-[#f0f0f0] rounded-[12px] text-[11px] text-[#141414] font-mono focus:outline-none focus:ring-1 focus:ring-[#141414]"
+            className="w-40 px-2.5 py-1 bg-zinc-100 rounded-xl text-[11px] text-zinc-900 font-mono focus:outline-none focus:ring-1 focus:ring-zinc-900"
           />
         </div>
 
         <button
           onClick={handleSendToComfy}
           disabled={isGenerating}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#141414] hover:bg-[#262626] disabled:opacity-50 text-[#ffffff] font-medium rounded-full transition-all active:scale-[0.98]"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-bold rounded-full transition-all active:scale-95"
         >
-          <Send className="w-3.5 h-3.5 text-[#0066ff]" />
-          <span>{isGenerating ? `생성 진행 중 (${generationProgress}%)` : '생성 서버로 즉시 전송'}</span>
+          <Send className="w-3.5 h-3.5" />
+          <span>{isGenerating ? `생성 진행 중 (${generationProgress}%)` : 'ComfyUI로 캡처 즉시 전송'}</span>
         </button>
 
         {comfyStatus && (
-          <div className="flex items-center gap-1.5 text-[11px] text-[#707070] bg-[#f0f0f0] p-2 rounded-[12px]">
-            <AlertCircle className="w-3.5 h-3.5 text-[#0066ff] flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[11px] text-zinc-700 bg-zinc-100 p-2 rounded-xl">
+            <AlertCircle className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
             <span className="truncate">{generationStatus || comfyStatus}</span>
           </div>
         )}

@@ -119,6 +119,63 @@ export const POSE_PRESETS: PosePreset[] = [
       RightLeg: { rotation: q(24, 0, 0) },
     },
   },
+  {
+    id: 'confident-hip',
+    title: '당당한 모델 포즈',
+    category: 'standing',
+    description: '한 손을 허리에 얹고 체중을 살짝 실은 당당한 기립 자세',
+    pose: {
+      Hips: { rotation: q(0, 8, -4), position: [0, 0.94, 0] },
+      Spine: { rotation: q(-3, -5, 4) },
+      Neck: { rotation: q(2, 6, 0) },
+      LeftArm: { rotation: q(-8, 0, -48) },
+      LeftForeArm: { rotation: q(0, -68, -32) },
+      RightArm: { rotation: q(-4, 0, 68) },
+      RightForeArm: { rotation: q(0, 12, 6) },
+      LeftUpLeg: { rotation: q(-4, -6, 4) },
+      LeftLeg: { rotation: q(4, 0, 0) },
+      RightUpLeg: { rotation: q(6, 8, -8) },
+      RightLeg: { rotation: q(14, 0, 0) },
+    },
+  },
+  {
+    id: 'wave-hello',
+    title: '밝게 손 흔들기',
+    category: 'standing',
+    description: '한 손을 높이 들어 반갑게 인사하는 밝고 경쾌한 자세',
+    pose: {
+      Hips: { rotation: q(0, -5, 2), position: [0, 0.95, 0] },
+      Spine: { rotation: q(-3, 5, -3) },
+      Head: { rotation: q(-4, 5, 4) },
+      LeftArm: { rotation: q(-6, 0, -64) },
+      LeftForeArm: { rotation: q(0, -18, -10) },
+      RightArm: { rotation: q(-24, 0, -28) },
+      RightForeArm: { rotation: q(0, 62, 48) },
+      LeftUpLeg: { rotation: q(-3, -4, 4) },
+      LeftLeg: { rotation: q(4, 0, 0) },
+      RightUpLeg: { rotation: q(3, 4, -4) },
+      RightLeg: { rotation: q(6, 0, 0) },
+    },
+  },
+  {
+    id: 'dynamic-jump',
+    title: '역동적 점프',
+    category: 'action',
+    description: '양팔을 들어 올리며 경쾌하게 공중으로 도약하는 자세',
+    pose: {
+      Hips: { rotation: q(-8, 6, 0), position: [0, 1.06, 0] },
+      Spine: { rotation: q(-10, -4, 0) },
+      Head: { rotation: q(-12, 0, 0) },
+      LeftArm: { rotation: q(-28, 0, 32) },
+      LeftForeArm: { rotation: q(0, -25, 10) },
+      RightArm: { rotation: q(-28, 0, -32) },
+      RightForeArm: { rotation: q(0, 25, -10) },
+      LeftUpLeg: { rotation: q(-45, -8, 8) },
+      LeftLeg: { rotation: q(68, 0, 0) },
+      RightUpLeg: { rotation: q(18, 8, -8) },
+      RightLeg: { rotation: q(52, 0, 0) },
+    },
+  },
 ];
 
 // 모든 본을 초기 바인드 포즈(Rest Pose)로 복원
@@ -176,16 +233,19 @@ function autoGroundMannequin(bones: Map<string, THREE.Bone>): void {
   const clearance = lowestBoneName.includes('Foot') ? 0.082 : 0.055;
   const targetWorldDeltaY = clearance - minSupportY;
 
-  // 바닥 아래로 내려갔거나 지나치게 떠 있는 경우 Hips 로컬 Y 위치 보정
-  if (Math.abs(targetWorldDeltaY) > 0.005) {
-    const parentWorldScale = new THREE.Vector3(1, 1, 1);
-    if (hips.parent) {
-      hips.parent.getWorldScale(parentWorldScale);
-    }
-    const localDeltaY = targetWorldDeltaY / (parentWorldScale.y || 1);
-    hips.position.y += localDeltaY;
-    hips.updateMatrixWorld(true);
+  // 부모 본(Armature)의 회전(-90도 X 등)에 영향받지 않도록 월드 좌표계에서 수직(Y) 위치만 보정하고 X, Z는 원점(0) 고정
+  const hipsWorldPos = new THREE.Vector3();
+  hips.getWorldPosition(hipsWorldPos);
+  hipsWorldPos.x = 0;
+  hipsWorldPos.y += targetWorldDeltaY;
+  hipsWorldPos.z = 0;
+
+  if (hips.parent) {
+    hips.parent.updateMatrixWorld(true);
+    hips.parent.worldToLocal(hipsWorldPos);
   }
+  hips.position.copy(hipsWorldPos);
+  hips.updateMatrixWorld(true);
 }
 
 // 기저 변환(Basis-Change Retargeting)을 통해 어떤 리그에도 정확히 포즈 적용
@@ -202,7 +262,7 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
   const poseQuat = new THREE.Quaternion();
   const deltaLocal = new THREE.Quaternion();
 
-  // 2. 포즈 키프레임 적용
+  // 2. 포즈 키프레임 회전 적용 (위치는 autoGroundMannequin에서 월드 좌표 기준으로 정확히 접지)
   Object.entries(poseMap).forEach(([boneName, data]) => {
     const bone = bones.get(boneName);
     if (!bone || !data) return;
@@ -218,22 +278,8 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     } else {
       bone.quaternion.copy(poseQuat);
     }
-
-    if (data.position && boneName === 'Hips') {
-      const restPos: THREE.Vector3 | undefined = bone.userData.restPos;
-      if (restPos && restPos.y > 0) {
-        const scale = restPos.y / 0.95;
-        bone.position.set(
-          restPos.x + data.position[0] * scale,
-          data.position[1] * scale,
-          restPos.z + data.position[2] * scale
-        );
-      } else {
-        bone.position.set(data.position[0], data.position[1], data.position[2]);
-      }
-    }
   });
 
-  // 3. 바닥 자동 접지 보정
+  // 3. 바닥 자동 접지 및 원점(X=0, Z=0) 정렬 보정
   autoGroundMannequin(bones);
 }

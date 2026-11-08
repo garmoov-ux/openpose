@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { SoloThemeId } from '@/types/themeSolo';
 import { THEMES_DATA } from '@/data/themesSolo/themesData';
+import { rebuildThemePropsGroup } from './themePropsBuilder';
 
 export interface StudioLights {
   ambient: THREE.AmbientLight;
@@ -9,6 +10,7 @@ export interface StudioLights {
   rimLight: THREE.DirectionalLight;
   stageFloor: THREE.Mesh;
   stageRing: THREE.Mesh;
+  themePropsGroup: THREE.Group;
 }
 
 interface ThemePalette {
@@ -219,9 +221,13 @@ export function createStudioLightsAndStage(scene: THREE.Scene): StudioLights {
   const stageRing = new THREE.Mesh(ringGeom, ringMat);
   stageRing.position.set(0, 0.002, 0);
 
-  scene.add(ambient, keyLight, fillLight, rimLight, stageFloor, stageRing);
+  const themePropsGroup = new THREE.Group();
+  themePropsGroup.name = 'ThemePropsGroup';
+  rebuildThemePropsGroup(themePropsGroup, 'alley_downtown_street', 0);
 
-  return { ambient, keyLight, fillLight, rimLight, stageFloor, stageRing };
+  scene.add(ambient, keyLight, fillLight, rimLight, stageFloor, stageRing, themePropsGroup);
+
+  return { ambient, keyLight, fillLight, rimLight, stageFloor, stageRing, themePropsGroup };
 }
 
 export function applyStudioThemeEnvironment(
@@ -235,6 +241,8 @@ export function applyStudioThemeEnvironment(
   const base = THEME_PALETTES[themeId] || THEME_PALETTES.alley_downtown_street;
   const themeData = THEMES_DATA[themeId] || THEMES_DATA.alley_downtown_street;
   const lightText = themeData.lightings[lightIndex] || '';
+
+  rebuildThemePropsGroup(lights.themePropsGroup, themeId, envIndex);
 
   // 세부 장소(envIndex)에 따른 색조 미세 변화
   const envColorShift = ((envIndex % 5) - 2) * 0.03;

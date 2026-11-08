@@ -18,6 +18,7 @@ interface ThemeSoloState {
   isPetite155: boolean;
   bodyProfileMode: BodyProfileMode;
   includeMasterRef: boolean;
+  showThemeProps: boolean;
   activeSidebarTab: 'theme' | 'outfit' | 'prompt';
 
   // Actions
@@ -32,6 +33,7 @@ interface ThemeSoloState {
   setIsPetite155: (petite: boolean) => void;
   setBodyProfileMode: (mode: BodyProfileMode) => void;
   setIncludeMasterRef: (include: boolean) => void;
+  setShowThemeProps: (show: boolean) => void;
   setActiveSidebarTab: (tab: 'theme' | 'outfit' | 'prompt') => void;
 
   // Random Roll Actions
@@ -45,7 +47,7 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   selectedThemeId: 'alley_downtown_street',
   selectedEnvIndex: 0,
   selectedLightIndex: 0,
-  selectedOutfitId: 1,
+  selectedOutfitId: 1001,
   selectedOutfitCategory: 'all',
   selectedPostureId: 1,
   selectedShotPrefixIndex: 0,
@@ -53,6 +55,7 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   isPetite155: false,
   bodyProfileMode: 'mannequin',
   includeMasterRef: false,
+  showThemeProps: true,
   activeSidebarTab: 'theme',
 
   setSelectedThemeId: (id) =>
@@ -79,6 +82,7 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
       isPetite155: bodyProfileMode === 'petite155',
     }),
   setIncludeMasterRef: (includeMasterRef) => set({ includeMasterRef }),
+  setShowThemeProps: (showThemeProps) => set({ showThemeProps }),
   setActiveSidebarTab: (tab) => set({ activeSidebarTab: tab }),
 
   rollRandomAll: () => {

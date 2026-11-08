@@ -1,6 +1,7 @@
 import { SoloThemeId, OutfitCategory } from '@/types/themeSolo';
 import { MannequinModelId } from '@/types';
 import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
+import { findOutfitById } from '@/core/mannequin/mannequinProfiles';
 import { MASTER_PREFIX, MASTER_SUFFIX, SHOT_PREFIXES } from '@/data/themesSolo/masterTemplate';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
@@ -89,11 +90,40 @@ function cleanReferenceBoilerplate(raw: string, keepRef: boolean): string {
       ''
     )
     .replace(
+      /,?\s*keeping her bare female breasts[\s\S]*?from Picture 1 \(image1\)\s*clearly exposed/gi,
+      ''
+    )
+    .replace(
       /^in a brand-new background environment completely different from Picture 1 \(image1\),\s*/i,
       ''
     )
     .replace(/,?\s*matching Picture 1 \(image1\)/gi, '')
+    .replace(/,?\s*from Picture 1 \(image1\)/gi, '')
     .trim();
+}
+
+// 방안 A: 저장 & 연동 탭용 핵심 장면 태그 한 줄 요약기 (카메라·마네킹·복장·테마·조명)
+export function buildCompactSceneTagSummary(params: {
+  modelId: MannequinModelId;
+  outfitId: number;
+  themeId: SoloThemeId;
+  envIndex: number;
+  lightIndex: number;
+  postureId: number;
+}): string {
+  const subject = MODEL_PROMPT_PROFILES[params.modelId] || MODEL_PROMPT_PROFILES.realistic_woman;
+  const outfit = params.outfitId > 0 ? findOutfitById(params.outfitId) : null;
+  const theme = THEMES_DATA[params.themeId] || THEMES_DATA.alley_downtown_street;
+  const posture = POSTURES_DATA.find((p) => p.id === params.postureId) || POSTURES_DATA[0];
+
+  const outfitTag = outfit
+    ? `wearing ${ outfit.id >= 1000 ? outfit.text : outfit.nameEn.toLowerCase() }`
+    : 'anatomical art mannequin reference';
+  const themeTag = `${theme.titleEn.toLowerCase()} setting`;
+  const lightRaw = theme.lightings[params.lightIndex] || theme.lightings[0] || '';
+  const lightTag = lightRaw.replace(/^with\s+/i, '').split(',')[0].trim();
+
+  return `full body shot, ${posture.fov}mm lens, ${subject}, ${outfitTag}, ${themeTag}, ${lightTag}, high-resolution studio quality`;
 }
 
 // 단일 확정 프롬프트 생성 (현재 3D 뷰포트 상태와 1:1 일치)
@@ -102,7 +132,7 @@ export function buildResolvedPrompt(params: PromptBuildParams): string {
   const outfit =
     params.outfitId === 0
       ? null
-      : OUTFITS_DATA.find((o) => o.id === params.outfitId) || OUTFITS_DATA[0];
+      : findOutfitById(params.outfitId) || OUTFITS_DATA[0];
   const posture = POSTURES_DATA.find((p) => p.id === params.postureId) || POSTURES_DATA[0];
   const theme = THEMES_DATA[params.themeId] || THEMES_DATA.alley_downtown_street;
 

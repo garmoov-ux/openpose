@@ -29,6 +29,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     selectedEnvIndex,
     selectedLightIndex,
     selectedOutfitId,
+    showThemeProps,
   } = useThemeSoloStore();
 
   useEffect(() => {
@@ -102,6 +103,11 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   useEffect(() => {
     managerRef.current?.applyOutfit(selectedOutfitId);
   }, [selectedOutfitId]);
+
+  // 테마 3D 배경 사물(가구/오브젝트) 표시 ON/OFF 동기화
+  useEffect(() => {
+    managerRef.current?.setShowThemeProps(showThemeProps);
+  }, [showThemeProps]);
 
   return (
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">

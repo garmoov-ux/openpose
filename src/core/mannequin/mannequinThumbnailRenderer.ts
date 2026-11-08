@@ -1,8 +1,10 @@
 import * as THREE from 'three';
 import { MannequinModelId, MaterialStyle } from '@/types';
 import { createProceduralHumanoid } from './humanoidRig';
-import { loadFbxMannequin } from './modelLoader';
+import { loadFbxMannequin, measureHumanoidWorldYBounds } from './modelLoader';
 import { POSE_PRESETS, applyPosePreset } from './presets';
+import { getMannequinProfile } from './mannequinProfiles';
+import { applyOutfitToMannequin } from './outfitVisualizer';
 import { setJointDotsVisible, applyMaterialToHierarchy } from '@/core/scene/modelSwapHelper';
 import { createMaterialByStyle } from '@/core/shaders/materials';
 
@@ -24,14 +26,14 @@ function getSharedStudio(): {
 
   const canvas = document.createElement('canvas');
   canvas.width = 240;
-  canvas.height = 180;
+  canvas.height = 240;
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
     preserveDrawingBuffer: true,
   });
-  renderer.setSize(240, 180, false);
+  renderer.setSize(240, 240, false);
   renderer.setPixelRatio(1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
@@ -54,8 +56,8 @@ function getSharedStudio(): {
 
   scene.add(ambient, keyLight, fillLight, rimLight, pedestal);
 
-  const camera = new THREE.PerspectiveCamera(38, 240 / 180, 0.1, 20);
-  camera.position.set(0, 0.94, 2.68);
+  const camera = new THREE.PerspectiveCamera(36, 1.0, 0.1, 25);
+  camera.position.set(0, 0.9, 3.2);
   camera.lookAt(0, 0.88, 0);
 
   sharedRenderer = renderer;
@@ -97,17 +99,36 @@ export function renderMannequinThumbnail(
             ? createProceduralHumanoid()
             : await loadFbxMannequin(modelId, style);
 
+        const profile = getMannequinProfile(modelId);
+        const defaultPreset =
+          POSE_PRESETS.find((p) => p.id === profile.defaultStandardPoseId) || POSE_PRESETS[0];
+
+        applyPosePreset(rig.bones, defaultPreset);
+        applyOutfitToMannequin(rig.group, rig.bones, profile.defaultOutfitId);
+
         if (modelId === 'procedural') {
-          applyMaterialToHierarchy(rig.group, createMaterialByStyle(style), false);
+          applyMaterialToHierarchy(rig.group, createMaterialByStyle(style), true);
         }
 
-        applyPosePreset(rig.bones, POSE_PRESETS[0]);
         setJointDotsVisible(rig.group, false, null);
 
-        // 살짝 반측면(12도) 회전하여 체형 볼륨과 실루엣이 입체적으로 보이도록 배치
         rig.group.rotation.y = 0.22;
         scene.add(rig.group);
         rig.group.updateMatrixWorld(true);
+
+        // 실제 골격 월드 Y 범위를 측정하여 머리부터 발끝까지 100% 전신 풀샷으로 카메라 자동 정렬
+        const bounds = measureHumanoidWorldYBounds(rig.group, rig.bones, modelId);
+        const minY = Math.min(-0.02, bounds.minY);
+        const maxY = Math.max(0.85, bounds.maxY);
+        const heightSpan = Math.max(0.85, maxY - minY);
+        const centerY = minY + heightSpan * 0.5;
+
+        const fovRad = THREE.MathUtils.degToRad(camera.fov);
+        const fitDist = (heightSpan * 0.58) / Math.tan(fovRad / 2);
+
+        camera.position.set(0, centerY + 0.04, Math.max(1.65, fitDist));
+        camera.lookAt(0, centerY, 0);
+        camera.updateProjectionMatrix();
 
         renderer.render(scene, camera);
         const dataUrl = renderer.domElement.toDataURL('image/webp', 0.9);
