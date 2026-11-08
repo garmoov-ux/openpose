@@ -96,3 +96,4 @@ export const EXTRA_SCENE_PROPS: ExtraScenePropOption[] = [
   { id: 'hinoki_bucket', nameKo: '히노끼 나무 욕조통 & 스파 타월', categoryKo: '온천·욕실', promptEn: 'a wooden hinoki bath bucket and folded white spa towel nearby', colorHex: 0x92400e },
   { id: 'pole_stage', nameKo: '크롬 버티컬 폴 & 라이트 포디움', categoryKo: '스페셜 무대', promptEn: 'a polished chrome vertical stage pole and circular lit podium', colorHex: 0xcbd5e1 },
 ];
+

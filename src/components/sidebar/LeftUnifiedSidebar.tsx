@@ -6,7 +6,6 @@ import {
   Download,
   Sparkles,
   Gem,
-  Dices,
   X,
   Layers,
 } from 'lucide-react';
@@ -59,7 +58,7 @@ const NAV_ITEMS: Array<{
 
 export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneManager }) => {
   const { activeLeftSection, setActiveLeftSection } = useEditorStore();
-  const { activeSidebarTab, setActiveSidebarTab, rollRandomAll } = useThemeSoloStore();
+  const { activeSidebarTab, setActiveSidebarTab } = useThemeSoloStore();
   const scrollContainerRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
@@ -77,41 +76,38 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
   const effectiveThemeTab =
     activeSidebarTab === 'outfit' || activeSidebarTab === 'props' ? activeSidebarTab : 'theme';
 
+  const isPropsTab = activeLeftSection === 'themes' && effectiveThemeTab === 'props';
+  const headerIcon = isPropsTab ? <Gem className="w-4 h-4 text-pink-400" /> : currentMeta.icon;
+  const headerTitle = isPropsTab ? '아이템 & 소품' : currentMeta.label;
+  const headerSub = isPropsTab
+    ? '네일·구두·스타킹·초커·가터링·팔찌 및 3D 공간 소품'
+    : currentMeta.subtitle;
+
   return (
     <aside className="absolute top-16 left-4 bottom-20 z-20 flex items-start pointer-events-none">
       {/* 3열 그리드 표시를 위해 확장된 좌측 사이드바 패널 (w-[480px]) */}
       <div className="pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
-        {/* 사이드바 상단 고정 헤더 + 전체 랜덤 세트 버튼 */}
+        {/* 사이드바 상단 고정 헤더 */}
         <div className="px-4 py-3.5 border-b border-zinc-100 flex items-center justify-between gap-2 flex-shrink-0">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-9 h-9 rounded-2xl bg-zinc-900 text-blue-400 flex items-center justify-center shadow-xs shrink-0">
-              {currentMeta.icon}
+              {headerIcon}
             </div>
             <div className="min-w-0">
               <h2 className="text-sm font-bold text-zinc-900 tracking-tight leading-tight truncate">
-                {currentMeta.label}
+                {headerTitle}
               </h2>
-              <p className="text-[11px] text-zinc-500 mt-0.5 truncate">{currentMeta.subtitle}</p>
+              <p className="text-[11px] text-zinc-500 mt-0.5 truncate">{headerSub}</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 shrink-0">
-            <button
-              onClick={rollRandomAll}
-              className="flex items-center gap-1 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-amber-400 rounded-full text-[11px] font-bold shadow-xs transition-all active:scale-95"
-              title="배경 테마 + 세부장소 + 조명 + 의상 + 바디 아이템 + 자세를 한 번에 무작위 조합"
-            >
-              <Dices className="w-3.5 h-3.5" />
-              <span>전체 랜덤 세트</span>
-            </button>
-            <button
-              onClick={() => setActiveLeftSection(null)}
-              aria-label="사이드바 닫기"
-              className="w-8 h-8 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-400 hover:text-zinc-800 transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
+          <button
+            onClick={() => setActiveLeftSection(null)}
+            aria-label="사이드바 닫기"
+            className="w-8 h-8 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-400 hover:text-zinc-800 transition-colors shrink-0"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
         {/* 테마 & 의상 & 바디 아이템 3분할 확대 탭 메뉴 */}
