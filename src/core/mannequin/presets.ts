@@ -1,16 +1,6 @@
 import * as THREE from 'three';
 import { PosePreset } from '@/types';
-
-// 오일러각(degree) -> 쿼터니언 변환 헬퍼
-function q(xDeg: number, yDeg: number, zDeg: number): [number, number, number, number] {
-  const euler = new THREE.Euler(
-    THREE.MathUtils.degToRad(xDeg),
-    THREE.MathUtils.degToRad(yDeg),
-    THREE.MathUtils.degToRad(zDeg)
-  );
-  const quat = new THREE.Quaternion().setFromEuler(euler);
-  return [quat.x, quat.y, quat.z, quat.w];
-}
+import { q, sanitizePoseKeyframe } from './poses/poseMath';
 
 export const POSE_PRESETS: PosePreset[] = [
   {
@@ -20,12 +10,18 @@ export const POSE_PRESETS: PosePreset[] = [
     description: '어깨 너비로 편안하게 서 있는 기본 체형 자세',
     pose: {
       Hips: { rotation: q(0, 0, 0), position: [0, 0.95, 0] },
-      LeftArm: { rotation: q(0, 0, -68) },
-      RightArm: { rotation: q(0, 0, 68) },
-      LeftForeArm: { rotation: q(0, 0, -8) },
-      RightForeArm: { rotation: q(0, 0, 8) },
-      LeftUpLeg: { rotation: q(0, 0, 2) },
-      RightUpLeg: { rotation: q(0, 0, -2) },
+      Spine: { rotation: q(0, 0, 0) },
+      Spine1: { rotation: q(0, 0, 0) },
+      Neck: { rotation: q(0, 0, 0) },
+      Head: { rotation: q(0, 0, 0) },
+      LeftArm: { rotation: q(-4, 0, -66) },
+      RightArm: { rotation: q(-4, 0, 66) },
+      LeftForeArm: { rotation: q(0, -14, -8) },
+      RightForeArm: { rotation: q(0, 14, 8) },
+      LeftUpLeg: { rotation: q(0, -4, 3) },
+      LeftLeg: { rotation: q(2, 0, 0) },
+      RightUpLeg: { rotation: q(0, 4, -3) },
+      RightLeg: { rotation: q(2, 0, 0) },
     },
   },
   {
@@ -35,12 +31,18 @@ export const POSE_PRESETS: PosePreset[] = [
     description: '양팔을 수평으로 곧게 뻗은 3D 골격 표준 자세',
     pose: {
       Hips: { rotation: q(0, 0, 0), position: [0, 0.95, 0] },
+      Spine: { rotation: q(0, 0, 0) },
+      Spine1: { rotation: q(0, 0, 0) },
+      Neck: { rotation: q(0, 0, 0) },
+      Head: { rotation: q(0, 0, 0) },
       LeftArm: { rotation: q(0, 0, 0) },
       RightArm: { rotation: q(0, 0, 0) },
       LeftForeArm: { rotation: q(0, 0, 0) },
       RightForeArm: { rotation: q(0, 0, 0) },
       LeftUpLeg: { rotation: q(0, 0, 0) },
+      LeftLeg: { rotation: q(0, 0, 0) },
       RightUpLeg: { rotation: q(0, 0, 0) },
+      RightLeg: { rotation: q(0, 0, 0) },
     },
   },
   {
@@ -49,15 +51,16 @@ export const POSE_PRESETS: PosePreset[] = [
     category: 'action',
     description: '앞뒤로 팔다리가 교차하며 걷는 역동적인 자세',
     pose: {
-      Hips: { rotation: q(5, 5, 0), position: [0, 0.93, 0] },
-      LeftArm: { rotation: q(-25, 0, -50) },
-      RightArm: { rotation: q(30, 0, 50) },
-      LeftForeArm: { rotation: q(0, 0, -30) },
-      RightForeArm: { rotation: q(0, 0, 20) },
-      LeftUpLeg: { rotation: q(25, 0, 0) },
-      LeftLeg: { rotation: q(-20, 0, 0) },
-      RightUpLeg: { rotation: q(-20, 0, 0) },
-      RightLeg: { rotation: q(15, 0, 0) },
+      Hips: { rotation: q(4, -6, 0), position: [0, 0.93, 0] },
+      Spine: { rotation: q(4, 6, 0) },
+      LeftArm: { rotation: q(22, 0, -64) },
+      RightArm: { rotation: q(-26, 0, 64) },
+      LeftForeArm: { rotation: q(0, -25, -10) },
+      RightForeArm: { rotation: q(0, 35, 10) },
+      LeftUpLeg: { rotation: q(-28, -3, 3) },
+      LeftLeg: { rotation: q(18, 0, 0) },
+      RightUpLeg: { rotation: q(22, 3, -3) },
+      RightLeg: { rotation: q(28, 0, 0) },
     },
   },
   {
@@ -66,16 +69,17 @@ export const POSE_PRESETS: PosePreset[] = [
     category: 'action',
     description: '상체를 숙이고 강하게 도약하는 달리기 자세',
     pose: {
-      Hips: { rotation: q(20, 10, 0), position: [0, 0.88, 0] },
-      Spine: { rotation: q(15, 0, 0) },
-      LeftArm: { rotation: q(-55, 0, -45) },
-      LeftForeArm: { rotation: q(0, 0, -75) },
-      RightArm: { rotation: q(50, 0, 45) },
-      RightForeArm: { rotation: q(0, 0, 80) },
-      LeftUpLeg: { rotation: q(55, 0, 5) },
-      LeftLeg: { rotation: q(-70, 0, 0) },
-      RightUpLeg: { rotation: q(-40, 0, -5) },
-      RightLeg: { rotation: q(25, 0, 0) },
+      Hips: { rotation: q(18, -10, 0), position: [0, 0.88, 0] },
+      Spine: { rotation: q(12, 10, 0) },
+      Head: { rotation: q(-15, 0, 0) },
+      LeftArm: { rotation: q(42, 0, -58) },
+      LeftForeArm: { rotation: q(0, -80, -20) },
+      RightArm: { rotation: q(-48, 0, 58) },
+      RightForeArm: { rotation: q(0, 85, 20) },
+      LeftUpLeg: { rotation: q(-62, -4, 5) },
+      LeftLeg: { rotation: q(65, 0, 0) },
+      RightUpLeg: { rotation: q(38, 4, -5) },
+      RightLeg: { rotation: q(75, 0, 0) },
     },
   },
   {
@@ -84,15 +88,16 @@ export const POSE_PRESETS: PosePreset[] = [
     category: 'sitting',
     description: '무릎을 90도로 구부려 단정히 앉은 자세',
     pose: {
-      Hips: { rotation: q(0, 0, 0), position: [0, 0.55, 0] },
-      LeftUpLeg: { rotation: q(-90, 0, 0) },
-      LeftLeg: { rotation: q(90, 0, 0) },
-      RightUpLeg: { rotation: q(-90, 0, 0) },
-      RightLeg: { rotation: q(90, 0, 0) },
-      LeftArm: { rotation: q(0, 0, -40) },
-      LeftForeArm: { rotation: q(0, 0, -30) },
-      RightArm: { rotation: q(0, 0, 40) },
-      RightForeArm: { rotation: q(0, 0, 30) },
+      Hips: { rotation: q(0, 0, 0), position: [0, 0.54, 0] },
+      Spine: { rotation: q(4, 0, 0) },
+      LeftUpLeg: { rotation: q(-88, -6, 8) },
+      LeftLeg: { rotation: q(88, 0, 0) },
+      RightUpLeg: { rotation: q(-88, 6, -8) },
+      RightLeg: { rotation: q(88, 0, 0) },
+      LeftArm: { rotation: q(-18, 0, -62) },
+      LeftForeArm: { rotation: q(0, -45, -15) },
+      RightArm: { rotation: q(-18, 0, 62) },
+      RightForeArm: { rotation: q(0, 45, 15) },
     },
   },
   {
@@ -101,16 +106,17 @@ export const POSE_PRESETS: PosePreset[] = [
     category: 'action',
     description: '턱을 당기고 양손을 올려 안면을 보호하는 격투 자세',
     pose: {
-      Hips: { rotation: q(10, 25, 0), position: [0, 0.90, 0] },
-      Neck: { rotation: q(5, -20, 0) },
-      LeftArm: { rotation: q(40, 10, -40) },
-      LeftForeArm: { rotation: q(0, 0, -90) },
-      RightArm: { rotation: q(45, -10, 35) },
-      RightForeArm: { rotation: q(0, 0, 95) },
-      LeftUpLeg: { rotation: q(20, 10, 0) },
-      LeftLeg: { rotation: q(-15, 0, 0) },
-      RightUpLeg: { rotation: q(-25, -10, 0) },
-      RightLeg: { rotation: q(20, 0, 0) },
+      Hips: { rotation: q(8, 24, 0), position: [0, 0.89, 0] },
+      Spine: { rotation: q(8, -10, 0) },
+      Neck: { rotation: q(6, -14, 0) },
+      LeftArm: { rotation: q(-48, 0, -52) },
+      LeftForeArm: { rotation: q(0, -95, -35) },
+      RightArm: { rotation: q(-42, 0, 52) },
+      RightForeArm: { rotation: q(0, 100, 35) },
+      LeftUpLeg: { rotation: q(-24, -12, 14) },
+      LeftLeg: { rotation: q(28, 0, 0) },
+      RightUpLeg: { rotation: q(16, 12, -14) },
+      RightLeg: { rotation: q(24, 0, 0) },
     },
   },
 ];
@@ -131,18 +137,75 @@ export function resetBonesToRestPose(bones: Map<string, THREE.Bone>): void {
   });
 }
 
+const SUPPORT_BONES = [
+  'Hips',
+  'LeftUpLeg',
+  'LeftLeg',
+  'LeftFoot',
+  'RightUpLeg',
+  'RightLeg',
+  'RightFoot',
+  'Spine',
+  'Head',
+];
+
+// 포즈 적용 후 마네킹의 최저 관절점이 바닥(y=0) 아래로 파묻히거나 공중에 뜨지 않도록 자동 접지 보정
+function autoGroundMannequin(bones: Map<string, THREE.Bone>): void {
+  const hips = bones.get('Hips');
+  if (!hips) return;
+
+  hips.updateMatrixWorld(true);
+
+  const worldPos = new THREE.Vector3();
+  let minSupportY = Infinity;
+  let lowestBoneName = 'LeftFoot';
+
+  for (const name of SUPPORT_BONES) {
+    const b = bones.get(name);
+    if (!b) continue;
+    b.getWorldPosition(worldPos);
+    if (worldPos.y < minSupportY) {
+      minSupportY = worldPos.y;
+      lowestBoneName = name;
+    }
+  }
+
+  if (!Number.isFinite(minSupportY)) return;
+
+  // 발목(Foot)이 최저점일 때는 발바닥 두께(약 0.08m), 무릎/골반이 최저점일 때는 반경(약 0.055m) 확보
+  const clearance = lowestBoneName.includes('Foot') ? 0.082 : 0.055;
+  const targetWorldDeltaY = clearance - minSupportY;
+
+  // 바닥 아래로 내려갔거나 지나치게 떠 있는 경우 Hips 로컬 Y 위치 보정
+  if (Math.abs(targetWorldDeltaY) > 0.005) {
+    const parentWorldScale = new THREE.Vector3(1, 1, 1);
+    if (hips.parent) {
+      hips.parent.getWorldScale(parentWorldScale);
+    }
+    const localDeltaY = targetWorldDeltaY / (parentWorldScale.y || 1);
+    hips.position.y += localDeltaY;
+    hips.updateMatrixWorld(true);
+  }
+}
+
 // 기저 변환(Basis-Change Retargeting)을 통해 어떤 리그에도 정확히 포즈 적용
 export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePreset): void {
   // 1. 먼저 모든 관절을 초기 바인드 상태로 초기화하여 이전 포즈 잔상 제거
   resetBonesToRestPose(bones);
 
+  const isTPose = preset.id === 't-pose';
+  const isStandardPreset = POSE_PRESETS.some((p) => p.id === preset.id);
+  const poseMap = isTPose || isStandardPreset
+    ? preset.pose
+    : sanitizePoseKeyframe(preset.pose, false);
+
   const poseQuat = new THREE.Quaternion();
   const deltaLocal = new THREE.Quaternion();
 
   // 2. 포즈 키프레임 적용
-  Object.entries(preset.pose).forEach(([boneName, data]) => {
+  Object.entries(poseMap).forEach(([boneName, data]) => {
     const bone = bones.get(boneName);
-    if (!bone) return;
+    if (!bone || !data) return;
 
     poseQuat.set(data.rotation[0], data.rotation[1], data.rotation[2], data.rotation[3]);
 
@@ -150,7 +213,6 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     const worldRest: THREE.Quaternion | undefined = bone.userData.worldRestQuat;
 
     if (localRest && worldRest) {
-      // Q_final = Q_localRest * (Q_worldRest^-1 * Q_pose * Q_worldRest)
       deltaLocal.copy(worldRest).invert().multiply(poseQuat).multiply(worldRest);
       bone.quaternion.copy(localRest).multiply(deltaLocal);
     } else {
@@ -172,8 +234,6 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     }
   });
 
-  const root = bones.get('Hips');
-  if (root) {
-    root.updateMatrixWorld(true);
-  }
+  // 3. 바닥 자동 접지 보정
+  autoGroundMannequin(bones);
 }

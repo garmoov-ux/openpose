@@ -79,6 +79,37 @@ function createJointColliderAndDot(
   return collider;
 }
 
+const fbxBufferCache = new Map<string, Promise<ArrayBuffer>>();
+
+function fetchFbxBuffer(url: string, onProgress?: (percent: number) => void): Promise<ArrayBuffer> {
+  const cached = fbxBufferCache.get(url);
+  if (cached) {
+    onProgress?.(100);
+    return cached;
+  }
+
+  const promise = new Promise<ArrayBuffer>((resolve, reject) => {
+    const loader = new THREE.FileLoader();
+    loader.setResponseType('arraybuffer');
+    loader.load(
+      url,
+      (data) => resolve(data as ArrayBuffer),
+      (xhr) => {
+        if (xhr.total > 0 && onProgress) {
+          onProgress(Math.round((xhr.loaded / xhr.total) * 100));
+        }
+      },
+      (err) => {
+        fbxBufferCache.delete(url);
+        reject(err);
+      }
+    );
+  });
+
+  fbxBufferCache.set(url, promise);
+  return promise;
+}
+
 // FBX 모델 로드 및 HumanoidRigResult 정규화
 export async function loadFbxMannequin(
   modelId: MannequinModelId,
@@ -90,19 +121,9 @@ export async function loadFbxMannequin(
     throw new Error(`모델 파일을 찾을 수 없습니다: ${modelId}`);
   }
 
+  const buffer = await fetchFbxBuffer(meta.file, onProgress);
   const loader = new FBXLoader();
-  const fbxGroup = await new Promise<THREE.Group>((resolve, reject) => {
-    loader.load(
-      meta.file!,
-      (group) => resolve(group),
-      (xhr) => {
-        if (xhr.total > 0 && onProgress) {
-          onProgress(Math.round((xhr.loaded / xhr.total) * 100));
-        }
-      },
-      (err) => reject(err)
-    );
-  });
+  const fbxGroup = loader.parse(buffer, '/models/');
 
   // 월드 행렬 갱신 후 바인드 포즈(Rest Pose) 저장
   fbxGroup.updateMatrixWorld(true);

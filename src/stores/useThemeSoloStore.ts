@@ -4,6 +4,8 @@ import { THEMES_DATA } from '@/data/themesSolo/themesData';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 
+export type BodyProfileMode = 'mannequin' | 'free' | 'petite155';
+
 interface ThemeSoloState {
   selectedThemeId: SoloThemeId;
   selectedEnvIndex: number;
@@ -14,6 +16,8 @@ interface ThemeSoloState {
   selectedShotPrefixIndex: number;
   isWildcardMode: boolean;
   isPetite155: boolean;
+  bodyProfileMode: BodyProfileMode;
+  includeMasterRef: boolean;
   activeSidebarTab: 'theme' | 'outfit' | 'prompt';
 
   // Actions
@@ -26,6 +30,8 @@ interface ThemeSoloState {
   setSelectedShotPrefixIndex: (idx: number) => void;
   setIsWildcardMode: (wildcard: boolean) => void;
   setIsPetite155: (petite: boolean) => void;
+  setBodyProfileMode: (mode: BodyProfileMode) => void;
+  setIncludeMasterRef: (include: boolean) => void;
   setActiveSidebarTab: (tab: 'theme' | 'outfit' | 'prompt') => void;
 
   // Random Roll Actions
@@ -44,7 +50,9 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   selectedPostureId: 1,
   selectedShotPrefixIndex: 0,
   isWildcardMode: false,
-  isPetite155: true,
+  isPetite155: false,
+  bodyProfileMode: 'mannequin',
+  includeMasterRef: false,
   activeSidebarTab: 'theme',
 
   setSelectedThemeId: (id) =>
@@ -60,7 +68,17 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   setSelectedPostureId: (id) => set({ selectedPostureId: id }),
   setSelectedShotPrefixIndex: (idx) => set({ selectedShotPrefixIndex: idx }),
   setIsWildcardMode: (isWildcardMode) => set({ isWildcardMode }),
-  setIsPetite155: (isPetite155) => set({ isPetite155 }),
+  setIsPetite155: (isPetite155) =>
+    set({
+      isPetite155,
+      bodyProfileMode: isPetite155 ? 'petite155' : 'mannequin',
+    }),
+  setBodyProfileMode: (bodyProfileMode) =>
+    set({
+      bodyProfileMode,
+      isPetite155: bodyProfileMode === 'petite155',
+    }),
+  setIncludeMasterRef: (includeMasterRef) => set({ includeMasterRef }),
   setActiveSidebarTab: (tab) => set({ activeSidebarTab: tab }),
 
   rollRandomAll: () => {
@@ -104,4 +122,3 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     set({ selectedPostureId: rand });
   },
 }));
-

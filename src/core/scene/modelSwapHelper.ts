@@ -62,12 +62,20 @@ export function restoreBoneRotations(
   });
 }
 
-export function applyMaterialToHierarchy(root: THREE.Object3D, material: THREE.Material): void {
+export function applyMaterialToHierarchy(
+  root: THREE.Object3D,
+  material: THREE.Material,
+  preserveOutfitMaterials = false
+): void {
   root.traverse((child) => {
     if ((child as THREE.SkinnedMesh).isSkinnedMesh || (child as THREE.Mesh).isMesh) {
       const mesh = child as THREE.Mesh;
       if (mesh.userData?.boneName || mesh.userData?.isCollider || mesh.userData?.isJointDot) {
         return; // 피킹 콜라이더 및 관절 도트 제외
+      }
+      if (preserveOutfitMaterials && mesh.userData?.isOutfitMesh && mesh.userData?.outfitMaterial) {
+        mesh.material = mesh.userData.outfitMaterial;
+        return;
       }
       mesh.material = material;
     }

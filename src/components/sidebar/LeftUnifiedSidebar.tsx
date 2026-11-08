@@ -32,8 +32,8 @@ const NAV_ITEMS: Array<{
 }> = [
   {
     id: 'mannequin',
-    label: '마네킹',
-    subtitle: '유아부터 노년·체형별 14종 인체 모델',
+    label: '마네킹 선택',
+    subtitle: '유아부터 노년·체형별 14종 3D 인체 모델',
     icon: <User className="w-4 h-4" />,
   },
   {
@@ -45,7 +45,7 @@ const NAV_ITEMS: Array<{
   {
     id: 'themes',
     label: '테마 & 의상',
-    subtitle: '16대 공간 무드와 200종 콘셉트 의상',
+    subtitle: '16대 공간 조명 무드와 200종 3D 의상',
     icon: <Palette className="w-4 h-4" />,
   },
   {
@@ -75,27 +75,29 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
 
   return (
     <aside className="absolute top-16 left-4 bottom-20 z-20 flex items-start gap-2.5 pointer-events-none">
-      {/* 1. 왼쪽 상단 수직 아이콘 독 (Rail) */}
-      <div className="pointer-events-auto flex flex-col items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-xl">
+      {/* 1. 왼쪽 상단 순수 아이콘 버튼 독 (Icon-Only Pill Rail) */}
+      <div className="pointer-events-auto flex flex-col items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-full shadow-xl">
         {NAV_ITEMS.map((item) => {
           const isActive = activeLeftSection === item.id;
           return (
             <button
               key={item.id}
               onClick={() => handleToggleSection(item.id)}
+              aria-label={item.label}
               title={item.label}
-              className={`group flex flex-col items-center justify-center w-14 py-2.5 px-1 rounded-2xl transition-all ${
+              className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all ${
                 isActive
-                  ? 'bg-zinc-900 text-white shadow-md scale-[1.02]'
+                  ? 'bg-zinc-900 text-blue-400 shadow-md scale-105'
                   : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
               }`}
             >
-              <span className={isActive ? 'text-blue-400' : 'text-zinc-700 group-hover:text-zinc-900'}>
-                {item.icon}
-              </span>
-              <span className="text-[10px] font-bold mt-1 tracking-tight leading-none">
-                {item.label}
-              </span>
+              {item.icon}
+              {/* 마우스 호버 시 우측 플로팅 툴팁 (사이드바가 닫혀 있을 때 표시) */}
+              {!activeLeftSection && (
+                <span className="pointer-events-none absolute left-12 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                  {item.label}
+                </span>
+              )}
             </button>
           );
         })}
@@ -103,7 +105,7 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
 
       {/* 2. 선택된 아이콘의 확장형 왼쪽 사이드바 뷰 (높이 제한 없이 전체 스크롤) */}
       {activeLeftSection && currentMeta && (
-        <div className="pointer-events-auto h-full w-[390px] max-w-[calc(100vw-6rem)] flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-left-4 duration-150">
+        <div className="pointer-events-auto h-full w-[390px] max-w-[calc(100vw-5rem)] flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-left-4 duration-150">
           {/* 사이드바 상단 고정 헤더 */}
           <div className="px-4 py-3.5 border-b border-zinc-100 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2.5">
@@ -167,7 +169,7 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
             </div>
           )}
 
-          {/* 사이드바 단일 통합 스크롤 영역 (이중 스크롤 및 높이 제한 없음) */}
+          {/* 사이드바 단일 통합 스크롤 영역 */}
           <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-3.5">
             {activeLeftSection === 'mannequin' && (
               <MannequinSidebarTab sceneManager={sceneManager} />

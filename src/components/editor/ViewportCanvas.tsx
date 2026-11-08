@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useEditorStore } from '@/stores/useEditorStore';
+import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
 
 interface ViewportCanvasProps {
@@ -22,6 +23,13 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     selectedBoneName,
     setSelectedBoneName,
   } = useEditorStore();
+
+  const {
+    selectedThemeId,
+    selectedEnvIndex,
+    selectedLightIndex,
+    selectedOutfitId,
+  } = useThemeSoloStore();
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -50,7 +58,6 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     };
   }, [setSelectedBoneName]);
 
-  // 스토어 상태 변경 시 씬 매니저에 반영
   useEffect(() => {
     managerRef.current?.setRenderMode(renderMode);
   }, [renderMode]);
@@ -82,6 +89,20 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     }
   }, [selectedBoneName]);
 
+  // 16대 테마, 세부 장소, 조명이 변경될 때 3D 스튜디오 조명 및 배경 즉시 반영
+  useEffect(() => {
+    managerRef.current?.applyThemeEnvironment(
+      selectedThemeId,
+      selectedEnvIndex,
+      selectedLightIndex
+    );
+  }, [selectedThemeId, selectedEnvIndex, selectedLightIndex]);
+
+  // 200종 의상 변경 시 3D 마네킹 골격에 의상 파츠 실시간 착용/해제
+  useEffect(() => {
+    managerRef.current?.applyOutfit(selectedOutfitId);
+  }, [selectedOutfitId]);
+
   return (
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">
       <canvas
@@ -91,4 +112,3 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     </div>
   );
 };
-

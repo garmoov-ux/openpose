@@ -2,7 +2,19 @@ import React, { useState, useMemo } from 'react';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { OutfitCategory } from '@/types/themeSolo';
-import { Dices, Search, Check, Sparkles, Shirt, Gem, Sun, Layers, Crown, Palette } from 'lucide-react';
+import {
+  Dices,
+  Search,
+  Check,
+  Sparkles,
+  Shirt,
+  Gem,
+  Sun,
+  Layers,
+  Crown,
+  Palette,
+  Ban,
+} from 'lucide-react';
 
 const CATEGORIES: { id: OutfitCategory | 'all'; label: string; icon: React.ReactNode }[] = [
   { id: 'all', label: '전체 (200)', icon: <Layers className="w-3 h-3" /> },
@@ -27,7 +39,6 @@ const CATEGORY_VISUALS: Record<string, { bg: string; color: string; label: strin
   color_contrast: { bg: 'from-emerald-950 via-teal-950 to-zinc-950', color: '#34d399', label: '포인트 배색' },
 };
 
-// 의상 카테고리별 실루엣 SVG 렌더러
 function renderOutfitSilhouette(category: string, accent: string) {
   switch (category) {
     case 'costume_dress':
@@ -112,19 +123,33 @@ export const OutfitSelectorTab: React.FC = () => {
 
   return (
     <div className="block space-y-3 text-xs pb-4">
-      {/* 상단 헤더 & 무작위 추천 */}
-      <div className="flex items-center justify-between">
+      {/* 상단 헤더 & 의상 해제 / 무작위 추천 */}
+      <div className="flex items-center justify-between gap-1.5">
         <span className="font-bold text-zinc-900 text-xs tracking-tight">
-          200종 콘셉트 의상 미리보기
+          200종 3D 콘셉트 의상
         </span>
-        <button
-          onClick={rollRandomOutfit}
-          className="flex items-center gap-1.5 px-3 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-full transition-colors active:scale-95"
-          title="현재 분류 내 무작위 의상 추천"
-        >
-          <Dices className="w-3.5 h-3.5 text-blue-600" />
-          <span>무작위 의상</span>
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setSelectedOutfitId(0)}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full font-semibold transition-all ${
+              selectedOutfitId === 0
+                ? 'bg-zinc-900 text-white shadow-xs'
+                : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
+            }`}
+            title="의상 벗기기 (기본 마네킹)"
+          >
+            <Ban className="w-3 h-3" />
+            <span>의상 해제</span>
+          </button>
+          <button
+            onClick={rollRandomOutfit}
+            className="flex items-center gap-1 px-2.5 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-full transition-colors active:scale-95"
+            title="현재 분류 내 무작위 의상 추천"
+          >
+            <Dices className="w-3.5 h-3.5 text-blue-600" />
+            <span>무작위</span>
+          </button>
+        </div>
       </div>
 
       {/* 검색창 */}
@@ -139,7 +164,7 @@ export const OutfitSelectorTab: React.FC = () => {
         />
       </div>
 
-      {/* 아이콘 카테고리 필터 (줄바꿈 가능한 칩 레이아웃) */}
+      {/* 아이콘 카테고리 필터 */}
       <div className="flex flex-wrap items-center gap-1">
         {CATEGORIES.map((c) => {
           const isActive = selectedOutfitCategory === c.id;
@@ -160,7 +185,7 @@ export const OutfitSelectorTab: React.FC = () => {
         })}
       </div>
 
-      {/* 높이 제한 없이 전체 스크롤되는 2열 비주얼 의상 그리드 */}
+      {/* 2열 비주얼 의상 그리드 */}
       <div className="grid grid-cols-2 gap-2.5">
         {filteredOutfits.map((item) => {
           const isSelected = selectedOutfitId === item.id;
@@ -176,7 +201,6 @@ export const OutfitSelectorTab: React.FC = () => {
                   : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400 hover:shadow-sm'
               }`}
             >
-              {/* 의상 실루엣 미리보기 썸네일 */}
               <div
                 className={`relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${vis.bg} flex items-center justify-center border border-white/10`}
               >

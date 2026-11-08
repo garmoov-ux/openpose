@@ -2,9 +2,11 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { RenderMode, GizmoMode, GizmoSpace, CameraPreset, MannequinModelId, MaterialStyle } from '@/types';
+import { SoloThemeId } from '@/types/themeSolo';
 import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
 import { loadFbxMannequin } from '@/core/mannequin/modelLoader';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
+import { applyOutfitToMannequin } from '@/core/mannequin/outfitVisualizer';
 import { CameraController } from './CameraController';
 import {
   createDepthShaderMaterial,
@@ -20,6 +22,11 @@ import {
   updateStylizedSkeletonHelper,
   setJointDotsVisible,
 } from './modelSwapHelper';
+import {
+  StudioLights,
+  createStudioLightsAndStage,
+  applyStudioThemeEnvironment,
+} from './environmentStudio';
 import { pickBoneFromRaycast } from './smartPicker';
 import { getJointScreenPositions, drawOpenPoseSkeleton } from '@/core/pipeline/openposePipeline';
 
@@ -34,6 +41,7 @@ export class SceneManager {
   public skeletonHelper: THREE.LineSegments;
   public gridHelper: THREE.GridHelper;
 
+  private studioLights: StudioLights;
   private canvas: HTMLCanvasElement;
   private overlayCanvas: HTMLCanvasElement;
   private animId: number | null = null;
@@ -46,6 +54,8 @@ export class SceneManager {
   private showGridState = true;
   private showSkeletonState = true;
   private selectedBoneName: string | null = null;
+  private currentThemeBgHex = 0x1c1917;
+  private currentOutfitId: number | null = 1;
 
   public currentModelId: MannequinModelId = 'procedural';
   public currentMaterialStyle: MaterialStyle = 'matte_white';
@@ -60,7 +70,7 @@ export class SceneManager {
     this.onBoneSelectedCallback = onBoneSelect;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x18181b);
+    this.scene.background = new THREE.Color(this.currentThemeBgHex);
 
     const width = canvas.clientWidth || window.innerWidth || 800;
     const height = canvas.clientHeight || window.innerHeight || 600;
@@ -79,12 +89,13 @@ export class SceneManager {
     this.overlayCanvas.className = 'absolute inset-0 w-full h-full pointer-events-none hidden';
     canvas.parentElement?.appendChild(this.overlayCanvas);
 
-    this.setupLighting();
+    this.studioLights = createStudioLightsAndStage(this.scene);
     this.gridHelper = new THREE.GridHelper(10, 20, 0x3f3f46, 0x27272a);
     this.scene.add(this.gridHelper);
 
     this.humanoid = createProceduralHumanoid();
     applyPosePreset(this.humanoid.bones, POSE_PRESETS[0]);
+    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     this.scene.add(this.humanoid.group);
 
     this.skeletonHelper = createStylizedSkeletonHelper();
@@ -112,18 +123,6 @@ export class SceneManager {
     this.loadMannequinModel('realistic_woman').catch(() => {});
   }
 
-  private setupLighting(): void {
-    const ambient = new THREE.AmbientLight(0xffffff, 0.85);
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.45);
-    keyLight.position.set(2.5, 4.0, 3.0);
-    keyLight.castShadow = true;
-    const fillLight = new THREE.DirectionalLight(0x90caf9, 0.6);
-    fillLight.position.set(-2.5, 2.0, -1.0);
-    const rimLight = new THREE.DirectionalLight(0xffcc80, 0.5);
-    rimLight.position.set(0, 3.0, -3.0);
-    this.scene.add(ambient, keyLight, fillLight, rimLight);
-  }
-
   private onPointerDown = (event: PointerEvent): void => {
     if (event.button !== 0) return;
     this.pointerDownPos = { x: event.clientX, y: event.clientY };
@@ -137,12 +136,10 @@ export class SceneManager {
       return;
     }
 
-    // 마우스 이동 거리가 5px 초과이면 카메라 회전(Orbit)으로 간주하여 관절 선택/해제 무시
     const dx = event.clientX - this.pointerDownPos.x;
     const dy = event.clientY - this.pointerDownPos.y;
     if (Math.hypot(dx, dy) > 5) return;
 
-    // 기즈모 축 위에 마우스가 올려져 있는 경우 클릭 시 선택 해제 방지
     if ((this.transformControls as unknown as { axis: string | null }).axis !== null) {
       return;
     }
@@ -153,7 +150,6 @@ export class SceneManager {
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const colliders = Array.from(this.humanoid.colliders.values());
     const boneName = pickBoneFromRaycast(this.raycaster, colliders, this.humanoid.group, this.humanoid.bones);
-    // 마네킹 외부 배경 클릭 시 null을 전달하여 기즈모 및 관절 선택 즉시 해제
     this.selectBone(boneName);
   };
 
@@ -179,24 +175,45 @@ export class SceneManager {
     const isShading = mode === 'shading';
 
     this.gridHelper.visible = isShading && this.showGridState;
+    this.studioLights.stageFloor.visible = isShading && this.showGridState;
+    this.studioLights.stageRing.visible = isShading && this.showGridState;
     this.skeletonHelper.visible = isShading && this.showSkeletonState;
     this.humanoid.group.visible = mode !== 'openpose';
     setJointDotsVisible(this.humanoid.group, isShading && this.showSkeletonState, this.selectedBoneName);
 
     if (mode === 'depth') {
       this.scene.background = new THREE.Color(0x000000);
-      applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial);
+      applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial, false);
     } else if (mode === 'normal') {
       this.scene.background = new THREE.Color(0x8080ff);
-      applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial);
+      applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial, false);
     } else if (mode === 'canny') {
       this.scene.background = new THREE.Color(0x000000);
-      applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial);
+      applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial, false);
     } else if (mode === 'openpose') {
       this.scene.background = new THREE.Color(0x000000);
     } else {
-      this.scene.background = new THREE.Color(0x18181b);
-      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial);
+      this.scene.background = new THREE.Color(this.currentThemeBgHex);
+      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
+    }
+  }
+
+  public applyThemeEnvironment(themeId: SoloThemeId, envIndex: number, lightIndex: number): void {
+    this.currentThemeBgHex = applyStudioThemeEnvironment(
+      this.scene,
+      this.studioLights,
+      themeId,
+      envIndex,
+      lightIndex,
+      this.currentMode === 'shading'
+    );
+  }
+
+  public applyOutfit(outfitId: number | null): void {
+    this.currentOutfitId = outfitId;
+    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, outfitId);
+    if (this.currentMode !== 'shading' && this.currentMode !== 'openpose') {
+      this.setRenderMode(this.currentMode);
     }
   }
 
@@ -214,6 +231,7 @@ export class SceneManager {
     restoreBoneRotations(newRig.bones, boneBackup);
     this.humanoid = newRig;
     this.currentModelId = modelId;
+    applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     this.scene.add(this.humanoid.group);
 
     this.setRenderMode(this.currentMode);
@@ -224,13 +242,17 @@ export class SceneManager {
     this.currentMaterialStyle = style;
     this.defaultMaterial = createMaterialByStyle(style);
     if (this.currentMode === 'shading') {
-      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial);
+      applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
     }
   }
 
   public setShowGrid(show: boolean): void {
     this.showGridState = show;
-    if (this.currentMode === 'shading') this.gridHelper.visible = show;
+    if (this.currentMode === 'shading') {
+      this.gridHelper.visible = show;
+      this.studioLights.stageFloor.visible = show;
+      this.studioLights.stageRing.visible = show;
+    }
   }
 
   public setShowSkeleton(show: boolean): void {
