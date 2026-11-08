@@ -206,14 +206,25 @@ const SUPPORT_BONES = [
   'RightFoot',
   'Spine',
   'Head',
+  'LeftHand',
+  'RightHand',
 ];
 
-// 포즈 적용 후 마네킹의 최저 관절점이 바닥(y=0) 아래로 파묻히거나 공중에 뜨지 않도록 자동 접지 보정
-function autoGroundMannequin(bones: Map<string, THREE.Bone>): void {
+// 루트 그룹의 위치/회전에 영향받지 않고 마네킹을 정확히 접지시키며 리프트(공중 들어올리기) 오프셋을 반영
+function autoGroundMannequin(bones: Map<string, THREE.Bone>, extraLiftY = 0): void {
   const hips = bones.get('Hips');
   if (!hips) return;
 
-  hips.updateMatrixWorld(true);
+  // 최상위 마네킹 Group을 찾아 임시로 원점(0,0,0) 및 회전(0,0,0) 상태에서 측정 후 복원
+  let rootObj: THREE.Object3D = hips;
+  while (rootObj.parent && rootObj.parent.type !== 'Scene') {
+    rootObj = rootObj.parent;
+  }
+  const savedPos = rootObj.position.clone();
+  const savedQuat = rootObj.quaternion.clone();
+  rootObj.position.set(0, 0, 0);
+  rootObj.quaternion.set(0, 0, 0, 1);
+  rootObj.updateMatrixWorld(true);
 
   const worldPos = new THREE.Vector3();
   let minSupportY = Infinity;
@@ -229,42 +240,41 @@ function autoGroundMannequin(bones: Map<string, THREE.Bone>): void {
     }
   }
 
-  if (!Number.isFinite(minSupportY)) return;
+  if (Number.isFinite(minSupportY)) {
+    const clearance = lowestBoneName.includes('Foot') ? 0.082 : 0.055;
+    const targetWorldDeltaY = clearance - minSupportY + extraLiftY;
 
-  // 발목(Foot)이 최저점일 때는 발바닥 두께(약 0.08m), 무릎/골반이 최저점일 때는 반경(약 0.055m) 확보
-  const clearance = lowestBoneName.includes('Foot') ? 0.082 : 0.055;
-  const targetWorldDeltaY = clearance - minSupportY;
+    const hipsWorldPos = new THREE.Vector3();
+    hips.getWorldPosition(hipsWorldPos);
+    hipsWorldPos.x = 0;
+    hipsWorldPos.y += targetWorldDeltaY;
+    hipsWorldPos.z = 0;
 
-  // 부모 본(Armature)의 회전(-90도 X 등)에 영향받지 않도록 월드 좌표계에서 수직(Y) 위치만 보정하고 X, Z는 원점(0) 고정
-  const hipsWorldPos = new THREE.Vector3();
-  hips.getWorldPosition(hipsWorldPos);
-  hipsWorldPos.x = 0;
-  hipsWorldPos.y += targetWorldDeltaY;
-  hipsWorldPos.z = 0;
-
-  if (hips.parent) {
-    hips.parent.updateMatrixWorld(true);
-    hips.parent.worldToLocal(hipsWorldPos);
+    if (hips.parent) {
+      hips.parent.updateMatrixWorld(true);
+      hips.parent.worldToLocal(hipsWorldPos);
+    }
+    hips.position.copy(hipsWorldPos);
   }
-  hips.position.copy(hipsWorldPos);
-  hips.updateMatrixWorld(true);
+
+  // 원래 루트 그룹의 위치·회전 복원
+  rootObj.position.copy(savedPos);
+  rootObj.quaternion.copy(savedQuat);
+  rootObj.updateMatrixWorld(true);
 }
 
 // 기저 변환(Basis-Change Retargeting)을 통해 어떤 리그에도 정확히 포즈 적용
 export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePreset): void {
-  // 1. 먼저 모든 관절을 초기 바인드 상태로 초기화하여 이전 포즈 잔상 제거
   resetBonesToRestPose(bones);
 
   const isTPose = preset.id === 't-pose';
   const isStandardPreset = POSE_PRESETS.some((p) => p.id === preset.id);
-  const poseMap = isTPose || isStandardPreset
-    ? preset.pose
-    : sanitizePoseKeyframe(preset.pose, false);
+  const poseMap =
+    isTPose || isStandardPreset ? preset.pose : sanitizePoseKeyframe(preset.pose, false);
 
   const poseQuat = new THREE.Quaternion();
   const deltaLocal = new THREE.Quaternion();
 
-  // 2. 포즈 키프레임 회전 적용 (위치는 autoGroundMannequin에서 월드 좌표 기준으로 정확히 접지)
   Object.entries(poseMap).forEach(([boneName, data]) => {
     const bone = bones.get(boneName);
     if (!bone || !data) return;
@@ -282,6 +292,9 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     }
   });
 
-  // 3. 바닥 자동 접지 및 원점(X=0, Z=0) 정렬 보정
-  autoGroundMannequin(bones);
+  // 스탠딩 리프트·서스펜션·온탑 등 공중/상부 들어올림 높이(hipPos[1] > 0.98) 반영
+  const rawHipY = poseMap.Hips?.position?.[1] ?? 0.95;
+  const extraLiftY = rawHipY > 0.98 ? Math.min(0.65, rawHipY - 0.82) : 0;
+
+  autoGroundMannequin(bones, extraLiftY);
 }

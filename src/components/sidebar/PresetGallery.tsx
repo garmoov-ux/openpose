@@ -3,28 +3,33 @@ import { SceneManager } from '@/core/scene/SceneManager';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
-import { COUPLE_SUBGROUPS } from '@/core/mannequin/coupleAndGlamourPoses';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { PosePreviewThumbnail } from './PosePreviewThumbnail';
-import { Bookmark, Search, Check, Dices, Users } from 'lucide-react';
+import { CouplePoseAccordion } from './CouplePoseAccordion';
+import { User, Search, Dices, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import { PosePreset } from '@/types';
+
 interface PresetGalleryProps {
   sceneManager: SceneManager | null;
 }
-const ALL_GROUPS = [
-  { id: 'all', label: '전체 추천' },
+
+const SOLO_GROUPS = [
+  { id: 'glamour_self', label: '섹시·셀프플레이 (20)' },
+  { id: 'all', label: '테마 전체 (100)' },
   { id: 'standing', label: '기립 자세 (10)' },
   { id: 'furniture_straddle', label: '의자·소파 착석 (15)' },
   { id: 'lounging', label: '기대어 휴식 (10)' },
   { id: 'seated_m', label: '좌식 다리굽힘 (15)' },
-  { id: 'v_split', label: '스트레칭 (10)' },
+  { id: 'v_split', label: '스트레칭·스플릿 (10)' },
   { id: 'deep_m_squat', label: '깊은 스쿼트 (10)' },
   { id: 'rear_arch', label: '측후면 아치 (10)' },
   { id: 'bolster_ride', label: '쿠션 기대기 (10)' },
   { id: 'high_leg', label: '다리 들기 (10)' },
+  { id: 'basic_std', label: '기본·액션 (9)' },
 ];
+
 function formatKoreanPoseTitle(rawLabel: string): string {
   return rawLabel
     .replace(/\[포즈 \d+\]\s*/g, '')
@@ -39,61 +44,81 @@ function formatKoreanPoseTitle(rawLabel: string): string {
     .replace(/#/g, '')
     .trim();
 }
+
 export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) => {
   const currentModelId = useEditorStore((s) => s.currentModelId);
-  const { selectedPostureId, setSelectedPostureId, showPartnerGuide, setShowPartnerGuide } = useThemeSoloStore();
+  const {
+    selectedPostureId,
+    setSelectedPostureId,
+    activePoseAccordion,
+    setActivePoseAccordion,
+    activeCouplePresetId,
+    setActiveCouplePresetId,
+  } = useThemeSoloStore();
+
   const profile = useMemo(() => getMannequinProfile(currentModelId), [currentModelId]);
-  const [presetTab, setPresetTab] = useState<'couple' | 'glamour' | 'basic' | 'all'>('couple');
-  const [coupleSubGroup, setCoupleSubGroup] = useState<string>('all');
-  const [selectedGroup, setSelectedGroup] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeStandardId, setActiveStandardId] = useState<string | null>(profile.defaultStandardPoseId);
+  const isYouthModel = profile.outfitProfile === 'youth_casual';
+
+  const [selectedSoloGroup, setSelectedSoloGroup] = useState<string>('glamour_self');
+  const [soloSearch, setSoloSearch] = useState('');
+  const [activeSoloStdId, setActiveSoloStdId] = useState<string | null>(null);
+
   useEffect(() => {
-    setActiveStandardId(profile.defaultStandardPoseId);
-    setSelectedGroup('all');
-    if (profile.outfitProfile === 'youth_casual') setPresetTab('basic');
-  }, [profile.defaultStandardPoseId, profile.outfitProfile]);
-  const filteredTopPresets = useMemo(() => {
-    return POSE_PRESETS.filter((p) => {
-      if (profile.outfitProfile === 'youth_casual' && (p.category === 'glamour' || p.category === 'couple')) return false;
-      if (presetTab === 'couple') return p.category === 'couple' && (coupleSubGroup === 'all' || p.subGroup === coupleSubGroup);
-      if (presetTab === 'glamour') return p.category === 'glamour';
-      if (presetTab === 'basic') return p.category === 'standing' || p.category === 'sitting' || p.category === 'action';
-      return true;
-    });
-  }, [presetTab, coupleSubGroup, profile.outfitProfile]);
-  const availableGroups = useMemo(
-    () => ALL_GROUPS.filter((g) => g.id === 'all' || profile.allowedPostureGroups.includes(g.id)),
-    [profile.allowedPostureGroups]
-  );
-  const filteredPostures = useMemo(() => {
+    if (isYouthModel) {
+      setActivePoseAccordion('solo');
+      setSelectedSoloGroup('basic_std');
+    }
+  }, [isYouthModel, setActivePoseAccordion]);
+
+  const filteredSoloPresets = useMemo(() => {
+    if (selectedSoloGroup === 'glamour_self') {
+      return POSE_PRESETS.filter((p) => p.category === 'glamour');
+    }
+    if (selectedSoloGroup === 'basic_std') {
+      return POSE_PRESETS.filter(
+        (p) => p.category === 'standing' || p.category === 'sitting' || p.category === 'action'
+      );
+    }
+    return [];
+  }, [selectedSoloGroup]);
+
+  const filteredSoloPostures = useMemo(() => {
+    if (selectedSoloGroup === 'glamour_self' || selectedSoloGroup === 'basic_std') return [];
+    const q = soloSearch.trim().toLowerCase();
     return POSTURES_DATA.filter((p) => {
       if (!profile.allowedPostureGroups.includes(p.group)) return false;
-      const matchGroup = selectedGroup === 'all' || p.group === selectedGroup;
+      const matchGroup = selectedSoloGroup === 'all' || p.group === selectedSoloGroup;
       const koTitle = formatKoreanPoseTitle(p.labelKo);
-      const q = searchQuery.trim().toLowerCase();
       return matchGroup && (!q || koTitle.toLowerCase().includes(q) || String(p.id).includes(q));
     });
-  }, [profile.allowedPostureGroups, selectedGroup, searchQuery]);
-  const handleApplyStandardPreset = (preset: PosePreset) => {
-    setActiveStandardId(preset.id);
+  }, [profile.allowedPostureGroups, selectedSoloGroup, soloSearch]);
+
+  const handleApplyCouplePreset = (preset: PosePreset) => {
+    setActiveSoloStdId(null);
+    setActiveCouplePresetId(preset.id);
     if (!sceneManager) return;
+    sceneManager.humanoid.group.position.set(0, 0, 0);
+    sceneManager.humanoid.group.rotation.set(0, 0, 0);
     applyPosePreset(sceneManager.humanoid.bones, preset);
-    if (preset.category === 'couple') {
-      setShowPartnerGuide(true);
-      sceneManager.setPartnerGuide(true, preset);
-    } else if (!showPartnerGuide) {
-      sceneManager.setPartnerGuide(false);
-    }
+    sceneManager.setPartnerGuide(true, preset);
   };
-  const handleRollRandomCouple = () => {
-    const couples = POSE_PRESETS.filter((p) => p.category === 'couple');
-    if (couples.length > 0) handleApplyStandardPreset(couples[Math.floor(Math.random() * couples.length)]);
+
+  const handleApplySoloStandard = (preset: PosePreset) => {
+    setActiveSoloStdId(preset.id);
+    setActiveCouplePresetId(null);
+    setActivePoseAccordion('solo');
+    if (!sceneManager) return;
+    sceneManager.setPartnerGuide(false);
+    sceneManager.humanoid.group.position.set(0, 0, 0);
+    sceneManager.humanoid.group.rotation.set(0, 0, 0);
+    applyPosePreset(sceneManager.humanoid.bones, preset);
   };
-  const handleSelectPosture = (postureId: number) => {
-    setActiveStandardId(null);
+
+  const handleSelectSoloPosture = (postureId: number) => {
+    setActiveSoloStdId(null);
     setSelectedPostureId(postureId);
     if (!sceneManager) return;
+    sceneManager.setPartnerGuide(false);
     const poseKeyframe = getSoloThemePoseKeyframe(postureId);
     const postureData = POSTURES_DATA.find((p) => p.id === postureId);
     if (poseKeyframe) {
@@ -106,168 +131,167 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
       });
     }
   };
-  const handleRollRandom = () => {
-    if (filteredPostures.length > 0) {
-      handleSelectPosture(filteredPostures[Math.floor(Math.random() * filteredPostures.length)].id);
+
+  const handleSwitchAccordion = (target: 'couple' | 'solo') => {
+    setActivePoseAccordion(target);
+    if (target === 'couple') {
+      const targetPreset =
+        POSE_PRESETS.find((p) => p.id === activeCouplePresetId) ||
+        POSE_PRESETS.find((p) => p.category === 'couple');
+      if (targetPreset) handleApplyCouplePreset(targetPreset);
+    } else {
+      sceneManager?.setPartnerGuide(false);
     }
   };
+
   return (
-    <div className="block space-y-3.5 text-xs">
-      {/* 1. 남성·여성 커플 50종 · 글래머 · 표준 프리셋 */}
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between gap-1">
-          <div className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs tracking-tight">
-            <Users className="w-4 h-4 text-rose-600" />
-            <span>남·여 커플 체위 (50종) & 화보 프리셋</span>
+    <div className="block space-y-3 text-xs pb-4">
+      {!isYouthModel && (
+        <CouplePoseAccordion
+          isOpen={activePoseAccordion === 'couple'}
+          activeCouplePresetId={activeCouplePresetId}
+          onToggleOpen={() => handleSwitchAccordion('couple')}
+          onApplyPreset={handleApplyCouplePreset}
+        />
+      )}
+
+      <div
+        className={`rounded-2xl border transition-all overflow-hidden ${
+          activePoseAccordion === 'solo' ? 'border-blue-600/90 bg-white shadow-sm' : 'border-zinc-200 bg-zinc-50/80'
+        }`}
+      >
+        <div
+          onClick={() => handleSwitchAccordion('solo')}
+          className={`w-full px-3.5 py-3 flex items-center justify-between cursor-pointer transition-colors ${
+            activePoseAccordion === 'solo' ? 'bg-zinc-900 text-white' : 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-800'
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <User className="w-4 h-4 text-blue-400 shrink-0" />
+            <div>
+              <div className="font-bold text-xs flex items-center gap-1.5">
+                <span>2. 개인 솔로 자세 · 셀프플레이 (129종)</span>
+                {activePoseAccordion === 'solo' && (
+                  <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-blue-600 text-white font-bold">제어 중</span>
+                )}
+              </div>
+              <p className="text-[10px] text-zinc-400">클릭 시 1인 마네킹 전용 모드로 전환 (파트너 마네킹 자동 숨김)</p>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            {profile.outfitProfile !== 'youth_casual' && (
+          <div className="flex items-center gap-1.5">
+            {activePoseAccordion === 'solo' && (
               <button
-                onClick={handleRollRandomCouple}
-                className="flex items-center gap-1 px-2 py-1 rounded-full bg-zinc-900 text-white text-[10px] font-bold hover:bg-zinc-800"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (filteredSoloPresets.length > 0) {
+                    handleApplySoloStandard(filteredSoloPresets[Math.floor(Math.random() * filteredSoloPresets.length)]);
+                  } else if (filteredSoloPostures.length > 0) {
+                    handleSelectSoloPosture(filteredSoloPostures[Math.floor(Math.random() * filteredSoloPostures.length)].id);
+                  }
+                }}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold"
               >
-                <Dices className="w-3 h-3 text-rose-400" />
-                <span>커플 셔플</span>
+                <Dices className="w-3 h-3" />
+                <span>솔로 셔플</span>
               </button>
             )}
-            <button
-              onClick={() => {
-                const next = !showPartnerGuide;
-                setShowPartnerGuide(next);
-                sceneManager?.setPartnerGuide(next);
-              }}
-              className={`px-2 py-1 rounded-full text-[10px] font-bold transition-all ${
-                showPartnerGuide ? 'bg-rose-600 text-white shadow-xs' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
-              }`}
-            >
-              {showPartnerGuide ? '파트너 ON' : '파트너 OFF'}
-            </button>
+            {activePoseAccordion === 'solo' ? <ChevronUp className="w-4 h-4 text-blue-400" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-1.5">
-          {[
-            { id: 'couple', label: '커플·체위 (50)' },
-            { id: 'glamour', label: '화보·글래머 (6)' },
-            { id: 'basic', label: '기본·액션 (6)' },
-            { id: 'all', label: '전체 보기' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setPresetTab(tab.id as typeof presetTab)}
-              className={`py-1.5 px-1.5 rounded-xl text-[10.5px] font-bold transition-all truncate ${
-                presetTab === tab.id ? 'bg-zinc-900 text-white shadow-xs' : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-        {presetTab === 'couple' && (
-          <div className="grid grid-cols-3 gap-1">
-            {COUPLE_SUBGROUPS.map((sg) => (
-              <button
-                key={sg.id}
-                onClick={() => setCoupleSubGroup(sg.id)}
-                className={`px-2 py-1.5 rounded-xl text-[10px] font-bold transition-all border truncate ${
-                  coupleSubGroup === sg.id
-                    ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
-                    : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
-                }`}
-              >
-                {sg.label}
-              </button>
-            ))}
+
+        {activePoseAccordion === 'solo' && (
+          <div className="p-3 space-y-2.5">
+            <div className="grid grid-cols-3 gap-1">
+              {SOLO_GROUPS.filter(
+                (g) =>
+                  !isYouthModel ||
+                  (g.id !== 'glamour_self' &&
+                    (g.id === 'all' || g.id === 'basic_std' || profile.allowedPostureGroups.includes(g.id)))
+              ).map((g) => (
+                <button
+                  key={g.id}
+                  onClick={() => setSelectedSoloGroup(g.id)}
+                  className={`px-2 py-1.5 rounded-xl text-[10px] font-bold transition-all border truncate ${
+                    selectedSoloGroup === g.id
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                      : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                  }`}
+                >
+                  {g.label}
+                </button>
+              ))}
+            </div>
+
+            {filteredSoloPresets.length > 0 ? (
+              <div className="grid grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-0.5">
+                {filteredSoloPresets.map((preset) => {
+                  const isSelected = activeSoloStdId === preset.id;
+                  return (
+                    <button
+                      key={preset.id}
+                      onClick={() => handleApplySoloStandard(preset)}
+                      className={`group p-2 rounded-2xl text-[10.5px] font-semibold border transition-all flex flex-col gap-1 items-center ${
+                        isSelected
+                          ? 'bg-zinc-900 text-white border-pink-500 ring-2 ring-pink-500/25 shadow-sm'
+                          : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-400'
+                      }`}
+                    >
+                      <PosePreviewThumbnail customPose={preset.pose} isSelected={isSelected} />
+                      <span className="truncate w-full text-center font-bold mt-0.5">
+                        {preset.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <div className="relative">
+                  <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
+                  <input
+                    type="text"
+                    value={soloSearch}
+                    onChange={(e) => setSoloSearch(e.target.value)}
+                    placeholder="솔로 자세 번호(001), 아치, 스쿼트, 착석 등 검색..."
+                    className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-0.5">
+                  {filteredSoloPostures.map((p) => {
+                    const isSelected = activeSoloStdId === null && selectedPostureId === p.id;
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => handleSelectSoloPosture(p.id)}
+                        className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
+                          isSelected
+                            ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/30 shadow-md'
+                            : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400'
+                        }`}
+                      >
+                        <PosePreviewThumbnail postureId={p.id} isSelected={isSelected} />
+                        <div className="flex items-center justify-between">
+                          <span
+                            className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${
+                              isSelected ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-600'
+                            }`}
+                          >
+                            {String(p.id).padStart(3, '0')}번
+                          </span>
+                          {isSelected && <Sparkles className="w-3 h-3 text-blue-400" />}
+                        </div>
+                        <span className="font-bold text-[10.5px] truncate leading-snug">
+                          {formatKoreanPoseTitle(p.labelKo)}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         )}
-        <div className="grid grid-cols-3 gap-2 max-h-96 overflow-y-auto pr-0.5">
-          {filteredTopPresets.map((preset) => {
-            const isSelected = activeStandardId === preset.id;
-            const isCouple = preset.category === 'couple';
-            const isGlamour = preset.category === 'glamour';
-            return (
-              <button
-                key={preset.id}
-                onClick={() => handleApplyStandardPreset(preset)}
-                className={`group p-2 rounded-2xl text-[11px] font-semibold border transition-all flex flex-col gap-1 items-center ${
-                  isSelected
-                    ? 'bg-zinc-900 text-white border-rose-500 ring-2 ring-rose-500/25 shadow-sm'
-                    : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-400'
-                }`}
-              >
-                <PosePreviewThumbnail customPose={preset.pose} isSelected={isSelected} />
-                <div className="flex items-center justify-between w-full px-0.5 mt-0.5">
-                  <span
-                    className={`text-[8.5px] font-bold px-1.5 py-0.5 rounded ${
-                      isCouple ? 'bg-rose-500/20 text-rose-500' : isGlamour ? 'bg-pink-500/20 text-pink-500' : 'bg-zinc-100 text-zinc-500'
-                    }`}
-                  >
-                    {isCouple ? '남·여 커플' : isGlamour ? '글래머' : '표준'}
-                  </span>
-                </div>
-                <span className="truncate w-full text-center font-bold">{preset.title}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      {/* 2. 마네킹 맞춤 솔로 테마 자세 카탈로그 (100종 3열 그리드) */}
-      <div className="flex items-center justify-between pt-3 border-t border-zinc-100">
-        <div className="flex items-center gap-1.5 font-bold text-zinc-900 text-xs tracking-tight">
-          <Bookmark className="w-4 h-4 text-blue-600" />
-          <span>솔로 테마 자세 라이브러리 ({filteredPostures.length}종)</span>
-        </div>
-        <button onClick={handleRollRandom} className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-semibold rounded-full transition-colors active:scale-95">
-          <Dices className="w-3.5 h-3.5 text-blue-600" />
-          <span>솔로 랜덤</span>
-        </button>
-      </div>
-      <div className="relative">
-        <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="자세 번호(001), 아치, 스쿼트, 착석 등 검색..."
-          className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-2xl pl-9 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900"
-        />
-      </div>
-      <div className="flex flex-wrap items-center gap-1.5">
-        {availableGroups.map((g) => (
-          <button
-            key={g.id}
-            onClick={() => setSelectedGroup(g.id)}
-            className={`px-2.5 py-1.5 rounded-full text-[11px] font-semibold transition-all ${
-              selectedGroup === g.id ? 'bg-zinc-900 text-white shadow-sm' : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
-            }`}
-          >
-            {g.label}
-          </button>
-        ))}
-      </div>
-      <div className="grid grid-cols-3 gap-2.5 pb-4">
-        {filteredPostures.map((p) => {
-          const isSelected = activeStandardId === null && selectedPostureId === p.id;
-          return (
-            <button
-              key={p.id}
-              onClick={() => handleSelectPosture(p.id)}
-              className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
-                isSelected ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/30 shadow-md' : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400 hover:shadow-sm'
-              }`}
-            >
-              <PosePreviewThumbnail postureId={p.id} isSelected={isSelected} />
-              <div className="flex flex-col gap-0.5">
-                <div className="flex items-center justify-between">
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${isSelected ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-600'}`}>
-                    {String(p.id).padStart(3, '0')}번
-                  </span>
-                  {isSelected && <span className="w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center"><Check className="w-2.5 h-2.5" /></span>}
-                </div>
-                <span className="font-bold text-[11px] truncate mt-0.5 leading-snug">{formatKoreanPoseTitle(p.labelKo)}</span>
-              </div>
-            </button>
-          );
-        })}
       </div>
     </div>
   );

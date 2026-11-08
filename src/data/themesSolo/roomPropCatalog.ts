@@ -28,20 +28,21 @@ export interface RoomPropInstance {
   position: [number, number, number];
   rotationY: number;
   scale: number;
+  customColorHex?: number;
 }
 
 export const ROOM_PROP_CATEGORIES: { id: RoomPropCategory | 'all'; label: string }[] = [
-  { id: 'all', label: '전체 사물 (49)' },
-  { id: 'main_furniture', label: '침대·소파·데스크' },
-  { id: 'adult_stage', label: '성인·무드·스테이지' },
-  { id: 'sub_furniture', label: '의자·거울·옷장' },
-  { id: 'bath_wellness', label: '욕조·샤워·기구' },
-  { id: 'lighting_arch', label: '조명·창문·러그' },
-  { id: 'table_props', label: '테이블·소품·잔' },
+  { id: 'all', label: '전체 사물 (55)' },
+  { id: 'adult_stage', label: '성인·기구·스테이지 (14)' },
+  { id: 'main_furniture', label: '침대·소파·데스크 (8)' },
+  { id: 'sub_furniture', label: '의자·거울·옷장 (11)' },
+  { id: 'bath_wellness', label: '욕조·샤워·스파 (7)' },
+  { id: 'lighting_arch', label: '조명·창문·러그 (8)' },
+  { id: 'table_props', label: '테이블·소품·잔 (7)' },
 ];
 
 export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
-  // 1. 침대 · 소파 · 메인 가구 (main_furniture)
+  // 1. 침대 · 소파 · 메인 가구 (main_furniture: 8종)
   { id: 'king_bed', nameKo: '킹사이즈 호텔 침대 & 헤드보드', category: 'main_furniture', badge: '침실 메인', colorHex: 0xf8fafc, promptEn: 'luxury king-size bed with tufted headboard and silk sheets', defaultPos: [0, 0, -0.58] },
   { id: 'canopy_frame', nameKo: '4주 캐노피 침대 커튼 프레임', category: 'main_furniture', badge: '캐노피', colorHex: 0xd97706, promptEn: 'four-poster canopy bed frame with sheer drapes', defaultPos: [0, 0, -0.58] },
   { id: 'round_bed', nameKo: '벨벳 원형 스위트 침대', category: 'main_furniture', badge: '스위트룸', colorHex: 0xbe123c, promptEn: 'plush round velvet suite bed', defaultPos: [0, 0, -0.52] },
@@ -51,17 +52,23 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'ceo_desk', nameKo: '월넛 CEO 데스크 책상', category: 'main_furniture', badge: '오피스', colorHex: 0x451a03, promptEn: 'executive walnut office desk', defaultPos: [0, 0, -0.52] },
   { id: 'limo_seat', nameKo: 'VIP 리무진·전용기 가죽 시트', category: 'main_furniture', badge: 'VIP 시트', colorHex: 0x18181b, promptEn: 'plush leather VIP recliner lounge seat', defaultPos: [0, 0, -0.54] },
 
-  // 2. 성인 · 무드 · 스테이지 기구 (adult_stage)
+  // 2. 성인 · 무드 · 스테이지 기구 (adult_stage: 14종)
   { id: 'love_chaise', nameKo: 'S-커브 벨벳 탄트라 러브체어', category: 'adult_stage', badge: '성인 체어', colorHex: 0x9f1239, promptEn: 'ergonomic curved velvet chaise lounge sofa', defaultPos: [0, 0, -0.35] },
+  { id: 'sybian_saddle', nameKo: '초강력 전동 새들 라이딩 머신', category: 'adult_stage', badge: '전동 머신', colorHex: 0xe11d48, promptEn: 'padded leather motorized saddle riding machine with chrome handle', defaultPos: [0, 0, -0.05] },
+  { id: 'love_swing', nameKo: '천장 서스펜션 벨벳 러브 스윙 해먹', category: 'adult_stage', badge: '러브 스윙', colorHex: 0xdb2777, promptEn: 'suspended velvet sling love swing hanging from chrome chains', defaultPos: [0, 0, -0.18] },
+  { id: 'spanking_bench', nameKo: '각도조절 스팽킹 & 본디지 패디드 호스', category: 'adult_stage', badge: '본디지 벤치', colorHex: 0x09090b, promptEn: 'angled black leather padded bondage spanking bench with restraint rings', defaultPos: [0, 0, -0.25] },
+  { id: 'wedge_cushion', nameKo: '트라이앵글 체위 보조 골반 웻지 쿠션', category: 'adult_stage', badge: '체위 쿠션', colorHex: 0xbe123c, promptEn: 'ergonomic velvet angled wedge positioning cushion pillow', defaultPos: [0, 0, -0.18] },
+  { id: 'floor_dildo_mount', nameKo: '플로어 석션 마운트 딜도 스탠드', category: 'adult_stage', badge: '자위 마운트', colorHex: 0xec4899, promptEn: 'glossy floor-mounted suction base silicone dildo stand', defaultPos: [0, 0, 0.02] },
   { id: 'silk_bolster', nameKo: '실크 원통 볼스터 바디쿠션', category: 'adult_stage', badge: '바디 쿠션', colorHex: 0xe11d48, promptEn: 'glossy crimson silk cylindrical bolster pillow', defaultPos: [0, 0, -0.15] },
   { id: 'pole_stage', nameKo: '크롬 폴댄스 포디움 스테이지', category: 'adult_stage', badge: '폴 스테이지', colorHex: 0xcbd5e1, promptEn: 'vertical chrome stage pole on glossy black podium', defaultPos: [0.22, 0, -0.18] },
   { id: 'neon_arch', nameKo: '네온 아치 라이트 프레임', category: 'adult_stage', badge: '네온 무드', colorHex: 0xf43f5e, promptEn: 'glowing magenta and cyan neon arch portal frame', defaultPos: [0, 0, -1.15] },
   { id: 'padded_bench', nameKo: '레더 패디드 포징 벤치 & 스트랩', category: 'adult_stage', badge: '레더 벤치', colorHex: 0x18181b, promptEn: 'black leather padded studio posing bench', defaultPos: [0, 0, -0.32] },
-  { id: 'restraint_frame', nameKo: '크롬 X-프레임 스튜디오 스탠드', category: 'adult_stage', badge: '스튜디오 프레임', colorHex: 0x94a3b8, promptEn: 'metallic chrome studio frame arch', defaultPos: [0, 0, -0.95] },
+  { id: 'restraint_frame', nameKo: '세인트 앤드류 X-프레임 구속 스탠드', category: 'adult_stage', badge: 'X-프레임', colorHex: 0x94a3b8, promptEn: 'metallic chrome St Andrew cross restraint studio frame arch', defaultPos: [0, 0, -0.95] },
   { id: 'mirror_ceiling_panel', nameKo: '상부 미러 리플렉션 캐노피', category: 'adult_stage', badge: '미러 천장', colorHex: 0x38bdf8, promptEn: 'overhead reflective mirror ceiling canopy panel', defaultPos: [0, 2.35, -0.45] },
+  { id: 'acrylic_partition', nameKo: '크리스탈 프리즘 미러 파티션 스크린', category: 'adult_stage', badge: '프리즘 미러', colorHex: 0x06b6d4, promptEn: 'translucent neon-lit acrylic mirror folding screen', defaultPos: [-0.95, 0, -0.88] },
   { id: 'velvet_ottoman', nameKo: '딥레드 벨벳 라운드 오토만', category: 'adult_stage', badge: '포징 오토만', colorHex: 0xbe123c, promptEn: 'tufted crimson velvet round ottoman cushion', defaultPos: [0.55, 0, -0.15] },
 
-  // 3. 의자 · 거울 · 옷장 (sub_furniture)
+  // 3. 의자 · 거울 · 옷장 (sub_furniture: 11종)
   { id: 'vanity_mirror', nameKo: '헐리우드 조명 화장대 & 거울', category: 'sub_furniture', badge: '화장대', colorHex: 0xfef08a, promptEn: 'vanity table with glowing Hollywood bulb mirror', defaultPos: [-1.15, 0, -1.12] },
   { id: 'triptych_mirror', nameKo: '3면 접이식 피팅룸 거울', category: 'sub_furniture', badge: '3면 거울', colorHex: 0xfbbf24, promptEn: 'three-way folding dressing room mirror', defaultPos: [0, 0, -1.18] },
   { id: 'standing_mirror', nameKo: '골드 프레임 전신 거울', category: 'sub_furniture', badge: '전신 거울', colorHex: 0xf59e0b, promptEn: 'full-length gold-framed standing floor mirror', defaultPos: [1.32, 0, -0.78], defaultRotY: -0.42 },
@@ -74,7 +81,7 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'cafe_table_set', nameKo: '테라스 비스트로 테이블 & 체어', category: 'sub_furniture', badge: '카페 테이블', colorHex: 0xf8fafc, promptEn: 'round marble bistro table and cafe chair', defaultPos: [-0.95, 0, -0.48] },
   { id: 'street_bench', nameKo: '우드 슬랫 스트리트 벤치', category: 'sub_furniture', badge: '벤치', colorHex: 0x78350f, promptEn: 'wooden street park bench', defaultPos: [0, 0, -0.48] },
 
-  // 4. 욕실 · 스파 · 피트니스 (bath_wellness)
+  // 4. 욕실 · 스파 · 피트니스 (bath_wellness: 7종)
   { id: 'hinoki_tub', nameKo: '히노끼 편백나무 온천 욕조', category: 'bath_wellness', badge: '온천 욕조', colorHex: 0xb45309, promptEn: 'Japanese hinoki cypress wooden hot spring bath tub', defaultPos: [0, 0, -0.52] },
   { id: 'jacuzzi_tub', nameKo: '화이트 마블 자쿠지 욕조', category: 'bath_wellness', badge: '자쿠지', colorHex: 0x38bdf8, promptEn: 'luxury white marble jacuzzi bathtub with warm water', defaultPos: [0, 0, -0.52] },
   { id: 'glass_shower', nameKo: '통유리 레인폴 샤워부스', category: 'bath_wellness', badge: '샤워부스', colorHex: 0x7dd3fc, promptEn: 'walk-in glass rainfall shower booth', defaultPos: [-0.95, 0, -0.88] },
@@ -83,7 +90,7 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'pilates_reformer', nameKo: '필라테스 리포머 & 캐딜락 기구', category: 'bath_wellness', badge: '필라테스', colorHex: 0xd97706, promptEn: 'wooden pilates reformer machine with straps', defaultPos: [0, 0, -0.42] },
   { id: 'ballet_barre', nameKo: '2단 우드 발레 바 & 전면거울', category: 'bath_wellness', badge: '발레 바', colorHex: 0xe2e8f0, promptEn: 'wooden ballet barre and studio mirror wall', defaultPos: [0, 0, -1.25] },
 
-  // 5. 조명 · 창문 · 러그 · 건축 (lighting_arch)
+  // 5. 조명 · 창문 · 러그 · 건축 (lighting_arch: 8종)
   { id: 'wall_window_frame', nameKo: '파노라마 통창 & 시티뷰 프레임', category: 'lighting_arch', badge: '배경 창문', colorHex: 0x38bdf8, promptEn: 'floor-to-ceiling panoramic window frame', defaultPos: [0, 0, -1.55] },
   { id: 'shoji_screen', nameKo: '일본식 쇼지 격자 조명 병풍', category: 'lighting_arch', badge: '쇼지 병풍', colorHex: 0xfde68a, promptEn: 'warm backlit Japanese shoji paper lattice screen', defaultPos: [0, 0, -1.48] },
   { id: 'plush_rug', nameKo: '대형 실크 페르시안 플로어 러그', category: 'lighting_arch', badge: '바닥 러그', colorHex: 0x881337, promptEn: 'plush woven area rug carpet on the floor', defaultPos: [0, 0, -0.25] },
@@ -93,7 +100,7 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'street_lamp', nameKo: '빈티지 주철 가로등 기둥', category: 'lighting_arch', badge: '가로등', colorHex: 0xfde047, promptEn: 'warm glowing vintage street lamp post', defaultPos: [1.28, 0, -0.95] },
   { id: 'tropical_plant', nameKo: '대형 몬스테라·야자 화분', category: 'lighting_arch', badge: '인테리어 화분', colorHex: 0x10b981, promptEn: 'lush indoor tropical palm plant in ceramic pot', defaultPos: [-1.38, 0, -0.65] },
 
-  // 6. 테이블 · 소품 · 오브제 (table_props)
+  // 6. 테이블 · 소품 · 오브제 (table_props: 7종)
   { id: 'champagne_set', nameKo: '샴페인 플루트 잔 & 실버 아이스버킷', category: 'table_props', badge: '샴페인 세트', colorHex: 0xfbbf24, promptEn: 'silver champagne ice bucket stand and crystal flutes', defaultPos: [0.92, 0, -0.18] },
   { id: 'whiskey_decanter', nameKo: '크리스탈 위스키 디캔터 & 온더락 잔', category: 'table_props', badge: '위스키 세트', colorHex: 0xd97706, promptEn: 'crystal whiskey decanter and lowball glass on side table', defaultPos: [-0.88, 0, -0.22] },
   { id: 'perfume_cosmetics', nameKo: '골드 향수병 & 루비 립스틱 트레이', category: 'table_props', badge: '뷰티 트레이', colorHex: 0xf43f5e, promptEn: 'mirrored tray with crystal perfume bottles and ruby lipstick', defaultPos: [-0.82, 0, -0.52] },
@@ -121,7 +128,6 @@ function makeInstance(propId: string, index: number, customPos?: [number, number
   };
 }
 
-// 테마(16종)와 세부 장소(380종)를 분석해 사각 방(Room) 내부를 꽉 채우는 풀세팅 가구·소품 배열 반환
 export function getDefaultRoomPropsForTheme(themeId: SoloThemeId, envIndex: number): RoomPropInstance[] {
   const rawEnv = THEMES_DATA[themeId]?.environments[envIndex] || THEMES_DATA[themeId]?.environments[0] || '';
   const info = translateEnvironmentItem(rawEnv, envIndex, themeId);
@@ -180,11 +186,7 @@ export function getDefaultRoomPropsForTheme(themeId: SoloThemeId, envIndex: numb
       ids.push('street_bench', 'cafe_table_set', 'street_lamp', 'wall_window_frame', 'tropical_plant', 'coffee_bag');
       break;
     default:
-      if (themeId === 'extreme_high_tension_special') {
-        ids.push('love_chaise', 'pole_stage', 'neon_arch', 'mirror_ceiling_panel', 'standing_mirror', 'silk_bolster', 'champagne_set', 'aroma_candles');
-      } else {
-        ids.push('limo_seat', 'neon_arch', 'plush_rug', 'champagne_set', 'whiskey_decanter', 'aroma_candles');
-      }
+      ids.push('love_chaise', 'pole_stage', 'neon_arch', 'mirror_ceiling_panel', 'standing_mirror', 'silk_bolster', 'champagne_set', 'aroma_candles');
       break;
   }
 

@@ -7,16 +7,8 @@ import {
   RoomPropCategory,
   getRoomPropDef,
 } from '@/data/themesSolo/roomPropCatalog';
-import {
-  Sofa,
-  Plus,
-  Trash2,
-  Eye,
-  EyeOff,
-  RotateCcw,
-  Move,
-  RotateCw,
-} from 'lucide-react';
+import { ColorPaletteBar } from '../common/ColorPaletteBar';
+import { Sofa, Plus, Trash2, Eye, EyeOff, RotateCcw, Move, RotateCw } from 'lucide-react';
 
 export const RoomPropsManagerView: React.FC = () => {
   const [activeCat, setActiveCat] = useState<'all' | RoomPropCategory>('all');
@@ -29,17 +21,15 @@ export const RoomPropsManagerView: React.FC = () => {
     toggleRoomProp,
     removeRoomProp,
     updateRoomPropTransform,
+    updateRoomPropColor,
     resetRoomPropsToDefault,
     clearAllRoomProps,
   } = useThemeSoloStore();
 
-  const selectedPropInstance = roomProps.find((p) => p.uid === selectedPropUid);
+  const selectedPropInstance = roomProps.find((p) => p.uid === selectedPropUid) || roomProps[0];
   const selectedPropDef = selectedPropInstance ? getRoomPropDef(selectedPropInstance.propId) : undefined;
-
   const filteredCatalog =
-    activeCat === 'all'
-      ? ROOM_PROP_CATALOG
-      : ROOM_PROP_CATALOG.filter((item) => item.category === activeCat);
+    activeCat === 'all' ? ROOM_PROP_CATALOG : ROOM_PROP_CATALOG.filter((item) => item.category === activeCat);
 
   const handleSelectInstance = (uid: string) => {
     setSelectedBoneName(null);
@@ -60,18 +50,13 @@ export const RoomPropsManagerView: React.FC = () => {
     if (!selectedPropInstance || !selectedPropDef) return;
     updateRoomPropTransform(
       selectedPropInstance.uid,
-      [
-        selectedPropDef.defaultPos[0],
-        selectedPropDef.defaultPos[1],
-        selectedPropDef.defaultPos[2],
-      ],
+      [selectedPropDef.defaultPos[0], selectedPropDef.defaultPos[1], selectedPropDef.defaultPos[2]],
       selectedPropDef.defaultRotY ?? 0
     );
   };
 
   return (
     <div className="space-y-3 text-xs">
-      {/* 현재 사각 룸에 배치된 사물 리스트 및 개별 조작 패널 */}
       <div className="p-3 bg-zinc-100/95 rounded-2xl border border-zinc-200/90 space-y-2.5">
         <div className="flex items-center justify-between gap-1.5">
           <div className="flex items-center gap-1.5 font-bold text-zinc-900">
@@ -82,7 +67,7 @@ export const RoomPropsManagerView: React.FC = () => {
             <button
               onClick={resetRoomPropsToDefault}
               className="flex items-center gap-1 px-2 py-1 bg-zinc-900 text-white rounded-full text-[10.5px] font-bold hover:bg-zinc-800 transition-colors"
-              title="현재 테마·장소의 기본 가구·소품 세트로 복원"
+              title="기본 가구·소품 세트로 복원"
             >
               <RotateCcw className="w-3 h-3 text-amber-400" />
               <span>기본 세팅 복원</span>
@@ -92,22 +77,22 @@ export const RoomPropsManagerView: React.FC = () => {
               className="px-2 py-1 bg-white text-zinc-600 border border-zinc-200 rounded-full text-[10.5px] font-semibold hover:bg-zinc-200 transition-colors"
               title="방 안의 모든 소품 비우기"
             >
-              비우기
+              전체 비우기
             </button>
           </div>
         </div>
 
         <p className="text-[10.5px] text-zinc-500 leading-snug">
-          배치된 가구·소품을 클릭하면 3D 뷰포트에서 이동·회전 기즈모로 위치를 자유롭게 조절할 수 있습니다.
+          사물을 클릭하면 아래에서 색상 변경(12색 팔레트·RGB 피커) 및 3D 이동·회전 기즈모 조절이 가능합니다.
         </p>
 
-        {/* 현재 배치된 사물 칩 목록 */}
         <div className="grid grid-cols-2 gap-1.5 max-h-40 overflow-y-auto pr-0.5">
           {roomProps.map((inst) => {
             const def = getRoomPropDef(inst.propId);
             if (!def) return null;
-            const isSelected = selectedPropUid === inst.uid;
-            const hexStr = `#${def.colorHex.toString(16).padStart(6, '0')}`;
+            const isSelected = selectedPropInstance?.uid === inst.uid;
+            const effectiveHex = inst.customColorHex ?? def.colorHex;
+            const hexStr = `#${effectiveHex.toString(16).padStart(6, '0')}`;
 
             return (
               <div
@@ -124,10 +109,7 @@ export const RoomPropsManagerView: React.FC = () => {
                   onClick={() => handleSelectInstance(inst.uid)}
                   className="flex items-center gap-1.5 min-w-0 flex-1 text-left"
                 >
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0 border border-black/15"
-                    style={{ backgroundColor: hexStr }}
-                  />
+                  <span className="w-3 h-3 rounded-full shrink-0 border border-black/20" style={{ backgroundColor: hexStr }} />
                   <span className="font-bold text-[10.5px] truncate">{def.nameKo}</span>
                 </button>
                 <div className="flex items-center gap-0.5 shrink-0">
@@ -136,7 +118,6 @@ export const RoomPropsManagerView: React.FC = () => {
                     className={`p-1 rounded-md transition-colors ${
                       isSelected ? 'hover:bg-zinc-800 text-zinc-300' : 'hover:bg-zinc-100 text-zinc-500'
                     }`}
-                    title={inst.visible ? '숨기기' : '표시하기'}
                   >
                     {inst.visible ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
                   </button>
@@ -145,7 +126,6 @@ export const RoomPropsManagerView: React.FC = () => {
                     className={`p-1 rounded-md transition-colors ${
                       isSelected ? 'hover:bg-zinc-800 text-rose-400' : 'hover:bg-rose-50 text-rose-500'
                     }`}
-                    title="방에서 제거"
                   >
                     <Trash2 className="w-3 h-3" />
                   </button>
@@ -155,17 +135,24 @@ export const RoomPropsManagerView: React.FC = () => {
           })}
         </div>
 
-        {/* 선택된 사물 정밀 조절 바 */}
         {selectedPropInstance && selectedPropDef && (
-          <div className="p-2.5 bg-zinc-900 text-white rounded-xl flex flex-col gap-2">
+          <div className="p-2.5 bg-zinc-900 text-white rounded-2xl flex flex-col gap-2">
             <div className="flex items-center justify-between text-[11px]">
-              <span className="font-bold text-amber-400 truncate">
-                조절 중: {selectedPropDef.nameKo}
-              </span>
+              <span className="font-bold text-amber-400 truncate">선택 사물: {selectedPropDef.nameKo}</span>
               <span className="text-[10px] text-zinc-400 font-mono">
                 X:{selectedPropInstance.position[0].toFixed(1)} Z:{selectedPropInstance.position[2].toFixed(1)}
               </span>
             </div>
+
+            <ColorPaletteBar
+              title={`${selectedPropDef.nameKo} 색상 변경`}
+              currentColorHex={selectedPropInstance.customColorHex}
+              defaultColorHex={selectedPropDef.colorHex}
+              onSelectColor={(hex) => updateRoomPropColor(selectedPropInstance.uid, hex)}
+              onResetColor={() => updateRoomPropColor(selectedPropInstance.uid, undefined)}
+              darkTheme
+            />
+
             <div className="grid grid-cols-4 gap-1">
               <button
                 onClick={() => setGizmoMode(gizmoMode === 'translate' ? 'rotate' : 'translate')}
@@ -199,7 +186,6 @@ export const RoomPropsManagerView: React.FC = () => {
         )}
       </div>
 
-      {/* 전체 45종 가구·소품 카탈로그 카테고리 필터 */}
       <div className="grid grid-cols-3 gap-1.5">
         {ROOM_PROP_CATEGORIES.map((cat) => (
           <button
@@ -216,12 +202,12 @@ export const RoomPropsManagerView: React.FC = () => {
         ))}
       </div>
 
-      {/* 45종 3열 가구·소품 추가/제거 그리드 */}
       <div className="grid grid-cols-3 gap-2">
         {filteredCatalog.map((item) => {
           const matching = roomProps.filter((p) => p.propId === item.id);
           const count = matching.length;
-          const hexStr = `#${item.colorHex.toString(16).padStart(6, '0')}`;
+          const activeColor = matching[matching.length - 1]?.customColorHex ?? item.colorHex;
+          const hexStr = `#${activeColor.toString(16).padStart(6, '0')}`;
 
           return (
             <div
@@ -237,26 +223,18 @@ export const RoomPropsManagerView: React.FC = () => {
                   className="text-[9px] font-bold px-1.5 py-0.5 rounded truncate border border-black/10"
                   style={{
                     backgroundColor: hexStr,
-                    color: item.colorHex > 0xc0c0c0 ? '#18181b' : '#ffffff',
+                    color: activeColor > 0xc0c0c0 ? '#18181b' : '#ffffff',
                   }}
                 >
                   {item.badge}
                 </span>
-                {count > 0 && (
-                  <span className="text-[9.5px] font-bold text-amber-400 shrink-0">
-                    {count}개
-                  </span>
-                )}
+                {count > 0 && <span className="text-[9.5px] font-bold text-amber-400 shrink-0">{count}개</span>}
               </div>
 
               <button
-                onClick={() => {
-                  if (matching.length > 0) {
-                    handleSelectInstance(matching[matching.length - 1].uid);
-                  } else {
-                    addRoomProp(item.id);
-                  }
-                }}
+                onClick={() =>
+                  matching.length > 0 ? handleSelectInstance(matching[matching.length - 1].uid) : addRoomProp(item.id)
+                }
                 className="font-bold text-[10.5px] leading-tight line-clamp-2 text-left hover:underline"
               >
                 {item.nameKo}
@@ -278,7 +256,6 @@ export const RoomPropsManagerView: React.FC = () => {
                   <button
                     onClick={() => removeRoomProp(matching[matching.length - 1].uid)}
                     className="px-1.5 py-1 rounded-lg bg-zinc-800 text-rose-400 hover:bg-zinc-700 text-[10px] font-bold"
-                    title="하나 제거"
                   >
                     빼기
                   </button>

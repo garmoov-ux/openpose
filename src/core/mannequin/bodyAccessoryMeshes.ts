@@ -7,6 +7,15 @@ import {
   LEG_ITEMS,
 } from '@/data/themesSolo/accessoriesAndPropsData';
 import { getOrComputeTriData } from './outfitVisualizer';
+import { attachAdultToyMeshToBones } from './adultToyMeshBuilder';
+
+export type BodyAccessoryCategoryKey =
+  | 'footwear'
+  | 'nails'
+  | 'neck'
+  | 'wrist'
+  | 'legs'
+  | 'toy_special';
 
 export interface BodyAccessoryConfig {
   nailColorId: string;
@@ -14,6 +23,8 @@ export interface BodyAccessoryConfig {
   neckItemId: string;
   wristItemId: string;
   legItemId: string;
+  toyItemId?: string;
+  customColors?: Partial<Record<BodyAccessoryCategoryKey, number>>;
 }
 
 function clearBoneAccessories(group: THREE.Object3D): void {
@@ -111,10 +122,14 @@ function buildAccessorySkinnedShell(
   return shell;
 }
 
-// 마네킹 SkinnedMesh 표면에 밀착되는 바디 아이템(네일, 신발/스타킹, 초커/바디체인, 팔찌, 가터링/앵클릿) 스킨 쉘 생성
+function isNoneId(id: string | undefined): boolean {
+  return !id || id === 'none' || id.endsWith('_none') || id === 'bare_feet' || id === 'foot_bare';
+}
+
+// 마네킹 SkinnedMesh 표면에 밀착되는 바디 아이템 및 3D 성인·스페셜 기구 생성
 export function applyBodyAccessoriesToRig(
   group: THREE.Object3D,
-  _bones: Map<string, THREE.Bone>,
+  bones: Map<string, THREE.Bone>,
   config: BodyAccessoryConfig
 ): void {
   clearBoneAccessories(group);
@@ -132,16 +147,16 @@ export function applyBodyAccessoriesToRig(
     }
   });
 
-  if (!targetSkinnedMesh) return;
-  const sm = targetSkinnedMesh as THREE.SkinnedMesh;
-  const parent = sm.parent || group;
+  const sm = targetSkinnedMesh as THREE.SkinnedMesh | null;
+  const parent = sm?.parent || group;
+  const colors = config.customColors || {};
 
-  // 1. 목걸이 · 초커 · 바디체인 · 하네스
+  // 1. 목걸이 · 초커 · 바디체인 · 리쉬
   const neckOpt = NECK_ITEMS.find((i) => i.id === config.neckItemId);
-  if (neckOpt && neckOpt.id !== 'neck_none') {
-    const isChain = neckOpt.id.includes('chain') || neckOpt.id.includes('harness');
+  if (sm && neckOpt && !isNoneId(neckOpt.id)) {
+    const isChain = neckOpt.id.includes('chain') || neckOpt.id.includes('leash');
     const neckMat = new THREE.MeshStandardMaterial({
-      color: neckOpt.colorHex,
+      color: colors.neck ?? neckOpt.colorHex,
       roughness: 0.22,
       metalness: 0.78,
       side: THREE.DoubleSide,
@@ -162,29 +177,30 @@ export function applyBodyAccessoriesToRig(
     if (shell) parent.add(shell);
   }
 
-  // 2. 손목 브레이슬릿 · 커프 · 시계
+  // 2. 손목 브레이슬릿 · 수갑 커프스 · 글러브
   const wristOpt = WRIST_ITEMS.find((i) => i.id === config.wristItemId);
-  if (wristOpt && wristOpt.id !== 'wrist_none') {
+  if (sm && wristOpt && !isNoneId(wristOpt.id)) {
+    const isGlove = wristOpt.id.includes('gloves');
     const wristMat = new THREE.MeshStandardMaterial({
-      color: wristOpt.colorHex,
-      roughness: 0.24,
-      metalness: 0.75,
+      color: colors.wrist ?? wristOpt.colorHex,
+      roughness: isGlove ? 0.18 : 0.24,
+      metalness: isGlove ? 0.35 : 0.75,
       side: THREE.DoubleSide,
     });
     const shell = buildAccessorySkinnedShell(
       sm,
-      (ax) => ax >= 0.215 && ax <= 0.248,
+      (ax) => (isGlove ? ax >= 0.185 && ax <= 0.268 : ax >= 0.215 && ax <= 0.248),
       wristMat,
       1.75
     );
     if (shell) parent.add(shell);
   }
 
-  // 3. 허벅지 가터링 · 종아리 스트랩 · 발목 앵클릿
+  // 3. 허벅지 가터링 · 종아리 스트랩 · 발목 구속 커프스
   const legOpt = LEG_ITEMS.find((i) => i.id === config.legItemId);
-  if (legOpt && legOpt.id !== 'leg_none') {
+  if (sm && legOpt && !isNoneId(legOpt.id)) {
     const legMat = new THREE.MeshStandardMaterial({
-      color: legOpt.colorHex,
+      color: colors.legs ?? legOpt.colorHex,
       roughness: 0.3,
       metalness: 0.45,
       side: THREE.DoubleSide,
@@ -193,12 +209,12 @@ export function applyBodyAccessoriesToRig(
       sm,
       (ax, y) => {
         if (ax >= 0.135) return false;
-        if (legOpt.id.includes('anklet')) return y >= 0.082 && y <= 0.102;
+        if (legOpt.id.includes('anklet') || legOpt.id.includes('ankle')) return y >= 0.082 && y <= 0.105;
         if (legOpt.id.includes('calf') || legOpt.id.includes('crisscross')) {
           return (y >= 0.205 && y <= 0.225) || (y >= 0.255 && y <= 0.275);
         }
-        if (legOpt.id.includes('double')) {
-          return (y >= 0.385 && y <= 0.405) || (y >= 0.425 && y <= 0.445);
+        if (legOpt.id.includes('dual') || legOpt.id.includes('harness')) {
+          return (y >= 0.365 && y <= 0.388) || (y >= 0.415 && y <= 0.442);
         }
         return y >= 0.415 && y <= 0.442;
       },
@@ -208,34 +224,30 @@ export function applyBodyAccessoriesToRig(
     if (shell) parent.add(shell);
   }
 
-  // 4. 신발 · 스틸레토 힐 · 스타킹 · 부츠 · 양말
+  // 4. 신발 · 스틸레토 힐 · 스타킹 · 망사 · 롱부츠
   const footOpt = FOOTWEAR_ITEMS.find((i) => i.id === config.footwearId);
-  if (footOpt && footOpt.id !== 'foot_bare') {
-    const isStocking = footOpt.id.includes('stocking') || footOpt.id.includes('garter');
+  if (sm && footOpt && !isNoneId(footOpt.id)) {
+    const mainFootColor = colors.footwear ?? footOpt.colorHex;
+    const isStocking = footOpt.id.includes('stocking') || footOpt.id.includes('garter') || footOpt.id.includes('fishnet');
     const isBoot = footOpt.id.includes('boots');
     const isSock = footOpt.id.includes('socks');
 
     if (isStocking) {
       const sheerMat = new THREE.MeshStandardMaterial({
-        color: footOpt.colorHex,
+        color: mainFootColor,
         roughness: 0.32,
         metalness: 0.15,
         transparent: true,
-        opacity: 0.72,
+        opacity: footOpt.id.includes('fishnet') ? 0.58 : 0.72,
         side: THREE.DoubleSide,
       });
       const bandMat = new THREE.MeshStandardMaterial({
-        color: footOpt.secondaryHex ?? footOpt.colorHex,
+        color: colors.footwear ?? footOpt.secondaryHex ?? footOpt.colorHex,
         roughness: 0.25,
         metalness: 0.35,
         side: THREE.DoubleSide,
       });
-      const sheerShell = buildAccessorySkinnedShell(
-        sm,
-        (ax, y) => ax < 0.135 && y <= 0.415,
-        sheerMat,
-        1.5
-      );
+      const sheerShell = buildAccessorySkinnedShell(sm, (ax, y) => ax < 0.135 && y <= 0.415, sheerMat, 1.5);
       const bandShell = buildAccessorySkinnedShell(
         sm,
         (ax, y) => ax < 0.135 && ((y > 0.415 && y <= 0.448) || y <= 0.052),
@@ -246,17 +258,15 @@ export function applyBodyAccessoriesToRig(
       if (bandShell) parent.add(bandShell);
     } else {
       const shoeMat = new THREE.MeshStandardMaterial({
-        color: footOpt.colorHex,
-        roughness: isBoot ? 0.18 : 0.22,
-        metalness: isBoot ? 0.45 : 0.55,
+        color: mainFootColor,
+        roughness: isBoot ? 0.15 : 0.22,
+        metalness: isBoot ? 0.48 : 0.55,
         side: THREE.DoubleSide,
       });
       const maxShoeY = isBoot ? 0.43 : isSock ? 0.125 : 0.058;
       const shoeShell = buildAccessorySkinnedShell(
         sm,
-        (ax, y) =>
-          ax < 0.135 &&
-          (y <= maxShoeY || (!isBoot && !isSock && y >= 0.076 && y <= 0.092)),
+        (ax, y) => ax < 0.135 && (y <= maxShoeY || (!isBoot && !isSock && y >= 0.076 && y <= 0.092)),
         shoeMat,
         1.78
       );
@@ -264,11 +274,11 @@ export function applyBodyAccessoriesToRig(
     }
   }
 
-  // 5. 매니큐어 & 페디큐어 (손끝 · 발끝 포인트)
+  // 5. 매니큐어 & 페디큐어
   const nailOpt = NAIL_ITEMS.find((i) => i.id === config.nailColorId);
-  if (nailOpt && nailOpt.id !== 'nail_none') {
+  if (sm && nailOpt && !isNoneId(nailOpt.id)) {
     const nailMat = new THREE.MeshStandardMaterial({
-      color: nailOpt.colorHex,
+      color: colors.nails ?? nailOpt.colorHex,
       roughness: 0.12,
       metalness: 0.4,
       side: THREE.DoubleSide,
@@ -280,5 +290,21 @@ export function applyBodyAccessoriesToRig(
       1.85
     );
     if (nailShell) parent.add(nailShell);
+  }
+
+  // 6. 성인용 자위기구 · 남성용/여성용 스페셜 토이 · 페티시 바디 기구
+  if (config.toyItemId && !isNoneId(config.toyItemId)) {
+    attachAdultToyMeshToBones(
+      group,
+      bones,
+      config.toyItemId,
+      colors.toy_special,
+      sm
+        ? (matchFn, mat, offset = 1.8) => {
+            const s = buildAccessorySkinnedShell(sm, matchFn, mat, offset);
+            if (s) parent.add(s);
+          }
+        : undefined
+    );
   }
 }

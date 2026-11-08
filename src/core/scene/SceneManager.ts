@@ -47,6 +47,7 @@ export class SceneManager {
   private showGridState = true;
   private showSkeletonState = true;
   private showThemePropsState = true;
+  private showPartnerState = false;
   private selectedBoneName: string | null = null;
   private selectedPropUid: string | null = null;
   private partnerFbxLoaded = false;
@@ -193,15 +194,19 @@ export class SceneManager {
     this.studioLights.themePropsGroup.visible = isShading && this.showThemePropsState;
     this.skeletonHelper.visible = isShading && this.showSkeletonState;
     this.humanoid.group.visible = mode !== 'openpose';
+    this.partnerHumanoid.group.visible = this.showPartnerState && mode !== 'openpose';
     setJointDotsVisible(this.humanoid.group, isShading && this.showSkeletonState, this.selectedBoneName);
     const bgMap: Record<RenderMode, number> = {
       depth: 0x000000, normal: 0x8080ff, canny: 0x000000, openpose: 0x000000, shading: this.currentThemeBgHex,
     };
     this.scene.background = new THREE.Color(bgMap[mode]);
-    if (mode === 'depth') applyMaterialToHierarchy(this.humanoid.group, this.depthMaterial, false);
-    else if (mode === 'normal') applyMaterialToHierarchy(this.humanoid.group, this.normalMaterial, false);
-    else if (mode === 'canny') applyMaterialToHierarchy(this.humanoid.group, this.cannyMaterial, false);
-    else if (mode === 'shading') applyMaterialToHierarchy(this.humanoid.group, this.defaultMaterial, true);
+    const matMap: Record<Exclude<RenderMode, 'openpose'>, THREE.Material> = {
+      depth: this.depthMaterial, normal: this.normalMaterial, canny: this.cannyMaterial, shading: this.defaultMaterial,
+    };
+    if (mode !== 'openpose') {
+      applyMaterialToHierarchy(this.humanoid.group, matMap[mode], isShading);
+      applyMaterialToHierarchy(this.partnerHumanoid.group, matMap[mode], isShading);
+    }
   }
   public applyThemeEnvironment(themeId: SoloThemeId, envIndex: number, lightIndex: number, roomProps?: RoomPropInstance[]): void {
     this.currentThemeBgHex = applyStudioThemeEnvironment(
@@ -223,26 +228,27 @@ export class SceneManager {
     applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, config);
   }
   public setPartnerGuide(show: boolean, partnerPreset?: (typeof POSE_PRESETS)[number]): void {
+    this.showPartnerState = show;
     if (partnerPreset) this.lastPartnerPreset = partnerPreset;
-    const activePreset = partnerPreset || this.lastPartnerPreset;
+    const activePreset = partnerPreset || this.lastPartnerPreset || POSE_PRESETS.find((p) => p.category === 'couple');
     this.partnerHumanoid.group.visible = show && this.currentMode !== 'openpose';
     if (!show) return;
     if (!this.partnerFbxLoaded && !this.partnerFbxLoading) {
       this.partnerFbxLoading = true;
       loadFbxMannequin('realistic_muscular_male', 'clay')
         .then((fbxRig) => {
-          const wasVisible = this.partnerHumanoid.group.visible;
           this.scene.remove(this.partnerHumanoid.group);
           this.partnerHumanoid = fbxRig;
           setJointDotsVisible(this.partnerHumanoid.group, false, null);
-          this.partnerHumanoid.group.visible = wasVisible;
           this.scene.add(this.partnerHumanoid.group);
           this.partnerFbxLoaded = true;
           this.partnerFbxLoading = false;
-          if (wasVisible) this.setPartnerGuide(true, this.lastPartnerPreset);
+          if (this.showPartnerState) this.setPartnerGuide(true, this.lastPartnerPreset);
         })
         .catch(() => { this.partnerFbxLoading = false; });
     }
+    this.partnerHumanoid.group.position.set(0, 0, 0);
+    this.partnerHumanoid.group.rotation.set(0, 0, 0);
     if (activePreset?.partnerPose) {
       applyPosePreset(this.partnerHumanoid.bones, { ...activePreset, pose: activePreset.partnerPose });
       const [ox, oy, oz] = activePreset.partnerOffset || [0, 0, -0.34];
@@ -251,7 +257,6 @@ export class SceneManager {
     } else {
       applyPosePreset(this.partnerHumanoid.bones, POSE_PRESETS[0]);
       this.partnerHumanoid.group.position.set(0.32, 0, -0.22);
-      this.partnerHumanoid.group.rotation.set(0, 0, 0);
     }
   }
   public async loadMannequinModel(modelId: MannequinModelId, onProgress?: (percent: number) => void): Promise<void> {
@@ -323,12 +328,10 @@ export class SceneManager {
         this.depthMaterial.uniforms.cameraNear.value = Math.max(0.1, dist - 0.65);
         this.depthMaterial.uniforms.cameraFar.value = dist + 0.65;
       }
-      if (this.currentMode === 'openpose') {
-        const ctx = this.overlayCanvas.getContext('2d');
-        if (ctx) {
-          const [w, h] = [this.overlayCanvas.width, this.overlayCanvas.height];
-          drawOpenPoseSkeleton(ctx, getJointScreenPositions(this.humanoid.bones, this.camera, w, h), w, h);
-        }
+      const ctx = this.currentMode === 'openpose' ? this.overlayCanvas.getContext('2d') : null;
+      if (ctx) {
+        const [w, h] = [this.overlayCanvas.width, this.overlayCanvas.height];
+        drawOpenPoseSkeleton(ctx, getJointScreenPositions(this.humanoid.bones, this.camera, w, h), w, h);
       } else {
         updateStylizedSkeletonHelper(this.skeletonHelper, this.humanoid.bones);
         this.renderer.render(this.scene, this.camera);

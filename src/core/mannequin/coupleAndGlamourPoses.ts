@@ -1,82 +1,16 @@
 import { PosePreset } from '@/types';
-import { buildPoseFromSpec, makeCouplePreset, COUPLE_SUBGROUPS } from './couplePoseBuilder';
+import { makeCouplePreset, COUPLE_SUBGROUPS } from './couplePoseBuilder';
+import { SOLO_GLAMOUR_SELF_PLAY_PRESETS } from './soloGlamourSelfPlayPoses';
 import { COUPLE_BED_AND_FLOOR_PRESETS } from './couplePosesBedAndFloor';
+import { COUPLE_EXTREME_AND_SPECIAL_PRESETS } from './couplePosesExtremeAndSpecial';
 
 export { COUPLE_SUBGROUPS };
 
 export const GLAMOUR_AND_COUPLE_PRESETS: PosePreset[] = [
-  // =========================================================================
-  // A. 화보 · 글래머 솔로 프리셋 (6종)
-  // =========================================================================
-  {
-    id: 'glamour-s-curve-arch',
-    title: 'S라인 하이힐 백아치',
-    category: 'glamour',
-    description: '골반을 측후방으로 밀어내고 허리를 깊게 아치로 휜 S라인 화보 포즈',
-    pose: buildPoseFromSpec({
-      hips: [10, 18, -10], spine: [-14, -10, 8], spine1: [-12, -8, 6], neck: [6, 14, -5], head: [5, 18, -4],
-      lArm: [-18, -12, -48], lFore: [0, -55, -24], rArm: [14, 18, 52], rFore: [0, 68, 30],
-      lThigh: [-10, -8, 8], lKnee: 16, rThigh: [8, 6, -6], rKnee: 4, lFoot: [24, 0, 0], rFoot: [22, 0, 0],
-    }),
-  },
-  {
-    id: 'glamour-kneeling-bed-arch',
-    title: '베드 닐링 아치 포즈',
-    category: 'glamour',
-    description: '침대나 소파 위에 무릎을 꿇고 상체를 세워 흉곽과 골반 곡선을 강조하는 포즈',
-    pose: buildPoseFromSpec({
-      hipPos: [0, 0.56, 0], hips: [14, 0, 0], spine: [-18, 0, 0], spine1: [-14, 0, 0], neck: [-8, 0, 0], head: [-6, 8, 0],
-      lArm: [18, -15, -42], lFore: [0, -72, -32], rArm: [18, 15, 42], rFore: [0, 72, 32],
-      lThigh: [-28, -14, 14], lKnee: 118, rThigh: [-28, 14, -14], rKnee: 118, lFoot: [35, 0, 0], rFoot: [35, 0, 0],
-    }),
-  },
-  {
-    id: 'glamour-chair-cross-leg',
-    title: '벨벳 체어 크로스레그',
-    category: 'glamour',
-    description: '라운지 의자에 앉아 다리를 길게 꼬고 상체를 살짝 숙인 하이패션 착석 포즈',
-    pose: buildPoseFromSpec({
-      hipPos: [0, 0.54, -0.18], hips: [-8, -10, 4], spine: [8, 6, -3], spine1: [10, 6, -2], neck: [-8, -8, 0], head: [-5, -10, 4],
-      lArm: [-24, 10, -52], lFore: [0, -42, -18], rArm: [-28, -14, 48], rFore: [0, 58, 24],
-      lThigh: [-82, 12, -8], lKnee: 76, rThigh: [-68, -8, 6], rKnee: 84, lFoot: [28, 0, 0], rFoot: [18, 0, 0],
-    }),
-  },
-  {
-    id: 'glamour-over-shoulder-back',
-    title: '오버숄더 백미러 포즈',
-    category: 'glamour',
-    description: '등과 힙 라인을 보여주며 어깨 너머로 시선을 돌리는 백사이드 화보 포즈',
-    pose: buildPoseFromSpec({
-      hips: [12, -32, 8], spine: [-10, 14, -5], spine1: [-8, 18, -4], neck: [5, 28, -6], head: [6, 32, -5],
-      lArm: [10, -14, -56], lFore: [0, -48, -20], rArm: [-18, 20, 46], rFore: [0, 64, 28],
-      lThigh: [-14, -6, 6], lKnee: 22, rThigh: [6, 5, -5], rKnee: 4, lFoot: [25, 0, 0], rFoot: [20, 0, 0],
-    }),
-  },
-  {
-    id: 'glamour-sunbed-recline',
-    title: '선베드 리클라인 포즈',
-    category: 'glamour',
-    description: '선베드나 카바나에 비스듬히 기대어 한쪽 무릎을 세운 리조트 비치웨어 포즈',
-    pose: buildPoseFromSpec({
-      hipPos: [0, 0.36, -0.1], hips: [-32, 10, -4], spine: [-12, -6, 3], spine1: [-8, -5, 0], neck: [16, 8, 0], head: [14, 10, 0],
-      lArm: [28, -10, -44], lFore: [0, -35, -14], rArm: [-24, 15, 50], rFore: [0, 52, 22],
-      lThigh: [-58, -12, 12], lKnee: 78, rThigh: [-18, 8, -6], rKnee: 16, lFoot: [24, 0, 0], rFoot: [28, 0, 0],
-    }),
-  },
-  {
-    id: 'glamour-wide-floor-arch',
-    title: '와이드 플로어 아치',
-    category: 'glamour',
-    description: '바닥이나 침대 위에서 다리를 넓게 벌리고 상체를 아치형으로 젖힌 하이텐션 포즈',
-    pose: buildPoseFromSpec({
-      hipPos: [0, 0.44, 0], hips: [-16, 0, 0], spine: [-16, 0, 0], spine1: [-14, 0, 0], neck: [-10, 0, 0], head: [-8, 0, 0],
-      lArm: [24, -12, -46], lFore: [0, -28, -12], rArm: [24, 12, 46], rFore: [0, 28, 12],
-      lThigh: [-64, -26, 26], lKnee: 92, rThigh: [-64, 26, -26], rKnee: 92, lFoot: [30, 0, 0], rFoot: [30, 0, 0],
-    }),
-  },
+  ...SOLO_GLAMOUR_SELF_PLAY_PRESETS,
 
   // =========================================================================
-  // B-1. 커플 기립 · 벽면 · 리프트 밀착 (couple_standing: 10종)
+  // B-1. 커플 기립 · 벽면 · 리프트 밀착 (couple_standing: 10종, 01~10)
   // =========================================================================
   makeCouplePreset(
     'couple-back-hug', '01. 후면 백허그 밀착', 'couple_standing',
@@ -109,7 +43,7 @@ export const GLAMOUR_AND_COUPLE_PRESETS: PosePreset[] = [
   makeCouplePreset(
     'couple-full-leg-wrap-lift', '05. 기립 양다리 랩 스탠딩 리프트', 'couple_standing',
     '남성이 여성을 들어 올리고 여성이 양다리로 남성의 허리를 감싸 안는 스탠딩 리프트 체위',
-    { hipPos: [0, 1.12, 0.04], hips: [-14, 0, 0], spine: [-8, 0, 0], spine1: [-10, 0, 0], head: [-8, 0, 0], lArm: [-62, 22, -34], lFore: [0, -76, -32], rArm: [-62, -22, 34], rFore: [0, 76, 32], lThigh: [-84, -28, 28], lKnee: 98, rThigh: [-84, 28, -28], rKnee: 98 },
+    { hipPos: [0, 1.18, 0.04], hips: [-14, 0, 0], spine: [-8, 0, 0], spine1: [-10, 0, 0], head: [-8, 0, 0], lArm: [-62, 22, -34], lFore: [0, -76, -32], rArm: [-62, -22, 34], rFore: [0, 76, 32], lThigh: [-84, -28, 28], lKnee: 98, rThigh: [-84, 28, -28], rKnee: 98 },
     { hipPos: [0, 0.93, 0], hips: [-8, 0, 0], spine: [-6, 0, 0], spine1: [-4, 0, 0], head: [-6, 0, 0], lArm: [-44, 18, -42], lFore: [0, -72, -30], rArm: [-44, -18, 42], rFore: [0, 72, 30], lThigh: [-14, -12, 12], lKnee: 20, rThigh: [-14, 12, -12], rKnee: 20 },
     [0, 0, 0.24], Math.PI
   ),
@@ -144,13 +78,13 @@ export const GLAMOUR_AND_COUPLE_PRESETS: PosePreset[] = [
   makeCouplePreset(
     'couple-standing-carry-arch', '10. 대면 하이 크래들 리프트', 'couple_standing',
     '남성이 여성을 안아 올리고 여성이 상체를 뒤로 깊게 아치형으로 젖히는 하이 텐션 리프트',
-    { hipPos: [0, 1.14, 0.02], hips: [-22, 0, 0], spine: [-18, 0, 0], spine1: [-18, 0, 0], head: [-20, 0, 0], lArm: [-54, 18, -36], lFore: [0, -64, -26], rArm: [-54, -18, 36], rFore: [0, 64, 26], lThigh: [-82, -26, 26], lKnee: 96, rThigh: [-82, 26, -26], rKnee: 96 },
+    { hipPos: [0, 1.18, 0.02], hips: [-22, 0, 0], spine: [-18, 0, 0], spine1: [-18, 0, 0], head: [-20, 0, 0], lArm: [-54, 18, -36], lFore: [0, -64, -26], rArm: [-54, -18, 36], rFore: [0, 64, 26], lThigh: [-82, -26, 26], lKnee: 96, rThigh: [-82, 26, -26], rKnee: 96 },
     { hipPos: [0, 0.92, 0], hips: [-10, 0, 0], spine: [-6, 0, 0], spine1: [-4, 0, 0], head: [-8, 0, 0], lArm: [-46, 18, -42], lFore: [0, -74, -30], rArm: [-46, -18, 42], rFore: [0, 74, 30], lThigh: [-16, -12, 12], lKnee: 22, rThigh: [-16, 12, -12], rKnee: 22 },
     [0, 0, 0.24], Math.PI
   ),
 
   // =========================================================================
-  // B-2. 의자 · 소파 · 러브체어 착석 · 스트래들 (couple_chair: 10종)
+  // B-2. 의자 · 소파 · 러브체어 착석 · 스트래들 (couple_chair: 10종, 11~20)
   // =========================================================================
   makeCouplePreset(
     'couple-lap-straddle-face', '11. 의자 대면 마주앉기 스트래들', 'couple_chair',
@@ -224,4 +158,5 @@ export const GLAMOUR_AND_COUPLE_PRESETS: PosePreset[] = [
   ),
 
   ...COUPLE_BED_AND_FLOOR_PRESETS,
+  ...COUPLE_EXTREME_AND_SPECIAL_PRESETS,
 ];

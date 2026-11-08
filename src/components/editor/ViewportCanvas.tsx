@@ -3,7 +3,7 @@ import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
-import { applyPosePreset } from '@/core/mannequin/presets';
+import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
 
 interface ViewportCanvasProps {
   onSceneReady?: (manager: SceneManager) => void;
@@ -34,11 +34,15 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     selectedPostureId,
     showThemeProps,
     showPartnerGuide,
+    activePoseAccordion,
+    activeCouplePresetId,
     nailColorId,
     footwearId,
     neckItemId,
     wristItemId,
     legItemId,
+    toyItemId,
+    customAccessoryColors,
     roomProps,
     selectedPropUid,
     setSelectedPropUid,
@@ -124,7 +128,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     }
   }, [selectedPropUid, selectedBoneName]);
 
-  // 16대 테마, 380종 세부 장소, 시간대 조명 및 사각 룸 가구·소품(roomProps) 실시간 반영
+  // 사각 룸 가구·소품(roomProps) 및 커스텀 색상 실시간 반영
   useEffect(() => {
     managerRef.current?.applyThemeEnvironment(
       selectedThemeId,
@@ -139,7 +143,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     managerRef.current?.applyOutfit(selectedOutfitId > 0 ? selectedOutfitId : null);
   }, [selectedOutfitId]);
 
-  // 신체 부위별 아이템(네일, 신발/스타킹/맨발, 목걸이/초커, 팔찌/커프, 가터링/앵클릿) 실시간 부착
+  // 신체 부위별 아이템(네일, 신발/스타킹/맨발, 초커, 팔찌, 가터, 성인기구) 및 부위별 커스텀 색상 실시간 부착
   useEffect(() => {
     managerRef.current?.applyBodyAccessories({
       nailColorId,
@@ -147,12 +151,14 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       neckItemId,
       wristItemId,
       legItemId,
+      toyItemId,
+      customColors: customAccessoryColors,
     });
-  }, [nailColorId, footwearId, neckItemId, wristItemId, legItemId]);
+  }, [nailColorId, footwearId, neckItemId, wristItemId, legItemId, toyItemId, customAccessoryColors]);
 
-  // 자세 ID 변경(전체 랜덤 세트 등) 시 3D 마네킹 골격 회전 동기화
+  // 솔로 자세 ID 변경 시 (개인 솔로 아코디언 모드일 때만) 3D 마네킹 골격 회전 동기화
   useEffect(() => {
-    if (!managerRef.current || selectedPostureId <= 1) return;
+    if (!managerRef.current || activePoseAccordion === 'couple' || selectedPostureId <= 1) return;
     const kf = getSoloThemePoseKeyframe(selectedPostureId);
     if (!kf) return;
     applyPosePreset(managerRef.current.humanoid.bones, {
@@ -162,17 +168,21 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       description: '',
       pose: kf,
     });
-  }, [selectedPostureId]);
+  }, [selectedPostureId, activePoseAccordion]);
 
   // 테마 3D 배경 사물(가구/오브젝트) 표시 ON/OFF 동기화
   useEffect(() => {
     managerRef.current?.setShowThemeProps(showThemeProps);
   }, [showThemeProps]);
 
-  // 커플 파트너 가이드 마네킹 표시 ON/OFF 동기화
+  // 커플 파트너 가이드 마네킹 표시 ON/OFF 및 선택된 커플 프리셋 동기화
   useEffect(() => {
-    managerRef.current?.setPartnerGuide(showPartnerGuide);
-  }, [showPartnerGuide]);
+    if (!managerRef.current) return;
+    const couplePreset = activeCouplePresetId
+      ? POSE_PRESETS.find((p) => p.id === activeCouplePresetId)
+      : undefined;
+    managerRef.current.setPartnerGuide(showPartnerGuide, couplePreset);
+  }, [showPartnerGuide, activeCouplePresetId]);
 
   return (
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">

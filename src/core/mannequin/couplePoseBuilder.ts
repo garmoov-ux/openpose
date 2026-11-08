@@ -68,10 +68,15 @@ export function makeCouplePreset(
 }
 
 export const COUPLE_SUBGROUPS: { id: string; label: string }[] = [
-  { id: 'all', label: '전체 커플 (50)' },
+  { id: 'all', label: '전체 커플 (100)' },
   { id: 'couple_standing', label: '기립·벽면·리프트 (10)' },
   { id: 'couple_chair', label: '의자·소파·랩시팅 (10)' },
   { id: 'couple_bed_front', label: '침대 대면·온탑 (10)' },
   { id: 'couple_bed_rear', label: '침대 후면·아치 (10)' },
-  { id: 'couple_side_floor', label: '측면·스푼·욕조·특수 (10)' },
+  { id: 'couple_side_floor', label: '측면·스푼·욕조 (10)' },
+  { id: 'couple_acrobatic', label: '고난도 아크로바틱 (10)' },
+  { id: 'couple_tantra_deep', label: '탄트라·딥폴딩 (10)' },
+  { id: 'couple_bondage_rp', label: '구속·서브미션·SM (10)' },
+  { id: 'couple_furniture_special', label: '스윙·폴·특수가구 (10)' },
+  { id: 'couple_oral_foreplay', label: '전희·69·스페셜 (10)' },
 ];

@@ -10,11 +10,12 @@ import {
   EyeOff,
   User,
   Bookmark,
-  Palette,
+  Sparkles,
   Download,
   Sofa,
   Gem,
   Dices,
+  Ban,
 } from 'lucide-react';
 import { useEditorStore, LeftSidebarSection } from '@/stores/useEditorStore';
 import { SceneManager } from '@/core/scene/SceneManager';
@@ -35,7 +36,7 @@ const TOP_DOCK_ITEMS: Array<{
 }> = [
   { id: 'mannequin', label: '마네킹 선택', icon: <User className="w-4 h-4" /> },
   { id: 'poses', label: '자세 보관함', icon: <Bookmark className="w-4 h-4" /> },
-  { id: 'themes', label: '테마 & 의상', icon: <Palette className="w-4 h-4" /> },
+  { id: 'themes', label: '맞춤 의상', icon: <Sparkles className="w-4 h-4" /> },
   { id: 'export', label: '저장 & 연동', icon: <Download className="w-4 h-4" /> },
 ];
 
@@ -70,9 +71,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
         setActiveLeftSection(null);
       } else {
         setActiveLeftSection('themes');
-        if (themeStore.activeSidebarTab === 'props') {
-          themeStore.setActiveSidebarTab('theme');
-        }
+        themeStore.setActiveSidebarTab('outfit');
       }
       return;
     }
@@ -103,7 +102,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
 
   return (
     <header className="absolute top-3 left-4 right-4 z-30 flex items-center justify-between gap-2 pointer-events-none">
-      {/* 1. 좌측: 가로형 통합 아이콘 메뉴 독 (전체 랜덤 세트 아이콘 일체형 부착) */}
+      {/* 1. 좌측: 가로형 통합 아이콘 메뉴 독 */}
       <div className="flex items-center pointer-events-auto">
         <div className="flex items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-full shadow-md">
           {TOP_DOCK_ITEMS.map((item) => {
@@ -134,7 +133,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
           <button
             onClick={handleTogglePropsSection}
             aria-label="아이템 & 소품"
-            title="바디 아이템 & 소품 (네일·구두·초커·가터·3D소품)"
+            title="아이템 & 소품 (방 가구·성인기구 55종 / 바디 착용·성인토이 84종)"
             className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
               isPropsTabActive
                 ? 'bg-zinc-900 text-pink-400 shadow-sm scale-105'
@@ -152,7 +151,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
           <button
             onClick={() => themeStore.rollRandomAll()}
             aria-label="전체 랜덤 세트"
-            title="전체 랜덤 세트 (테마·세부장소·조명·의상·아이템·자세 무작위 조합)"
+            title="전체 랜덤 세트 (배경·의상·아이템·자세 무작위 조합)"
             className="group relative flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 hover:bg-zinc-800 text-amber-400 shadow-sm transition-all active:scale-95"
           >
             <Dices className="w-4 h-4" />
@@ -163,7 +162,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
         </div>
       </div>
 
-      {/* 2. 우측: 빠른 화면 모드 아이콘 스위치 & 테마 사물/관절선 토글 & 초기화 */}
+      {/* 2. 우측: 빠른 화면 모드 아이콘 스위치 & 순수 마네킹 모드 / 사물 / 관절선 토글 & 초기화 */}
       <div className="flex items-center gap-1.5 pointer-events-auto">
         <div className="flex items-center gap-0.5 p-1 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-sm">
           {QUICK_MODES.map((m) => {
@@ -186,10 +185,30 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
           })}
         </div>
 
-        {/* 테마 3D 사물 표시 토글 */}
+        {/* 순수 마네킹 모드 (올클린 미착용) 스마트 토글 */}
+        <button
+          onClick={() => themeStore.toggleBareMannequinMode()}
+          title={
+            themeStore.isBareMannequinMode
+              ? '순수 마네킹 모드 켜짐 (클릭 시 이전 의상·아이템 복원)'
+              : '모든 의상 및 바디 아이템 한 번에 미착용 (순수 마네킹 모드)'
+          }
+          className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all ${
+            themeStore.isBareMannequinMode
+              ? 'bg-zinc-900 border-emerald-500/80 text-emerald-400'
+              : 'bg-white/95 border-zinc-200/90 text-rose-600 hover:bg-white'
+          }`}
+        >
+          <Ban className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">
+            {themeStore.isBareMannequinMode ? '순수 마네킹 ON' : '올클린 미착용'}
+          </span>
+        </button>
+
+        {/* 방 가구 3D 사물 표시 토글 */}
         <button
           onClick={() => themeStore.setShowThemeProps(!themeStore.showThemeProps)}
-          title={themeStore.showThemeProps ? '테마 3D 사물 숨기기' : '테마 3D 사물 표시하기'}
+          title={themeStore.showThemeProps ? '방 가구·사물 숨기기' : '방 가구·사물 표시하기'}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all ${
             themeStore.showThemeProps
               ? 'bg-white/95 border-zinc-200/90 text-amber-600 hover:bg-white'

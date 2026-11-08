@@ -12,6 +12,7 @@ import {
   NECK_ITEMS,
   WRIST_ITEMS,
   LEG_ITEMS,
+  TOY_SPECIAL_ITEMS,
   EXTRA_SCENE_PROPS,
 } from '@/data/themesSolo/accessoriesAndPropsData';
 import { RoomPropInstance, getRoomPropDef } from '@/data/themesSolo/roomPropCatalog';
@@ -34,6 +35,7 @@ export interface PromptBuildParams {
   neckItemId?: string;
   wristItemId?: string;
   legItemId?: string;
+  toyItemId?: string;
   extraSceneProps?: string[];
 }
 
@@ -73,24 +75,28 @@ function buildAccessoryAndPropTags(params: {
   neckItemId?: string;
   wristItemId?: string;
   legItemId?: string;
+  toyItemId?: string;
   extraSceneProps?: string[];
   roomProps?: RoomPropInstance[];
 }): string[] {
   const tags: string[] = [];
-  const nail = NAIL_ITEMS.find((i) => i.id === params.nailColorId && i.id !== 'nail_none');
+  const nail = NAIL_ITEMS.find((i) => i.id === params.nailColorId && i.id !== 'none');
   if (nail && nail.promptEn) tags.push(nail.promptEn);
 
-  const foot = FOOTWEAR_ITEMS.find((i) => i.id === params.footwearId && i.id !== 'foot_bare');
+  const foot = FOOTWEAR_ITEMS.find((i) => i.id === params.footwearId && i.id !== 'bare_feet');
   if (foot && foot.promptEn) tags.push(foot.promptEn);
 
-  const neck = NECK_ITEMS.find((i) => i.id === params.neckItemId && i.id !== 'neck_none');
+  const neck = NECK_ITEMS.find((i) => i.id === params.neckItemId && i.id !== 'none');
   if (neck && neck.promptEn) tags.push(neck.promptEn);
 
-  const wrist = WRIST_ITEMS.find((i) => i.id === params.wristItemId && i.id !== 'wrist_none');
+  const wrist = WRIST_ITEMS.find((i) => i.id === params.wristItemId && i.id !== 'none');
   if (wrist && wrist.promptEn) tags.push(wrist.promptEn);
 
-  const leg = LEG_ITEMS.find((i) => i.id === params.legItemId && i.id !== 'leg_none');
+  const leg = LEG_ITEMS.find((i) => i.id === params.legItemId && i.id !== 'none');
   if (leg && leg.promptEn) tags.push(leg.promptEn);
+
+  const toy = TOY_SPECIAL_ITEMS.find((i) => i.id === params.toyItemId && i.id !== 'toy_none');
+  if (toy && toy.promptEn) tags.push(toy.promptEn);
 
   if (params.roomProps && params.roomProps.length > 0) {
     const visiblePrompts = params.roomProps
@@ -183,6 +189,7 @@ export function buildCompactSceneTagSummary(params: {
   neckItemId?: string;
   wristItemId?: string;
   legItemId?: string;
+  toyItemId?: string;
   extraSceneProps?: string[];
   roomProps?: RoomPropInstance[];
 }): string {

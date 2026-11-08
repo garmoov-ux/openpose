@@ -47,6 +47,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       neckItemId: themeStore.neckItemId,
       wristItemId: themeStore.wristItemId,
       legItemId: themeStore.legItemId,
+      toyItemId: themeStore.toyItemId,
       extraSceneProps: themeStore.extraSceneProps,
       roomProps: themeStore.roomProps,
     });
@@ -62,6 +63,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     themeStore.neckItemId,
     themeStore.wristItemId,
     themeStore.legItemId,
+    themeStore.toyItemId,
     themeStore.extraSceneProps,
     themeStore.roomProps,
   ]);
