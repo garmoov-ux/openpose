@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { SoloThemeId } from '@/types/themeSolo';
-import { RoomPropInstance } from '@/data/themesSolo/roomPropCatalog';
+import { RoomPropInstance, findRoomPropById } from '@/data/themesSolo/roomPropCatalog';
 import { createIndividualPropGroup } from './propMeshFactory';
 import { createExtraRoomPropGroup } from './extraRoomPropFactory';
+import { createCatalogPropGroup } from './catalogPropMeshFactory';
 import { mat, box, cyl, sphere } from './themeFurniturePrimitives';
 
 export function disposeThemePropsGroup(group: THREE.Group): void {
@@ -110,10 +111,12 @@ export function rebuildThemePropsGroup(
     if (!inst.visible) continue;
     const customHex = inst.customColorHex;
     const propShift = customHex !== undefined ? () => customHex : shift;
+    const propDef = findRoomPropById(inst.propId);
 
     const propObj =
       createSpecialAdultPropGroup(inst.propId, propShift) ||
       createExtraRoomPropGroup(inst.propId, propShift) ||
+      createCatalogPropGroup(propDef?.meshKind, propDef?.colorHex ?? 0x64748b, propShift, propDef?.meshVariant) ||
       createIndividualPropGroup(inst.propId, propShift);
 
     // 커스텀 색상이 지정된 경우 첫 번째 대표 메쉬의 색상도 확실하게 오버라이드

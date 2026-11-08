@@ -2,6 +2,8 @@ import { SoloThemeId } from '@/types/themeSolo';
 import { THEMES_DATA } from './themesData';
 import { translateEnvironmentItem } from './environmentTranslator';
 import { EXTRA_ROOM_PROPS } from './roomPropCatalogExtra';
+import { GENERATED_ROOM_PROPS } from './generatedRoomProps';
+import type { CatalogPropMeshKind, CatalogPropMeshVariant } from '@/core/scene/catalogPropMeshFactory';
 
 export type RoomPropCategory =
   | 'main_furniture'
@@ -20,6 +22,9 @@ export interface RoomPropCatalogItem {
   promptEn: string;
   defaultPos: [number, number, number];
   defaultRotY?: number;
+  meshKind?: CatalogPropMeshKind;
+  meshVariant?: CatalogPropMeshVariant;
+  defaultScale?: number;
 }
 
 export interface RoomPropInstance {
@@ -112,7 +117,12 @@ export const ROOM_PROP_CATALOG: RoomPropCatalogItem[] = [
   { id: 'hinoki_bucket', nameKo: '히노끼 목욕 바가지 & 스파 타월', category: 'table_props', badge: '스파 소품', colorHex: 0xb45309, promptEn: 'wooden hinoki bath bucket and rolled white spa towels', defaultPos: [-0.75, 0, -0.15] },
   { id: 'coffee_bag', nameKo: '아이스 커피컵 & 디자이너 미니백', category: 'table_props', badge: '일상 소품', colorHex: 0x78350f, promptEn: 'iced coffee cup and leather designer handbag', defaultPos: [0.68, 0, -0.15] },
   ...EXTRA_ROOM_PROPS,
+  ...GENERATED_ROOM_PROPS,
 ];
+
+if (ROOM_PROP_CATALOG.length !== 500) {
+  throw new Error(`Expected 500 room props, got ${ROOM_PROP_CATALOG.length}`);
+}
 
 ROOM_PROP_CATEGORIES.forEach((category) => {
   const count = category.id === 'all'
@@ -135,7 +145,7 @@ function makeInstance(propId: string, index: number, customPos?: [number, number
     visible: true,
     position: customPos ? [...customPos] : meta ? [...meta.defaultPos] : [0, 0, -0.5],
     rotationY: rotY || meta?.defaultRotY || 0,
-    scale: 1.0,
+    scale: meta?.defaultScale ?? 1.0,
   };
 }
 
