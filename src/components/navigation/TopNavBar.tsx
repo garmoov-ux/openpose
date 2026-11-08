@@ -188,14 +188,14 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
 
           <div className="w-px h-5 bg-zinc-200 mx-0.5" />
 
-          {/* 순수 마네킹 모드 (올클린 미착용) 아이콘 스위치 */}
+          {/* 전체 해제 (순수 마네킹 모드) 아이콘 스위치 */}
           <button
             onClick={() => themeStore.toggleBareMannequinMode()}
-            aria-label="순수 마네킹 모드"
+            aria-label="전체 해제"
             title={
               themeStore.isBareMannequinMode
-                ? '순수 마네킹 모드 ON (클릭 시 이전 의상·아이템 복원)'
-                : '올클린 미착용 (모든 의상·바디 아이템 한 번에 해제)'
+                ? '전체 해제됨 (클릭 시 이전 의상·아이템 복원)'
+                : '전체 해제 (모든 의상·바디 아이템 한 번에 해제)'
             }
             className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
               themeStore.isBareMannequinMode
@@ -205,7 +205,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
           >
             <Ban className="w-4 h-4" />
             <span className="pointer-events-none absolute top-11 right-0 px-2.5 py-1 rounded-lg bg-zinc-900 text-white text-[11px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md z-40">
-              {themeStore.isBareMannequinMode ? '순수 마네킹 ON (복원)' : '올클린 미착용'}
+              {themeStore.isBareMannequinMode ? '전체 해제됨 (복원)' : '전체 해제'}
             </span>
           </button>
 

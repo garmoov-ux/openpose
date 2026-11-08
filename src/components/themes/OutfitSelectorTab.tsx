@@ -172,10 +172,10 @@ export const OutfitSelectorTab: React.FC = () => {
                 ? 'bg-zinc-900 text-white shadow-xs'
                 : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
             }`}
-            title="기본 의상 미착용 (순수 마네킹 바디 상태)"
+            title="착용 의상 전체 해제 (순수 마네킹 바디 상태)"
           >
             <Ban className="w-3.5 h-3.5" />
-            <span>미착용 (기본)</span>
+            <span>전체 해제</span>
           </button>
           {profile.recommendedOutfitId > 0 && (
             <button

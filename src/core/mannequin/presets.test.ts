@@ -7,6 +7,7 @@ import { quatToDeg } from './poses/poseMath';
 import { MANNEQUIN_MODELS } from './models';
 import { getMannequinProfile, getOutfitsForMannequin, findOutfitById } from './mannequinProfiles';
 import { rebuildThemePropsGroup } from '@/core/scene/themePropsBuilder';
+import { applyCouplePresetToRigs } from '@/core/scene/modelSwapHelper';
 import { ROOM_PROP_CATALOG, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
 import { buildCompactSceneTagSummary } from '@/services/comfyui/promptBuilder';
 
@@ -112,14 +113,33 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     expect(tags.toLowerCase()).not.toContain('picture 1');
   });
 
-  it('100종 남·여 커플 체위 프리셋과 55종 사각 룸 가구·소품 카탈로그가 무결해야 한다', () => {
+  it('130종 남·여 커플 체위, 220종 스페셜 솔로 자세, 55종 가구·소품 카탈로그가 무결해야 한다', () => {
     const couplePresets = POSE_PRESETS.filter((p) => p.category === 'couple');
-    expect(couplePresets.length).toBe(100);
+    expect(couplePresets.length).toBe(130);
+    const coupleIds = new Set(couplePresets.map((p) => p.id));
+    expect(coupleIds.size).toBe(130);
     couplePresets.forEach((cp) => {
       expect(cp.partnerPose).toBeDefined();
       expect(cp.partnerOffset).toBeDefined();
       expect(cp.subGroup).toBeTruthy();
     });
+
+    const glamourSoloPresets = POSE_PRESETS.filter((p) => p.category === 'glamour');
+    expect(glamourSoloPresets.length).toBe(220);
+    const soloIds = new Set(glamourSoloPresets.map((p) => p.id));
+    expect(soloIds.size).toBe(220);
+
+    // 커플 리프트/스트래들 mainOffset 및 남성 메인 모델 선택 시 역할 자동 스왑 검증
+    const mainRig = createProceduralHumanoid();
+    const partnerRig = createProceduralHumanoid();
+    const liftPreset = couplePresets.find((p) => p.id === 'couple-full-leg-wrap-lift')!;
+    const resFemaleMain = applyCouplePresetToRigs(mainRig, partnerRig, liftPreset, false);
+    expect(resFemaleMain.mainPos[1]).toBeGreaterThan(0.3);
+    expect(mainRig.group.position.y).toBeCloseTo(resFemaleMain.mainPos[1], 2);
+
+    const resMaleMain = applyCouplePresetToRigs(mainRig, partnerRig, liftPreset, true);
+    expect(resMaleMain.partnerPos[1]).toBeGreaterThan(0.3);
+    expect(partnerRig.group.position.y).toBeCloseTo(resMaleMain.partnerPos[1], 2);
 
     expect(ROOM_PROP_CATALOG.length).toBe(55);
     const defaultRoomProps = getDefaultRoomPropsForTheme('house_indoor_room', 0);

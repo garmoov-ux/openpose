@@ -26,7 +26,9 @@ export interface RoomPropInstance {
   propId: string;
   visible: boolean;
   position: [number, number, number];
+  rotationX?: number;
   rotationY: number;
+  rotationZ?: number;
   scale: number;
   customColorHex?: number;
 }

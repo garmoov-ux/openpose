@@ -130,10 +130,10 @@ export const PropsAndAccessoriesTab: React.FC = () => {
                 <button
                   onClick={clearAllAccessories}
                   className="flex items-center gap-1 px-2.5 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded-full text-[11px] font-bold transition-colors shadow-xs"
-                  title="모든 바디 착용 아이템 및 성인기구를 한 번에 미착용 상태로 해제"
+                  title="모든 바디 착용 아이템 및 성인기구 전체 해제"
                 >
                   <Ban className="w-3 h-3" />
-                  <span>한 번에 전체 미착용</span>
+                  <span>전체 해제</span>
                 </button>
                 <button
                   onClick={rollRandomAccessories}
@@ -256,7 +256,7 @@ export const PropsAndAccessoriesTab: React.FC = () => {
                     {isSelected && (
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-300 flex items-center gap-0.5">
                         <Check className="w-2.5 h-2.5" />
-                        {isNoneCard ? '미착용' : '착용중'}
+                        {isNoneCard ? '해제됨' : '착용중'}
                       </span>
                     )}
                   </div>

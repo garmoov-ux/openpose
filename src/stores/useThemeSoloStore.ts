@@ -4,10 +4,17 @@ import { THEMES_DATA } from '@/data/themesSolo/themesData';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { NAIL_ITEMS, FOOTWEAR_ITEMS, NECK_ITEMS, WRIST_ITEMS, LEG_ITEMS, TOY_SPECIAL_ITEMS, EXTRA_SCENE_PROPS } from '@/data/themesSolo/accessoriesAndPropsData';
-import { RoomPropInstance, findRoomPropById, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
+import { RoomPropInstance, findRoomPropById } from '@/data/themesSolo/roomPropCatalog';
 import { BodyAccessoryCategoryKey } from '@/core/mannequin/bodyAccessoryMeshes';
 
 export type BodyProfileMode = 'mannequin' | 'free' | 'petite155';
+export type TransformTargetKind = 'none' | 'main' | 'partner' | 'prop';
+
+export interface ObjectTransform3D {
+  position: [number, number, number];
+  rotation: [number, number, number]; // radians [rx, ry, rz]
+  scale: number;
+}
 
 interface SavedAppearanceBackup {
   outfitId: number;
@@ -40,6 +47,9 @@ interface ThemeSoloState {
   savedAppearanceBackup: SavedAppearanceBackup | null;
   roomProps: RoomPropInstance[];
   selectedPropUid: string | null;
+  activeTransformTarget: TransformTargetKind;
+  mainMannequinTransform: ObjectTransform3D;
+  partnerMannequinTransform: ObjectTransform3D;
   nailColorId: string;
   footwearId: string;
   neckItemId: string;
@@ -68,12 +78,15 @@ interface ThemeSoloState {
   toggleBareMannequinMode: () => void;
 
   setSelectedPropUid: (uid: string | null) => void;
+  setActiveTransformTarget: (target: TransformTargetKind) => void;
+  setMainMannequinTransform: (patch: Partial<ObjectTransform3D>) => void;
+  setPartnerMannequinTransform: (patch: Partial<ObjectTransform3D>) => void;
+  resetMannequinTransform: (target: 'main' | 'partner') => void;
   addRoomProp: (propId: string) => void;
   toggleRoomProp: (uid: string) => void;
   removeRoomProp: (uid: string) => void;
-  updateRoomPropTransform: (uid: string, position: [number, number, number], rotationY: number, scale?: number) => void;
+  updateRoomPropTransform: (uid: string, position: [number, number, number], rotationY: number, scale?: number, rotationX?: number, rotationZ?: number) => void;
   updateRoomPropColor: (uid: string, colorHex?: number) => void;
-  resetRoomPropsToDefault: () => void;
   clearAllRoomProps: () => void;
 
   setNailColorId: (id: string) => void;
@@ -94,23 +107,13 @@ interface ThemeSoloState {
 }
 
 const pickRandom = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+const DEFAULT_MANNEQUIN_TRANSFORM: ObjectTransform3D = { position: [0, 0, 0], rotation: [0, 0, 0], scale: 1.0 };
 
 const isAllBare = (s: {
-  selectedOutfitId: number;
-  nailColorId: string;
-  footwearId: string;
-  neckItemId: string;
-  wristItemId: string;
-  legItemId: string;
-  toyItemId: string;
+  selectedOutfitId: number; nailColorId: string; footwearId: string; neckItemId: string; wristItemId: string; legItemId: string; toyItemId: string;
 }) =>
-  s.selectedOutfitId === 0 &&
-  s.nailColorId === 'none' &&
-  s.footwearId === 'bare_feet' &&
-  s.neckItemId === 'none' &&
-  s.wristItemId === 'none' &&
-  s.legItemId === 'none' &&
-  s.toyItemId === 'toy_none';
+  s.selectedOutfitId === 0 && s.nailColorId === 'none' && s.footwearId === 'bare_feet' &&
+  s.neckItemId === 'none' && s.wristItemId === 'none' && s.legItemId === 'none' && s.toyItemId === 'toy_none';
 
 export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   selectedThemeId: 'house_indoor_room',
@@ -133,6 +136,9 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   savedAppearanceBackup: null,
   roomProps: [],
   selectedPropUid: null,
+  activeTransformTarget: 'none',
+  mainMannequinTransform: { ...DEFAULT_MANNEQUIN_TRANSFORM },
+  partnerMannequinTransform: { position: [0.02, 0, -0.26], rotation: [0, 0, 0], scale: 1.0 },
   nailColorId: 'none',
   footwearId: 'bare_feet',
   neckItemId: 'none',
@@ -142,10 +148,8 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   customAccessoryColors: {},
   extraSceneProps: [],
 
-  setSelectedThemeId: (id) =>
-    set({ selectedThemeId: id, selectedEnvIndex: 0, selectedLightIndex: 0, roomProps: getDefaultRoomPropsForTheme(id, 0), selectedPropUid: null }),
-  setSelectedEnvIndex: (idx) =>
-    set((s) => ({ selectedEnvIndex: idx, roomProps: getDefaultRoomPropsForTheme(s.selectedThemeId, idx), selectedPropUid: null })),
+  setSelectedThemeId: (id) => set({ selectedThemeId: id, selectedEnvIndex: 0, selectedLightIndex: 0 }),
+  setSelectedEnvIndex: (idx) => set({ selectedEnvIndex: idx }),
   setSelectedLightIndex: (idx) => set({ selectedLightIndex: idx }),
   setSelectedOutfitId: (id) => set((s) => ({ selectedOutfitId: id, isBareMannequinMode: isAllBare({ ...s, selectedOutfitId: id }) })),
   setSelectedOutfitCategory: (cat) => set({ selectedOutfitCategory: cat }),
@@ -171,46 +175,46 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
           isBareMannequinMode: true,
           savedAppearanceBackup: hasAny
             ? {
-                outfitId: s.selectedOutfitId,
-                nailColorId: s.nailColorId,
-                footwearId: s.footwearId,
-                neckItemId: s.neckItemId,
-                wristItemId: s.wristItemId,
-                legItemId: s.legItemId,
-                toyItemId: s.toyItemId,
+                outfitId: s.selectedOutfitId, nailColorId: s.nailColorId, footwearId: s.footwearId,
+                neckItemId: s.neckItemId, wristItemId: s.wristItemId, legItemId: s.legItemId, toyItemId: s.toyItemId,
               }
             : s.savedAppearanceBackup,
-          selectedOutfitId: 0,
-          nailColorId: 'none',
-          footwearId: 'bare_feet',
-          neckItemId: 'none',
-          wristItemId: 'none',
-          legItemId: 'none',
-          toyItemId: 'toy_none',
+          selectedOutfitId: 0, nailColorId: 'none', footwearId: 'bare_feet',
+          neckItemId: 'none', wristItemId: 'none', legItemId: 'none', toyItemId: 'toy_none',
         };
       }
       const b = s.savedAppearanceBackup;
       return {
         isBareMannequinMode: false,
-        selectedOutfitId: b ? b.outfitId : 1,
-        nailColorId: b ? b.nailColorId : 'ruby_red',
-        footwearId: b ? b.footwearId : 'black_stiletto_mules',
-        neckItemId: b ? b.neckItemId : 'black_velvet_choker',
-        wristItemId: b ? b.wristItemId : 'none',
-        legItemId: b ? b.legItemId : 'black_lace_garter',
-        toyItemId: b ? b.toyItemId : 'toy_none',
+        selectedOutfitId: b ? b.outfitId : 1, nailColorId: b ? b.nailColorId : 'ruby_red',
+        footwearId: b ? b.footwearId : 'black_stiletto_mules', neckItemId: b ? b.neckItemId : 'black_velvet_choker',
+        wristItemId: b ? b.wristItemId : 'none', legItemId: b ? b.legItemId : 'black_lace_garter', toyItemId: b ? b.toyItemId : 'toy_none',
       };
     }),
 
-  setSelectedPropUid: (selectedPropUid) => set({ selectedPropUid }),
+  setSelectedPropUid: (selectedPropUid) =>
+    set((s) => ({
+      selectedPropUid,
+      activeTransformTarget: selectedPropUid ? 'prop' : s.activeTransformTarget === 'prop' ? 'none' : s.activeTransformTarget,
+    })),
+  setActiveTransformTarget: (activeTransformTarget) =>
+    set((s) => ({ activeTransformTarget, selectedPropUid: activeTransformTarget === 'prop' ? s.selectedPropUid : null })),
+  setMainMannequinTransform: (patch) => set((s) => ({ mainMannequinTransform: { ...s.mainMannequinTransform, ...patch } })),
+  setPartnerMannequinTransform: (patch) => set((s) => ({ partnerMannequinTransform: { ...s.partnerMannequinTransform, ...patch } })),
+  resetMannequinTransform: (target) =>
+    set(() =>
+      target === 'main'
+        ? { mainMannequinTransform: { ...DEFAULT_MANNEQUIN_TRANSFORM } }
+        : { partnerMannequinTransform: { position: [0.02, 0, -0.26], rotation: [0, 0, 0], scale: 1.0 } }
+    ),
+
   addRoomProp: (propId) =>
     set((s) => {
       const hidden = s.roomProps.find((p) => p.propId === propId && !p.visible);
       if (hidden) {
         return {
           roomProps: s.roomProps.map((p) => (p.uid === hidden.uid ? { ...p, visible: true } : p)),
-          selectedPropUid: hidden.uid,
-          showThemeProps: true,
+          selectedPropUid: hidden.uid, activeTransformTarget: 'prop', showThemeProps: true,
         };
       }
       const meta = findRoomPropById(propId);
@@ -220,10 +224,9 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
       return {
         roomProps: [
           ...s.roomProps,
-          { uid: newUid, propId, visible: true, position: [basePos[0] + offset, basePos[1], basePos[2]], rotationY: meta?.defaultRotY || 0, scale: 1.0 },
+          { uid: newUid, propId, visible: true, position: [basePos[0] + offset, basePos[1], basePos[2]], rotationX: 0, rotationY: meta?.defaultRotY || 0, rotationZ: 0, scale: 1.0 },
         ],
-        selectedPropUid: newUid,
-        showThemeProps: true,
+        selectedPropUid: newUid, activeTransformTarget: 'prop', showThemeProps: true,
       };
     }),
   toggleRoomProp: (uid) =>
@@ -236,15 +239,17 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
       roomProps: s.roomProps.filter((p) => p.uid !== uid),
       selectedPropUid: s.selectedPropUid === uid ? null : s.selectedPropUid,
     })),
-  updateRoomPropTransform: (uid, position, rotationY, scale) =>
+  updateRoomPropTransform: (uid, position, rotationY, scale, rotationX, rotationZ) =>
     set((s) => ({
-      roomProps: s.roomProps.map((p) => (p.uid === uid ? { ...p, position, rotationY, ...(scale !== undefined ? { scale } : {}) } : p)),
+      roomProps: s.roomProps.map((p) =>
+        p.uid === uid
+          ? { ...p, position, rotationY, ...(scale !== undefined ? { scale } : {}), ...(rotationX !== undefined ? { rotationX } : {}), ...(rotationZ !== undefined ? { rotationZ } : {}) }
+          : p
+      ),
     })),
   updateRoomPropColor: (uid, colorHex) =>
     set((s) => ({ roomProps: s.roomProps.map((p) => (p.uid === uid ? { ...p, customColorHex: colorHex } : p)) })),
-  resetRoomPropsToDefault: () =>
-    set((s) => ({ roomProps: getDefaultRoomPropsForTheme(s.selectedThemeId, s.selectedEnvIndex), selectedPropUid: null })),
-  clearAllRoomProps: () => set({ roomProps: [], selectedPropUid: null }),
+  clearAllRoomProps: () => set({ roomProps: [], selectedPropUid: null, activeTransformTarget: 'none' }),
 
   setNailColorId: (nailColorId) => set((s) => ({ nailColorId, isBareMannequinMode: isAllBare({ ...s, nailColorId }) })),
   setFootwearId: (footwearId) => set((s) => ({ footwearId, isBareMannequinMode: isAllBare({ ...s, footwearId }) })),
@@ -262,14 +267,8 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   },
   clearAllAccessories: () =>
     set((s) => ({
-      nailColorId: 'none',
-      footwearId: 'bare_feet',
-      neckItemId: 'none',
-      wristItemId: 'none',
-      legItemId: 'none',
-      toyItemId: 'toy_none',
-      customAccessoryColors: {},
-      extraSceneProps: [],
+      nailColorId: 'none', footwearId: 'bare_feet', neckItemId: 'none', wristItemId: 'none',
+      legItemId: 'none', toyItemId: 'toy_none', customAccessoryColors: {}, extraSceneProps: [],
       isBareMannequinMode: s.selectedOutfitId === 0,
     })),
 
@@ -295,26 +294,16 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     const randTheme = pickRandom(Object.keys(THEMES_DATA) as SoloThemeId[]);
     const theme = THEMES_DATA[randTheme];
     const randEnv = Math.floor(Math.random() * theme.environments.length);
-    set({
-      selectedThemeId: randTheme,
-      selectedEnvIndex: randEnv,
-      selectedLightIndex: Math.floor(Math.random() * theme.lightings.length),
-      roomProps: getDefaultRoomPropsForTheme(randTheme, randEnv),
-      selectedPropUid: null,
-      showThemeProps: true,
-    });
+    set({ selectedThemeId: randTheme, selectedEnvIndex: randEnv, selectedLightIndex: Math.floor(Math.random() * theme.lightings.length) });
   },
   rollRandomPosture: () =>
     set({ selectedPostureId: Math.floor(Math.random() * POSTURES_DATA.length) + 1, activePoseAccordion: 'solo', showPartnerGuide: false }),
   rollRandomAccessories: () =>
     set({
       isBareMannequinMode: false,
-      nailColorId: pickRandom(NAIL_ITEMS.slice(1)).id,
-      footwearId: pickRandom(FOOTWEAR_ITEMS.slice(1)).id,
-      neckItemId: pickRandom(NECK_ITEMS.slice(1)).id,
-      wristItemId: pickRandom(WRIST_ITEMS.slice(1)).id,
-      legItemId: pickRandom(LEG_ITEMS.slice(1)).id,
-      toyItemId: pickRandom(TOY_SPECIAL_ITEMS).id,
+      nailColorId: pickRandom(NAIL_ITEMS.slice(1)).id, footwearId: pickRandom(FOOTWEAR_ITEMS.slice(1)).id,
+      neckItemId: pickRandom(NECK_ITEMS.slice(1)).id, wristItemId: pickRandom(WRIST_ITEMS.slice(1)).id,
+      legItemId: pickRandom(LEG_ITEMS.slice(1)).id, toyItemId: pickRandom(TOY_SPECIAL_ITEMS).id,
       extraSceneProps: Array.from(new Set([pickRandom(EXTRA_SCENE_PROPS).id, pickRandom(EXTRA_SCENE_PROPS).id])),
     }),
 }));

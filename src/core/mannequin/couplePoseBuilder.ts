@@ -52,7 +52,9 @@ export function makeCouplePreset(
   femaleSpec: CompactPoseSpec,
   maleSpec: CompactPoseSpec,
   partnerOffset: [number, number, number],
-  partnerRotationY = 0
+  partnerRotationY = 0,
+  mainOffset: [number, number, number] = [0, 0, 0],
+  mainRotationY = 0
 ): PosePreset {
   return {
     id,
@@ -61,6 +63,8 @@ export function makeCouplePreset(
     subGroup,
     description,
     pose: buildPoseFromSpec(femaleSpec),
+    mainOffset,
+    mainRotationY,
     partnerPose: buildPoseFromSpec(maleSpec),
     partnerOffset,
     partnerRotationY,
@@ -68,7 +72,7 @@ export function makeCouplePreset(
 }
 
 export const COUPLE_SUBGROUPS: { id: string; label: string }[] = [
-  { id: 'all', label: '전체 커플 (100)' },
+  { id: 'all', label: '전체 커플 (130)' },
   { id: 'couple_standing', label: '기립·벽면·리프트 (10)' },
   { id: 'couple_chair', label: '의자·소파·랩시팅 (10)' },
   { id: 'couple_bed_front', label: '침대 대면·온탑 (10)' },
@@ -79,4 +83,7 @@ export const COUPLE_SUBGROUPS: { id: string; label: string }[] = [
   { id: 'couple_bondage_rp', label: '구속·서브미션·SM (10)' },
   { id: 'couple_furniture_special', label: '스윙·폴·특수가구 (10)' },
   { id: 'couple_oral_foreplay', label: '전희·69·스페셜 (10)' },
+  { id: 'couple_lounge_corner', label: '소파·코너·딥트위스트 (10)' },
+  { id: 'couple_cushion_arch', label: '볼스터·웻지·하이앵글 (10)' },
+  { id: 'couple_dynamic_passion', label: '익스트림·파워리프트 (10)' },
 ];

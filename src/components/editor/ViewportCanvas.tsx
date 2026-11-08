@@ -45,7 +45,13 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     customAccessoryColors,
     roomProps,
     selectedPropUid,
+    activeTransformTarget,
+    mainMannequinTransform,
+    partnerMannequinTransform,
     setSelectedPropUid,
+    setActiveTransformTarget,
+    setMainMannequinTransform,
+    setPartnerMannequinTransform,
     updateRoomPropTransform,
   } = useThemeSoloStore();
 
@@ -54,14 +60,24 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
 
     const manager = new SceneManager(canvasRef.current, (boneName) => {
       setSelectedBoneName(boneName);
-      if (boneName) setSelectedPropUid(null);
+      if (boneName) {
+        setSelectedPropUid(null);
+        setActiveTransformTarget('none');
+      }
     });
     manager.onPropSelectedCallback = (propUid) => {
       setSelectedPropUid(propUid);
       if (propUid) setSelectedBoneName(null);
     };
-    manager.onPropTransformCallback = (propUid, pos, rotY) => {
-      updateRoomPropTransform(propUid, pos, rotY);
+    manager.onPropTransformCallback = (propUid, pos, rotY, scale, rotX, rotZ) => {
+      updateRoomPropTransform(propUid, pos, rotY, scale, rotX, rotZ);
+    };
+    manager.onMannequinTransformCallback = (target, pos, rot, scale) => {
+      if (target === 'main') {
+        setMainMannequinTransform({ position: pos, rotation: rot, scale });
+      } else {
+        setPartnerMannequinTransform({ position: pos, rotation: rot, scale });
+      }
     };
 
     managerRef.current = manager;
@@ -82,7 +98,14 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       manager.dispose();
       managerRef.current = null;
     };
-  }, [setSelectedBoneName, setSelectedPropUid, updateRoomPropTransform]);
+  }, [
+    setSelectedBoneName,
+    setSelectedPropUid,
+    setActiveTransformTarget,
+    setMainMannequinTransform,
+    setPartnerMannequinTransform,
+    updateRoomPropTransform,
+  ]);
 
   useEffect(() => {
     managerRef.current?.setRenderMode(renderMode);
@@ -110,23 +133,48 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
 
   useEffect(() => {
     if (!selectedBoneName) {
-      if (!selectedPropUid) managerRef.current?.selectBone(null);
+      if (!selectedPropUid && activeTransformTarget === 'none') {
+        managerRef.current?.selectBone(null);
+      }
       return;
     }
     const currentAttached = managerRef.current?.transformControls?.object?.name || null;
     if (currentAttached !== selectedBoneName) {
       managerRef.current?.selectBone(selectedBoneName);
     }
-  }, [selectedBoneName, selectedPropUid]);
+  }, [selectedBoneName, selectedPropUid, activeTransformTarget]);
 
-  // 룸 사물 선택 동기화 (사이드바 또는 3D 뷰포트 클릭 시 기즈모 부착)
+  // 룸 사물 또는 마네킹 루트 기즈모 선택 동기화
   useEffect(() => {
-    if (selectedPropUid) {
-      managerRef.current?.selectProp(selectedPropUid);
+    if (!managerRef.current) return;
+    if (activeTransformTarget === 'main' || activeTransformTarget === 'partner') {
+      managerRef.current.selectMannequinRoot(activeTransformTarget);
+    } else if (selectedPropUid) {
+      managerRef.current.selectProp(selectedPropUid);
     } else if (!selectedBoneName) {
-      managerRef.current?.selectProp(null);
+      managerRef.current.selectMannequinRoot(null);
+      managerRef.current.selectProp(null);
     }
-  }, [selectedPropUid, selectedBoneName]);
+  }, [selectedPropUid, activeTransformTarget, selectedBoneName]);
+
+  // 메인/파트너 마네킹 3D 위치·회전·크기 변환 동기화
+  useEffect(() => {
+    managerRef.current?.applyMannequinTransform(
+      'main',
+      mainMannequinTransform.position,
+      mainMannequinTransform.rotation,
+      mainMannequinTransform.scale
+    );
+  }, [mainMannequinTransform]);
+
+  useEffect(() => {
+    managerRef.current?.applyMannequinTransform(
+      'partner',
+      partnerMannequinTransform.position,
+      partnerMannequinTransform.rotation,
+      partnerMannequinTransform.scale
+    );
+  }, [partnerMannequinTransform]);
 
   // 사각 룸 가구·소품(roomProps) 및 커스텀 색상 실시간 반영
   useEffect(() => {
@@ -143,7 +191,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     managerRef.current?.applyOutfit(selectedOutfitId > 0 ? selectedOutfitId : null);
   }, [selectedOutfitId]);
 
-  // 신체 부위별 아이템(네일, 신발/스타킹/맨발, 초커, 팔찌, 가터, 성인기구) 및 부위별 커스텀 색상 실시간 부착
+  // 신체 부위별 아이템 및 부위별 커스텀 색상 실시간 부착
   useEffect(() => {
     managerRef.current?.applyBodyAccessories({
       nailColorId,

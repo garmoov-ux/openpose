@@ -6,21 +6,21 @@ import { SoloThemeId } from '@/types/themeSolo';
 import { RoomPropInstance } from '@/data/themesSolo/roomPropCatalog';
 import { createProceduralHumanoid, HumanoidRigResult, applyBodyProportions } from '@/core/mannequin/humanoidRig';
 import { loadFbxMannequin, measureHumanoidWorldYBounds } from '@/core/mannequin/modelLoader';
+import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { applyOutfitToMannequin } from '@/core/mannequin/outfitVisualizer';
 import { BodyAccessoryConfig, applyBodyAccessoriesToRig } from '@/core/mannequin/bodyAccessoryMeshes';
 import { CameraController } from './CameraController';
-import {
-  createDepthShaderMaterial, createNormalShaderMaterial, createCannyMaterial, createMaterialByStyle,
-} from '@/core/shaders/materials';
+import { createDepthShaderMaterial, createNormalShaderMaterial, createCannyMaterial, createMaterialByStyle } from '@/core/shaders/materials';
 import {
   applyMaterialToHierarchy, createStylizedSkeletonHelper, updateStylizedSkeletonHelper,
-  setJointDotsVisible, renderOffscreenSceneSnapshot,
+  setJointDotsVisible, renderOffscreenSceneSnapshot, applyMannequinGroupTransform, applyCouplePresetToRigs,
 } from './modelSwapHelper';
 import { StudioLights, createStudioLightsAndStage, applyStudioThemeEnvironment } from './environmentStudio';
 import { pickBoneFromRaycast, pickRoomPropFromRaycast, findPropGroupByUid } from './smartPicker';
 import { getJointScreenPositions, drawOpenPoseSkeleton } from '@/core/pipeline/openposePipeline';
+
 export class SceneManager {
   public scene: THREE.Scene;
   public camera: THREE.PerspectiveCamera;
@@ -42,7 +42,8 @@ export class SceneManager {
   private isDraggingGizmo = false;
   private onBoneSelectedCallback?: (boneName: string | null) => void;
   public onPropSelectedCallback?: (propUid: string | null) => void;
-  public onPropTransformCallback?: (propUid: string, pos: [number, number, number], rotY: number) => void;
+  public onPropTransformCallback?: (uid: string, pos: [number, number, number], rotY: number, scale: number, rotX: number, rotZ: number) => void;
+  public onMannequinTransformCallback?: (target: 'main' | 'partner', pos: [number, number, number], rot: [number, number, number], scale: number) => void;
   private currentMode: RenderMode = 'shading';
   private showGridState = true;
   private showSkeletonState = true;
@@ -50,7 +51,8 @@ export class SceneManager {
   private showPartnerState = false;
   private selectedBoneName: string | null = null;
   private selectedPropUid: string | null = null;
-  private partnerFbxLoaded = false;
+  private selectedMannequinRoot: 'main' | 'partner' | null = null;
+  private partnerLoadedModelId: MannequinModelId | null = null;
   private partnerFbxLoading = false;
   private lastPartnerPreset?: (typeof POSE_PRESETS)[number];
   private currentThemeBgHex = 0x18181b;
@@ -64,13 +66,13 @@ export class SceneManager {
   private depthMaterial = createDepthShaderMaterial();
   private normalMaterial = createNormalShaderMaterial();
   private cannyMaterial = createCannyMaterial();
+
   constructor(canvas: HTMLCanvasElement, onBoneSelect?: (name: string | null) => void) {
     this.canvas = canvas;
     this.onBoneSelectedCallback = onBoneSelect;
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(this.currentThemeBgHex);
-    const width = canvas.clientWidth || window.innerWidth || 800;
-    const height = canvas.clientHeight || window.innerHeight || 600;
+    const [width, height] = [canvas.clientWidth || window.innerWidth || 800, canvas.clientHeight || window.innerHeight || 600];
     this.camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 50);
     this.camera.position.set(0, 0.92, 3.75);
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
@@ -78,10 +80,9 @@ export class SceneManager {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.shadowMap.enabled = true;
-    this.overlayCanvas = document.createElement('canvas');
-    this.overlayCanvas.width = width;
-    this.overlayCanvas.height = height;
-    this.overlayCanvas.className = 'absolute inset-0 w-full h-full pointer-events-none hidden';
+    this.overlayCanvas = Object.assign(document.createElement('canvas'), {
+      width, height, className: 'absolute inset-0 w-full h-full pointer-events-none hidden',
+    });
     canvas.parentElement?.appendChild(this.overlayCanvas);
     this.studioLights = createStudioLightsAndStage(this.scene);
     this.gridHelper = new THREE.GridHelper(10, 20, 0x3f3f46, 0x27272a);
@@ -102,10 +103,16 @@ export class SceneManager {
     this.scene.add(this.transformControls.getHelper());
     this.transformControls.addEventListener('dragging-changed', (e) => {
       this.orbitControls.enabled = !e.value;
-      if (e.value) this.isDraggingGizmo = true;
-      else if (this.selectedPropUid && this.transformControls.object) {
-        const o = this.transformControls.object;
-        this.onPropTransformCallback?.(this.selectedPropUid, [Number(o.position.x.toFixed(3)), Number(o.position.y.toFixed(3)), Number(o.position.z.toFixed(3))], Number(o.rotation.y.toFixed(3)));
+      if (e.value) { this.isDraggingGizmo = true; return; }
+      const o = this.transformControls.object;
+      if (!o) return;
+      const pos: [number, number, number] = [Number(o.position.x.toFixed(3)), Number(o.position.y.toFixed(3)), Number(o.position.z.toFixed(3))];
+      const rot: [number, number, number] = [Number(o.rotation.x.toFixed(3)), Number(o.rotation.y.toFixed(3)), Number(o.rotation.z.toFixed(3))];
+      if (this.selectedPropUid && o.userData?.propUid === this.selectedPropUid) {
+        this.onPropTransformCallback?.(this.selectedPropUid, pos, rot[1], Number(o.scale.x.toFixed(3)), rot[0], rot[2]);
+      } else if (this.selectedMannequinRoot) {
+        const mult = Number((o.scale.x / (o.userData?.baseScale || 1.0)).toFixed(3));
+        this.onMannequinTransformCallback?.(this.selectedMannequinRoot, pos, rot, mult);
       }
     });
     this.canvas.addEventListener('pointerdown', this.onPointerDown);
@@ -114,75 +121,65 @@ export class SceneManager {
     this.loadMannequinModel('realistic_woman').catch(() => {});
   }
   private onPointerDown = (event: PointerEvent): void => {
-    if (event.button === 0) {
-      this.pointerDownPos = { x: event.clientX, y: event.clientY };
-      this.isDraggingGizmo = this.transformControls.dragging;
-    }
+    if (event.button === 0) { this.pointerDownPos = { x: event.clientX, y: event.clientY }; this.isDraggingGizmo = this.transformControls.dragging; }
   };
   private onPointerUp = (event: PointerEvent): void => {
-    if (event.button !== 0) return;
+    if (event.button !== 0 || Math.hypot(event.clientX - this.pointerDownPos.x, event.clientY - this.pointerDownPos.y) > 5) return;
     if (this.isDraggingGizmo || this.transformControls.dragging) { this.isDraggingGizmo = false; return; }
-    if (Math.hypot(event.clientX - this.pointerDownPos.x, event.clientY - this.pointerDownPos.y) > 5) return;
     if ((this.transformControls as unknown as { axis: string | null }).axis !== null) return;
     const rect = this.canvas.getBoundingClientRect();
     this.mouse.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const hitBone = pickBoneFromRaycast(this.raycaster, Array.from(this.humanoid.colliders.values()), this.humanoid.group, this.humanoid.bones);
     if (hitBone) {
-      this.selectProp(null);
-      this.onPropSelectedCallback?.(null);
-      this.selectBone(hitBone);
-      return;
+      this.selectedMannequinRoot = null; this.selectProp(null); this.onPropSelectedCallback?.(null); this.selectBone(hitBone); return;
     }
     if (this.partnerHumanoid.group.visible) {
       const pBoneName = pickBoneFromRaycast(this.raycaster, Array.from(this.partnerHumanoid.colliders.values()), this.partnerHumanoid.group, this.partnerHumanoid.bones);
       const pBone = pBoneName ? this.partnerHumanoid.bones.get(pBoneName) : undefined;
       if (pBoneName && pBone) {
-        this.selectProp(null);
-        this.onPropSelectedCallback?.(null);
-        this.selectedBoneName = pBoneName;
-        this.transformControls.setSpace('local');
-        this.transformControls.setMode('rotate');
-        this.transformControls.attach(pBone);
-        this.onBoneSelectedCallback?.(pBoneName);
-        return;
+        this.selectedMannequinRoot = null; this.selectProp(null); this.onPropSelectedCallback?.(null);
+        this.selectedBoneName = pBoneName; this.transformControls.setSpace('local'); this.transformControls.setMode('rotate');
+        this.transformControls.attach(pBone); this.onBoneSelectedCallback?.(pBoneName); return;
       }
     }
     const hitPropUid = pickRoomPropFromRaycast(this.raycaster, this.studioLights.themePropsGroup);
-    this.selectBone(null);
-    this.selectProp(hitPropUid);
-    this.onPropSelectedCallback?.(hitPropUid);
+    this.selectedMannequinRoot = null; this.selectBone(null); this.selectProp(hitPropUid); this.onPropSelectedCallback?.(hitPropUid);
   };
   public selectBone(boneName: string | null): void {
     this.selectedBoneName = boneName;
     if (!boneName) {
-      if (!this.selectedPropUid) this.transformControls.detach();
+      if (!this.selectedPropUid && !this.selectedMannequinRoot) this.transformControls.detach();
       setJointDotsVisible(this.humanoid.group, this.showSkeletonState && this.currentMode === 'shading', null);
-      this.onBoneSelectedCallback?.(null);
-      return;
+      this.onBoneSelectedCallback?.(null); return;
     }
     const bone = this.humanoid.bones.get(boneName);
     if (bone) {
-      this.selectedPropUid = null;
-      this.transformControls.setSpace('local');
-      this.transformControls.setMode('rotate');
-      this.transformControls.attach(bone);
+      this.selectedPropUid = null; this.selectedMannequinRoot = null;
+      this.transformControls.setSpace('local'); this.transformControls.setMode('rotate'); this.transformControls.attach(bone);
       setJointDotsVisible(this.humanoid.group, this.showSkeletonState && this.currentMode === 'shading', boneName);
       this.onBoneSelectedCallback?.(boneName);
     }
   }
   public selectProp(propUid: string | null): void {
     this.selectedPropUid = propUid;
-    if (!propUid) {
-      if (!this.selectedBoneName) this.transformControls.detach();
-      return;
-    }
+    if (!propUid) { if (!this.selectedBoneName && !this.selectedMannequinRoot) this.transformControls.detach(); return; }
     const propGroup = findPropGroupByUid(this.studioLights.themePropsGroup, propUid);
     if (!propGroup) { this.transformControls.detach(); return; }
-    this.selectedBoneName = null;
+    this.selectedBoneName = null; this.selectedMannequinRoot = null;
+    setJointDotsVisible(this.humanoid.group, this.showSkeletonState && this.currentMode === 'shading', null);
+    this.transformControls.setSpace('world'); this.transformControls.attach(propGroup);
+  }
+  public selectMannequinRoot(target: 'main' | 'partner' | null): void {
+    this.selectedMannequinRoot = target;
+    if (!target) { if (!this.selectedBoneName && !this.selectedPropUid) this.transformControls.detach(); return; }
+    this.selectedBoneName = null; this.selectedPropUid = null;
     setJointDotsVisible(this.humanoid.group, this.showSkeletonState && this.currentMode === 'shading', null);
     this.transformControls.setSpace('world');
-    this.transformControls.attach(propGroup);
+    this.transformControls.attach(target === 'main' ? this.humanoid.group : this.partnerHumanoid.group);
+  }
+  public applyMannequinTransform(target: 'main' | 'partner', pos: [number, number, number], rot: [number, number, number], scale: number): void {
+    applyMannequinGroupTransform(target === 'main' ? this.humanoid.group : this.partnerHumanoid.group, pos, rot, scale);
   }
   public setRenderMode(mode: RenderMode): void {
     this.currentMode = mode;
@@ -232,31 +229,31 @@ export class SceneManager {
     if (partnerPreset) this.lastPartnerPreset = partnerPreset;
     const activePreset = partnerPreset || this.lastPartnerPreset || POSE_PRESETS.find((p) => p.category === 'couple');
     this.partnerHumanoid.group.visible = show && this.currentMode !== 'openpose';
-    if (!show) return;
-    if (!this.partnerFbxLoaded && !this.partnerFbxLoading) {
+    if (!show) {
+      applyMannequinGroupTransform(this.humanoid.group, [0, 0, 0], [0, 0, 0], 1.0);
+      this.onMannequinTransformCallback?.('main', [0, 0, 0], [0, 0, 0], 1.0);
+      return;
+    }
+    const isMainMale = MANNEQUIN_MODELS.find((m) => m.id === this.currentModelId)?.gender === 'male';
+    const desiredPartnerModel: MannequinModelId = isMainMale ? 'realistic_woman' : 'realistic_muscular_male';
+    if (this.partnerLoadedModelId !== desiredPartnerModel && !this.partnerFbxLoading) {
       this.partnerFbxLoading = true;
-      loadFbxMannequin('realistic_muscular_male', 'clay')
+      loadFbxMannequin(desiredPartnerModel, 'clay')
         .then((fbxRig) => {
           this.scene.remove(this.partnerHumanoid.group);
           this.partnerHumanoid = fbxRig;
           setJointDotsVisible(this.partnerHumanoid.group, false, null);
           this.scene.add(this.partnerHumanoid.group);
-          this.partnerFbxLoaded = true;
+          this.partnerLoadedModelId = desiredPartnerModel;
           this.partnerFbxLoading = false;
           if (this.showPartnerState) this.setPartnerGuide(true, this.lastPartnerPreset);
         })
         .catch(() => { this.partnerFbxLoading = false; });
     }
-    this.partnerHumanoid.group.position.set(0, 0, 0);
-    this.partnerHumanoid.group.rotation.set(0, 0, 0);
-    if (activePreset?.partnerPose) {
-      applyPosePreset(this.partnerHumanoid.bones, { ...activePreset, pose: activePreset.partnerPose });
-      const [ox, oy, oz] = activePreset.partnerOffset || [0, 0, -0.34];
-      this.partnerHumanoid.group.position.set(ox, oy, oz);
-      this.partnerHumanoid.group.rotation.set(0, activePreset.partnerRotationY ?? 0, 0);
-    } else {
-      applyPosePreset(this.partnerHumanoid.bones, POSE_PRESETS[0]);
-      this.partnerHumanoid.group.position.set(0.32, 0, -0.22);
+    if (activePreset) {
+      const res = applyCouplePresetToRigs(this.humanoid, this.partnerHumanoid, activePreset, isMainMale);
+      this.onMannequinTransformCallback?.('main', res.mainPos, [0, res.mainRotY, 0], 1.0);
+      this.onMannequinTransformCallback?.('partner', res.partnerPos, [0, res.partnerRotY, 0], 1.0);
     }
   }
   public async loadMannequinModel(modelId: MannequinModelId, onProgress?: (percent: number) => void): Promise<void> {
@@ -264,9 +261,7 @@ export class SceneManager {
     this.transformControls.detach();
     this.selectedBoneName = null;
     this.onBoneSelectedCallback?.(null);
-    const newRig = modelId === 'procedural'
-      ? createProceduralHumanoid()
-      : await loadFbxMannequin(modelId, this.currentMaterialStyle, onProgress);
+    const newRig = modelId === 'procedural' ? createProceduralHumanoid() : await loadFbxMannequin(modelId, this.currentMaterialStyle, onProgress);
     this.scene.remove(this.humanoid.group);
     this.humanoid = newRig;
     this.currentModelId = modelId;
@@ -276,6 +271,7 @@ export class SceneManager {
     applyOutfitToMannequin(this.humanoid.group, this.humanoid.bones, this.currentOutfitId);
     applyBodyAccessoriesToRig(this.humanoid.group, this.humanoid.bones, this.currentAccessoryConfig);
     this.scene.add(this.humanoid.group);
+    if (this.showPartnerState && this.lastPartnerPreset) this.setPartnerGuide(true, this.lastPartnerPreset);
     const bounds = measureHumanoidWorldYBounds(this.humanoid.group, this.humanoid.bones, modelId);
     this.cameraController.frameFullBody(bounds.spanY, Math.min(0, bounds.minY));
     this.setRenderMode(this.currentMode);

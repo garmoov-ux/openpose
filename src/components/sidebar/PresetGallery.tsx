@@ -3,6 +3,7 @@ import { SceneManager } from '@/core/scene/SceneManager';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
 import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
+import { SOLO_EXTRA_SUBGROUPS } from '@/core/mannequin/coupleAndGlamourPoses';
 import { getMannequinProfile } from '@/core/mannequin/mannequinProfiles';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
@@ -15,19 +16,21 @@ interface PresetGalleryProps {
   sceneManager: SceneManager | null;
 }
 
+const GLAMOUR_GROUP_IDS = new Set(SOLO_EXTRA_SUBGROUPS.map((g) => g.id));
+
 const SOLO_GROUPS = [
-  { id: 'glamour_self', label: '섹시·셀프플레이 (20)' },
-  { id: 'all', label: '테마 전체 (100)' },
-  { id: 'standing', label: '기립 자세 (10)' },
-  { id: 'furniture_straddle', label: '의자·소파 착석 (15)' },
+  ...SOLO_EXTRA_SUBGROUPS,
+  { id: 'all', label: '테마 베이직 (100)' },
+  { id: 'standing', label: '기본 기립 (10)' },
+  { id: 'furniture_straddle', label: '기본 착석 (15)' },
   { id: 'lounging', label: '기대어 휴식 (10)' },
   { id: 'seated_m', label: '좌식 다리굽힘 (15)' },
-  { id: 'v_split', label: '스트레칭·스플릿 (10)' },
+  { id: 'v_split', label: '스트레칭 (10)' },
   { id: 'deep_m_squat', label: '깊은 스쿼트 (10)' },
   { id: 'rear_arch', label: '측후면 아치 (10)' },
   { id: 'bolster_ride', label: '쿠션 기대기 (10)' },
   { id: 'high_leg', label: '다리 들기 (10)' },
-  { id: 'basic_std', label: '기본·액션 (9)' },
+  { id: 'basic_std', label: '표준·액션 (9)' },
 ];
 
 function formatKoreanPoseTitle(rawLabel: string): string {
@@ -48,42 +51,43 @@ function formatKoreanPoseTitle(rawLabel: string): string {
 export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) => {
   const currentModelId = useEditorStore((s) => s.currentModelId);
   const {
-    selectedPostureId,
-    setSelectedPostureId,
-    activePoseAccordion,
-    setActivePoseAccordion,
-    activeCouplePresetId,
-    setActiveCouplePresetId,
+    selectedPostureId, setSelectedPostureId, activePoseAccordion,
+    setActivePoseAccordion, activeCouplePresetId, setActiveCouplePresetId,
   } = useThemeSoloStore();
 
   const profile = useMemo(() => getMannequinProfile(currentModelId), [currentModelId]);
   const isYouthModel = profile.outfitProfile === 'youth_casual';
 
-  const [selectedSoloGroup, setSelectedSoloGroup] = useState<string>('glamour_self');
+  const [selectedSoloGroup, setSelectedSoloGroup] = useState<string>('solo_all_glamour');
   const [soloSearch, setSoloSearch] = useState('');
   const [activeSoloStdId, setActiveSoloStdId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isYouthModel) {
-      setActivePoseAccordion('solo');
-      setSelectedSoloGroup('basic_std');
-    }
+    if (isYouthModel) { setActivePoseAccordion('solo'); setSelectedSoloGroup('basic_std'); }
   }, [isYouthModel, setActivePoseAccordion]);
 
   const filteredSoloPresets = useMemo(() => {
-    if (selectedSoloGroup === 'glamour_self') {
-      return POSE_PRESETS.filter((p) => p.category === 'glamour');
+    const q = soloSearch.trim().toLowerCase();
+    if (GLAMOUR_GROUP_IDS.has(selectedSoloGroup)) {
+      return POSE_PRESETS.filter((p) => {
+        if (p.category !== 'glamour') return false;
+        const matchSub = selectedSoloGroup === 'solo_all_glamour' || p.subGroup === selectedSoloGroup;
+        const matchQ = !q || p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
+        return matchSub && matchQ;
+      });
     }
     if (selectedSoloGroup === 'basic_std') {
       return POSE_PRESETS.filter(
-        (p) => p.category === 'standing' || p.category === 'sitting' || p.category === 'action'
+        (p) =>
+          (p.category === 'standing' || p.category === 'sitting' || p.category === 'action') &&
+          (!q || p.title.toLowerCase().includes(q))
       );
     }
     return [];
-  }, [selectedSoloGroup]);
+  }, [selectedSoloGroup, soloSearch]);
 
   const filteredSoloPostures = useMemo(() => {
-    if (selectedSoloGroup === 'glamour_self' || selectedSoloGroup === 'basic_std') return [];
+    if (GLAMOUR_GROUP_IDS.has(selectedSoloGroup) || selectedSoloGroup === 'basic_std') return [];
     const q = soloSearch.trim().toLowerCase();
     return POSTURES_DATA.filter((p) => {
       if (!profile.allowedPostureGroups.includes(p.group)) return false;
@@ -97,9 +101,6 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
     setActiveSoloStdId(null);
     setActiveCouplePresetId(preset.id);
     if (!sceneManager) return;
-    sceneManager.humanoid.group.position.set(0, 0, 0);
-    sceneManager.humanoid.group.rotation.set(0, 0, 0);
-    applyPosePreset(sceneManager.humanoid.bones, preset);
     sceneManager.setPartnerGuide(true, preset);
   };
 
@@ -135,13 +136,9 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
   const handleSwitchAccordion = (target: 'couple' | 'solo') => {
     setActivePoseAccordion(target);
     if (target === 'couple') {
-      const targetPreset =
-        POSE_PRESETS.find((p) => p.id === activeCouplePresetId) ||
-        POSE_PRESETS.find((p) => p.category === 'couple');
+      const targetPreset = POSE_PRESETS.find((p) => p.id === activeCouplePresetId) || POSE_PRESETS.find((p) => p.category === 'couple');
       if (targetPreset) handleApplyCouplePreset(targetPreset);
-    } else {
-      sceneManager?.setPartnerGuide(false);
-    }
+    } else sceneManager?.setPartnerGuide(false);
   };
 
   return (
@@ -170,7 +167,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
             <User className="w-4 h-4 text-blue-400 shrink-0" />
             <div>
               <div className="font-bold text-xs flex items-center gap-1.5">
-                <span>2. 개인 솔로 자세 · 셀프플레이 (129종)</span>
+                <span>2. 개인 솔로 자세 · 셀프플레이 (329종)</span>
                 {activePoseAccordion === 'solo' && (
                   <span className="px-1.5 py-0.5 text-[9px] rounded-full bg-blue-600 text-white font-bold">제어 중</span>
                 )}
@@ -202,11 +199,22 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
 
         {activePoseAccordion === 'solo' && (
           <div className="p-3 space-y-2.5">
-            <div className="grid grid-cols-3 gap-1">
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
+              <input
+                type="text"
+                value={soloSearch}
+                onChange={(e) => setSoloSearch(e.target.value)}
+                placeholder="솔로 자세 번호(01~220), 핀업, 캣아치, 셀프, 시바리, 스플릿, 샤워 등 검색..."
+                className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+
+            <div className="grid grid-cols-3 gap-1 max-h-[126px] overflow-y-auto pr-0.5">
               {SOLO_GROUPS.filter(
                 (g) =>
                   !isYouthModel ||
-                  (g.id !== 'glamour_self' &&
+                  (!GLAMOUR_GROUP_IDS.has(g.id) &&
                     (g.id === 'all' || g.id === 'basic_std' || profile.allowedPostureGroups.includes(g.id)))
               ).map((g) => (
                 <button
@@ -224,7 +232,7 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
             </div>
 
             {filteredSoloPresets.length > 0 ? (
-              <div className="grid grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-0.5">
+              <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-0.5">
                 {filteredSoloPresets.map((preset) => {
                   const isSelected = activeSoloStdId === preset.id;
                   return (
@@ -246,49 +254,37 @@ export const PresetGallery: React.FC<PresetGalleryProps> = ({ sceneManager }) =>
                 })}
               </div>
             ) : (
-              <>
-                <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
-                  <input
-                    type="text"
-                    value={soloSearch}
-                    onChange={(e) => setSoloSearch(e.target.value)}
-                    placeholder="솔로 자세 번호(001), 아치, 스쿼트, 착석 등 검색..."
-                    className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-0.5">
-                  {filteredSoloPostures.map((p) => {
-                    const isSelected = activeSoloStdId === null && selectedPostureId === p.id;
-                    return (
-                      <button
-                        key={p.id}
-                        onClick={() => handleSelectSoloPosture(p.id)}
-                        className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
-                          isSelected
-                            ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/30 shadow-md'
-                            : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400'
-                        }`}
-                      >
-                        <PosePreviewThumbnail postureId={p.id} isSelected={isSelected} />
-                        <div className="flex items-center justify-between">
-                          <span
-                            className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${
-                              isSelected ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-600'
-                            }`}
-                          >
-                            {String(p.id).padStart(3, '0')}번
-                          </span>
-                          {isSelected && <Sparkles className="w-3 h-3 text-blue-400" />}
-                        </div>
-                        <span className="font-bold text-[10.5px] truncate leading-snug">
-                          {formatKoreanPoseTitle(p.labelKo)}
+              <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-0.5">
+                {filteredSoloPostures.map((p) => {
+                  const isSelected = activeSoloStdId === null && selectedPostureId === p.id;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => handleSelectSoloPosture(p.id)}
+                      className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
+                        isSelected
+                          ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/30 shadow-md'
+                          : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400'
+                      }`}
+                    >
+                      <PosePreviewThumbnail postureId={p.id} isSelected={isSelected} />
+                      <div className="flex items-center justify-between">
+                        <span
+                          className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${
+                            isSelected ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-600'
+                          }`}
+                        >
+                          {String(p.id).padStart(3, '0')}번
                         </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
+                        {isSelected && <Sparkles className="w-3 h-3 text-blue-400" />}
+                      </div>
+                      <span className="font-bold text-[10.5px] truncate leading-snug">
+                        {formatKoreanPoseTitle(p.labelKo)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             )}
           </div>
         )}

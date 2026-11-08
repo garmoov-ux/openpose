@@ -222,6 +222,7 @@ export async function loadFbxMannequin(
     scaleFactor = targetHeight / size.y;
     fbxGroup.scale.multiplyScalar(scaleFactor);
   }
+  fbxGroup.userData.baseScale = fbxGroup.scale.x;
 
   if (meta.boneScales) {
     Object.entries(meta.boneScales).forEach(([bName, sVec]) => {

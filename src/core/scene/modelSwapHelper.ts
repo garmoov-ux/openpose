@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { PosePreset } from '@/types';
+import { HumanoidRigResult } from '@/core/mannequin/humanoidRig';
+import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
 
 const CORE_BONE_PAIRS: Array<[string, string]> = [
   ['Head', 'Neck'],
@@ -186,4 +189,52 @@ export function renderOffscreenSceneSnapshot(
   camera.updateProjectionMatrix();
   offRenderer.dispose();
 }
+
+export function applyMannequinGroupTransform(
+  group: THREE.Group,
+  pos: [number, number, number],
+  rot: [number, number, number],
+  scaleMult = 1.0
+): void {
+  const baseScale: number = group.userData.baseScale || 1.0;
+  group.position.set(pos[0], pos[1], pos[2]);
+  group.rotation.set(rot[0], rot[1], rot[2]);
+  group.scale.setScalar(baseScale * Math.max(0.2, Math.min(3.0, scaleMult)));
+  group.updateMatrixWorld(true);
+}
+
+export function applyCouplePresetToRigs(
+  mainRig: HumanoidRigResult,
+  partnerRig: HumanoidRigResult,
+  preset: PosePreset,
+  isMainMale: boolean
+): {
+  mainPos: [number, number, number];
+  mainRotY: number;
+  partnerPos: [number, number, number];
+  partnerRotY: number;
+} {
+  const fPose = preset.pose;
+  const fOffset: [number, number, number] = preset.mainOffset || [0, 0, 0];
+  const fRotY = preset.mainRotationY ?? 0;
+
+  const mPose = preset.partnerPose || POSE_PRESETS[0].pose;
+  const mOffset: [number, number, number] = preset.partnerOffset || [0, 0, -0.28];
+  const mRotY = preset.partnerRotationY ?? 0;
+
+  if (isMainMale) {
+    applyPosePreset(mainRig.bones, { ...preset, pose: mPose });
+    applyMannequinGroupTransform(mainRig.group, mOffset, [0, mRotY, 0], 1.0);
+    applyPosePreset(partnerRig.bones, { ...preset, pose: fPose });
+    applyMannequinGroupTransform(partnerRig.group, fOffset, [0, fRotY, 0], 1.0);
+    return { mainPos: mOffset, mainRotY: mRotY, partnerPos: fOffset, partnerRotY: fRotY };
+  }
+
+  applyPosePreset(mainRig.bones, { ...preset, pose: fPose });
+  applyMannequinGroupTransform(mainRig.group, fOffset, [0, fRotY, 0], 1.0);
+  applyPosePreset(partnerRig.bones, { ...preset, pose: mPose });
+  applyMannequinGroupTransform(partnerRig.group, mOffset, [0, mRotY, 0], 1.0);
+  return { mainPos: fOffset, mainRotY: fRotY, partnerPos: mOffset, partnerRotY: mRotY };
+}
+
 

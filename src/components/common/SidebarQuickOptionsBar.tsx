@@ -96,10 +96,10 @@ export const SidebarQuickOptionsBar: React.FC<SidebarQuickOptionsBarProps> = ({
           onClick={toggleBareMannequinMode}
           title={
             isBareMannequinMode
-              ? '순수 마네킹 모드 ON (클릭 시 이전 의상·아이템 복원)'
-              : '올클린 미착용 (모든 의상·바디 아이템 한 번에 해제)'
+              ? '전체 해제됨 (클릭 시 이전 의상·아이템 복원)'
+              : '전체 해제 (모든 의상·바디 아이템 한 번에 해제)'
           }
-          aria-label="순수 마네킹 모드"
+          aria-label="전체 해제"
           className={`flex items-center justify-center w-8 h-8 rounded-full transition-all ${
             isBareMannequinMode
               ? 'bg-zinc-900 text-emerald-400 ring-2 ring-emerald-500/40'

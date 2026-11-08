@@ -1,6 +1,6 @@
 export type RenderMode = 'shading' | 'openpose' | 'depth' | 'normal' | 'canny';
 
-export type GizmoMode = 'rotate' | 'translate';
+export type GizmoMode = 'rotate' | 'translate' | 'scale';
 export type GizmoSpace = 'local' | 'world';
 
 export type CameraPreset = 'front' | 'side' | 'top' | 'closeup' | 'fullbody';
@@ -78,6 +78,8 @@ export interface PosePreset {
   subGroup?: string;
   description: string;
   pose: PoseKeyframe;
+  mainOffset?: [number, number, number];
+  mainRotationY?: number;
   partnerPose?: PoseKeyframe;
   partnerOffset?: [number, number, number];
   partnerRotationY?: number;

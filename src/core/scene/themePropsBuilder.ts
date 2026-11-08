@@ -130,7 +130,7 @@ export function rebuildThemePropsGroup(
 
     propObj.name = `Prop_${inst.uid}`;
     propObj.position.set(inst.position[0], inst.position[1], inst.position[2]);
-    propObj.rotation.y = inst.rotationY;
+    propObj.rotation.set(inst.rotationX || 0, inst.rotationY || 0, inst.rotationZ || 0);
     propObj.scale.setScalar(inst.scale || 1.0);
     propObj.userData = {
       isSceneProp: true,

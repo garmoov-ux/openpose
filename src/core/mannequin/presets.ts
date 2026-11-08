@@ -210,12 +210,11 @@ const SUPPORT_BONES = [
   'RightHand',
 ];
 
-// 루트 그룹의 위치/회전에 영향받지 않고 마네킹을 정확히 접지시키며 리프트(공중 들어올리기) 오프셋을 반영
-function autoGroundMannequin(bones: Map<string, THREE.Bone>, extraLiftY = 0): void {
+// 루트 그룹의 위치/회전에 영향받지 않고 마네킹의 최저 지지 관절을 바닥(Y=0)에 정확히 접지
+function autoGroundMannequin(bones: Map<string, THREE.Bone>): void {
   const hips = bones.get('Hips');
   if (!hips) return;
 
-  // 최상위 마네킹 Group을 찾아 임시로 원점(0,0,0) 및 회전(0,0,0) 상태에서 측정 후 복원
   let rootObj: THREE.Object3D = hips;
   while (rootObj.parent && rootObj.parent.type !== 'Scene') {
     rootObj = rootObj.parent;
@@ -242,7 +241,7 @@ function autoGroundMannequin(bones: Map<string, THREE.Bone>, extraLiftY = 0): vo
 
   if (Number.isFinite(minSupportY)) {
     const clearance = lowestBoneName.includes('Foot') ? 0.082 : 0.055;
-    const targetWorldDeltaY = clearance - minSupportY + extraLiftY;
+    const targetWorldDeltaY = clearance - minSupportY;
 
     const hipsWorldPos = new THREE.Vector3();
     hips.getWorldPosition(hipsWorldPos);
@@ -257,7 +256,6 @@ function autoGroundMannequin(bones: Map<string, THREE.Bone>, extraLiftY = 0): vo
     hips.position.copy(hipsWorldPos);
   }
 
-  // 원래 루트 그룹의 위치·회전 복원
   rootObj.position.copy(savedPos);
   rootObj.quaternion.copy(savedQuat);
   rootObj.updateMatrixWorld(true);
@@ -292,9 +290,5 @@ export function applyPosePreset(bones: Map<string, THREE.Bone>, preset: PosePres
     }
   });
 
-  // 스탠딩 리프트·서스펜션·온탑 등 공중/상부 들어올림 높이(hipPos[1] > 0.98) 반영
-  const rawHipY = poseMap.Hips?.position?.[1] ?? 0.95;
-  const extraLiftY = rawHipY > 0.98 ? Math.min(0.65, rawHipY - 0.82) : 0;
-
-  autoGroundMannequin(bones, extraLiftY);
+  autoGroundMannequin(bones);
 }
