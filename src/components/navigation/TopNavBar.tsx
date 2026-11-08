@@ -78,18 +78,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
 
   return (
     <header className="absolute top-3 left-4 right-4 z-30 flex items-center justify-between gap-2 pointer-events-none">
-      {/* 1. 좌측: 브랜드 로고(이미지 1) + 오른쪽 가로 아이콘 독(이미지 2) */}
+      {/* 1. 좌측: 가로형 4대 아이콘 메뉴 독 */}
       <div className="flex items-center gap-2.5 pointer-events-auto">
-        <div className="flex items-center gap-2 px-3.5 py-2 bg-white/95 backdrop-blur-md rounded-full border border-zinc-200/90 shadow-md">
-          <div className="w-6 h-6 rounded-full bg-zinc-900 text-white flex items-center justify-center font-bold text-xs">
-            <Activity className="w-3.5 h-3.5 text-blue-500" />
-          </div>
-          <span className="font-bold text-xs tracking-tight text-zinc-900 hidden sm:inline">
-            인체 포즈 스튜디오
-          </span>
-        </div>
-
-        {/* 가로형 아이콘 메뉴 독 (인체 포즈 스튜디오 우측 나란히 배치) */}
         <div className="flex items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-full shadow-md">
           {TOP_DOCK_ITEMS.map((item) => {
             const isActive = activeLeftSection === item.id;
