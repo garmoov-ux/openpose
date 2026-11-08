@@ -48,6 +48,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
       wristItemId: themeStore.wristItemId,
       legItemId: themeStore.legItemId,
       extraSceneProps: themeStore.extraSceneProps,
+      roomProps: themeStore.roomProps,
     });
   }, [
     currentModelId,
@@ -62,6 +63,7 @@ export const ExportPanel: React.FC<ExportPanelProps> = ({ sceneManager }) => {
     themeStore.wristItemId,
     themeStore.legItemId,
     themeStore.extraSceneProps,
+    themeStore.roomProps,
   ]);
 
   const handleCopyClipboard = async () => {

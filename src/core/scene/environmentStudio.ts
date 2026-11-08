@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { SoloThemeId } from '@/types/themeSolo';
 import { THEMES_DATA } from '@/data/themesSolo/themesData';
+import { RoomPropInstance } from '@/data/themesSolo/roomPropCatalog';
 import { rebuildThemePropsGroup } from './themePropsBuilder';
 
 export interface StudioLights {
@@ -199,27 +200,27 @@ export function createStudioLightsAndStage(scene: THREE.Scene): StudioLights {
   const rimLight = new THREE.DirectionalLight(0xffcc80, 0.55);
   rimLight.position.set(0, 3.0, -3.0);
 
-  // 테마 분위기를 시각적으로 보여주는 원형 스튜디오 플랫폼
-  const floorGeom = new THREE.CylinderGeometry(1.35, 1.45, 0.018, 48);
+  // 사각 스튜디오 베이스 바닥 (룸 사물 숨김 시에도 사각 바닥 유지)
+  const floorGeom = new THREE.BoxGeometry(4.4, 0.02, 3.8);
   const floorMat = new THREE.MeshStandardMaterial({
     color: 0x27272a,
     roughness: 0.4,
     metalness: 0.2,
   });
   const stageFloor = new THREE.Mesh(floorGeom, floorMat);
-  stageFloor.position.set(0, -0.009, 0);
+  stageFloor.position.set(0, -0.02, -0.25);
   stageFloor.receiveShadow = true;
 
-  const ringGeom = new THREE.RingGeometry(1.32, 1.36, 48);
+  const ringGeom = new THREE.PlaneGeometry(4.42, 0.04);
   ringGeom.rotateX(-Math.PI / 2);
   const ringMat = new THREE.MeshBasicMaterial({
     color: 0x38bdf8,
     side: THREE.DoubleSide,
     transparent: true,
-    opacity: 0.75,
+    opacity: 0.65,
   });
   const stageRing = new THREE.Mesh(ringGeom, ringMat);
-  stageRing.position.set(0, 0.002, 0);
+  stageRing.position.set(0, 0.002, 1.64);
 
   const themePropsGroup = new THREE.Group();
   themePropsGroup.name = 'ThemePropsGroup';
@@ -237,13 +238,13 @@ export function applyStudioThemeEnvironment(
   envIndex: number,
   lightIndex: number,
   isShadingMode: boolean,
-  extraSceneProps: string[] = []
+  roomProps?: RoomPropInstance[]
 ): number {
   const base = THEME_PALETTES[themeId] || THEME_PALETTES.alley_downtown_street;
   const themeData = THEMES_DATA[themeId] || THEMES_DATA.alley_downtown_street;
   const lightText = themeData.lightings[lightIndex] || '';
 
-  rebuildThemePropsGroup(lights.themePropsGroup, themeId, envIndex, lightIndex, extraSceneProps);
+  rebuildThemePropsGroup(lights.themePropsGroup, themeId, envIndex, lightIndex, roomProps);
 
   // 세부 장소(envIndex)에 따른 색조 미세 변화
   const envColorShift = ((envIndex % 5) - 2) * 0.03;

@@ -39,7 +39,10 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     neckItemId,
     wristItemId,
     legItemId,
-    extraSceneProps,
+    roomProps,
+    selectedPropUid,
+    setSelectedPropUid,
+    updateRoomPropTransform,
   } = useThemeSoloStore();
 
   useEffect(() => {
@@ -47,7 +50,15 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
 
     const manager = new SceneManager(canvasRef.current, (boneName) => {
       setSelectedBoneName(boneName);
+      if (boneName) setSelectedPropUid(null);
     });
+    manager.onPropSelectedCallback = (propUid) => {
+      setSelectedPropUid(propUid);
+      if (propUid) setSelectedBoneName(null);
+    };
+    manager.onPropTransformCallback = (propUid, pos, rotY) => {
+      updateRoomPropTransform(propUid, pos, rotY);
+    };
 
     managerRef.current = manager;
     onSceneReadyRef.current?.(manager);
@@ -67,7 +78,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       manager.dispose();
       managerRef.current = null;
     };
-  }, [setSelectedBoneName]);
+  }, [setSelectedBoneName, setSelectedPropUid, updateRoomPropTransform]);
 
   useEffect(() => {
     managerRef.current?.setRenderMode(renderMode);
@@ -94,21 +105,34 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   }, [showSkeleton]);
 
   useEffect(() => {
+    if (!selectedBoneName) {
+      if (!selectedPropUid) managerRef.current?.selectBone(null);
+      return;
+    }
     const currentAttached = managerRef.current?.transformControls?.object?.name || null;
     if (currentAttached !== selectedBoneName) {
       managerRef.current?.selectBone(selectedBoneName);
     }
-  }, [selectedBoneName]);
+  }, [selectedBoneName, selectedPropUid]);
 
-  // 16대 테마, 380종 세부 장소, 시간대 조명 및 추가 3D 소품 즉시 반영
+  // 룸 사물 선택 동기화 (사이드바 또는 3D 뷰포트 클릭 시 기즈모 부착)
+  useEffect(() => {
+    if (selectedPropUid) {
+      managerRef.current?.selectProp(selectedPropUid);
+    } else if (!selectedBoneName) {
+      managerRef.current?.selectProp(null);
+    }
+  }, [selectedPropUid, selectedBoneName]);
+
+  // 16대 테마, 380종 세부 장소, 시간대 조명 및 사각 룸 가구·소품(roomProps) 실시간 반영
   useEffect(() => {
     managerRef.current?.applyThemeEnvironment(
       selectedThemeId,
       selectedEnvIndex,
       selectedLightIndex,
-      extraSceneProps
+      roomProps
     );
-  }, [selectedThemeId, selectedEnvIndex, selectedLightIndex, extraSceneProps]);
+  }, [selectedThemeId, selectedEnvIndex, selectedLightIndex, roomProps]);
 
   // 의상 변경 시 3D 마네킹 골격에 의상 파츠 실시간 착용/해제 (0 = 무의상)
   useEffect(() => {

@@ -75,10 +75,12 @@ export interface PosePreset {
   id: string;
   title: string;
   category: 'standing' | 'sitting' | 'action' | 'glamour' | 'couple';
+  subGroup?: string;
   description: string;
   pose: PoseKeyframe;
   partnerPose?: PoseKeyframe;
   partnerOffset?: [number, number, number];
+  partnerRotationY?: number;
 }
 
 export interface ComfyUISettings {

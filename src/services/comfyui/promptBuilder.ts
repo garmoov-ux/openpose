@@ -14,6 +14,7 @@ import {
   LEG_ITEMS,
   EXTRA_SCENE_PROPS,
 } from '@/data/themesSolo/accessoriesAndPropsData';
+import { RoomPropInstance, getRoomPropDef } from '@/data/themesSolo/roomPropCatalog';
 import { BodyProfileMode } from '@/stores/useThemeSoloStore';
 
 export interface PromptBuildParams {
@@ -73,6 +74,7 @@ function buildAccessoryAndPropTags(params: {
   wristItemId?: string;
   legItemId?: string;
   extraSceneProps?: string[];
+  roomProps?: RoomPropInstance[];
 }): string[] {
   const tags: string[] = [];
   const nail = NAIL_ITEMS.find((i) => i.id === params.nailColorId && i.id !== 'nail_none');
@@ -90,7 +92,14 @@ function buildAccessoryAndPropTags(params: {
   const leg = LEG_ITEMS.find((i) => i.id === params.legItemId && i.id !== 'leg_none');
   if (leg && leg.promptEn) tags.push(leg.promptEn);
 
-  if (params.extraSceneProps && params.extraSceneProps.length > 0) {
+  if (params.roomProps && params.roomProps.length > 0) {
+    const visiblePrompts = params.roomProps
+      .filter((p) => p.visible)
+      .slice(0, 4)
+      .map((p) => getRoomPropDef(p.propId)?.promptEn)
+      .filter((t): t is string => Boolean(t));
+    tags.push(...visiblePrompts);
+  } else if (params.extraSceneProps && params.extraSceneProps.length > 0) {
     params.extraSceneProps.forEach((propId) => {
       const prop = EXTRA_SCENE_PROPS.find((p) => p.id === propId);
       if (prop && prop.promptEn) tags.push(prop.promptEn);
@@ -175,6 +184,7 @@ export function buildCompactSceneTagSummary(params: {
   wristItemId?: string;
   legItemId?: string;
   extraSceneProps?: string[];
+  roomProps?: RoomPropInstance[];
 }): string {
   const subject = MODEL_PROMPT_PROFILES[params.modelId] || MODEL_PROMPT_PROFILES.realistic_woman;
   const outfit = params.outfitId > 0 ? findOutfitById(params.outfitId) : null;

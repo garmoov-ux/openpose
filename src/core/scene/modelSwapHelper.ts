@@ -156,3 +156,34 @@ export function updateStylizedSkeletonHelper(
   }
   posAttr.needsUpdate = true;
 }
+
+export function renderOffscreenSceneSnapshot(
+  scene: THREE.Scene,
+  camera: THREE.PerspectiveCamera,
+  humanoidGroup: THREE.Object3D,
+  transformHelper: THREE.Object3D,
+  skeletonHelper: THREE.Object3D,
+  offCanvas: HTMLCanvasElement,
+  resolution: number,
+  restoreDots: boolean,
+  selectedBoneName: string | null
+): void {
+  const offRenderer = new THREE.WebGLRenderer({ canvas: offCanvas, antialias: true, preserveDrawingBuffer: true });
+  offRenderer.setSize(resolution, resolution, false);
+  const oldAspect = camera.aspect;
+  camera.aspect = 1.0;
+  camera.updateProjectionMatrix();
+
+  const [prevHelperVis, prevSkelVis] = [transformHelper.visible, skeletonHelper.visible];
+  transformHelper.visible = false;
+  skeletonHelper.visible = false;
+  setJointDotsVisible(humanoidGroup, false);
+  offRenderer.render(scene, camera);
+  transformHelper.visible = prevHelperVis;
+  skeletonHelper.visible = prevSkelVis;
+  setJointDotsVisible(humanoidGroup, restoreDots, selectedBoneName);
+  camera.aspect = oldAspect;
+  camera.updateProjectionMatrix();
+  offRenderer.dispose();
+}
+

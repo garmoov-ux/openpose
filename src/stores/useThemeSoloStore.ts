@@ -11,6 +11,12 @@ import {
   LEG_ITEMS,
   EXTRA_SCENE_PROPS,
 } from '@/data/themesSolo/accessoriesAndPropsData';
+import {
+  RoomPropInstance,
+  ROOM_PROP_CATALOG,
+  findRoomPropById,
+  getDefaultRoomPropsForTheme,
+} from '@/data/themesSolo/roomPropCatalog';
 
 export type BodyProfileMode = 'mannequin' | 'free' | 'petite155';
 
@@ -30,7 +36,11 @@ interface ThemeSoloState {
   showPartnerGuide: boolean;
   activeSidebarTab: 'theme' | 'outfit' | 'props' | 'prompt';
 
-  // 신체 부위별 착용 아이템 및 추가 3D 공간 소품
+  // 사각 방(Room) 내부에 개별 배치된 가구·소품 배열 및 선택된 사물 UID
+  roomProps: RoomPropInstance[];
+  selectedPropUid: string | null;
+
+  // 신체 부위별 착용 아이템 및 호환 배열
   nailColorId: string;
   footwearId: string;
   neckItemId: string;
@@ -54,6 +64,20 @@ interface ThemeSoloState {
   setShowPartnerGuide: (show: boolean) => void;
   setActiveSidebarTab: (tab: 'theme' | 'outfit' | 'props' | 'prompt') => void;
 
+  // 방 내부 가구·소품 개별 추가/제거/숨김/위치조절 액션
+  setSelectedPropUid: (uid: string | null) => void;
+  addRoomProp: (propId: string) => void;
+  toggleRoomProp: (uid: string) => void;
+  removeRoomProp: (uid: string) => void;
+  updateRoomPropTransform: (
+    uid: string,
+    position: [number, number, number],
+    rotationY: number,
+    scale?: number
+  ) => void;
+  resetRoomPropsToDefault: () => void;
+  clearAllRoomProps: () => void;
+
   setNailColorId: (id: string) => void;
   setFootwearId: (id: string) => void;
   setNeckItemId: (id: string) => void;
@@ -75,7 +99,7 @@ function pickRandom<T>(arr: T[]): T {
 }
 
 export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
-  selectedThemeId: 'alley_downtown_street',
+  selectedThemeId: 'house_indoor_room',
   selectedEnvIndex: 0,
   selectedLightIndex: 0,
   selectedOutfitId: 0, // 초기 상태는 의상을 입지 않은 기본 마네킹 상태
@@ -90,11 +114,14 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   showPartnerGuide: false,
   activeSidebarTab: 'theme',
 
-  nailColorId: 'none',
-  footwearId: 'bare_feet',
-  neckItemId: 'none',
-  wristItemId: 'none',
-  legItemId: 'none',
+  roomProps: getDefaultRoomPropsForTheme('house_indoor_room', 0),
+  selectedPropUid: null,
+
+  nailColorId: 'nail_none',
+  footwearId: 'foot_bare',
+  neckItemId: 'neck_none',
+  wristItemId: 'wrist_none',
+  legItemId: 'leg_none',
   extraSceneProps: [],
 
   setSelectedThemeId: (id) =>
@@ -102,8 +129,15 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
       selectedThemeId: id,
       selectedEnvIndex: 0,
       selectedLightIndex: 0,
+      roomProps: getDefaultRoomPropsForTheme(id, 0),
+      selectedPropUid: null,
     }),
-  setSelectedEnvIndex: (idx) => set({ selectedEnvIndex: idx }),
+  setSelectedEnvIndex: (idx) =>
+    set((s) => ({
+      selectedEnvIndex: idx,
+      roomProps: getDefaultRoomPropsForTheme(s.selectedThemeId, idx),
+      selectedPropUid: null,
+    })),
   setSelectedLightIndex: (idx) => set({ selectedLightIndex: idx }),
   setSelectedOutfitId: (id) => set({ selectedOutfitId: id }),
   setSelectedOutfitCategory: (cat) => set({ selectedOutfitCategory: cat }),
@@ -125,28 +159,87 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
   setShowPartnerGuide: (showPartnerGuide) => set({ showPartnerGuide }),
   setActiveSidebarTab: (tab) => set({ activeSidebarTab: tab }),
 
+  setSelectedPropUid: (selectedPropUid) => set({ selectedPropUid }),
+  addRoomProp: (propId) =>
+    set((state) => {
+      const existingHidden = state.roomProps.find((p) => p.propId === propId && !p.visible);
+      if (existingHidden) {
+        return {
+          roomProps: state.roomProps.map((p) =>
+            p.uid === existingHidden.uid ? { ...p, visible: true } : p
+          ),
+          selectedPropUid: existingHidden.uid,
+          showThemeProps: true,
+        };
+      }
+      const meta = findRoomPropById(propId);
+      const count = state.roomProps.filter((p) => p.propId === propId).length;
+      const offset = count * 0.28;
+      const basePos = meta ? meta.defaultPos : ([0, 0, -0.4] as [number, number, number]);
+      const newUid = `${propId}_${Date.now() % 10000}`;
+      const newInst: RoomPropInstance = {
+        uid: newUid,
+        propId,
+        visible: true,
+        position: [basePos[0] + offset, basePos[1], basePos[2]],
+        rotationY: meta?.defaultRotY || 0,
+        scale: 1.0,
+      };
+      return {
+        roomProps: [...state.roomProps, newInst],
+        selectedPropUid: newUid,
+        showThemeProps: true,
+      };
+    }),
+  toggleRoomProp: (uid) =>
+    set((state) => ({
+      roomProps: state.roomProps.map((p) => (p.uid === uid ? { ...p, visible: !p.visible } : p)),
+      selectedPropUid: state.selectedPropUid === uid ? null : state.selectedPropUid,
+    })),
+  removeRoomProp: (uid) =>
+    set((state) => ({
+      roomProps: state.roomProps.filter((p) => p.uid !== uid),
+      selectedPropUid: state.selectedPropUid === uid ? null : state.selectedPropUid,
+    })),
+  updateRoomPropTransform: (uid, position, rotationY, scale) =>
+    set((state) => ({
+      roomProps: state.roomProps.map((p) =>
+        p.uid === uid
+          ? { ...p, position, rotationY, ...(scale !== undefined ? { scale } : {}) }
+          : p
+      ),
+    })),
+  resetRoomPropsToDefault: () =>
+    set((state) => ({
+      roomProps: getDefaultRoomPropsForTheme(state.selectedThemeId, state.selectedEnvIndex),
+      selectedPropUid: null,
+    })),
+  clearAllRoomProps: () => set({ roomProps: [], selectedPropUid: null }),
+
   setNailColorId: (nailColorId) => set({ nailColorId }),
   setFootwearId: (footwearId) => set({ footwearId }),
   setNeckItemId: (neckItemId) => set({ neckItemId }),
   setWristItemId: (wristItemId) => set({ wristItemId }),
   setLegItemId: (legItemId) => set({ legItemId }),
-  toggleExtraSceneProp: (id) =>
-    set((state) => ({
-      extraSceneProps: state.extraSceneProps.includes(id)
-        ? state.extraSceneProps.filter((p) => p !== id)
-        : [...state.extraSceneProps, id],
-    })),
+  toggleExtraSceneProp: (id) => {
+    const { roomProps, addRoomProp, removeRoomProp } = get();
+    const existing = roomProps.find((p) => p.propId === id && p.visible);
+    if (existing) {
+      removeRoomProp(existing.uid);
+    } else {
+      addRoomProp(id);
+    }
+  },
   clearAllAccessories: () =>
     set({
-      nailColorId: 'none',
-      footwearId: 'bare_feet',
-      neckItemId: 'none',
-      wristItemId: 'none',
-      legItemId: 'none',
+      nailColorId: 'nail_none',
+      footwearId: 'foot_bare',
+      neckItemId: 'neck_none',
+      wristItemId: 'wrist_none',
+      legItemId: 'leg_none',
       extraSceneProps: [],
     }),
 
-  // 테마 + 세부장소(380종) + 조명 + 의상 + 바디 아이템 + 추가 소품 + 자세 전체 랜덤 세트
   rollRandomAll: () => {
     const themeKeys = Object.keys(THEMES_DATA) as SoloThemeId[];
     const randTheme = pickRandom(themeKeys);
@@ -155,8 +248,18 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     const randLight = Math.floor(Math.random() * theme.lightings.length);
     const randOutfit = Math.floor(Math.random() * OUTFITS_DATA.length) + 1;
     const randPosture = Math.floor(Math.random() * POSTURES_DATA.length) + 1;
-    const prop1 = pickRandom(EXTRA_SCENE_PROPS).id;
-    const prop2 = pickRandom(EXTRA_SCENE_PROPS).id;
+    const baseRoomProps = getDefaultRoomPropsForTheme(randTheme, randEnv);
+    const extraCatalogItem = pickRandom(ROOM_PROP_CATALOG);
+    if (!baseRoomProps.some((p) => p.propId === extraCatalogItem.id)) {
+      baseRoomProps.push({
+        uid: `${extraCatalogItem.id}_rand`,
+        propId: extraCatalogItem.id,
+        visible: true,
+        position: [...extraCatalogItem.defaultPos],
+        rotationY: extraCatalogItem.defaultRotY || 0,
+        scale: 1.0,
+      });
+    }
 
     set({
       selectedThemeId: randTheme,
@@ -164,12 +267,13 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
       selectedLightIndex: randLight,
       selectedOutfitId: randOutfit,
       selectedPostureId: randPosture,
+      roomProps: baseRoomProps,
+      selectedPropUid: null,
       nailColorId: pickRandom(NAIL_ITEMS.slice(1)).id,
       footwearId: pickRandom(FOOTWEAR_ITEMS).id,
       neckItemId: pickRandom(NECK_ITEMS.slice(1)).id,
       wristItemId: pickRandom(WRIST_ITEMS.slice(1)).id,
       legItemId: pickRandom(LEG_ITEMS.slice(1)).id,
-      extraSceneProps: Array.from(new Set([prop1, prop2])),
       showThemeProps: true,
     });
   },
@@ -184,19 +288,18 @@ export const useThemeSoloStore = create<ThemeSoloState>((set, get) => ({
     if (rand) set({ selectedOutfitId: rand.id });
   },
 
-  // 16개 대분류 테마 + 380개 세부 장소 + 조명 + 소품 모두 무작위 변경
   rollRandomEnvironment: () => {
     const themeKeys = Object.keys(THEMES_DATA) as SoloThemeId[];
     const randTheme = pickRandom(themeKeys);
     const theme = THEMES_DATA[randTheme];
     const randEnv = Math.floor(Math.random() * theme.environments.length);
     const randLight = Math.floor(Math.random() * theme.lightings.length);
-    const randProp = pickRandom(EXTRA_SCENE_PROPS).id;
     set({
       selectedThemeId: randTheme,
       selectedEnvIndex: randEnv,
       selectedLightIndex: randLight,
-      extraSceneProps: [randProp],
+      roomProps: getDefaultRoomPropsForTheme(randTheme, randEnv),
+      selectedPropUid: null,
       showThemeProps: true,
     });
   },

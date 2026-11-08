@@ -53,3 +53,32 @@ export function pickBoneFromRaycast(
 
   return null;
 }
+
+// 룸 가구 및 소품(RoomPropInstance) 레이캐스트 피킹 (사각 룸 벽체/바닥 셸은 제외)
+export function pickRoomPropFromRaycast(
+  raycaster: THREE.Raycaster,
+  themePropsGroup: THREE.Group
+): string | null {
+  if (!themePropsGroup.visible) return null;
+  const hits = raycaster.intersectObjects(themePropsGroup.children, true);
+  for (const hit of hits) {
+    const uid = hit.object.userData?.propUid as string | undefined;
+    if (uid && hit.object.userData?.isSceneProp) {
+      return uid;
+    }
+  }
+  return null;
+}
+
+export function findPropGroupByUid(
+  themePropsGroup: THREE.Group,
+  propUid: string
+): THREE.Group | null {
+  for (const child of themePropsGroup.children) {
+    if (child.userData?.propUid === propUid && child.userData?.isSceneProp) {
+      return child as THREE.Group;
+    }
+  }
+  return null;
+}
+

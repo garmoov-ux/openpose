@@ -7,6 +7,7 @@ import { quatToDeg } from './poses/poseMath';
 import { MANNEQUIN_MODELS } from './models';
 import { getMannequinProfile, getOutfitsForMannequin, findOutfitById } from './mannequinProfiles';
 import { rebuildThemePropsGroup } from '@/core/scene/themePropsBuilder';
+import { ROOM_PROP_CATALOG, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
 import { buildCompactSceneTagSummary } from '@/services/comfyui/promptBuilder';
 
 describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (presets)', () => {
@@ -109,5 +110,24 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     });
     expect(tags).toContain('185cm');
     expect(tags.toLowerCase()).not.toContain('picture 1');
+  });
+
+  it('50종 남·여 커플 체위 프리셋과 45종 사각 룸 가구·소품 카탈로그가 무결해야 한다', () => {
+    const couplePresets = POSE_PRESETS.filter((p) => p.category === 'couple');
+    expect(couplePresets.length).toBe(50);
+    couplePresets.forEach((cp) => {
+      expect(cp.partnerPose).toBeDefined();
+      expect(cp.partnerOffset).toBeDefined();
+      expect(cp.subGroup).toBeTruthy();
+    });
+
+    expect(ROOM_PROP_CATALOG.length).toBe(49);
+    const defaultRoomProps = getDefaultRoomPropsForTheme('house_indoor_room', 0);
+    expect(defaultRoomProps.length).toBeGreaterThanOrEqual(6);
+
+    const group = new THREE.Group();
+    rebuildThemePropsGroup(group, 'house_indoor_room', 0, 0, defaultRoomProps);
+    const selectableProps = group.children.filter((c) => c.userData?.isSceneProp && c.userData?.propUid);
+    expect(selectableProps.length).toBe(defaultRoomProps.length);
   });
 });
