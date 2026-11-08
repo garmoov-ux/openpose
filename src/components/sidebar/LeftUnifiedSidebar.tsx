@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   User,
   Bookmark,
@@ -10,12 +10,23 @@ import {
 import { useEditorStore, LeftSidebarSection } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
-import { MannequinSidebarTab } from '../models/MannequinSidebarTab';
-import { PresetGallery } from './PresetGallery';
-import { OutfitSelectorTab } from '../themes/OutfitSelectorTab';
-import { PropsAndAccessoriesTab } from '../themes/PropsAndAccessoriesTab';
-import { ExportPanel } from '../export/ExportPanel';
 import { SidebarQuickOptionsBar } from '../common/SidebarQuickOptionsBar';
+
+const MannequinSidebarTab = lazy(() =>
+  import('../models/MannequinSidebarTab').then((m) => ({ default: m.MannequinSidebarTab }))
+);
+const PresetGallery = lazy(() =>
+  import('./PresetGallery').then((m) => ({ default: m.PresetGallery }))
+);
+const OutfitSelectorTab = lazy(() =>
+  import('../themes/OutfitSelectorTab').then((m) => ({ default: m.OutfitSelectorTab }))
+);
+const PropsAndAccessoriesTab = lazy(() =>
+  import('../themes/PropsAndAccessoriesTab').then((m) => ({ default: m.PropsAndAccessoriesTab }))
+);
+const ExportPanel = lazy(() =>
+  import('../export/ExportPanel').then((m) => ({ default: m.ExportPanel }))
+);
 
 interface LeftUnifiedSidebarProps {
   sceneManager: SceneManager | null;
@@ -41,14 +52,14 @@ const NAV_ITEMS: Array<{
   },
   {
     id: 'themes',
-    label: '맞춤 의상 · 아이템 & 소품',
-    subtitle: '맞춤 의상, 방 가구·성인기구 55종, 바디 착용·성인토이 84종',
+    label: '맞춤 의상 · 아이템 & 소품 (확장 공간)',
+    subtitle: '맞춤 의상, 방 가구 55종, 바디 착용 아이템 84종',
     icon: <Sparkles className="w-4 h-4" />,
   },
   {
     id: 'export',
-    label: '저장 & 연동',
-    subtitle: '고해상도 캡처, 핵심 장면 태그 복사 및 서버 전송',
+    label: '결과 확인 · 내보내기 & 연동',
+    subtitle: '동일 RenderSpec 캡처, SceneDocumentV1 저장 및 ComfyUI 연동',
     icon: <Download className="w-4 h-4" />,
   },
 ];
@@ -70,39 +81,38 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
     return null;
   }
 
-  // 테마&사물 탭을 제거하고 '맞춤 의상(outfit)'과 '아이템 & 소품(props)' 2단 구성으로 직관화
   const effectiveThemeTab = activeSidebarTab === 'props' ? 'props' : 'outfit';
 
   const isPropsTab = activeLeftSection === 'themes' && effectiveThemeTab === 'props';
   const headerIcon = isPropsTab ? <Gem className="w-4 h-4 text-pink-400" /> : currentMeta.icon;
   const headerTitle = isPropsTab
-    ? '아이템 & 소품 (색상 선택 지원)'
+    ? '아이템 & 소품 (확장 작업 공간)'
     : activeLeftSection === 'themes'
-    ? '맞춤 의상 & 바디 코디'
+    ? '맞춤 의상 & 바디 코디 (확장 작업 공간)'
     : currentMeta.label;
   const headerSub = isPropsTab
-    ? '방 가구·성인스테이지(55종) 및 바디 착용·성인기구(84종) 색상·착탈 제어'
+    ? '방 가구(55종) 및 바디 착용 아이템(84종) 색상·착탈 제어'
     : currentMeta.subtitle;
 
   return (
     <aside className="absolute top-16 left-4 bottom-20 z-20 flex items-start pointer-events-none">
-      {/* 3열 그리드 표시를 위해 확장된 좌측 사이드바 패널 (w-[480px]) */}
-      <div className="pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+      <div className="pointer-events-auto h-full w-[480px] max-w-[calc(100vw-2rem)] flex flex-col bg-[#F7F8FA]/95 backdrop-blur-xl border border-[#D9DEE5] rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
         {/* 사이드바 상단 고정 헤더 */}
-        <div className="px-4 py-3 border-b border-zinc-100 flex items-center justify-between gap-2 flex-shrink-0">
+        <div className="px-4 py-3 border-b border-[#D9DEE5] flex items-center justify-between gap-2 flex-shrink-0 bg-white">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-9 h-9 rounded-2xl bg-zinc-900 text-blue-400 flex items-center justify-center shadow-xs shrink-0">
               {headerIcon}
             </div>
             <div className="min-w-0">
-              <h2 className="text-sm font-bold text-zinc-900 tracking-tight leading-tight truncate">
+              <h2 className="text-base font-bold text-[#20242B] tracking-tight leading-tight truncate">
                 {headerTitle}
               </h2>
-              <p className="text-[11px] text-zinc-500 mt-0.5 truncate">{headerSub}</p>
+              <p className="text-xs text-[#65707D] mt-0.5 truncate">{headerSub}</p>
             </div>
           </div>
 
           <button
+            type="button"
             onClick={() => setActiveLeftSection(null)}
             aria-label="사이드바 닫기"
             className="w-8 h-8 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-400 hover:text-zinc-800 transition-colors shrink-0"
@@ -111,14 +121,15 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
           </button>
         </div>
 
-        {/* 사이드바 내부 상시 노출 빠른 옵션 스위치 바 (순수 마네킹 모드, 방 사물, 관절선, 파트너, 렌더모드 5종) */}
+        {/* 사이드바 내부 상시 노출 빠른 옵션 스위치 바 */}
         <SidebarQuickOptionsBar sceneManager={sceneManager} />
 
-        {/* 맞춤 의상 vs 아이템 & 소품 2분할 탭 메뉴 (테마 & 사물 탭 제거 완료) */}
+        {/* 맞춤 의상 vs 아이템 & 소품 2분할 탭 메뉴 */}
         {activeLeftSection === 'themes' && (
-          <div className="px-4 py-2 border-b border-zinc-100 bg-zinc-50/80 flex-shrink-0">
+          <div className="px-4 py-2 border-b border-[#D9DEE5] bg-zinc-50/80 flex-shrink-0">
             <div className="grid grid-cols-2 gap-1.5 p-1 bg-zinc-200/75 rounded-2xl">
               <button
+                type="button"
                 onClick={() => setActiveSidebarTab('outfit')}
                 className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold transition-all ${
                   effectiveThemeTab === 'outfit'
@@ -130,6 +141,7 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
                 <span>맞춤 의상</span>
               </button>
               <button
+                type="button"
                 onClick={() => setActiveSidebarTab('props')}
                 className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold transition-all ${
                   effectiveThemeTab === 'props'
@@ -144,24 +156,32 @@ export const LeftUnifiedSidebar: React.FC<LeftUnifiedSidebarProps> = ({ sceneMan
           </div>
         )}
 
-        {/* 사이드바 단일 통합 스크롤 영역 */}
+        {/* 사이드바 단일 통합 스크롤 영역 (수요 시 지연 로드) */}
         <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4">
-          {activeLeftSection === 'mannequin' && (
-            <MannequinSidebarTab sceneManager={sceneManager} />
-          )}
+          <Suspense
+            fallback={
+              <div className="py-12 text-center text-xs font-semibold text-zinc-500">
+                패널 데이터를 불러오는 중...
+              </div>
+            }
+          >
+            {activeLeftSection === 'mannequin' && (
+              <MannequinSidebarTab sceneManager={sceneManager} />
+            )}
 
-          {activeLeftSection === 'poses' && (
-            <PresetGallery sceneManager={sceneManager} />
-          )}
+            {activeLeftSection === 'poses' && (
+              <PresetGallery sceneManager={sceneManager} />
+            )}
 
-          {activeLeftSection === 'themes' && (
-            <>
-              {effectiveThemeTab === 'outfit' && <OutfitSelectorTab />}
-              {effectiveThemeTab === 'props' && <PropsAndAccessoriesTab />}
-            </>
-          )}
+            {activeLeftSection === 'themes' && (
+              <>
+                {effectiveThemeTab === 'outfit' && <OutfitSelectorTab />}
+                {effectiveThemeTab === 'props' && <PropsAndAccessoriesTab />}
+              </>
+            )}
 
-          {activeLeftSection === 'export' && <ExportPanel sceneManager={sceneManager} />}
+            {activeLeftSection === 'export' && <ExportPanel sceneManager={sceneManager} />}
+          </Suspense>
         </div>
       </div>
     </aside>

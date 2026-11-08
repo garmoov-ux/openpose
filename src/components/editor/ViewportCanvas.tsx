@@ -4,6 +4,12 @@ import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { getSoloThemePoseKeyframe } from '@/core/mannequin/poses';
 import { POSE_PRESETS, applyPosePreset } from '@/core/mannequin/presets';
+import {
+  clampQuaternionToRom,
+  getSymmetricBoneName,
+  mirrorQuaternionLeftRight,
+} from '@/core/commands/commandApplier';
+import { applyRestDeltaQuat } from '@/core/scene/sceneDocumentSync';
 
 interface ViewportCanvasProps {
   onSceneReady?: (manager: SceneManager) => void;
@@ -23,6 +29,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     showGrid,
     showSkeleton,
     selectedBoneName,
+    selectedActorId,
     setSelectedBoneName,
   } = useEditorStore();
 
@@ -58,8 +65,8 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    const manager = new SceneManager(canvasRef.current, (boneName) => {
-      setSelectedBoneName(boneName);
+    const manager = new SceneManager(canvasRef.current, (boneName, actorId) => {
+      setSelectedBoneName(boneName, actorId || 'main');
       if (boneName) {
         setSelectedPropUid(null);
         setActiveTransformTarget('none');
@@ -79,6 +86,39 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
         setPartnerMannequinTransform({ position: pos, rotation: rot, scale });
       }
     };
+    manager.onBoneTransformEndCallback = (actorId, boneId, deltaRotation) => {
+      const state = useEditorStore.getState();
+      const rig = actorId === 'partner' ? manager.partnerHumanoid : manager.humanoid;
+      const bone = rig.bones.get(boneId);
+      let warning: string | null = null;
+
+      let finalDelta = deltaRotation;
+      if (state.romEnabled && bone) {
+        const romRes = clampQuaternionToRom(boneId, deltaRotation);
+        finalDelta = romRes.rotation;
+        if (romRes.clamped) {
+          applyRestDeltaQuat(bone, finalDelta);
+          warning = `${boneId}: 해부학적 가동 범위(ROM) 내로 보정됨`;
+        }
+      }
+
+      if (state.symmetryEnabled) {
+        const symName = getSymmetricBoneName(boneId);
+        const symBone = symName ? rig.bones.get(symName) : undefined;
+        if (symBone) {
+          const mirrored = mirrorQuaternionLeftRight(finalDelta);
+          applyRestDeltaQuat(symBone, mirrored);
+        }
+      }
+
+      const nextDoc = manager.extractSceneDocument(
+        state.sceneRevision,
+        state.exportWidth,
+        state.exportHeight,
+        state.bodyFormat
+      );
+      state.commitSceneDocument(nextDoc, 'user', warning);
+    };
 
     managerRef.current = manager;
     onSceneReadyRef.current?.(manager);
@@ -91,10 +131,59 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
       );
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        const store = useEditorStore.getState();
+        const doc = e.shiftKey ? store.redoSceneDocument() : store.undoSceneDocument();
+        if (doc && managerRef.current) {
+          managerRef.current.applySceneDocument(doc);
+        }
+        return;
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        const doc = useEditorStore.getState().redoSceneDocument();
+        if (doc && managerRef.current) {
+          managerRef.current.applySceneDocument(doc);
+        }
+        return;
+      }
+
+      if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+        if (e.key.toLowerCase() === 'f') {
+          useEditorStore.getState().setCameraPreset('fullbody');
+          managerRef.current?.setCameraPreset('fullbody');
+        } else if (e.key === '1') {
+          useEditorStore.getState().setCameraPreset('front');
+          managerRef.current?.setCameraPreset('front');
+        } else if (e.key === '2') {
+          useEditorStore.getState().setCameraPreset('side');
+          managerRef.current?.setCameraPreset('side');
+        } else if (e.key === '3') {
+          useEditorStore.getState().setCameraPreset('top');
+          managerRef.current?.setCameraPreset('top');
+        }
+      }
+    };
+
     window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyDown);
       manager.dispose();
       managerRef.current = null;
     };
@@ -131,18 +220,20 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     managerRef.current?.setShowSkeleton(showSkeleton);
   }, [showSkeleton]);
 
+  // { actorId, boneId } 단위 관절 선택 동기화 (2인 장면에서 동일 관절명 충돌 방지)
   useEffect(() => {
     if (!selectedBoneName) {
       if (!selectedPropUid && activeTransformTarget === 'none') {
-        managerRef.current?.selectBone(null);
+        managerRef.current?.selectBone(null, selectedActorId);
       }
       return;
     }
     const currentAttached = managerRef.current?.transformControls?.object?.name || null;
-    if (currentAttached !== selectedBoneName) {
-      managerRef.current?.selectBone(selectedBoneName);
+    const currentActor = managerRef.current?.getSelectedActorId() || 'main';
+    if (currentAttached !== selectedBoneName || currentActor !== selectedActorId) {
+      managerRef.current?.selectBone(selectedBoneName, selectedActorId);
     }
-  }, [selectedBoneName, selectedPropUid, activeTransformTarget]);
+  }, [selectedBoneName, selectedActorId, selectedPropUid, activeTransformTarget]);
 
   // 룸 사물 또는 마네킹 루트 기즈모 선택 동기화
   useEffect(() => {
@@ -236,7 +327,9 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="w-full h-full block cursor-grab active:cursor-grabbing outline-none"
+        tabIndex={0}
+        aria-label="3D 포즈 편집 캔버스"
+        className="w-full h-full block cursor-grab active:cursor-grabbing outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
       />
     </div>
   );

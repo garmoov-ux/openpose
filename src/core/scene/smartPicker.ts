@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { HumanoidRigResult } from '@/core/mannequin/humanoidRig';
 
 const BONE_WORLD_POS = new THREE.Vector3();
 
@@ -29,7 +30,6 @@ export function pickBoneFromRaycast(
   humanoidGroup: THREE.Group,
   bones: Map<string, THREE.Bone>
 ): string | null {
-  // 1. 콜라이더 직격 검사
   const colliderHits = raycaster.intersectObjects(colliders, true);
   if (colliderHits.length > 0) {
     const hit = colliderHits[0].object as THREE.Mesh;
@@ -38,13 +38,11 @@ export function pickBoneFromRaycast(
     }
   }
 
-  // 2. 인체 메쉬 클릭 시 스마트 최접 본 탐색
   const meshHits = raycaster.intersectObjects(humanoidGroup.children, true);
   for (const hit of meshHits) {
     if (hit.object.userData?.boneName) {
       return hit.object.userData.boneName;
     }
-    // 스킨드 메시나 일반 메쉬 표면 클릭 시 가장 가까운 본 도출
     if ((hit.object as THREE.Mesh).isMesh) {
       const nearest = findNearestBone(hit.point, bones);
       if (nearest) return nearest;
@@ -54,7 +52,6 @@ export function pickBoneFromRaycast(
   return null;
 }
 
-// 룸 가구 및 소품(RoomPropInstance) 레이캐스트 피킹 (사각 룸 벽체/바닥 셸은 제외)
 export function pickRoomPropFromRaycast(
   raycaster: THREE.Raycaster,
   themePropsGroup: THREE.Group
@@ -82,3 +79,55 @@ export function findPropGroupByUid(
   return null;
 }
 
+export type PickedSceneEntity =
+  | { kind: 'bone'; actorId: 'main' | 'partner'; boneName: string }
+  | { kind: 'prop'; propUid: string }
+  | { kind: 'none' };
+
+export function pickSceneEntityAtPointer(
+  event: PointerEvent,
+  canvas: HTMLCanvasElement,
+  camera: THREE.Camera,
+  raycaster: THREE.Raycaster,
+  mouse: THREE.Vector2,
+  mainRig: HumanoidRigResult,
+  partnerRig: HumanoidRigResult,
+  partnerVisible: boolean,
+  themePropsGroup: THREE.Group
+): PickedSceneEntity {
+  const rect = canvas.getBoundingClientRect();
+  mouse.set(
+    ((event.clientX - rect.left) / rect.width) * 2 - 1,
+    -((event.clientY - rect.top) / rect.height) * 2 + 1
+  );
+  raycaster.setFromCamera(mouse, camera);
+
+  const mainBone = pickBoneFromRaycast(
+    raycaster,
+    Array.from(mainRig.colliders.values()),
+    mainRig.group,
+    mainRig.bones
+  );
+  if (mainBone) {
+    return { kind: 'bone', actorId: 'main', boneName: mainBone };
+  }
+
+  if (partnerVisible && partnerRig.group.visible) {
+    const pBone = pickBoneFromRaycast(
+      raycaster,
+      Array.from(partnerRig.colliders.values()),
+      partnerRig.group,
+      partnerRig.bones
+    );
+    if (pBone) {
+      return { kind: 'bone', actorId: 'partner', boneName: pBone };
+    }
+  }
+
+  const propUid = pickRoomPropFromRaycast(raycaster, themePropsGroup);
+  if (propUid) {
+    return { kind: 'prop', propUid };
+  }
+
+  return { kind: 'none' };
+}

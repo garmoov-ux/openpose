@@ -65,6 +65,22 @@ export function restoreBoneRotations(
   });
 }
 
+export function disposeObjectHierarchy(root: THREE.Object3D | null | undefined): void {
+  if (!root) return;
+  root.traverse((child) => {
+    const mesh = child as THREE.Mesh;
+    if (mesh.geometry) {
+      mesh.geometry.dispose();
+    }
+    const mat = mesh.material;
+    if (Array.isArray(mat)) {
+      mat.forEach((m) => m?.dispose?.());
+    } else if (mat && typeof (mat as THREE.Material).dispose === 'function') {
+      (mat as THREE.Material).dispose();
+    }
+  });
+}
+
 export function applyMaterialToHierarchy(
   root: THREE.Object3D,
   material: THREE.Material,
@@ -89,7 +105,11 @@ export function applyMaterialToHierarchy(
   });
 }
 
-export function setJointDotsVisible(root: THREE.Object3D, visible: boolean, selectedBoneName?: string | null): void {
+export function setJointDotsVisible(
+  root: THREE.Object3D,
+  visible: boolean,
+  selectedBoneName?: string | null
+): void {
   root.traverse((child) => {
     if (child.userData?.isJointDot) {
       child.visible = visible;
@@ -111,7 +131,6 @@ export function setJointDotsVisible(root: THREE.Object3D, visible: boolean, sele
   });
 }
 
-// 지저분한 보조 본을 제외하고 핵심 18개 골격 연결선만 깔끔하게 그리는 고급 포즈선 오버레이
 export function createStylizedSkeletonHelper(): THREE.LineSegments {
   const positions = new Float32Array(CORE_BONE_PAIRS.length * 2 * 3);
   const geometry = new THREE.BufferGeometry();
@@ -160,6 +179,15 @@ export function updateStylizedSkeletonHelper(
   posAttr.needsUpdate = true;
 }
 
+let sharedRenderTarget: THREE.WebGLRenderTarget | null = null;
+
+export function disposeSharedRenderTarget(): void {
+  if (sharedRenderTarget) {
+    sharedRenderTarget.dispose();
+    sharedRenderTarget = null;
+  }
+}
+
 export function renderOffscreenSceneSnapshot(
   scene: THREE.Scene,
   camera: THREE.PerspectiveCamera,
@@ -167,27 +195,83 @@ export function renderOffscreenSceneSnapshot(
   transformHelper: THREE.Object3D,
   skeletonHelper: THREE.Object3D,
   offCanvas: HTMLCanvasElement,
-  resolution: number,
+  width: number,
   restoreDots: boolean,
-  selectedBoneName: string | null
+  selectedBoneName: string | null,
+  height = width,
+  sharedRenderer?: THREE.WebGLRenderer,
+  partnerGroup?: THREE.Object3D
 ): void {
-  const offRenderer = new THREE.WebGLRenderer({ canvas: offCanvas, antialias: true, preserveDrawingBuffer: true });
-  offRenderer.setSize(resolution, resolution, false);
-  const oldAspect = camera.aspect;
-  camera.aspect = 1.0;
-  camera.updateProjectionMatrix();
+  const renderCam = camera.clone();
+  renderCam.aspect = width / height;
+  renderCam.updateMatrixWorld();
+  renderCam.updateProjectionMatrix();
 
-  const [prevHelperVis, prevSkelVis] = [transformHelper.visible, skeletonHelper.visible];
-  transformHelper.visible = false;
-  skeletonHelper.visible = false;
-  setJointDotsVisible(humanoidGroup, false);
-  offRenderer.render(scene, camera);
-  transformHelper.visible = prevHelperVis;
-  skeletonHelper.visible = prevSkelVis;
-  setJointDotsVisible(humanoidGroup, restoreDots, selectedBoneName);
-  camera.aspect = oldAspect;
-  camera.updateProjectionMatrix();
-  offRenderer.dispose();
+  const prevHelperVis = transformHelper.visible;
+  const prevSkelVis = skeletonHelper.visible;
+
+  try {
+    transformHelper.visible = false;
+    skeletonHelper.visible = false;
+    setJointDotsVisible(humanoidGroup, false);
+    if (partnerGroup) setJointDotsVisible(partnerGroup, false);
+
+    if (sharedRenderer) {
+      if (
+        !sharedRenderTarget ||
+        sharedRenderTarget.width !== width ||
+        sharedRenderTarget.height !== height
+      ) {
+        sharedRenderTarget?.dispose();
+        sharedRenderTarget = new THREE.WebGLRenderTarget(width, height, {
+          format: THREE.RGBAFormat,
+          type: THREE.UnsignedByteType,
+          depthBuffer: true,
+        });
+      }
+
+      const prevTarget = sharedRenderer.getRenderTarget();
+      try {
+        sharedRenderer.setRenderTarget(sharedRenderTarget);
+        sharedRenderer.clear();
+        sharedRenderer.render(scene, renderCam);
+
+        const pixels = new Uint8Array(width * height * 4);
+        sharedRenderer.readRenderTargetPixels(sharedRenderTarget, 0, 0, width, height, pixels);
+
+        const ctx = offCanvas.getContext('2d');
+        if (ctx) {
+          const imgData = ctx.createImageData(width, height);
+          const rowBytes = width * 4;
+          for (let y = 0; y < height; y++) {
+            const srcOffset = (height - 1 - y) * rowBytes;
+            const dstOffset = y * rowBytes;
+            imgData.data.set(pixels.subarray(srcOffset, srcOffset + rowBytes), dstOffset);
+          }
+          ctx.putImageData(imgData, 0, 0);
+        }
+      } finally {
+        sharedRenderer.setRenderTarget(prevTarget);
+      }
+      return;
+    }
+
+    const offRenderer = new THREE.WebGLRenderer({
+      canvas: offCanvas,
+      antialias: true,
+      preserveDrawingBuffer: true,
+    });
+    try {
+      offRenderer.setSize(width, height, false);
+      offRenderer.render(scene, renderCam);
+    } finally {
+      offRenderer.dispose();
+    }
+  } finally {
+    transformHelper.visible = prevHelperVis;
+    skeletonHelper.visible = prevSkelVis;
+    setJointDotsVisible(humanoidGroup, restoreDots, selectedBoneName);
+  }
 }
 
 export function applyMannequinGroupTransform(
@@ -236,5 +320,3 @@ export function applyCouplePresetToRigs(
   applyMannequinGroupTransform(partnerRig.group, mOffset, [0, mRotY, 0], 1.0);
   return { mainPos: fOffset, mainRotY: fRotY, partnerPos: mOffset, partnerRotY: mRotY };
 }
-
-

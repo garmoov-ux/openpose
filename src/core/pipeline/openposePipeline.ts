@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OpenPoseExportData } from '@/types';
+import { BodyFormat } from '@/types/sceneDocument';
 
 export interface LimbDef {
   from: string;
@@ -7,9 +8,67 @@ export interface LimbDef {
   color: string;
 }
 
-// OpenPose COCO 표준 컬러 림 정의
+export interface ScreenJointPoint {
+  x: number;
+  y: number;
+  visible: boolean;
+  confidence?: number;
+}
+
+// COCO 18 공식 키포인트 순서 (18개 관절 = 54개 float)
+export const COCO_18_KEYPOINT_ORDER = [
+  'Nose',
+  'Neck',
+  'RightArm',     // RShoulder
+  'RightForeArm', // RElbow
+  'RightHand',    // RWrist
+  'LeftArm',      // LShoulder
+  'LeftForeArm',  // LElbow
+  'LeftHand',     // LWrist
+  'RightUpLeg',   // RHip
+  'RightLeg',     // RKnee
+  'RightFoot',    // RAnkle
+  'LeftUpLeg',    // LHip
+  'LeftLeg',      // LKnee
+  'LeftFoot',     // LAnkle
+  'REye',
+  'LEye',
+  'REar',
+  'LEar',
+] as const;
+
+// BODY_25 공식 키포인트 순서 (25개 관절 = 75개 float)
+export const BODY_25_KEYPOINT_ORDER = [
+  'Nose',
+  'Neck',
+  'RightArm',     // RShoulder
+  'RightForeArm', // RElbow
+  'RightHand',    // RWrist
+  'LeftArm',      // LShoulder
+  'LeftForeArm',  // LElbow
+  'LeftHand',     // LWrist
+  'Hips',         // MidHip
+  'RightUpLeg',   // RHip
+  'RightLeg',     // RKnee
+  'RightFoot',    // RAnkle
+  'LeftUpLeg',    // LHip
+  'LeftLeg',      // LKnee
+  'LeftFoot',     // LAnkle
+  'REye',
+  'LEye',
+  'REar',
+  'LEar',
+  'LBigToe',
+  'LSmallToe',
+  'LHeel',
+  'RBigToe',
+  'RSmallToe',
+  'RHeel',
+] as const;
+
+// OpenPose COCO 표준 컬러 림 정의 (Nose/Head 호환)
 export const COCO_LIMBS: LimbDef[] = [
-  { from: 'Head', to: 'Neck', color: 'rgb(255, 0, 0)' },
+  { from: 'Nose', to: 'Neck', color: 'rgb(255, 0, 0)' },
   { from: 'Neck', to: 'RightArm', color: 'rgb(255, 85, 0)' },
   { from: 'RightArm', to: 'RightForeArm', color: 'rgb(255, 170, 0)' },
   { from: 'RightForeArm', to: 'RightHand', color: 'rgb(255, 255, 0)' },
@@ -24,31 +83,8 @@ export const COCO_LIMBS: LimbDef[] = [
   { from: 'LeftLeg', to: 'LeftFoot', color: 'rgb(0, 0, 255)' },
 ];
 
-export function getJointScreenPositions(
-  bones: Map<string, THREE.Bone>,
-  camera: THREE.Camera,
-  canvasWidth: number,
-  canvasHeight: number
-): Map<string, { x: number; y: number; visible: boolean }> {
-  const result = new Map<string, { x: number; y: number; visible: boolean }>();
-  const tempVec = new THREE.Vector3();
-
-  bones.forEach((bone, name) => {
-    bone.getWorldPosition(tempVec);
-    tempVec.project(camera);
-
-    // NDC (-1 ~ 1) -> 픽셀 좌표
-    const x = ((tempVec.x + 1) * canvasWidth) / 2;
-    const y = ((-tempVec.y + 1) * canvasHeight) / 2;
-    const visible = tempVec.z < 1.0; // 카메라 전방 여부
-
-    result.set(name, { x, y, visible });
-  });
-
-  return result;
-}
-
 export const JOINT_COLORS: Record<string, string> = {
+  Nose: 'rgb(255, 0, 0)',
   Head: 'rgb(255, 0, 0)',
   Neck: 'rgb(255, 85, 0)',
   RightArm: 'rgb(255, 170, 0)',
@@ -65,82 +101,218 @@ export const JOINT_COLORS: Record<string, string> = {
   LeftFoot: 'rgb(255, 0, 255)',
 };
 
+// Head 본 로컬 좌표계에서 해부학적 코(Nose) 위치 앵커 오프셋 (미터 단위)
+const HEAD_TO_NOSE_LOCAL_OFFSET = new THREE.Vector3(0, 0.055, 0.095);
+
+function projectWorldPointToScreen(
+  worldPos: THREE.Vector3,
+  camera: THREE.Camera,
+  canvasWidth: number,
+  canvasHeight: number
+): ScreenJointPoint {
+  if (
+    !Number.isFinite(worldPos.x) ||
+    !Number.isFinite(worldPos.y) ||
+    !Number.isFinite(worldPos.z)
+  ) {
+    return { x: 0, y: 0, visible: false, confidence: 0 };
+  }
+
+  // 1. 카메라 공간 깊이(Z) 및 near/far 범위 검사
+  const viewPos = worldPos.clone().applyMatrix4(camera.matrixWorldInverse);
+  const depth = -viewPos.z;
+  const near = (camera as THREE.PerspectiveCamera).near ?? 0.1;
+  const far = (camera as THREE.PerspectiveCamera).far ?? 50;
+
+  if (!Number.isFinite(depth) || depth < near || depth > far) {
+    return { x: 0, y: 0, visible: false, confidence: 0 };
+  }
+
+  // 2. NDC 투영 및 [-1, 1] 경계 검사
+  const ndc = worldPos.clone().project(camera);
+  if (
+    !Number.isFinite(ndc.x) ||
+    !Number.isFinite(ndc.y) ||
+    !Number.isFinite(ndc.z) ||
+    ndc.x < -1 ||
+    ndc.x > 1 ||
+    ndc.y < -1 ||
+    ndc.y > 1 ||
+    ndc.z < -1 ||
+    ndc.z > 1
+  ) {
+    return { x: 0, y: 0, visible: false, confidence: 0 };
+  }
+
+  const x = ((ndc.x + 1) * canvasWidth) / 2;
+  const y = ((-ndc.y + 1) * canvasHeight) / 2;
+
+  if (
+    !Number.isFinite(x) ||
+    !Number.isFinite(y) ||
+    x < 0 ||
+    x > canvasWidth ||
+    y < 0 ||
+    y > canvasHeight
+  ) {
+    return { x: 0, y: 0, visible: false, confidence: 0 };
+  }
+
+  return { x, y, visible: true, confidence: 1.0 };
+}
+
+export function getJointScreenPositions(
+  bones: Map<string, THREE.Bone>,
+  camera: THREE.Camera,
+  canvasWidth: number,
+  canvasHeight: number
+): Map<string, ScreenJointPoint> {
+  const result = new Map<string, ScreenJointPoint>();
+  const worldPos = new THREE.Vector3();
+  const worldQuat = new THREE.Quaternion();
+
+  camera.updateMatrixWorld();
+  if ((camera as THREE.PerspectiveCamera).isPerspectiveCamera) {
+    (camera as THREE.PerspectiveCamera).updateProjectionMatrix();
+  }
+
+  bones.forEach((bone, name) => {
+    bone.getWorldPosition(worldPos);
+    const pt = projectWorldPointToScreen(worldPos, camera, canvasWidth, canvasHeight);
+    result.set(name, pt);
+
+    // Head 본에서 코(Nose) 해부학적 앵커 위치 계산
+    if (name === 'Head' && !bones.has('Nose')) {
+      bone.getWorldPosition(worldPos);
+      bone.getWorldQuaternion(worldQuat);
+      const noseOffset = HEAD_TO_NOSE_LOCAL_OFFSET.clone().applyQuaternion(worldQuat);
+      worldPos.add(noseOffset);
+      result.set('Nose', projectWorldPointToScreen(worldPos, camera, canvasWidth, canvasHeight));
+    }
+  });
+
+  // 눈/귀/발끝 앵커가 없는 모델은 명시적으로 미지원(confidence 0) 기록
+  const optionalAnchors = [
+    'REye', 'LEye', 'REar', 'LEar',
+    'LBigToe', 'LSmallToe', 'LHeel', 'RBigToe', 'RSmallToe', 'RHeel',
+  ];
+  for (const anchor of optionalAnchors) {
+    if (!result.has(anchor)) {
+      result.set(anchor, { x: 0, y: 0, visible: false, confidence: 0 });
+    }
+  }
+
+  return result;
+}
+
+function resolveJointPoint(
+  positions: Map<string, ScreenJointPoint>,
+  key: string
+): ScreenJointPoint | undefined {
+  if (key === 'Nose') {
+    return positions.get('Nose') ?? positions.get('Head');
+  }
+  return positions.get(key);
+}
+
 export function drawOpenPoseSkeleton(
   ctx: CanvasRenderingContext2D,
-  positions: Map<string, { x: number; y: number; visible: boolean }>,
+  positionsOrList:
+    | Map<string, ScreenJointPoint>
+    | Array<Map<string, ScreenJointPoint>>,
   width: number,
   height: number
 ): void {
   ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, width, height);
 
+  const actorMaps = Array.isArray(positionsOrList) ? positionsOrList : [positionsOrList];
   const scale = width / 512;
   const lineWidth = Math.max(3, Math.round(4.5 * scale));
   const jointRadius = Math.max(3, Math.round(4.5 * scale));
 
-  // 1. 관절 연결선(Limbs) 드로잉
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
   ctx.lineWidth = lineWidth;
 
-  COCO_LIMBS.forEach((limb) => {
-    const p1 = positions.get(limb.from);
-    const p2 = positions.get(limb.to);
-    if (p1 && p2 && p1.visible && p2.visible) {
-      ctx.strokeStyle = limb.color;
-      ctx.beginPath();
-      ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x, p2.y);
-      ctx.stroke();
-    }
-  });
+  for (const positions of actorMaps) {
+    // 1. 관절 연결선(Limbs) 드로잉
+    COCO_LIMBS.forEach((limb) => {
+      const p1 = resolveJointPoint(positions, limb.from);
+      const p2 = resolveJointPoint(positions, limb.to);
+      if (p1 && p2 && p1.visible && p2.visible) {
+        ctx.strokeStyle = limb.color;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    });
 
-  // 2. 관절 포인트(Joints) 드로잉 - 표준 COCO 핵심 키포인트만 렌더링
-  Object.entries(JOINT_COLORS).forEach(([name, color]) => {
-    const pos = positions.get(name);
-    if (!pos || !pos.visible) return;
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(pos.x, pos.y, jointRadius, 0, Math.PI * 2);
-    ctx.fill();
-  });
+    // 2. 관절 포인트(Joints) 드로잉 (지원되는 유효 관절만 표시)
+    const drawKeys = [
+      'Nose', 'Neck',
+      'RightArm', 'RightForeArm', 'RightHand',
+      'LeftArm', 'LeftForeArm', 'LeftHand',
+      'RightUpLeg', 'RightLeg', 'RightFoot',
+      'LeftUpLeg', 'LeftLeg', 'LeftFoot',
+    ];
+    for (const key of drawKeys) {
+      const pos = resolveJointPoint(positions, key);
+      if (!pos || !pos.visible) continue;
+      ctx.fillStyle = JOINT_COLORS[key] || 'rgb(255, 255, 255)';
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, jointRadius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
 }
 
 export function exportOpenPoseJson(
-  positions: Map<string, { x: number; y: number; visible: boolean }>,
+  positionsOrList:
+    | Map<string, ScreenJointPoint>
+    | Array<Map<string, ScreenJointPoint>>,
   width: number,
-  height: number
+  height: number,
+  bodyFormat: BodyFormat = 'coco18'
 ): OpenPoseExportData {
-  const keypoints2d: number[] = [];
+  const actorMaps = Array.isArray(positionsOrList) ? positionsOrList : [positionsOrList];
+  const keyOrder = bodyFormat === 'body25' ? BODY_25_KEYPOINT_ORDER : COCO_18_KEYPOINT_ORDER;
 
-  const orderedBones = [
-    'Head', 'Neck', 'RightArm', 'RightForeArm', 'RightHand',
-    'LeftArm', 'LeftForeArm', 'LeftHand', 'RightUpLeg', 'RightLeg',
-    'RightFoot', 'LeftUpLeg', 'LeftLeg', 'LeftFoot'
-  ];
+  const people = actorMaps.map((positions) => {
+    const keypoints2d: number[] = [];
 
-  orderedBones.forEach((name) => {
-    const pos = positions.get(name);
-    if (pos && pos.visible) {
-      keypoints2d.push(Math.round(pos.x), Math.round(pos.y), 1.0);
-    } else {
-      keypoints2d.push(0, 0, 0.0);
+    for (const key of keyOrder) {
+      const pos = resolveJointPoint(positions, key);
+      if (
+        pos &&
+        pos.visible &&
+        Number.isFinite(pos.x) &&
+        Number.isFinite(pos.y) &&
+        pos.x >= 0 &&
+        pos.x <= width &&
+        pos.y >= 0 &&
+        pos.y <= height
+      ) {
+        keypoints2d.push(Math.round(pos.x), Math.round(pos.y), 1.0);
+      } else {
+        keypoints2d.push(0, 0, 0.0);
+      }
     }
+
+    return {
+      person_id: [-1],
+      pose_keypoints_2d: keypoints2d,
+      face_keypoints_2d: [],
+      hand_left_keypoints_2d: [],
+      hand_right_keypoints_2d: [],
+    };
   });
 
   return {
     version: 1.3,
-    people: [
-      {
-        person_id: [-1],
-        pose_keypoints_2d: keypoints2d,
-        face_keypoints_2d: [],
-        hand_left_keypoints_2d: [],
-        hand_right_keypoints_2d: [],
-      },
-    ],
+    people,
     canvas_width: width,
     canvas_height: height,
   };
 }
-

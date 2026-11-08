@@ -14,6 +14,26 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/three/examples')) {
+            return 'vendor-three-addons';
+          }
+          if (id.includes('node_modules/three')) {
+            return 'vendor-three-core';
+          }
+          if (id.includes('src/data/themesSolo')) {
+            return 'data-themes-solo';
+          }
+          if (id.includes('src/core/mannequin/poses') || id.includes('src/core/mannequin/couplePoses') || id.includes('src/core/mannequin/solo')) {
+            return 'data-poses-catalog';
+          }
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
     proxy: {
@@ -25,4 +45,3 @@ export default defineConfig({
     },
   },
 });
-

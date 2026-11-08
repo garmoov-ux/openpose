@@ -28,7 +28,7 @@ const MODES: Array<{ id: RenderMode; label: string; icon: React.ReactNode }> = [
   { id: 'openpose', label: 'OpenPose 관절선', icon: <Activity className="w-4 h-4" /> },
   { id: 'depth', label: 'Depth 깊이맵', icon: <Layers className="w-4 h-4" /> },
   { id: 'normal', label: 'Normal 법선맵', icon: <Box className="w-4 h-4" /> },
-  { id: 'canny', label: 'Canny 윤곽선', icon: <Grid className="w-4 h-4" /> },
+  { id: 'canny', label: '와이어프레임 (개발용)', icon: <Grid className="w-4 h-4" /> },
 ];
 
 export const SidebarQuickOptionsBar: React.FC<SidebarQuickOptionsBarProps> = ({

@@ -33,7 +33,7 @@ export const ModeSelector: React.FC = () => {
     },
     {
       id: 'canny',
-      label: '윤곽선',
+      label: '와이어프레임',
       icon: <Grid className="w-4 h-4" />,
     },
   ];

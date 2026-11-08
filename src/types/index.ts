@@ -1,4 +1,4 @@
-export type RenderMode = 'shading' | 'openpose' | 'depth' | 'normal' | 'canny';
+export type RenderMode = 'shading' | 'openpose' | 'depth' | 'normal' | 'canny' | 'lineart' | 'wireframe';
 
 export type GizmoMode = 'rotate' | 'translate' | 'scale';
 export type GizmoSpace = 'local' | 'world';

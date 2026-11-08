@@ -1,5 +1,14 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: local("Pretendard Variable"),
+       local("Pretendard"),
+       url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+}
 
 @layer base {
   * {
@@ -9,8 +18,18 @@
     user-select: none;
     -webkit-user-select: none;
     overflow: hidden;
-    background-color: #ffffff;
-    color: #141414;
+    background-color: #f7f8fa;
+    color: #20242b;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -23,9 +42,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e0e0e0;
+  background: #d9dee5;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #adadad;
+  background: #65707d;
 }
