@@ -1,7 +1,9 @@
 import { SoloThemeId, OutfitCategory } from '@/types/themeSolo';
 import { MannequinModelId } from '@/types';
+import { OutfitCompositionV1 } from '@/types/wardrobe';
 import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
 import { findOutfitById } from '@/core/mannequin/mannequinProfiles';
+import { composeOutfit } from '@/core/mannequin/wardrobe/composition';
 import { MASTER_PREFIX, MASTER_SUFFIX, SHOT_PREFIXES } from '@/data/themesSolo/masterTemplate';
 import { OUTFITS_DATA } from '@/data/themesSolo/outfitsData';
 import { POSTURES_DATA } from '@/data/themesSolo/posturesTextData';
@@ -18,12 +20,65 @@ import {
 import { RoomPropInstance, getRoomPropDef } from '@/data/themesSolo/roomPropCatalog';
 import { BodyProfileMode } from '@/stores/useThemeSoloStore';
 
+const COLOR_HEX_TO_NAME: Record<string, string> = {
+  '#f8fafc': 'white',
+  '#1e293b': 'dark navy',
+  '#18181b': 'black',
+  '#2563eb': 'blue',
+  '#0284c7': 'sky blue',
+  '#e11d48': 'crimson red',
+  '#be123c': 'burgundy',
+  '#b45309': 'camel brown',
+  '#92400e': 'brown',
+  '#d6d3d1': 'warm beige',
+  '#f5f5f4': 'ivory',
+  '#334155': 'charcoal',
+};
+
+export function buildWardrobeCompositionTags(
+  composition?: OutfitCompositionV1,
+  options?: { includePromptOnly?: boolean; modelId?: MannequinModelId }
+): {
+  tags: string[];
+  promptOnlyTags: string[];
+} {
+  if (!composition || composition.itemIds.length === 0) {
+    return { tags: [], promptOnlyTags: [] };
+  }
+  const composed = composeOutfit(
+    composition.itemIds,
+    options?.modelId ? { modelId: options.modelId } : undefined
+  );
+  const tags: string[] = [];
+  const promptOnlyTags: string[] = [];
+
+  for (const item of composed.visibleItems) {
+    const ov = composition.overrides?.[item.id];
+    const colorWord = ov?.color ? COLOR_HEX_TO_NAME[ov.color.toLowerCase()] || ov.color : '';
+    const baseTag = item.promptTags[0] || item.nameEn.toLowerCase();
+    const finalTag = colorWord ? `${colorWord} ${baseTag}` : baseTag;
+
+    if (item.renderSupport === 'prompt-only') {
+      promptOnlyTags.push(finalTag);
+      if (options?.includePromptOnly) {
+        tags.push(finalTag);
+      }
+    } else {
+      tags.push(finalTag);
+    }
+  }
+
+  return { tags, promptOnlyTags };
+}
+
 export interface PromptBuildParams {
   themeId: SoloThemeId;
   envIndex: number;
   lightIndex: number;
   outfitId: number;
   outfitCategory: OutfitCategory | 'all';
+  outfitComposition?: OutfitCompositionV1;
+  includePromptOnlyItems?: boolean;
   postureId: number;
   shotPrefixIndex: number;
   isWildcardMode: boolean;
@@ -101,7 +156,7 @@ function buildAccessoryAndPropTags(params: {
   if (params.roomProps && params.roomProps.length > 0) {
     const visiblePrompts = params.roomProps
       .filter((p) => p.visible)
-      .slice(0, 4)
+      .slice(0, 12)
       .map((p) => getRoomPropDef(p.propId)?.promptEn)
       .filter((t): t is string => Boolean(t));
     tags.push(...visiblePrompts);
@@ -180,6 +235,7 @@ function cleanReferenceBoilerplate(raw: string, keepRef: boolean): string {
 export function buildCompactSceneTagSummary(params: {
   modelId: MannequinModelId;
   outfitId: number;
+  outfitComposition?: OutfitCompositionV1;
   themeId: SoloThemeId;
   envIndex: number;
   lightIndex: number;
@@ -194,13 +250,20 @@ export function buildCompactSceneTagSummary(params: {
   roomProps?: RoomPropInstance[];
 }): string {
   const subject = MODEL_PROMPT_PROFILES[params.modelId] || MODEL_PROMPT_PROFILES.realistic_woman;
+  const { tags: wardrobeTags } = buildWardrobeCompositionTags(params.outfitComposition, {
+    includePromptOnly: true,
+    modelId: params.modelId,
+  });
   const outfit = params.outfitId > 0 ? findOutfitById(params.outfitId) : null;
   const theme = THEMES_DATA[params.themeId] || THEMES_DATA.alley_downtown_street;
   const posture = POSTURES_DATA.find((p) => p.id === params.postureId) || POSTURES_DATA[0];
 
-  const outfitTag = outfit
-    ? `wearing ${outfit.id >= 1000 ? outfit.text : outfit.nameEn.toLowerCase()}`
-    : 'unclothed bare mannequin figure';
+  const outfitTag =
+    wardrobeTags.length > 0
+      ? `wearing ${wardrobeTags.join(', ')}`
+      : outfit
+      ? `wearing ${outfit.id >= 1000 ? outfit.text : outfit.nameEn.toLowerCase()}`
+      : 'unclothed bare mannequin figure';
   const itemTags = buildAccessoryAndPropTags(params);
   const itemClause = itemTags.length > 0 ? `, ${itemTags.join(', ')}` : '';
   const themeTag = `${theme.titleEn.toLowerCase()} setting`;
@@ -213,8 +276,12 @@ export function buildCompactSceneTagSummary(params: {
 // 단일 확정 프롬프트 생성 (현재 3D 뷰포트 상태와 1:1 일치)
 export function buildResolvedPrompt(params: PromptBuildParams): string {
   const keepRef = params.bodyProfileMode === undefined || Boolean(params.includeMasterRef);
+  const { tags: wardrobeTags } = buildWardrobeCompositionTags(params.outfitComposition, {
+    includePromptOnly: params.includePromptOnlyItems ?? true,
+    modelId: params.modelId,
+  });
   const outfit =
-    params.outfitId === 0
+    wardrobeTags.length > 0 || params.outfitId === 0
       ? null
       : findOutfitById(params.outfitId) || OUTFITS_DATA[0];
   const posture = POSTURES_DATA.find((p) => p.id === params.postureId) || POSTURES_DATA[0];
@@ -229,7 +296,12 @@ export function buildResolvedPrompt(params: PromptBuildParams): string {
 
   const prefix = buildSubjectPrefix(params);
   const suffix = buildSubjectSuffix(params);
-  const outfitClause = outfit ? `${cleanReferenceBoilerplate(outfit.text, keepRef)}, ` : '';
+  const outfitClause =
+    wardrobeTags.length > 0
+      ? `wearing ${wardrobeTags.join(', ')}, `
+      : outfit
+      ? `${cleanReferenceBoilerplate(outfit.text, keepRef)}, `
+      : '';
 
   const refClause = keepRef
     ? ', her bare breasts and flat hair-free stomach completely uncovered and her hairless lower pelvis matching Picture 1 (image1), face matching Picture 1 (image1)'

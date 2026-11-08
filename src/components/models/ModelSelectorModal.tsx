@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Sparkles, Check, Loader2 } from 'lucide-react';
 import { useEditorStore } from '@/stores/useEditorStore';
+import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { MANNEQUIN_MODELS, MATERIAL_OPTIONS } from '@/core/mannequin/models';
 import { SceneManager } from '@/core/scene/SceneManager';
 import { MannequinModelId, MaterialStyle } from '@/types';
@@ -43,6 +44,7 @@ export const ModelSelectorModal: React.FC<ModelSelectorModalProps> = ({ sceneMan
     setIsLoading(true);
     setModelLoadingProgress(10);
     try {
+      useThemeSoloStore.getState().syncWardrobeForModelChange(modelId, 'main');
       await sceneManager.loadMannequinModel(modelId, (progress) => {
         setModelLoadingProgress(progress);
       });

@@ -1,0 +1,6404 @@
+[
+  {
+    "id": "sock.no-show",
+    "version": 1,
+    "nameKo": "페이크 삭스",
+    "nameEn": "No Show",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton no show"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 213,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock.ankle-cotton",
+    "version": 1,
+    "nameKo": "코튼 발목 양말",
+    "nameEn": "Ankle Cotton",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ankle cotton"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 214,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock.ankle-ribbed",
+    "version": 1,
+    "nameKo": "골지 발목 양말",
+    "nameEn": "Ankle Ribbed",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ankle ribbed"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 215,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock.crew-cotton",
+    "version": 1,
+    "nameKo": "코튼 크루 삭스",
+    "nameEn": "Crew Cotton",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crew cotton"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 216,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock.crew-sport",
+    "version": 1,
+    "nameKo": "스포츠 크루 삭스",
+    "nameEn": "Crew Sport",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey crew sport"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 217,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock.crew-striped",
+    "version": 1,
+    "nameKo": "스트라이프 크루 삭스",
+    "nameEn": "Crew Striped",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton crew striped"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 218,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock.knee-cotton",
+    "version": 1,
+    "nameKo": "코튼 니삭스",
+    "nameEn": "Knee Cotton",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton knee cotton"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 219,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 36
+    }
+  },
+  {
+    "id": "sock.wool-winter",
+    "version": 1,
+    "nameKo": "울 겨울 양말",
+    "nameEn": "Wool Winter",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit wool winter"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 220,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock.sheer-ankle",
+    "version": 1,
+    "nameKo": "시어 발목 양말",
+    "nameEn": "Sheer Ankle",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh sheer ankle"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 221,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock.lace-trim-ankle",
+    "version": 1,
+    "nameKo": "레이스 트림 발목 양말",
+    "nameEn": "Lace Trim Ankle",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace trim ankle"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 222,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.opaque-tights",
+    "version": 1,
+    "nameKo": "불투명 타이츠",
+    "nameEn": "Opaque Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton opaque tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 223,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.sheer-tights",
+    "version": 1,
+    "nameKo": "시어 타이츠",
+    "nameEn": "Sheer Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh sheer tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 224,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.patterned-tights",
+    "version": 1,
+    "nameKo": "패턴 타이츠",
+    "nameEn": "Patterned Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton patterned tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 225,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.fishnet-tights",
+    "version": 1,
+    "nameKo": "망사 패턴 타이츠",
+    "nameEn": "Fishnet Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh fishnet tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 226,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.thigh-high-stockings",
+    "version": 1,
+    "nameKo": "허벅지 길이 스타킹",
+    "nameEn": "Thigh High Stockings",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton thigh high stockings"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 227,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "legwear.knee-high-stockings",
+    "version": 1,
+    "nameKo": "무릎 길이 스타킹",
+    "nameEn": "Knee High Stockings",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton knee high stockings"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 228,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 36
+    }
+  },
+  {
+    "id": "legwear.compression-stockings",
+    "version": 1,
+    "nameKo": "컴프레션 스타킹",
+    "nameEn": "Compression Stockings",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey compression stockings"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 229,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "legwear.leg-warmers",
+    "version": 1,
+    "nameKo": "니트 레그워머",
+    "nameEn": "Leg Warmers",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton leg warmers"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 230,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "shoe.canvas-sneaker",
+    "version": 1,
+    "nameKo": "캔버스 스니커즈",
+    "nameEn": "Canvas Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton canvas sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 231,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.running-sneaker",
+    "version": 1,
+    "nameKo": "러닝화",
+    "nameEn": "Running Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton running sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 232,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.chunky-sneaker",
+    "version": 1,
+    "nameKo": "청키 스니커즈",
+    "nameEn": "Chunky Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton chunky sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 233,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 4,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.low-top-leather",
+    "version": 1,
+    "nameKo": "로우탑 가죽 스니커즈",
+    "nameEn": "Low Top Leather",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather low top leather"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 234,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.high-top-sneaker",
+    "version": 1,
+    "nameKo": "하이탑 스니커즈",
+    "nameEn": "High Top Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high top sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 235,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.penny-loafer",
+    "version": 1,
+    "nameKo": "페니 로퍼",
+    "nameEn": "Penny Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton penny loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 236,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.tassel-loafer",
+    "version": 1,
+    "nameKo": "태슬 로퍼",
+    "nameEn": "Tassel Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton tassel loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 237,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.mary-jane",
+    "version": 1,
+    "nameKo": "메리제인 슈즈",
+    "nameEn": "Mary Jane",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mary jane"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 238,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.ballet-flat",
+    "version": 1,
+    "nameKo": "발레 플랫",
+    "nameEn": "Ballet Flat",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ballet flat"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 239,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.oxford",
+    "version": 1,
+    "nameKo": "옥스퍼드 구두",
+    "nameEn": "Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 240,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.chelsea-boot",
+    "version": 1,
+    "nameKo": "첼시 부츠",
+    "nameEn": "Chelsea Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather chelsea boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 241,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.ankle-boot",
+    "version": 1,
+    "nameKo": "앵클부츠",
+    "nameEn": "Ankle Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather ankle boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 242,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.combat-boot",
+    "version": 1,
+    "nameKo": "워커 부츠",
+    "nameEn": "Combat Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather combat boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 243,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.knee-boot",
+    "version": 1,
+    "nameKo": "무릎 길이 부츠",
+    "nameEn": "Knee Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather knee boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 244,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 40,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.slide-sandal",
+    "version": 1,
+    "nameKo": "슬라이드 샌들",
+    "nameEn": "Slide Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slide sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 245,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.strappy-sandal",
+    "version": 1,
+    "nameKo": "스트랩 샌들",
+    "nameEn": "Strappy Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton strappy sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 246,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.platform-sandal",
+    "version": 1,
+    "nameKo": "플랫폼 샌들",
+    "nameEn": "Platform Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural",
+      "teen_girl",
+      "teen_boy",
+      "teen_middle_f",
+      "teen_middle_m",
+      "child_elementary_f",
+      "child_elementary",
+      "child_toddler_f",
+      "child_toddler"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton platform sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 247,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 4,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.block-heel",
+    "version": 1,
+    "nameKo": "블록힐",
+    "nameEn": "Block Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton block heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 248,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.slingback-heel",
+    "version": 1,
+    "nameKo": "슬링백 힐",
+    "nameEn": "Slingback Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slingback heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 249,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe.stiletto-heel",
+    "version": 1,
+    "nameKo": "스틸레토 힐",
+    "nameEn": "Stiletto Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton stiletto heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 250,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 9.5,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.kitten-heel-pump",
+    "version": 1,
+    "nameKo": "키튼힐 펌프스",
+    "nameEn": "Kitten Heel Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton kitten heel pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 251,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 4,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.mid-heel-pump",
+    "version": 1,
+    "nameKo": "미들힐 펌프스",
+    "nameEn": "Mid Heel Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mid heel pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 252,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.high-heel-pump",
+    "version": 1,
+    "nameKo": "하이힐 펌프스",
+    "nameEn": "High Heel Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high heel pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 253,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 9.5,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.pointed-pump",
+    "version": 1,
+    "nameKo": "포인티드 토 펌프스",
+    "nameEn": "Pointed Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pointed pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 254,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "pointed",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.round-pump",
+    "version": 1,
+    "nameKo": "라운드 토 펌프스",
+    "nameEn": "Round Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton round pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 255,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.square-toe-pump",
+    "version": 1,
+    "nameKo": "스퀘어 토 펌프스",
+    "nameEn": "Square Toe Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton square toe pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 256,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "square",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.dorsay-pump",
+    "version": 1,
+    "nameKo": "도르세 펌프스",
+    "nameEn": "Dorsay Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton dorsay pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 257,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.t-strap-heel",
+    "version": 1,
+    "nameKo": "T스트랩 힐",
+    "nameEn": "T Strap Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton t strap heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 258,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.ankle-strap-heel",
+    "version": 1,
+    "nameKo": "앵클 스트랩 힐",
+    "nameEn": "Ankle Strap Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ankle strap heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 259,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.platform-pump",
+    "version": 1,
+    "nameKo": "플랫폼 펌프스",
+    "nameEn": "Platform Pump",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton platform pump"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 260,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 9.5,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 4,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.wedge-heel",
+    "version": 1,
+    "nameKo": "웨지힐",
+    "nameEn": "Wedge Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton wedge heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 261,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.slingback-flat",
+    "version": 1,
+    "nameKo": "슬링백 플랫",
+    "nameEn": "Slingback Flat",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slingback flat"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 262,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.slingback-kitten",
+    "version": 1,
+    "nameKo": "슬링백 키튼힐",
+    "nameEn": "Slingback Kitten",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slingback kitten"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 263,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 4,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.mule-flat",
+    "version": 1,
+    "nameKo": "플랫 뮬",
+    "nameEn": "Mule Flat",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mule flat"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 264,
+    "shape": {
+      "shoeForm": "mule",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.mule-heel",
+    "version": 1,
+    "nameKo": "힐 뮬",
+    "nameEn": "Mule Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mule heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 265,
+    "shape": {
+      "shoeForm": "mule",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.peep-toe-heel",
+    "version": 1,
+    "nameKo": "오픈토 힐",
+    "nameEn": "Peep Toe Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton peep toe heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 266,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.espadrille-wedge",
+    "version": 1,
+    "nameKo": "에스파드리유 웨지",
+    "nameEn": "Espadrille Wedge",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton espadrille wedge"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 267,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.gladiator-sandal",
+    "version": 1,
+    "nameKo": "글래디에이터 샌들",
+    "nameEn": "Gladiator Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton gladiator sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 268,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.fisherman-sandal",
+    "version": 1,
+    "nameKo": "피셔맨 샌들",
+    "nameEn": "Fisherman Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton fisherman sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 269,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.strappy-heel-sandal",
+    "version": 1,
+    "nameKo": "스트랩 힐 샌들",
+    "nameEn": "Strappy Heel Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton strappy heel sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 270,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.platform-mary-jane",
+    "version": 1,
+    "nameKo": "플랫폼 메리제인",
+    "nameEn": "Platform Mary Jane",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton platform mary jane"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 271,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 4,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.mary-jane-heel",
+    "version": 1,
+    "nameKo": "힐 메리제인",
+    "nameEn": "Mary Jane Heel",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mary jane heel"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 272,
+    "shape": {
+      "shoeForm": "pump",
+      "heelHeightCm": 7,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.sock-boot",
+    "version": 1,
+    "nameKo": "삭스 부츠",
+    "nameEn": "Sock Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather sock boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 273,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.lace-up-ankle-boot",
+    "version": 1,
+    "nameKo": "레이스업 앵클부츠",
+    "nameEn": "Lace Up Ankle Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather lace up ankle boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 274,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.western-boot",
+    "version": 1,
+    "nameKo": "웨스턴 부츠",
+    "nameEn": "Western Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather western boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 275,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 26,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.mid-calf-boot",
+    "version": 1,
+    "nameKo": "미드카프 부츠",
+    "nameEn": "Mid Calf Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather mid calf boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 276,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 26,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.over-knee-boot",
+    "version": 1,
+    "nameKo": "오버니 부츠",
+    "nameEn": "Over Knee Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather over knee boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 277,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 52,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.platform-boot",
+    "version": 1,
+    "nameKo": "플랫폼 부츠",
+    "nameEn": "Platform Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather platform boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 278,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 4,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.suede-loafer",
+    "version": 1,
+    "nameKo": "스웨이드 로퍼",
+    "nameEn": "Suede Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#92400e",
+        "fabric": "suede"
+      }
+    ],
+    "promptTags": [
+      "suede suede loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 279,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-f.pointed-flat",
+    "version": 1,
+    "nameKo": "포인티드 플랫",
+    "nameEn": "Pointed Flat",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pointed flat"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 280,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "pointed",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.cap-toe-oxford",
+    "version": 1,
+    "nameKo": "캡토 옥스퍼드",
+    "nameEn": "Cap Toe Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather cap toe oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 281,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.plain-toe-oxford",
+    "version": 1,
+    "nameKo": "플레인토 옥스퍼드",
+    "nameEn": "Plain Toe Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather plain toe oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 282,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.wholecut-oxford",
+    "version": 1,
+    "nameKo": "홀컷 옥스퍼드",
+    "nameEn": "Wholecut Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather wholecut oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 283,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.brogue-oxford",
+    "version": 1,
+    "nameKo": "브로그 옥스퍼드",
+    "nameEn": "Brogue Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather brogue oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 284,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.wingtip-oxford",
+    "version": 1,
+    "nameKo": "윙팁 옥스퍼드",
+    "nameEn": "Wingtip Oxford",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather wingtip oxford"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 285,
+    "shape": {
+      "shoeForm": "oxford",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.plain-derby",
+    "version": 1,
+    "nameKo": "플레인 더비",
+    "nameEn": "Plain Derby",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather plain derby"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 286,
+    "shape": {
+      "shoeForm": "derby",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.cap-toe-derby",
+    "version": 1,
+    "nameKo": "캡토 더비",
+    "nameEn": "Cap Toe Derby",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather cap toe derby"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 287,
+    "shape": {
+      "shoeForm": "derby",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.brogue-derby",
+    "version": 1,
+    "nameKo": "브로그 더비",
+    "nameEn": "Brogue Derby",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather brogue derby"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 288,
+    "shape": {
+      "shoeForm": "derby",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.apron-toe-derby",
+    "version": 1,
+    "nameKo": "에이프런 토 더비",
+    "nameEn": "Apron Toe Derby",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather apron toe derby"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 289,
+    "shape": {
+      "shoeForm": "derby",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "lace-up",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.single-monk",
+    "version": 1,
+    "nameKo": "싱글 몽크스트랩",
+    "nameEn": "Single Monk",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather single monk"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 290,
+    "shape": {
+      "shoeForm": "monk",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.double-monk",
+    "version": 1,
+    "nameKo": "더블 몽크스트랩",
+    "nameEn": "Double Monk",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather double monk"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 291,
+    "shape": {
+      "shoeForm": "monk",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "strap",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.bit-loafer",
+    "version": 1,
+    "nameKo": "비트 로퍼",
+    "nameEn": "Bit Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bit loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 292,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.venetian-loafer",
+    "version": 1,
+    "nameKo": "베네시안 로퍼",
+    "nameEn": "Venetian Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton venetian loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 293,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.suede-penny-loafer",
+    "version": 1,
+    "nameKo": "스웨이드 페니 로퍼",
+    "nameEn": "Suede Penny Loafer",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#92400e",
+        "fabric": "suede"
+      }
+    ],
+    "promptTags": [
+      "suede suede penny loafer"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 294,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.driving-shoe",
+    "version": 1,
+    "nameKo": "드라이빙 슈즈",
+    "nameEn": "Driving Shoe",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton driving shoe"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 295,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.boat-shoe",
+    "version": 1,
+    "nameKo": "보트 슈즈",
+    "nameEn": "Boat Shoe",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton boat shoe"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 296,
+    "shape": {
+      "shoeForm": "loafer",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.desert-boot",
+    "version": 1,
+    "nameKo": "데저트 부츠",
+    "nameEn": "Desert Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather desert boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 297,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.chukka-boot",
+    "version": 1,
+    "nameKo": "처카 부츠",
+    "nameEn": "Chukka Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather chukka boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 298,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.chelsea-leather",
+    "version": 1,
+    "nameKo": "가죽 첼시 부츠",
+    "nameEn": "Chelsea Leather",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather chelsea leather"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 299,
+    "shape": {
+      "shoeForm": "flat",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.service-boot",
+    "version": 1,
+    "nameKo": "서비스 부츠",
+    "nameEn": "Service Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather service boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 300,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.work-boot",
+    "version": 1,
+    "nameKo": "워크 부츠",
+    "nameEn": "Work Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather work boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 301,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.hiking-boot",
+    "version": 1,
+    "nameKo": "하이킹 부츠",
+    "nameEn": "Hiking Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather hiking boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 302,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.dress-boot",
+    "version": 1,
+    "nameKo": "드레스 부츠",
+    "nameEn": "Dress Boot",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet",
+      "lower_legs"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather dress boot"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 303,
+    "shape": {
+      "shoeForm": "boot",
+      "heelHeightCm": 3,
+      "shaftHeightCm": 16,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.leather-low-sneaker",
+    "version": 1,
+    "nameKo": "가죽 로우 스니커즈",
+    "nameEn": "Leather Low Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather leather low sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 304,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.retro-runner",
+    "version": 1,
+    "nameKo": "레트로 러닝화",
+    "nameEn": "Retro Runner",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton retro runner"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 305,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.training-sneaker",
+    "version": 1,
+    "nameKo": "트레이닝화",
+    "nameEn": "Training Sneaker",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton training sneaker"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 306,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.basketball-high",
+    "version": 1,
+    "nameKo": "하이탑 농구화",
+    "nameEn": "Basketball High",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton basketball high"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 307,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.minimal-slip-on",
+    "version": 1,
+    "nameKo": "미니멀 슬립온",
+    "nameEn": "Minimal Slip On",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton minimal slip on"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 308,
+    "shape": {
+      "shoeForm": "sneaker",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "round",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.leather-sandal",
+    "version": 1,
+    "nameKo": "가죽 샌들",
+    "nameEn": "Leather Sandal",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather leather sandal"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 309,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "shoe-m.recovery-slide",
+    "version": 1,
+    "nameKo": "리커버리 슬라이드",
+    "nameEn": "Recovery Slide",
+    "category": "footwear",
+    "slots": [
+      "footwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "구두·신발",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "shoe",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton recovery slide"
+    ],
+    "iconKey": "shoe",
+    "sortOrder": 310,
+    "shape": {
+      "shoeForm": "sandal",
+      "heelHeightCm": 2,
+      "shaftHeightCm": 0,
+      "soleThicknessCm": 1.5,
+      "toeShape": "open",
+      "closure": "slip-on",
+      "leftRightPair": true
+    }
+  },
+  {
+    "id": "leg-adult.seamed-stockings",
+    "version": 1,
+    "nameKo": "백심 스타킹",
+    "nameEn": "Seamed Stockings",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton seamed stockings"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 311,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "leg-adult.opaque-thigh-high",
+    "version": 1,
+    "nameKo": "불투명 오버니 스타킹",
+    "nameEn": "Opaque Thigh High",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton opaque thigh high"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 312,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "leg-adult.sheer-thigh-high",
+    "version": 1,
+    "nameKo": "시어 오버니 스타킹",
+    "nameEn": "Sheer Thigh High",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh sheer thigh high"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 313,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "leg-adult.lace-top-stockings",
+    "version": 1,
+    "nameKo": "레이스 밴드 스타킹",
+    "nameEn": "Lace Top Stockings",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace top stockings"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 314,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "leg-adult.microfishnet-tights",
+    "version": 1,
+    "nameKo": "미세망사 타이츠",
+    "nameEn": "Microfishnet Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh microfishnet tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 315,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "leg-adult.diamond-pattern-tights",
+    "version": 1,
+    "nameKo": "다이아 패턴 타이츠",
+    "nameEn": "Diamond Pattern Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton diamond pattern tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 316,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "leg-adult.polished-sheer-tights",
+    "version": 1,
+    "nameKo": "광택 시어 타이츠",
+    "nameEn": "Polished Sheer Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh polished sheer tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 317,
+    "shape": {
+      "opacity": "semi-sheer",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "leg-adult.stirrup-tights",
+    "version": 1,
+    "nameKo": "스티럽 타이츠",
+    "nameEn": "Stirrup Tights",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton stirrup tights"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 318,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "leg-adult.ribbed-over-knee-socks",
+    "version": 1,
+    "nameKo": "골지 오버니 삭스",
+    "nameEn": "Ribbed Over Knee Socks",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_legs",
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ribbed over knee socks"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 319,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 55
+    }
+  },
+  {
+    "id": "leg-adult.wool-knee-socks",
+    "version": 1,
+    "nameKo": "울 니삭스",
+    "nameEn": "Wool Knee Socks",
+    "category": "legwear",
+    "slots": [
+      "legwear"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "lower_legs",
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit wool knee socks"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 320,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 36
+    }
+  },
+  {
+    "id": "sock-adult.dress-merino",
+    "version": 1,
+    "nameKo": "메리노 드레스 양말",
+    "nameEn": "Dress Merino",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton dress merino"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 321,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock-adult.dress-silk",
+    "version": 1,
+    "nameKo": "실크 드레스 양말",
+    "nameEn": "Dress Silk",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin dress silk"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 322,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock-adult.dress-patterned",
+    "version": 1,
+    "nameKo": "패턴 드레스 양말",
+    "nameEn": "Dress Patterned",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton dress patterned"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 323,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock-adult.no-show-loafer",
+    "version": 1,
+    "nameKo": "로퍼용 페이크 삭스",
+    "nameEn": "No Show Loafer",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton no show loafer"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 324,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 6
+    }
+  },
+  {
+    "id": "sock-adult.athletic-cushioned",
+    "version": 1,
+    "nameKo": "쿠션 스포츠 양말",
+    "nameEn": "Athletic Cushioned",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton athletic cushioned"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 325,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  },
+  {
+    "id": "sock-adult.hiking-merino",
+    "version": 1,
+    "nameKo": "메리노 등산 양말",
+    "nameEn": "Hiking Merino",
+    "category": "socks",
+    "slots": [
+      "socks"
+    ],
+    "layer": "accessory",
+    "styleTags": [
+      "일상",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "feet"
+    ],
+    "geometryKey": "hosiery",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton hiking merino"
+    ],
+    "iconKey": "hosiery",
+    "sortOrder": 326,
+    "shape": {
+      "opacity": "opaque",
+      "shaftHeightCm": 18
+    }
+  }
+]

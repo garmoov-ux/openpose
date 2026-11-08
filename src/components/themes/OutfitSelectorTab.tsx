@@ -1,284 +1,248 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
-import {
-  getMannequinProfile,
-  getOutfitsForMannequin,
-} from '@/core/mannequin/mannequinProfiles';
-import { OutfitCategory } from '@/types/themeSolo';
-import {
-  Dices,
-  Search,
-  Check,
-  Sparkles,
-  Shirt,
-  Gem,
-  Sun,
-  Layers,
-  Crown,
-  Palette,
-  Ban,
-  UserCheck,
-} from 'lucide-react';
+import { validateWardrobeCatalog, WARDROBE_ITEMS, WARDROBE_SETS } from '@/core/mannequin/wardrobe/catalog';
+import { getModelAgeClass, getModelFitProfile, isCompatible, isSetCompatible } from '@/core/mannequin/wardrobe/compatibility';
+import { composeOutfit } from '@/core/mannequin/wardrobe/composition';
+import { WardrobeFitProfile } from '@/types/wardrobe';
+import { WardrobeSlotSummaryBar } from './WardrobeSlotSummaryBar';
+import { LegacyOutfitListView } from './LegacyOutfitListView';
+import { WardrobeCatalogGrid } from './WardrobeCatalogGrid';
+import { Search, Dices, Footprints, Sparkles, Archive } from 'lucide-react';
 
-const FEMALE_CATEGORIES: { id: OutfitCategory | 'all'; label: string; icon: React.ReactNode }[] = [
-  { id: 'all', label: '전체 추천', icon: <Layers className="w-3.5 h-3.5" /> },
-  { id: 'crop_hotpants', label: '애슬레저·쇼츠', icon: <Shirt className="w-3.5 h-3.5" /> },
-  { id: 'costume_dress', label: '드레스·원피스', icon: <Crown className="w-3.5 h-3.5" /> },
-  { id: 'top_only', label: '오버핏 셔츠', icon: <Shirt className="w-3.5 h-3.5" /> },
-  { id: 'color_contrast', label: '컬러 배색', icon: <Palette className="w-3.5 h-3.5" /> },
-  { id: 'topless_bottom', label: '모던 바텀', icon: <Layers className="w-3.5 h-3.5" /> },
-  { id: 'lingerie', label: '실크 슬립', icon: <Sparkles className="w-3.5 h-3.5" /> },
-  { id: 'micro_bikini', label: '비치웨어', icon: <Sun className="w-3.5 h-3.5" /> },
-  { id: 'body_jewelry', label: '주얼리', icon: <Gem className="w-3.5 h-3.5" /> },
+type PanelMode = 'items' | 'sets' | 'legacy';
+type StyleFilterKey =
+  | 'all' | '일상' | '오피스' | '스포츠' | '데이트' | '라운지'
+  | '수영복' | '성인 이너웨어' | '성인 콘셉트 코디' | '구두·신발';
+
+const STYLE_FILTERS: Array<{ id: StyleFilterKey; label: string; adultOnly?: boolean }> = [
+  { id: 'all', label: '전체' },
+  { id: '일상', label: '일상' },
+  { id: '오피스', label: '오피스' },
+  { id: '스포츠', label: '스포츠' },
+  { id: '데이트', label: '데이트' },
+  { id: '라운지', label: '라운지' },
+  { id: '수영복', label: '수영복' },
+  { id: '성인 이너웨어', label: '성인 이너웨어', adultOnly: true },
+  { id: '성인 콘셉트 코디', label: '성인 콘셉트 코디', adultOnly: true },
+  { id: '구두·신발', label: '구두·신발' },
 ];
 
-const CATEGORY_VISUALS: Record<string, { bg: string; color: string; label: string }> = {
-  lingerie: { bg: 'from-rose-950 via-pink-950 to-zinc-950', color: '#fb7185', label: '실크 라운지' },
-  micro_bikini: { bg: 'from-cyan-950 via-sky-950 to-zinc-950', color: '#38bdf8', label: '리조트 비치' },
-  body_jewelry: { bg: 'from-amber-950 via-yellow-950 to-zinc-950', color: '#fbbf24', label: '크리스탈 체인' },
-  crop_hotpants: { bg: 'from-indigo-950 via-blue-950 to-zinc-950', color: '#60a5fa', label: '스포티·쇼츠' },
-  top_only: { bg: 'from-slate-800 via-zinc-900 to-zinc-950', color: '#e2e8f0', label: '셔츠·데님' },
-  topless_bottom: { bg: 'from-violet-950 via-purple-950 to-zinc-950', color: '#c084fc', label: '트레이닝 하의' },
-  costume_dress: { bg: 'from-fuchsia-950 via-rose-950 to-zinc-950', color: '#f472b6', label: '원피스·스커트' },
-  color_contrast: { bg: 'from-emerald-950 via-teal-950 to-zinc-950', color: '#34d399', label: '수트·캐주얼 세트' },
-};
-
-function renderOutfitSilhouette(category: string, accent: string, outfitId: number) {
-  if (outfitId >= 1000 && category === 'color_contrast') {
-    return (
-      <g fill={accent} fillOpacity="0.86" stroke="#ffffff" strokeWidth="1.2">
-        <path d="M28 24 L38 20 L62 20 L72 24 L68 46 L62 46 L62 52 L38 52 L38 46 L32 46 Z" />
-        <path d="M38 54 L62 54 L65 84 L52 84 L50 64 L48 84 L35 84 Z" fill="#94a3b8" />
-      </g>
-    );
-  }
-  switch (category) {
-    case 'costume_dress':
-      return (
-        <path
-          d="M38 24 L62 24 L57 45 L72 82 L28 82 L43 45 Z"
-          fill={accent}
-          fillOpacity="0.82"
-          stroke="#ffffff"
-          strokeWidth="1.2"
-        />
-      );
-    case 'micro_bikini':
-      return (
-        <g fill={accent} fillOpacity="0.85" stroke="#ffffff" strokeWidth="1.2">
-          <polygon points="36,36 48,36 42,26" />
-          <polygon points="52,36 64,36 58,26" />
-          <polygon points="36,56 64,56 50,70" />
-        </g>
-      );
-    case 'crop_hotpants':
-      return (
-        <g fill={accent} fillOpacity="0.85" stroke="#ffffff" strokeWidth="1.2">
-          <rect x="35" y="24" width="30" height="18" rx="3" />
-          <path d="M35 50 L65 50 L67 68 L52 68 L50 58 L48 68 L33 68 Z" />
-        </g>
-      );
-    case 'top_only':
-      return (
-        <path
-          d="M26 28 L38 22 L62 22 L74 28 L68 44 L62 42 L64 70 L36 70 L38 42 L32 44 Z"
-          fill={accent}
-          fillOpacity="0.82"
-          stroke="#ffffff"
-          strokeWidth="1.2"
-        />
-      );
-    default:
-      return (
-        <path
-          d="M36 24 L64 24 L60 46 L66 74 L34 74 L40 46 Z"
-          fill={accent}
-          fillOpacity="0.8"
-          stroke="#ffffff"
-          strokeWidth="1.2"
-        />
-      );
-  }
-}
-
-function cleanOutfitKoreanName(rawName: string): string {
-  return rawName
-    .replace(/\s*\([^)]*\)/g, '')
-    .replace(/란제리 세트/g, '실크 슬립 세트')
-    .replace(/마이크로 비키니/g, '리조트 비치웨어')
-    .replace(/#(\d+)/g, '$1번')
-    .trim();
-}
+const ADULT_SET_SUB_TAGS = ['전체', '이너웨어', '이브닝', '리조트', '데이트', '대학·프레피'];
 
 export const OutfitSelectorTab: React.FC = () => {
   const currentModelId = useEditorStore((s) => s.currentModelId);
   const {
-    selectedOutfitId,
-    selectedOutfitCategory,
-    setSelectedOutfitId,
-    setSelectedOutfitCategory,
+    outfitCompositions, lastWardrobeMessage, toggleWardrobeItem, applyWardrobeSet,
+    setWardrobeItemOverride, clearWardrobeItems, rollRandomWardrobeCoordi,
   } = useThemeSoloStore();
 
+  const [panelMode, setPanelMode] = useState<PanelMode>('items');
+  const [styleFilter, setStyleFilter] = useState<StyleFilterKey>('all');
+  const [adultSetSubTag, setAdultSetSubTag] = useState<string>('전체');
+  const [fitFilter, setFitFilter] = useState<'model-default' | WardrobeFitProfile>('model-default');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const profile = useMemo(() => getMannequinProfile(currentModelId), [currentModelId]);
-  const availableOutfits = useMemo(() => getOutfitsForMannequin(currentModelId), [currentModelId]);
+  const catalogReport = useMemo(() => validateWardrobeCatalog(), []);
+  const ageClass = useMemo(() => getModelAgeClass(currentModelId), [currentModelId]);
+  const modelFit = useMemo(() => getModelFitProfile(currentModelId), [currentModelId]);
+  const mainComp = outfitCompositions.main;
+  const composed = useMemo(() => composeOutfit(mainComp.itemIds, { modelId: currentModelId }), [mainComp.itemIds, currentModelId]);
 
-  const filteredOutfits = useMemo(() => {
-    return availableOutfits.filter((item) => {
-      const matchCat =
-        profile.outfitProfile !== 'adult_female' ||
-        selectedOutfitCategory === 'all' ||
-        item.category === selectedOutfitCategory;
-      const matchQuery =
-        !searchQuery.trim() ||
-        item.nameKo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        String(item.id).includes(searchQuery.trim());
-      return matchCat && matchQuery;
+  const compatibleItems = useMemo(
+    () => WARDROBE_ITEMS.filter((i) => (i.renderSupport === 'asset' || i.renderSupport === 'procedural') && isCompatible(i, currentModelId).compatible),
+    [currentModelId]
+  );
+  const compatibleSets = useMemo(
+    () => WARDROBE_SETS.filter((s) => isSetCompatible(s, currentModelId).compatible),
+    [currentModelId]
+  );
+
+  const filteredItems = useMemo(() => {
+    return compatibleItems.filter((item) => {
+      if (styleFilter !== 'all' && styleFilter !== '성인 콘셉트 코디' && !item.styleTags.includes(styleFilter)) return false;
+      if (fitFilter !== 'model-default' && item.fitProfile !== fitFilter) return false;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        if (!item.nameKo.toLowerCase().includes(q) && !item.nameEn.toLowerCase().includes(q) && !item.id.toLowerCase().includes(q)) return false;
+      }
+      return true;
     });
-  }, [availableOutfits, profile.outfitProfile, selectedOutfitCategory, searchQuery]);
+  }, [compatibleItems, styleFilter, fitFilter, searchQuery]);
 
-  const handleRollRandomCompatible = () => {
-    if (filteredOutfits.length === 0) return;
-    const rand = filteredOutfits[Math.floor(Math.random() * filteredOutfits.length)];
-    setSelectedOutfitId(rand.id);
+  const filteredSets = useMemo(() => {
+    return compatibleSets.filter((setItem) => {
+      if (styleFilter === '성인 콘셉트 코디') {
+        if (!setItem.id.startsWith('set-adult.')) return false;
+        if (adultSetSubTag !== '전체' && !setItem.styleTags.includes(adultSetSubTag)) return false;
+      } else if (styleFilter !== 'all' && !setItem.styleTags.includes(styleFilter)) {
+        return false;
+      }
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        if (!setItem.nameKo.toLowerCase().includes(q) && !setItem.id.toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+  }, [compatibleSets, styleFilter, adultSetSubTag, searchQuery]);
+
+  const handleSelectStyleFilter = (key: StyleFilterKey) => {
+    setStyleFilter(key);
+    if (key === '성인 콘셉트 코디') setPanelMode('sets');
+    else if (panelMode === 'sets' && key === '구두·신발') setPanelMode('items');
   };
 
   return (
     <div className="block space-y-3 text-xs pb-4">
-      {/* 현재 마네킹 전용 복장 프로필 안내 배너 */}
-      <div className="p-3 bg-zinc-900 text-white rounded-2xl flex flex-col gap-1">
-        <div className="flex items-center justify-between">
-          <span className="flex items-center gap-1.5 font-bold text-blue-400">
-            <UserCheck className="w-4 h-4" />
-            <span>{profile.profileTitleKo}</span>
-          </span>
-          <span className="text-[10px] text-zinc-400">{availableOutfits.length}종 호환</span>
-        </div>
-        <p className="text-[11px] text-zinc-300 leading-snug">{profile.profileDescKo}</p>
-      </div>
-
-      {/* 상단 헤더 & 기본 미착용 / 추천 복장 / 무작위 추천 */}
-      <div className="flex items-center justify-between gap-1.5">
-        <span className="font-bold text-zinc-900 text-xs tracking-tight">
-          마네킹 맞춤 3D 의상 (3열)
-        </span>
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={() => setSelectedOutfitId(0)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-              selectedOutfitId === 0
-                ? 'bg-zinc-900 text-white shadow-xs'
-                : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
-            }`}
-            title="착용 의상 전체 해제 (순수 마네킹 바디 상태)"
-          >
-            <Ban className="w-3.5 h-3.5" />
-            <span>전체 해제</span>
-          </button>
-          {profile.recommendedOutfitId > 0 && (
-            <button
-              onClick={() => setSelectedOutfitId(profile.recommendedOutfitId)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                selectedOutfitId === profile.recommendedOutfitId
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800'
-              }`}
-            >
-              추천 의상
-            </button>
-          )}
-          <button
-            onClick={handleRollRandomCompatible}
-            className="flex items-center gap-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-semibold rounded-full transition-colors active:scale-95"
-            title="현재 마네킹 호환 의상 중 무작위 추천"
-          >
-            <Dices className="w-3.5 h-3.5 text-blue-600" />
-            <span>무작위</span>
-          </button>
+      <div className="p-3 bg-zinc-900 text-white rounded-2xl flex items-center justify-between gap-2">
+        <div>
+          <div className="font-bold text-blue-400 text-xs">
+            부위별 의상·아이템 조합 시스템 (후보 {catalogReport.totalCandidates}개 / 3D 검증 {catalogReport.verifiedRenderCount}품목·{WARDROBE_SETS.length}세트)
+          </div>
+          <div className="text-[11px] text-zinc-300 mt-0.5">
+            현재 모델 호환: 단품 {compatibleItems.length}개 · 코디 세트 {compatibleSets.length}개 (
+            {ageClass === 'adult' ? '성인 모델' : ageClass === 'minor' ? '아동·청소년 일반 의상 전용' : '연령 미확인 일반 의상 전용'})
+          </div>
         </div>
       </div>
 
-      {/* 검색창 */}
-      <div className="relative">
-        <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="의상 이름, 수트, 트레이닝, 스쿨룩, 드레스 등 검색..."
-          className="w-full bg-zinc-100 text-zinc-900 placeholder-zinc-400 rounded-2xl pl-9 pr-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900"
-        />
-      </div>
+      <WardrobeSlotSummaryBar
+        composition={mainComp}
+        composed={composed}
+        onRemoveItem={(id) => toggleWardrobeItem(id, 'main', currentModelId)}
+        onClearAll={() => clearWardrobeItems('main')}
+        onUpdateColor={(id, color) => setWardrobeItemOverride(id, { color }, 'main')}
+        onToggleClosure={(id, closureState) => setWardrobeItemOverride(id, { closureState }, 'main')}
+      />
 
-      {/* 성인 여성 프로필일 때만 세부 카테고리 탭 표시 (크기 확대) */}
-      {profile.outfitProfile === 'adult_female' && (
-        <div className="flex flex-wrap items-center gap-1.5">
-          {FEMALE_CATEGORIES.map((c) => {
-            const isActive = selectedOutfitCategory === c.id;
-            return (
-              <button
-                key={c.id}
-                onClick={() => setSelectedOutfitCategory(c.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  isActive
-                    ? 'bg-zinc-900 text-white shadow-sm'
-                    : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
-                }`}
-              >
-                {c.icon}
-                <span>{c.label}</span>
-              </button>
-            );
-          })}
+      {lastWardrobeMessage && (
+        <div className="px-3 py-2 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-[11px] font-semibold">
+          {lastWardrobeMessage}
         </div>
       )}
 
-      {/* 3열 비주얼 의상 그리드 (grid-cols-3) */}
-      <div className="grid grid-cols-3 gap-2.5">
-        {filteredOutfits.map((item) => {
-          const isSelected = selectedOutfitId === item.id;
-          const vis = CATEGORY_VISUALS[item.category] || CATEGORY_VISUALS.color_contrast;
+      <div className="flex flex-wrap items-center justify-between gap-1.5">
+        <div className="flex items-center gap-1 p-1 bg-zinc-200/80 rounded-xl">
+          <button
+            type="button"
+            onClick={() => setPanelMode('items')}
+            className={`px-2.5 py-1 rounded-lg font-bold text-xs transition-all ${panelMode === 'items' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-600'}`}
+          >
+            단품 추가 ({filteredItems.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setPanelMode('sets')}
+            className={`px-2.5 py-1 rounded-lg font-bold text-xs transition-all ${panelMode === 'sets' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-600'}`}
+          >
+            코디 세트 ({filteredSets.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setPanelMode('legacy')}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg font-bold text-xs transition-all ${panelMode === 'legacy' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-600'}`}
+          >
+            <Archive className="w-3 h-3" />
+            <span>레거시 변형</span>
+          </button>
+        </div>
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => setSelectedOutfitId(item.id)}
-              className={`group relative p-2 rounded-2xl text-left transition-all border flex flex-col gap-1.5 ${
-                isSelected
-                  ? 'bg-zinc-900 text-white border-blue-600 ring-2 ring-blue-600/25 shadow-md'
-                  : 'bg-white text-zinc-900 border-zinc-200/90 hover:border-zinc-400 hover:shadow-sm'
-              }`}
-            >
-              <div
-                className={`relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${vis.bg} flex items-center justify-center border border-white/10`}
-              >
-                <span className="absolute top-1.5 left-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/45 text-white/90">
-                  {item.id >= 1000 ? '전용' : `${String(item.id).padStart(3, '0')}번`}
-                </span>
-                {isSelected && (
-                  <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center shadow">
-                    <Check className="w-2.5 h-2.5" />
-                  </span>
-                )}
-                <svg viewBox="0 0 100 95" className="w-14 h-14">
-                  {renderOutfitSilhouette(item.category, vis.color, item.id)}
-                </svg>
-              </div>
-
-              <div className="font-bold text-[11px] truncate mt-0.5">
-                {cleanOutfitKoreanName(item.nameKo)}
-              </div>
-              <div className="flex items-center justify-between text-[10px]">
-                <span className={`truncate ${isSelected ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                  {item.categoryLabelKo || vis.label}
-                </span>
-              </div>
-            </button>
-          );
-        })}
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            disabled={compatibleItems.length === 0}
+            onClick={() => rollRandomWardrobeCoordi({ modelIdOverride: currentModelId })}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 disabled:opacity-40 text-white font-bold text-xs"
+          >
+            <Dices className="w-3.5 h-3.5 text-blue-400" />
+            <span>무작위 코디</span>
+          </button>
+          <button
+            type="button"
+            disabled={!compatibleItems.some((i) => i.slots.includes('footwear'))}
+            onClick={() => rollRandomWardrobeCoordi({ slotFilter: 'footwear', modelIdOverride: currentModelId })}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-40 text-zinc-900 font-bold text-xs border border-zinc-200"
+          >
+            <Footprints className="w-3.5 h-3.5 text-amber-600" />
+            <span>무작위 신발</span>
+          </button>
+        </div>
       </div>
+
+      {panelMode === 'legacy' ? (
+        <LegacyOutfitListView />
+      ) : (
+        <>
+          <div className="flex items-center gap-1.5">
+            <div className="relative flex-1">
+              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-2.5 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="품목명, 셔츠, 슬랙스, 브라렛, 티팬티, 비키니, 부츠, 옥스퍼드 검색..."
+                className="w-full bg-white border border-zinc-200 text-zinc-900 placeholder-zinc-400 rounded-xl pl-8 pr-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900"
+              />
+            </div>
+            {panelMode === 'items' && (
+              <select
+                value={fitFilter}
+                onChange={(e) => setFitFilter(e.target.value as typeof fitFilter)}
+                className="bg-white border border-zinc-200 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-zinc-800"
+                aria-label="피팅 프로필 필터"
+              >
+                <option value="model-default">현재 체형 전체 ({modelFit})</option>
+                <option value="adult-feminine">여성형 핏</option>
+                <option value="adult-masculine">남성형 핏</option>
+                <option value="adult-unisex">중성형 핏</option>
+                <option value="youth">아동·청소년 핏</option>
+              </select>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-1">
+            {STYLE_FILTERS.filter((f) => !f.adultOnly || ageClass === 'adult').map((f) => (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => handleSelectStyleFilter(f.id)}
+                className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+                  styleFilter === f.id ? 'bg-zinc-900 text-white shadow-2xs' : 'bg-white text-zinc-600 border border-zinc-200 hover:text-zinc-900'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+          {styleFilter === '성인 콘셉트 코디' && ageClass === 'adult' && (
+            <div className="flex flex-wrap items-center gap-1 p-2 bg-rose-50/80 border border-rose-200 rounded-xl">
+              <span className="text-[11px] font-bold text-rose-800 mr-1 inline-flex items-center gap-1">
+                <Sparkles className="w-3 h-3" /> 콘셉트:
+              </span>
+              {ADULT_SET_SUB_TAGS.map((sub) => (
+                <button
+                  key={sub}
+                  type="button"
+                  onClick={() => setAdultSetSubTag(sub)}
+                  className={`px-2 py-0.5 rounded-lg text-[11px] font-bold ${adultSetSubTag === sub ? 'bg-rose-700 text-white' : 'bg-white text-rose-800'}`}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <WardrobeCatalogGrid
+            mode={panelMode}
+            items={filteredItems}
+            sets={filteredSets}
+            composition={mainComp}
+            onToggleItem={(itemId) => toggleWardrobeItem(itemId, 'main', currentModelId)}
+            onApplySet={(setId) => applyWardrobeSet(setId, 'main', currentModelId)}
+          />
+        </>
+      )}
     </div>
   );
 };

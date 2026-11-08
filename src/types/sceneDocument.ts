@@ -1,4 +1,5 @@
 import { MannequinModelId, OpenPoseExportData, RenderMode } from './index';
+import { OutfitCompositionV1, OutfitItemOverride } from './wardrobe';
 
 export type Vec3 = [number, number, number];
 export type Quat = [number, number, number, number]; // [x, y, z, w]
@@ -26,6 +27,7 @@ export interface SceneActorV1 {
     scale: number;
   };
   bones: Record<string, ActorPoseTransform>;
+  outfit?: OutfitCompositionV1;
 }
 
 export interface SceneCameraV1 {
@@ -61,6 +63,11 @@ export type SceneCommand =
   | { type: 'actor.root.set'; actorId: ActorId; position?: Vec3; rotation?: Quat; scale?: number }
   | { type: 'bone.rotation.set'; actorId: ActorId; boneId: string; rotation: Quat }
   | { type: 'pose.apply'; actorId: ActorId; presetId: string; bones?: Record<string, ActorPoseTransform> }
+  | { type: 'wardrobe.equip'; actorId: ActorId; itemId: string }
+  | { type: 'wardrobe.unequip'; actorId: ActorId; itemId: string }
+  | { type: 'wardrobe.set.apply'; actorId: ActorId; setId: string }
+  | { type: 'wardrobe.clear'; actorId: ActorId }
+  | { type: 'wardrobe.override.set'; actorId: ActorId; itemId: string; override: OutfitItemOverride | null }
   | { type: 'camera.set'; camera: Partial<SceneCameraV1> }
   | { type: 'export.set'; exportConfig: Partial<SceneExportConfigV1> };
 
@@ -89,6 +96,7 @@ export interface RenderSpec {
   mode: RenderMode | 'wireframe' | 'lineart';
   actorIds: ActorId[];
   bodyFormat: BodyFormat;
+  appearanceMode?: 'body' | 'dressed';
 }
 
 export interface RenderResult {
@@ -100,5 +108,7 @@ export interface RenderResult {
   sceneRevision: number;
   depthRange?: { near: number; far: number };
   supportedKeypointCount: number;
+  appearanceMode?: 'body' | 'dressed';
+  promptOnlyItemIds?: string[];
 }
 

@@ -1,0 +1,1892 @@
+[
+  {
+    "id": "adult-f.ruched-top",
+    "version": 1,
+    "nameKo": "셔링 탑",
+    "nameEn": "Ruched Top",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton ruched top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 327,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.peplum-blouse",
+    "version": 1,
+    "nameKo": "페플럼 블라우스",
+    "nameEn": "Peplum Blouse",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton peplum blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 328,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.cowl-neck-top",
+    "version": 1,
+    "nameKo": "카울넥 탑",
+    "nameEn": "Cowl Neck Top",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cowl neck top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 329,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.square-neck-knit",
+    "version": 1,
+    "nameKo": "스퀘어넥 니트",
+    "nameEn": "Square Neck Knit",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit square neck knit"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 330,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.sleeveless-turtleneck",
+    "version": 1,
+    "nameKo": "민소매 터틀넥",
+    "nameEn": "Sleeveless Turtleneck",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit sleeveless turtleneck"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 331,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.bell-sleeve-blouse",
+    "version": 1,
+    "nameKo": "벨소매 블라우스",
+    "nameEn": "Bell Sleeve Blouse",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bell sleeve blouse"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 332,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.lace-overlay-top",
+    "version": 1,
+    "nameKo": "레이스 오버레이 상의",
+    "nameEn": "Lace Overlay Top",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace overlay top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 333,
+    "shape": {
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "adult-f.waistcoat-top",
+    "version": 1,
+    "nameKo": "베스트형 상의",
+    "nameEn": "Waistcoat Top",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend waistcoat top"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 334,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.paperbag-shorts",
+    "version": 1,
+    "nameKo": "페이퍼백 쇼츠",
+    "nameEn": "Paperbag Shorts",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton paperbag shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 335,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.high-waist-shorts",
+    "version": 1,
+    "nameKo": "하이웨이스트 쇼츠",
+    "nameEn": "High Waist Shorts",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high waist shorts"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 336,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.wrap-skirt",
+    "version": 1,
+    "nameKo": "랩 스커트",
+    "nameEn": "Wrap Skirt",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton wrap skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 337,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.pleated-midi-skirt",
+    "version": 1,
+    "nameKo": "플리츠 미디 스커트",
+    "nameEn": "Pleated Midi Skirt",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pleated midi skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 338,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.mermaid-skirt",
+    "version": 1,
+    "nameKo": "머메이드 스커트",
+    "nameEn": "Mermaid Skirt",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mermaid skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 339,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.slit-midi-skirt",
+    "version": 1,
+    "nameKo": "슬릿 미디 스커트",
+    "nameEn": "Slit Midi Skirt",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slit midi skirt"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 340,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.faux-leather-pants",
+    "version": 1,
+    "nameKo": "인조 가죽 팬츠",
+    "nameEn": "Faux Leather Pants",
+    "category": "adult_f_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "leather"
+      }
+    ],
+    "promptTags": [
+      "leather faux leather pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 341,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.tailored-vest-set",
+    "version": 1,
+    "nameKo": "테일러드 베스트 세트",
+    "nameEn": "Tailored Vest Set",
+    "category": "adult_f_apparel",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tailored vest set"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 342,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.sheath-dress",
+    "version": 1,
+    "nameKo": "시스 원피스",
+    "nameEn": "Sheath Dress",
+    "category": "adult_f_apparel",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sheath dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 343,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.halter-dress",
+    "version": 1,
+    "nameKo": "홀터 원피스",
+    "nameEn": "Halter Dress",
+    "category": "adult_f_apparel",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton halter dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 344,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.satin-evening-dress",
+    "version": 1,
+    "nameKo": "새틴 이브닝 드레스",
+    "nameEn": "Satin Evening Dress",
+    "category": "adult_f_apparel",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin evening dress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 345,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-f.wide-leg-jumpsuit",
+    "version": 1,
+    "nameKo": "와이드 점프수트",
+    "nameEn": "Wide Leg Jumpsuit",
+    "category": "adult_f_apparel",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트",
+      "파티"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend wide leg jumpsuit"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 346,
+    "shape": {
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.fitted-crew-tee",
+    "version": 1,
+    "nameKo": "피트되는 라운드 티",
+    "nameEn": "Fitted Crew Tee",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton fitted crew tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 347
+  },
+  {
+    "id": "adult-m.fitted-vneck-tee",
+    "version": 1,
+    "nameKo": "피트되는 브이넥 티",
+    "nameEn": "Fitted Vneck Tee",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton fitted vneck tee"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 348
+  },
+  {
+    "id": "adult-m.sleeveless-tank",
+    "version": 1,
+    "nameKo": "민소매 탱크톱",
+    "nameEn": "Sleeveless Tank",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sleeveless tank"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 349
+  },
+  {
+    "id": "adult-m.camp-collar-shirt",
+    "version": 1,
+    "nameKo": "캠프 칼라 셔츠",
+    "nameEn": "Camp Collar Shirt",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton camp collar shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 350
+  },
+  {
+    "id": "adult-m.cuban-collar-shirt",
+    "version": 1,
+    "nameKo": "쿠반 칼라 셔츠",
+    "nameEn": "Cuban Collar Shirt",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cuban collar shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 351
+  },
+  {
+    "id": "adult-m.slim-dress-shirt",
+    "version": 1,
+    "nameKo": "슬림 드레스 셔츠",
+    "nameEn": "Slim Dress Shirt",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slim dress shirt"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 352
+  },
+  {
+    "id": "adult-m.relaxed-dress-shirt",
+    "version": 1,
+    "nameKo": "릴랙스 드레스 셔츠",
+    "nameEn": "Relaxed Dress Shirt",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton relaxed dress shirt"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 353
+  },
+  {
+    "id": "adult-m.knitted-polo",
+    "version": 1,
+    "nameKo": "니트 폴로",
+    "nameEn": "Knitted Polo",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_top"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit knitted polo"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 354
+  },
+  {
+    "id": "adult-m.waistcoat",
+    "version": 1,
+    "nameKo": "테일러드 베스트",
+    "nameEn": "Waistcoat",
+    "category": "adult_m_apparel",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend waistcoat"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 355,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.double-breasted-blazer",
+    "version": 1,
+    "nameKo": "더블 브레스티드 블레이저",
+    "nameEn": "Double Breasted Blazer",
+    "category": "adult_m_apparel",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend double breasted blazer"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 356,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.tuxedo-jacket",
+    "version": 1,
+    "nameKo": "턱시도 재킷",
+    "nameEn": "Tuxedo Jacket",
+    "category": "adult_m_apparel",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tuxedo jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 357,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.suede-jacket",
+    "version": 1,
+    "nameKo": "스웨이드 재킷",
+    "nameEn": "Suede Jacket",
+    "category": "adult_m_apparel",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#92400e",
+        "fabric": "suede"
+      }
+    ],
+    "promptTags": [
+      "suede suede jacket"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 358,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.long-overcoat",
+    "version": 1,
+    "nameKo": "롱 오버코트",
+    "nameEn": "Long Overcoat",
+    "category": "adult_m_apparel",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "shoulders",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton long overcoat"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 359,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "adult-m.slim-chino",
+    "version": 1,
+    "nameKo": "슬림 치노",
+    "nameEn": "Slim Chino",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#b45309",
+        "fabric": "cotton-twill"
+      }
+    ],
+    "promptTags": [
+      "cotton-twill slim chino"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 360
+  },
+  {
+    "id": "adult-m.pleated-trousers",
+    "version": 1,
+    "nameKo": "플리츠 슬랙스",
+    "nameEn": "Pleated Trousers",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton pleated trousers"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 361
+  },
+  {
+    "id": "adult-m.tapered-slacks",
+    "version": 1,
+    "nameKo": "테이퍼드 슬랙스",
+    "nameEn": "Tapered Slacks",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tapered slacks"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 362
+  },
+  {
+    "id": "adult-m.tailored-short",
+    "version": 1,
+    "nameKo": "테일러드 쇼츠",
+    "nameEn": "Tailored Short",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "shorts-skirt",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend tailored short"
+    ],
+    "iconKey": "shorts-skirt",
+    "sortOrder": 363
+  },
+  {
+    "id": "adult-m.utility-cargo",
+    "version": 1,
+    "nameKo": "유틸리티 카고 팬츠",
+    "nameEn": "Utility Cargo",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#b45309",
+        "fabric": "cotton-twill"
+      }
+    ],
+    "promptTags": [
+      "cotton-twill utility cargo"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 364
+  },
+  {
+    "id": "adult-m.suit-trousers",
+    "version": 1,
+    "nameKo": "수트 팬츠",
+    "nameEn": "Suit Trousers",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#1e293b",
+        "fabric": "wool-blend"
+      }
+    ],
+    "promptTags": [
+      "wool-blend suit trousers"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 365
+  },
+  {
+    "id": "adult-m.linen-summer-pants",
+    "version": 1,
+    "nameKo": "린넨 여름 팬츠",
+    "nameEn": "Linen Summer Pants",
+    "category": "adult_m_apparel",
+    "slots": [
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "일상",
+      "오피스",
+      "데이트"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "trousers",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f5f5f4",
+        "fabric": "linen"
+      }
+    ],
+    "promptTags": [
+      "linen linen summer pants"
+    ],
+    "iconKey": "trousers",
+    "sortOrder": 366
+  }
+]

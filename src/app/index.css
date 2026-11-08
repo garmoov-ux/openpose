@@ -48,3 +48,101 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #65707d;
 }
+
+/* 편집 도구는 화면 폭이 줄어도 서로 겹치지 않게 독립된 줄을 사용한다. */
+.editor-gizmo {
+  max-width: min(58vw, 780px);
+}
+.editor-gizmo-actions {
+  max-width: 100%;
+}
+.editor-gizmo-status {
+  max-width: 100%;
+  white-space: nowrap;
+}
+.editor-gizmo--sidebar-open {
+  left: 498px;
+  width: min(520px, calc(100vw - 514px));
+  max-width: calc(100vw - 514px);
+  bottom: 72px;
+}
+.editor-gizmo--sidebar-open .editor-gizmo-actions,
+.editor-gizmo--sidebar-open .editor-gizmo-status {
+  width: 100%;
+}
+.editor-gizmo-actions > button,
+.editor-camera > button {
+  flex-shrink: 0;
+}
+.editor-camera {
+  max-width: min(38vw, 460px);
+}
+
+@media (max-width: 1100px) {
+  .editor-topbar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .editor-topbar-group {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .editor-sidebar {
+    top: 116px;
+  }
+  .editor-gizmo {
+    bottom: 70px;
+    max-width: calc(100vw - 32px);
+  }
+  .editor-camera {
+    max-width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 900px) {
+  .editor-sidebar {
+    bottom: 210px;
+  }
+  .editor-gizmo--sidebar-open {
+    left: 16px;
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 640px) {
+  .editor-topbar {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+  }
+  .editor-topbar-group > div {
+    flex-shrink: 0;
+  }
+  .editor-sidebar {
+    left: 8px;
+    right: 8px;
+    top: 128px;
+    bottom: 210px;
+  }
+  .editor-sidebar-panel {
+    width: 100%;
+    max-width: none;
+  }
+  .editor-gizmo {
+    left: 8px;
+    bottom: 68px;
+    max-width: calc(100vw - 16px);
+  }
+  .editor-gizmo--sidebar-open {
+    left: 8px;
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+  }
+  .editor-camera {
+    right: 8px;
+    bottom: 8px;
+    max-width: calc(100vw - 16px);
+  }
+}

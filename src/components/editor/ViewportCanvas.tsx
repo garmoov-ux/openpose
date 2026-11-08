@@ -38,6 +38,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     selectedEnvIndex,
     selectedLightIndex,
     selectedOutfitId,
+    outfitCompositions,
     selectedPostureId,
     showThemeProps,
     showPartnerGuide,
@@ -149,6 +150,10 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
         const doc = e.shiftKey ? store.redoSceneDocument() : store.undoSceneDocument();
         if (doc && managerRef.current) {
           managerRef.current.applySceneDocument(doc);
+          const mActor = doc.actors.find((a) => a.id === 'main');
+          if (mActor?.outfit) {
+            useThemeSoloStore.getState().setOutfitCompositionDirect(mActor.outfit, 'main');
+          }
         }
         return;
       }
@@ -157,6 +162,10 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
         const doc = useEditorStore.getState().redoSceneDocument();
         if (doc && managerRef.current) {
           managerRef.current.applySceneDocument(doc);
+          const mActor = doc.actors.find((a) => a.id === 'main');
+          if (mActor?.outfit) {
+            useThemeSoloStore.getState().setOutfitCompositionDirect(mActor.outfit, 'main');
+          }
         }
         return;
       }
@@ -281,6 +290,15 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   useEffect(() => {
     managerRef.current?.applyOutfit(selectedOutfitId > 0 ? selectedOutfitId : null);
   }, [selectedOutfitId]);
+
+  // 정규화된 부위별 의상(WardrobeItemV1) 조합 실시간 적용
+  useEffect(() => {
+    managerRef.current?.applyWardrobeComposition(outfitCompositions.main, 'main');
+  }, [outfitCompositions.main]);
+
+  useEffect(() => {
+    managerRef.current?.applyWardrobeComposition(outfitCompositions.partner, 'partner');
+  }, [outfitCompositions.partner]);
 
   // 신체 부위별 아이템 및 부위별 커스텀 색상 실시간 부착
   useEffect(() => {

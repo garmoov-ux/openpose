@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useEditorStore } from '@/stores/useEditorStore';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import {
   NAIL_ITEMS,
@@ -10,6 +11,7 @@ import {
   BodyAccessoryOption,
 } from '@/data/themesSolo/accessoriesAndPropsData';
 import { BodyAccessoryCategoryKey } from '@/core/mannequin/bodyAccessoryMeshes';
+import { getModelAgeClass } from '@/core/mannequin/wardrobe/compatibility';
 import { RoomPropsManagerView } from './RoomPropsManagerView';
 import { ColorPaletteBar } from '../common/ColorPaletteBar';
 import { Dices, Ban, Check, Sparkles, Sofa, X } from 'lucide-react';
@@ -31,8 +33,10 @@ const SUB_SECTIONS: Array<{
 ];
 
 export const PropsAndAccessoriesTab: React.FC = () => {
+  const currentModelId = useEditorStore((s) => s.currentModelId);
+  const ageClass = useMemo(() => getModelAgeClass(currentModelId), [currentModelId]);
   const [mainMode, setMainMode] = useState<MainMode>('room_props');
-  const [activeSub, setActiveSub] = useState<BodyAccessoryCategoryKey>('toy_special');
+  const [activeSub, setActiveSub] = useState<BodyAccessoryCategoryKey>('footwear');
 
   const {
     nailColorId,
@@ -66,16 +70,21 @@ export const PropsAndAccessoriesTab: React.FC = () => {
     nails: { selectedId: nailColorId, setter: setNailColorId, noneId: 'none', title: '네일·페디' },
   };
 
+  const visibleSections = useMemo(
+    () => (ageClass === 'adult' ? SUB_SECTIONS : SUB_SECTIONS.filter((s) => s.id !== 'toy_special')),
+    [ageClass]
+  );
+
   // 현재 착용 중인 바디 아이템 목록 추출
-  const equippedList = SUB_SECTIONS.map((sec) => {
+  const equippedList = visibleSections.map((sec) => {
     const slot = slotMap[sec.id];
     const found = sec.items.find((i) => i.id === slot.selectedId);
     const isEquipped = found && found.id !== sec.noneId;
     return isEquipped ? { catId: sec.id, item: found, noneId: sec.noneId, setter: slot.setter } : null;
   }).filter((x): x is NonNullable<typeof x> => x !== null);
 
-  const currentSec = SUB_SECTIONS.find((s) => s.id === activeSub) || SUB_SECTIONS[0];
-  const currentSlot = slotMap[activeSub];
+  const currentSec = visibleSections.find((s) => s.id === activeSub) || visibleSections[0];
+  const currentSlot = slotMap[currentSec.id];
   const currentSelectedOpt = currentSec.items.find((i) => i.id === currentSlot.selectedId);
 
   const handleToggleItem = (itemId: string) => {
@@ -185,10 +194,10 @@ export const PropsAndAccessoriesTab: React.FC = () => {
             )}
           </div>
 
-          {/* 6대 부위별 서브 카테고리 탭 */}
+          {/* 부위별 서브 카테고리 탭 */}
           <div className="grid grid-cols-3 gap-1.5">
-            {SUB_SECTIONS.map((sec) => {
-              const active = activeSub === sec.id;
+            {visibleSections.map((sec) => {
+              const active = currentSec.id === sec.id;
               const slot = slotMap[sec.id];
               const isSlotEquipped = slot.selectedId !== sec.noneId;
               return (

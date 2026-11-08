@@ -28,7 +28,7 @@ export const App: React.FC = () => {
 
       {/* 4. 뷰포트 플로팅 조작 툴바 (좌하단: 기즈모 제어, 우하단: 카메라 시점) */}
       <GizmoToolbar />
-      <CameraToolbar />
+      <CameraToolbar sceneManager={sceneManager} />
     </div>
   );
 };

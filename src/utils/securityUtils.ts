@@ -1,5 +1,8 @@
 import { JOINT_DEFINITIONS } from '@/core/mannequin/humanoidRig';
 import { MANNEQUIN_MODELS } from '@/core/mannequin/models';
+import { getWardrobeItemById } from '@/core/mannequin/wardrobe/catalog';
+import { isCompatible } from '@/core/mannequin/wardrobe/compatibility';
+import { composeOutfit } from '@/core/mannequin/wardrobe/composition';
 import { MannequinModelId } from '@/types';
 import {
   ActorPoseTransform,
@@ -8,6 +11,7 @@ import {
   SceneDocumentV1,
   Vec3,
 } from '@/types/sceneDocument';
+import { OutfitCompositionV1, OutfitItemOverride } from '@/types/wardrobe';
 
 export interface ValidatedBoneData {
   rotation: [number, number, number, number];
@@ -99,7 +103,7 @@ export function validateAndSanitizePoseData(raw: unknown): ValidatedPoseSnapshot
   };
 }
 
-function validateActorV1(raw: unknown): { actor?: SceneActorV1; error?: string } {
+function validateActorV1(raw: unknown): { actor?: SceneActorV1; error?: string; warnings?: string[] } {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
     return { error: '인물 객체 형식이 올바르지 않습니다.' };
   }
@@ -161,6 +165,63 @@ function validateActorV1(raw: unknown): { actor?: SceneActorV1; error?: string }
     bones[boneId] = transform;
   }
 
+  let outfit: OutfitCompositionV1 | undefined;
+  const warnings: string[] = [];
+  if (obj.outfit !== undefined) {
+    if (!obj.outfit || typeof obj.outfit !== 'object' || Array.isArray(obj.outfit)) {
+      return { error: `인물(${id})의 outfit 형식이 올바르지 않습니다.` };
+    }
+    const rawOutfit = obj.outfit as Record<string, unknown>;
+    if (rawOutfit.schemaVersion !== undefined && rawOutfit.schemaVersion !== 1) {
+      return { error: `인물(${id})의 outfit.schemaVersion이 유효하지 않습니다.` };
+    }
+    if (!Array.isArray(rawOutfit.itemIds)) {
+      return { error: `인물(${id})의 outfit.itemIds는 배열이어야 합니다.` };
+    }
+    const validItemIds: string[] = [];
+    for (const rawId of rawOutfit.itemIds) {
+      if (typeof rawId !== 'string') {
+        return { error: `인물(${id})의 의상 품목 ID는 문자열이어야 합니다.` };
+      }
+      const item = getWardrobeItemById(rawId);
+      if (!item) {
+        warnings.push(`${id}: 카탈로그에서 찾을 수 없는 품목(${rawId})이 제외되었습니다.`);
+        continue;
+      }
+      const compat = isCompatible(item, modelId);
+      if (!compat.compatible) {
+        return {
+          error: `인물(${id} / ${modelId})에 호환되지 않는 의상(${item.nameKo}): ${compat.reason}`,
+        };
+      }
+      validItemIds.push(rawId);
+    }
+
+    const composed = composeOutfit(validItemIds, { modelId });
+    let overrides: Record<string, OutfitItemOverride> | undefined;
+    if (rawOutfit.overrides && typeof rawOutfit.overrides === 'object' && !Array.isArray(rawOutfit.overrides)) {
+      overrides = {};
+      for (const [k, v] of Object.entries(rawOutfit.overrides as Record<string, unknown>)) {
+        if (FORBIDDEN_KEYS.has(k) || !v || typeof v !== 'object' || Array.isArray(v)) continue;
+        const ov = v as Record<string, unknown>;
+        overrides[k] = {
+          ...(typeof ov.color === 'string' ? { color: ov.color.slice(0, 32) } : {}),
+          ...(typeof ov.material === 'string' ? { material: ov.material.slice(0, 32) } : {}),
+          ...(ov.closureState === 'closed' || ov.closureState === 'open'
+            ? { closureState: ov.closureState }
+            : {}),
+        };
+      }
+    }
+
+    outfit = {
+      schemaVersion: 1,
+      actorId: id,
+      itemIds: composed.activeItemIds,
+      ...(overrides && Object.keys(overrides).length > 0 ? { overrides } : {}),
+    };
+  }
+
   return {
     actor: {
       id,
@@ -173,13 +234,16 @@ function validateActorV1(raw: unknown): { actor?: SceneActorV1; error?: string }
         scale,
       },
       bones,
+      ...(outfit ? { outfit } : {}),
     },
+    warnings,
   };
 }
 
 export function validateSceneDocumentV1(raw: unknown): {
   document?: SceneDocumentV1;
   error?: string;
+  warnings?: string[];
 } {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
     return { error: 'JSON 최상위 구조가 객체가 아닙니다.' };
@@ -196,6 +260,7 @@ export function validateSceneDocumentV1(raw: unknown): {
   }
 
   const actors: SceneActorV1[] = [];
+  const allWarnings: string[] = [];
   const seenIds = new Set<string>();
   for (const rawActor of obj.actors) {
     const res = validateActorV1(rawActor);
@@ -205,6 +270,7 @@ export function validateSceneDocumentV1(raw: unknown): {
     }
     seenIds.add(res.actor.id);
     actors.push(res.actor);
+    if (res.warnings) allWarnings.push(...res.warnings);
   }
 
   const cam = obj.camera as Record<string, unknown> | undefined;
@@ -247,5 +313,6 @@ export function validateSceneDocumentV1(raw: unknown): {
       },
       export: { width, height, bodyFormat },
     },
+    warnings: allWarnings,
   };
 }

@@ -94,7 +94,7 @@ export function applyMaterialToHierarchy(
       }
       if (
         preserveOutfitMaterials &&
-        (mesh.userData?.isOutfitMesh || mesh.userData?.isBodyAccessory) &&
+        (mesh.userData?.isOutfitMesh || mesh.userData?.isWardrobeMesh || mesh.userData?.isBodyAccessory) &&
         mesh.userData?.outfitMaterial
       ) {
         mesh.material = mesh.userData.outfitMaterial;

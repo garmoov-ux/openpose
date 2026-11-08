@@ -34,6 +34,7 @@ export const PromptPreviewBox: React.FC<PromptPreviewBoxProps> = ({ sceneManager
     lightIndex: store.selectedLightIndex,
     outfitId: store.selectedOutfitId,
     outfitCategory: store.selectedOutfitCategory,
+    outfitComposition: store.outfitCompositions.main,
     postureId: store.selectedPostureId,
     shotPrefixIndex: store.selectedShotPrefixIndex,
     isWildcardMode: store.isWildcardMode,

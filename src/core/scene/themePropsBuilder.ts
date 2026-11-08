@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { SoloThemeId } from '@/types/themeSolo';
 import { RoomPropInstance } from '@/data/themesSolo/roomPropCatalog';
 import { createIndividualPropGroup } from './propMeshFactory';
+import { createExtraRoomPropGroup } from './extraRoomPropFactory';
 import { mat, box, cyl, sphere } from './themeFurniturePrimitives';
 
 export function disposeThemePropsGroup(group: THREE.Group): void {
@@ -112,6 +113,7 @@ export function rebuildThemePropsGroup(
 
     const propObj =
       createSpecialAdultPropGroup(inst.propId, propShift) ||
+      createExtraRoomPropGroup(inst.propId, propShift) ||
       createIndividualPropGroup(inst.propId, propShift);
 
     // 커스텀 색상이 지정된 경우 첫 번째 대표 메쉬의 색상도 확실하게 오버라이드

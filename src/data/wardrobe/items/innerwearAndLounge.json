@@ -1,0 +1,3773 @@
+[
+  {
+    "id": "inner-top.sports-bra",
+    "version": 1,
+    "nameKo": "스포츠 브라",
+    "nameEn": "Sports Bra",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sports bra"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 81,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.seamless-bralette",
+    "version": 1,
+    "nameKo": "심리스 브라렛",
+    "nameEn": "Seamless Bralette",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton seamless bralette"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 82,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.cotton-bralette",
+    "version": 1,
+    "nameKo": "코튼 브라렛",
+    "nameEn": "Cotton Bralette",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton bralette"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 83,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.lace-bralette",
+    "version": 1,
+    "nameKo": "레이스 브라렛",
+    "nameEn": "Lace Bralette",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace bralette"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 84,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-top.satin-bralette",
+    "version": 1,
+    "nameKo": "새틴 브라렛",
+    "nameEn": "Satin Bralette",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin bralette"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 85,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.longline-bralette",
+    "version": 1,
+    "nameKo": "롱라인 브라렛",
+    "nameEn": "Longline Bralette",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton longline bralette"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 86,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.balcony-bra",
+    "version": 1,
+    "nameKo": "발코니형 브라",
+    "nameEn": "Balcony Bra",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton balcony bra"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 87,
+    "shape": {
+      "neckline": "sweetheart",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.strapless-bra",
+    "version": 1,
+    "nameKo": "스트랩리스 브라",
+    "nameEn": "Strapless Bra",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton strapless bra"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 88,
+    "shape": {
+      "neckline": "strapless",
+      "strapLayout": "strapless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.racerback-bra",
+    "version": 1,
+    "nameKo": "레이서백 브라",
+    "nameEn": "Racerback Bra",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton racerback bra"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 89,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "racerback",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.bandeau",
+    "version": 1,
+    "nameKo": "밴도형 이너웨어",
+    "nameEn": "Bandeau",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bandeau"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 90,
+    "shape": {
+      "neckline": "strapless",
+      "strapLayout": "strapless",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.soft-cup-bra",
+    "version": 1,
+    "nameKo": "소프트컵 브라",
+    "nameEn": "Soft Cup Bra",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton soft cup bra"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 91,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-top.silk-camisole",
+    "version": 1,
+    "nameKo": "실크 이너 캐미솔",
+    "nameEn": "Silk Camisole",
+    "category": "underwear_top",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin silk camisole"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 92,
+    "shape": {
+      "neckline": "bralette",
+      "strapLayout": "standard-straps",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.cotton-brief",
+    "version": 1,
+    "nameKo": "코튼 브리프",
+    "nameEn": "Cotton Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 93,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.seamless-brief",
+    "version": 1,
+    "nameKo": "심리스 브리프",
+    "nameEn": "Seamless Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton seamless brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 94,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.high-waist-brief",
+    "version": 1,
+    "nameKo": "하이웨이스트 브리프",
+    "nameEn": "High Waist Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high waist brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 95,
+    "shape": {
+      "rise": "high",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.boyshort",
+    "version": 1,
+    "nameKo": "보이쇼츠",
+    "nameEn": "Boyshort",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton boyshort"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 96,
+    "shape": {
+      "rise": "mid",
+      "legCut": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.bikini-brief",
+    "version": 1,
+    "nameKo": "비키니 브리프",
+    "nameEn": "Bikini Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra bikini brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 97,
+    "shape": {
+      "rise": "mid",
+      "legCut": "high-leg",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.lace-brief",
+    "version": 1,
+    "nameKo": "레이스 브리프",
+    "nameEn": "Lace Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 98,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-bottom.satin-brief",
+    "version": 1,
+    "nameKo": "새틴 브리프",
+    "nameEn": "Satin Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 99,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.mesh-overlay-brief",
+    "version": 1,
+    "nameKo": "메시 오버레이 브리프",
+    "nameEn": "Mesh Overlay Brief",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh mesh overlay brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 100,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-bottom.fitted-boxer",
+    "version": 1,
+    "nameKo": "피트되는 드로즈",
+    "nameEn": "Fitted Boxer",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton fitted boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 101,
+    "shape": {
+      "rise": "mid",
+      "legCut": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.classic-boxer",
+    "version": 1,
+    "nameKo": "클래식 박서",
+    "nameEn": "Classic Boxer",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton classic boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 102,
+    "shape": {
+      "rise": "mid",
+      "legCut": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.sport-compression-short",
+    "version": 1,
+    "nameKo": "스포츠 이너 쇼츠",
+    "nameEn": "Sport Compression Short",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport compression short"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 103,
+    "shape": {
+      "rise": "mid",
+      "legCut": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-bottom.shapewear-short",
+    "version": 1,
+    "nameKo": "보정 쇼츠",
+    "nameEn": "Shapewear Short",
+    "category": "underwear_bottom",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton shapewear short"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 104,
+    "shape": {
+      "rise": "high",
+      "legCut": "short",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.cotton-pajama-set",
+    "version": 1,
+    "nameKo": "코튼 파자마 세트",
+    "nameEn": "Cotton Pajama Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton pajama set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 105,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.satin-pajama-set",
+    "version": 1,
+    "nameKo": "새틴 파자마 세트",
+    "nameEn": "Satin Pajama Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin pajama set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 106,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.linen-pajama-set",
+    "version": 1,
+    "nameKo": "린넨 파자마 세트",
+    "nameEn": "Linen Pajama Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f5f5f4",
+        "fabric": "linen"
+      }
+    ],
+    "promptTags": [
+      "linen linen pajama set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 107,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.oversized-tee-set",
+    "version": 1,
+    "nameKo": "오버사이즈 티·쇼츠 세트",
+    "nameEn": "Oversized Tee Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton oversized tee set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 108,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.knit-home-set",
+    "version": 1,
+    "nameKo": "니트 홈웨어 세트",
+    "nameEn": "Knit Home Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#d6d3d1",
+        "fabric": "knit"
+      }
+    ],
+    "promptTags": [
+      "knit knit home set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 109,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.sweat-home-set",
+    "version": 1,
+    "nameKo": "스웨트 홈웨어 세트",
+    "nameEn": "Sweat Home Set",
+    "category": "lounge",
+    "slots": [
+      "base_top",
+      "base_bottom"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "loose-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sweat home set"
+    ],
+    "iconKey": "loose-top",
+    "sortOrder": 110,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.robe-cotton",
+    "version": 1,
+    "nameKo": "코튼 로브",
+    "nameEn": "Robe Cotton",
+    "category": "lounge",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton robe cotton"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 111,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.robe-waffle",
+    "version": 1,
+    "nameKo": "와플 로브",
+    "nameEn": "Robe Waffle",
+    "category": "lounge",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton robe waffle"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 112,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.robe-satin",
+    "version": 1,
+    "nameKo": "새틴 로브",
+    "nameEn": "Robe Satin",
+    "category": "lounge",
+    "slots": [
+      "outerwear"
+    ],
+    "layer": "outer",
+    "styleTags": [
+      "라운지",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs",
+      "arms"
+    ],
+    "geometryKey": "outer",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin robe satin"
+    ],
+    "iconKey": "outer",
+    "sortOrder": 113,
+    "shape": {
+      "closureState": "open",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.slip-nightdress",
+    "version": 1,
+    "nameKo": "슬립 나이트드레스",
+    "nameEn": "Slip Nightdress",
+    "category": "lounge",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "성인 스타일"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton slip nightdress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 114,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.long-nightdress",
+    "version": 1,
+    "nameKo": "롱 나이트드레스",
+    "nameEn": "Long Nightdress",
+    "category": "lounge",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton long nightdress"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 115,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "lounge.fleece-onesie",
+    "version": 1,
+    "nameKo": "플리스 원피스 홈웨어",
+    "nameEn": "Fleece Onesie",
+    "category": "lounge",
+    "slots": [
+      "one_piece"
+    ],
+    "layer": "base",
+    "styleTags": [
+      "라운지",
+      "일상"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body",
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandma",
+      "elderly_grandpa",
+      "anime_female",
+      "anime_basic_male",
+      "heroic_tall",
+      "chibi_male",
+      "male_mannequin",
+      "procedural"
+    ],
+    "adultOnly": false,
+    "fitProfile": "adult-unisex",
+    "coverage": [
+      "upper_torso",
+      "lower_torso",
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "dress",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton fleece onesie"
+    ],
+    "iconKey": "dress",
+    "sortOrder": 116,
+    "shape": {
+      "closureState": "closed",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.classic-thong",
+    "version": 1,
+    "nameKo": "클래식 티팬티",
+    "nameEn": "Classic Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton classic thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 117,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.cotton-thong",
+    "version": 1,
+    "nameKo": "코튼 티팬티",
+    "nameEn": "Cotton Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 118,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.seamless-thong",
+    "version": 1,
+    "nameKo": "심리스 티팬티",
+    "nameEn": "Seamless Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton seamless thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 119,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.lace-thong",
+    "version": 1,
+    "nameKo": "레이스 티팬티",
+    "nameEn": "Lace Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#be123c",
+        "fabric": "lace"
+      }
+    ],
+    "promptTags": [
+      "lace lace thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 120,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-f.satin-thong",
+    "version": 1,
+    "nameKo": "새틴 티팬티",
+    "nameEn": "Satin Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin satin thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 121,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.high-waist-thong",
+    "version": 1,
+    "nameKo": "하이웨이스트 티팬티",
+    "nameEn": "High Waist Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high waist thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 122,
+    "shape": {
+      "rise": "high",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.low-rise-thong",
+    "version": 1,
+    "nameKo": "로우라이즈 티팬티",
+    "nameEn": "Low Rise Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton low rise thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 123,
+    "shape": {
+      "rise": "low",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.v-waist-thong",
+    "version": 1,
+    "nameKo": "브이 허리선 티팬티",
+    "nameEn": "V Waist Thong",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton v waist thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 124,
+    "shape": {
+      "rise": "low",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.tanga",
+    "version": 1,
+    "nameKo": "탕가형 팬티",
+    "nameEn": "Tanga",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton tanga"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 125,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.g-string",
+    "version": 1,
+    "nameKo": "G스트링형 티팬티",
+    "nameEn": "G String",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton g string"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 126,
+    "shape": {
+      "rise": "low",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.bikini-cut",
+    "version": 1,
+    "nameKo": "비키니컷 팬티",
+    "nameEn": "Bikini Cut",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#0284c7",
+        "fabric": "swim-lycra"
+      }
+    ],
+    "promptTags": [
+      "swim-lycra bikini cut"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 127,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.cheeky-cut",
+    "version": 1,
+    "nameKo": "치키컷 팬티",
+    "nameEn": "Cheeky Cut",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cheeky cut"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 128,
+    "shape": {
+      "rise": "mid",
+      "legCut": "cheeky",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.high-leg-brief",
+    "version": 1,
+    "nameKo": "하이레그 브리프",
+    "nameEn": "High Leg Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton high leg brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 129,
+    "shape": {
+      "rise": "high",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.mid-rise-brief",
+    "version": 1,
+    "nameKo": "미드라이즈 브리프",
+    "nameEn": "Mid Rise Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mid rise brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 130,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.sport-brief",
+    "version": 1,
+    "nameKo": "스포츠 브리프",
+    "nameEn": "Sport Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 131,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.sport-boyshort",
+    "version": 1,
+    "nameKo": "스포츠 보이쇼츠",
+    "nameEn": "Sport Boyshort",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport boyshort"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 132,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boyshort",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.mesh-panel-brief",
+    "version": 1,
+    "nameKo": "메시 패널 브리프",
+    "nameEn": "Mesh Panel Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh mesh panel brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 133,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-f.bamboo-brief",
+    "version": 1,
+    "nameKo": "대나무 섬유 브리프",
+    "nameEn": "Bamboo Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton bamboo brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 134,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.modal-brief",
+    "version": 1,
+    "nameKo": "모달 브리프",
+    "nameEn": "Modal Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton modal brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 135,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-f.period-brief",
+    "version": 1,
+    "nameKo": "흡수형 기능성 브리프",
+    "nameEn": "Period Brief",
+    "category": "underwear_f",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_woman",
+      "solo_female",
+      "college_female",
+      "office_female",
+      "married_wife",
+      "plus_size_body"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-feminine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton period brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 136,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.cotton-boxer",
+    "version": 1,
+    "nameKo": "코튼 박서",
+    "nameEn": "Cotton Boxer",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton cotton boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 137,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.modal-boxer",
+    "version": 1,
+    "nameKo": "모달 박서",
+    "nameEn": "Modal Boxer",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton modal boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 138,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.loose-boxer",
+    "version": 1,
+    "nameKo": "루즈 박서",
+    "nameEn": "Loose Boxer",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton loose boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 139,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.trunk",
+    "version": 1,
+    "nameKo": "트렁크",
+    "nameEn": "Trunk",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton trunk"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 140,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.short-trunk",
+    "version": 1,
+    "nameKo": "숏 트렁크",
+    "nameEn": "Short Trunk",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton short trunk"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 141,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.boxer-brief",
+    "version": 1,
+    "nameKo": "박서 브리프",
+    "nameEn": "Boxer Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton boxer brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 142,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.long-boxer-brief",
+    "version": 1,
+    "nameKo": "롱 박서 브리프",
+    "nameEn": "Long Boxer Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton long boxer brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 143,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.classic-brief",
+    "version": 1,
+    "nameKo": "클래식 브리프",
+    "nameEn": "Classic Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton classic brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 144,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.low-rise-brief",
+    "version": 1,
+    "nameKo": "로우라이즈 브리프",
+    "nameEn": "Low Rise Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton low rise brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 145,
+    "shape": {
+      "rise": "low",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.sport-brief",
+    "version": 1,
+    "nameKo": "스포츠 브리프",
+    "nameEn": "Sport Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey sport brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 146,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.seamless-brief",
+    "version": 1,
+    "nameKo": "심리스 브리프",
+    "nameEn": "Seamless Brief",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton seamless brief"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 147,
+    "shape": {
+      "rise": "mid",
+      "legCut": "brief",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.compression-short",
+    "version": 1,
+    "nameKo": "컴프레션 이너 쇼츠",
+    "nameEn": "Compression Short",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey compression short"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 148,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.thermal-long-john",
+    "version": 1,
+    "nameKo": "보온 내의 하의",
+    "nameEn": "Thermal Long John",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs",
+      "lower_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton thermal long john"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 149,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.mesh-sport-boxer",
+    "version": 1,
+    "nameKo": "메시 스포츠 박서",
+    "nameEn": "Mesh Sport Boxer",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#18181b",
+        "fabric": "mesh"
+      }
+    ],
+    "promptTags": [
+      "mesh mesh sport boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 150,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "semi-sheer"
+    }
+  },
+  {
+    "id": "inner-m.silk-boxer",
+    "version": 1,
+    "nameKo": "실크 박서",
+    "nameEn": "Silk Boxer",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis",
+      "upper_legs"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#e11d48",
+        "fabric": "satin"
+      }
+    ],
+    "promptTags": [
+      "satin silk boxer"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 151,
+    "shape": {
+      "rise": "mid",
+      "legCut": "boxer",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.mens-thong",
+    "version": 1,
+    "nameKo": "남성형 티팬티",
+    "nameEn": "Mens Thong",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mens thong"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 152,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.mens-tanga",
+    "version": 1,
+    "nameKo": "남성형 탕가",
+    "nameEn": "Mens Tanga",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_bottom"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "pelvis"
+    ],
+    "geometryKey": "underwear",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton mens tanga"
+    ],
+    "iconKey": "underwear",
+    "sortOrder": 153,
+    "shape": {
+      "rise": "mid",
+      "legCut": "thong",
+      "opacity": "opaque"
+    }
+  },
+  {
+    "id": "inner-m.sleeveless-undershirt",
+    "version": 1,
+    "nameKo": "민소매 러닝 이너웨어",
+    "nameEn": "Sleeveless Undershirt",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton sleeveless undershirt"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 154
+  },
+  {
+    "id": "inner-m.thermal-undershirt",
+    "version": 1,
+    "nameKo": "보온 내의 상의",
+    "nameEn": "Thermal Undershirt",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#f8fafc",
+        "fabric": "cotton"
+      }
+    ],
+    "promptTags": [
+      "cotton thermal undershirt"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 155
+  },
+  {
+    "id": "inner-m.compression-undershirt",
+    "version": 1,
+    "nameKo": "컴프레션 이너 상의",
+    "nameEn": "Compression Undershirt",
+    "category": "underwear_m",
+    "slots": [
+      "underwear_top"
+    ],
+    "layer": "underwear",
+    "styleTags": [
+      "성인 이너웨어",
+      "라운지"
+    ],
+    "compatibleProfileIds": [
+      "realistic_muscular_male",
+      "solo_male",
+      "college_male",
+      "office_male",
+      "married_husband",
+      "elderly_grandpa"
+    ],
+    "adultOnly": true,
+    "fitProfile": "adult-masculine",
+    "coverage": [
+      "upper_torso",
+      "lower_torso"
+    ],
+    "geometryKey": "fitted-top",
+    "renderSupport": "procedural",
+    "materials": [
+      {
+        "role": "main",
+        "color": "#334155",
+        "fabric": "stretch-jersey"
+      }
+    ],
+    "promptTags": [
+      "stretch-jersey compression undershirt"
+    ],
+    "iconKey": "fitted-top",
+    "sortOrder": 156
+  }
+]

@@ -78,11 +78,16 @@ function parseOutfitStyle(item: OutfitItem): ParsedStyle {
 export function clearOutfitMeshes(root: THREE.Object3D): void {
   const toRemove: THREE.Object3D[] = [];
   root.traverse((child) => {
-    if (child.userData?.isOutfitMesh) toRemove.push(child);
+    if (child.userData?.isOutfitMesh && !child.userData?.isWardrobeMesh) toRemove.push(child);
   });
   toRemove.forEach((mesh) => {
     mesh.parent?.remove(mesh);
-    if ((mesh as THREE.Mesh).geometry) (mesh as THREE.Mesh).geometry.dispose();
+    const m = mesh as THREE.Mesh;
+    if (m.geometry) m.geometry.dispose();
+    if (m.material) {
+      if (Array.isArray(m.material)) m.material.forEach((mt) => mt.dispose());
+      else m.material.dispose();
+    }
   });
 }
 

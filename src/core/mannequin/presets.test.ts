@@ -141,7 +141,7 @@ describe('포즈 프리셋 라이브러리 및 해부학 무결성 검증 (prese
     expect(resMaleMain.partnerPos[1]).toBeGreaterThan(0.3);
     expect(partnerRig.group.position.y).toBeCloseTo(resMaleMain.partnerPos[1], 2);
 
-    expect(ROOM_PROP_CATALOG.length).toBe(55);
+    expect(ROOM_PROP_CATALOG.length).toBe(88);
     const defaultRoomProps = getDefaultRoomPropsForTheme('house_indoor_room', 0);
     expect(defaultRoomProps.length).toBeGreaterThanOrEqual(6);
 

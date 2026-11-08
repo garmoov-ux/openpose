@@ -16,6 +16,18 @@ import {
   normalizeQuat,
 } from '@/utils/securityUtils';
 import {
+  getWardrobeItemById,
+  getWardrobeSetById,
+} from '@/core/mannequin/wardrobe/catalog';
+import {
+  isCompatible,
+  partitionItemsByModelCompatibility,
+} from '@/core/mannequin/wardrobe/compatibility';
+import {
+  applyWardrobeSetToOutfit,
+  composeOutfit,
+} from '@/core/mannequin/wardrobe/composition';
+import {
   clampQuaternionToRom,
   getSymmetricBoneName,
   JOINT_ROM_LIMITS,
@@ -52,6 +64,7 @@ export function createDefaultSceneDocument(): SceneDocumentV1 {
         visible: true,
         root: { position: [0, 0, 0], rotation: [0, 0, 0, 1], scale: 1.0 },
         bones: defaultBones,
+        outfit: { schemaVersion: 1, actorId: 'main', itemIds: [] },
       },
       {
         id: 'partner',
@@ -60,6 +73,7 @@ export function createDefaultSceneDocument(): SceneDocumentV1 {
         visible: false,
         root: { position: [0, 0, -0.28], rotation: [0, 0, 0, 1], scale: 1.0 },
         bones: { ...defaultBones },
+        outfit: { schemaVersion: 1, actorId: 'partner', itemIds: [] },
       },
     ],
     camera: {
@@ -99,6 +113,22 @@ export function cloneSceneDocument(doc: SceneDocumentV1): SceneDocumentV1 {
           },
         ])
       ),
+      ...(a.outfit
+        ? {
+            outfit: {
+              schemaVersion: 1,
+              actorId: a.outfit.actorId,
+              itemIds: [...a.outfit.itemIds],
+              ...(a.outfit.overrides
+                ? {
+                    overrides: Object.fromEntries(
+                      Object.entries(a.outfit.overrides).map(([k, v]) => [k, { ...v }])
+                    ),
+                  }
+                : {}),
+            },
+          }
+        : {}),
     })),
     camera: {
       projection: 'perspective',
@@ -157,6 +187,13 @@ function applySingleCommand(
       if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
       if (!ALLOWED_MODEL_IDS.has(cmd.modelId)) return `지원하지 않는 모델 ID입니다: ${cmd.modelId}`;
       actor.modelId = cmd.modelId;
+      if (actor.outfit && actor.outfit.itemIds.length > 0) {
+        const part = partitionItemsByModelCompatibility(actor.outfit.itemIds, cmd.modelId);
+        actor.outfit.itemIds = part.compatibleItemIds;
+        for (const held of part.heldItems) {
+          warnings.push(`${actor.id}: 모델 변경으로 '${held.nameKo}' 착용 보류 (${held.reason})`);
+        }
+      }
       changedActorIds.add(actor.id);
       return null;
     }
@@ -211,6 +248,84 @@ function applySingleCommand(
         nextBones[bName] = { rotation: q };
       }
       actor.bones = nextBones;
+      changedActorIds.add(actor.id);
+      return null;
+    }
+    case 'wardrobe.equip': {
+      const actor = draft.actors.find((a) => a.id === cmd.actorId);
+      if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
+      const item = getWardrobeItemById(cmd.itemId);
+      if (!item) return `존재하지 않는 의상 품목 ID입니다: ${cmd.itemId}`;
+      const compat = isCompatible(item, actor.modelId);
+      if (!compat.compatible) return compat.reason || `모델(${actor.modelId})과 호환되지 않는 품목입니다.`;
+      const prevIds = actor.outfit?.itemIds || [];
+      const composed = composeOutfit([...prevIds, item.id], { modelId: actor.modelId });
+      for (const c of composed.slotConflicts) {
+        if (c.byItemId === item.id) {
+          warnings.push(`${actor.id}: 슬롯(${c.slot}) 충돌로 '${c.replacedItemId}' 품목이 '${item.id}'로 교체되었습니다.`);
+        }
+      }
+      actor.outfit = {
+        schemaVersion: 1,
+        actorId: actor.id,
+        itemIds: composed.activeItemIds,
+        ...(actor.outfit?.overrides ? { overrides: { ...actor.outfit.overrides } } : {}),
+      };
+      changedActorIds.add(actor.id);
+      return null;
+    }
+    case 'wardrobe.unequip': {
+      const actor = draft.actors.find((a) => a.id === cmd.actorId);
+      if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
+      const prevIds = actor.outfit?.itemIds || [];
+      actor.outfit = {
+        schemaVersion: 1,
+        actorId: actor.id,
+        itemIds: prevIds.filter((id) => id !== cmd.itemId),
+        ...(actor.outfit?.overrides ? { overrides: { ...actor.outfit.overrides } } : {}),
+      };
+      changedActorIds.add(actor.id);
+      return null;
+    }
+    case 'wardrobe.set.apply': {
+      const actor = draft.actors.find((a) => a.id === cmd.actorId);
+      if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
+      const setItem = getWardrobeSetById(cmd.setId);
+      if (!setItem) return `존재하지 않는 코디 세트 ID입니다: ${cmd.setId}`;
+      const prevIds = actor.outfit?.itemIds || [];
+      const res = applyWardrobeSetToOutfit(prevIds, setItem, actor.modelId);
+      if (!res.ok) return res.error || `세트(${cmd.setId})를 적용할 수 없습니다.`;
+      actor.outfit = {
+        schemaVersion: 1,
+        actorId: actor.id,
+        itemIds: res.nextItemIds,
+        ...(actor.outfit?.overrides ? { overrides: { ...actor.outfit.overrides } } : {}),
+      };
+      changedActorIds.add(actor.id);
+      return null;
+    }
+    case 'wardrobe.clear': {
+      const actor = draft.actors.find((a) => a.id === cmd.actorId);
+      if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
+      actor.outfit = { schemaVersion: 1, actorId: actor.id, itemIds: [] };
+      changedActorIds.add(actor.id);
+      return null;
+    }
+    case 'wardrobe.override.set': {
+      const actor = draft.actors.find((a) => a.id === cmd.actorId);
+      if (!actor) return `대상 인물을 찾을 수 없습니다: ${cmd.actorId}`;
+      const overrides = { ...(actor.outfit?.overrides || {}) };
+      if (!cmd.override) {
+        delete overrides[cmd.itemId];
+      } else {
+        overrides[cmd.itemId] = { ...cmd.override };
+      }
+      actor.outfit = {
+        schemaVersion: 1,
+        actorId: actor.id,
+        itemIds: actor.outfit?.itemIds || [],
+        overrides,
+      };
       changedActorIds.add(actor.id);
       return null;
     }

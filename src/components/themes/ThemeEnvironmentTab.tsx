@@ -1,6 +1,7 @@
 import React from 'react';
 import { useThemeSoloStore } from '@/stores/useThemeSoloStore';
 import { THEMES_DATA } from '@/data/themesSolo/themesData';
+import { ROOM_PROP_CATALOG, getDefaultRoomPropsForTheme } from '@/data/themesSolo/roomPropCatalog';
 import {
   translateEnvironmentItem,
   translateLightingItem,
@@ -71,6 +72,14 @@ export const ThemeEnvironmentTab: React.FC = () => {
     translateEnvironmentItem(env, idx, selectedThemeId)
   );
 
+  const handleAddSuggestedProps = () => {
+    const state = useThemeSoloStore.getState();
+    const existing = new Set(state.roomProps.map((prop) => prop.propId));
+    for (const prop of getDefaultRoomPropsForTheme(selectedThemeId, selectedEnvIndex)) {
+      if (!existing.has(prop.propId)) state.addRoomProp(prop.propId);
+    }
+  };
+
   return (
     <div className="block space-y-3.5 text-xs pb-4">
       {/* 1. 상단 3D 사물 토글 및 시간대 조명 선택 바 */}
@@ -78,7 +87,7 @@ export const ThemeEnvironmentTab: React.FC = () => {
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-1.5 font-bold text-zinc-900">
             <Sofa className="w-4 h-4 text-amber-600" />
-            <span>themes_solo 16개 파일 · 380종 세부 배경 사물</span>
+            <span>테마 16개 · 배치 사물 {ROOM_PROP_CATALOG.length}종</span>
           </span>
           <div className="flex items-center gap-1.5">
             <button
@@ -178,10 +187,16 @@ export const ThemeEnvironmentTab: React.FC = () => {
               2. {currentTheme.titleKo} 세부 장소 ({translatedEnvs.length}종 · 3열)
             </span>
           </span>
-          <span className="text-[11px] font-bold text-amber-600">
-            {selectedEnvIndex + 1}번 세트 적용 중
-          </span>
+          <span className="text-[11px] font-bold text-amber-600">{selectedEnvIndex + 1}번 장소 선택</span>
         </div>
+
+        <button
+          type="button"
+          onClick={handleAddSuggestedProps}
+          className="w-full rounded-xl bg-amber-500 px-3 py-2 text-[11px] font-bold text-zinc-950 hover:bg-amber-400"
+        >
+          선택한 장소의 추천 사물 배치
+        </button>
 
         <div className="grid grid-cols-3 gap-2">
           {translatedEnvs.map((item) => {
