@@ -18,6 +18,14 @@ interface TopNavBarProps {
   sceneManager: SceneManager | null;
 }
 
+const RENDER_MODE_KO: Record<string, string> = {
+  shading: '마네킹 셰이딩',
+  openpose: '오픈포즈 관절선',
+  depth: '깊이 맵',
+  normal: '표면 법선',
+  canny: '외곽 윤곽선',
+};
+
 export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
   const {
     currentModelId,
@@ -51,7 +59,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
             <Activity className="w-3.5 h-3.5 text-blue-500" />
           </div>
           <span className="font-bold text-xs tracking-tight text-zinc-900 hidden sm:inline">
-            OpenPose 3D Studio
+            3D 인체 포즈 에디터
           </span>
         </div>
 
@@ -118,7 +126,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
       <div className="flex items-center gap-2 pointer-events-auto">
         <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full border border-zinc-200/80 shadow-sm text-xs font-medium text-zinc-600">
           <Layers className="w-3.5 h-3.5 text-blue-500" />
-          <span className="capitalize font-semibold text-zinc-800">{renderMode}</span>
+          <span className="font-semibold text-zinc-800">{RENDER_MODE_KO[renderMode] || renderMode}</span>
         </div>
 
         <button
@@ -133,3 +141,4 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ sceneManager }) => {
     </header>
   );
 };
+

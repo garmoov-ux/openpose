@@ -36,13 +36,17 @@ function normalizeBoneName(rawName: string): string {
 }
 
 // 본 주변 피킹용 투명 구체 콜라이더 생성
-function createColliderSphere(radius = 0.08): THREE.Mesh {
-  const geom = new THREE.SphereGeometry(radius, 8, 8);
+function createColliderSphere(radius = 0.12): THREE.Mesh {
+  const geom = new THREE.SphereGeometry(radius, 12, 12);
   const mat = new THREE.MeshBasicMaterial({
-    visible: false,
-    wireframe: true,
+    visible: true,
+    transparent: true,
+    opacity: 0.0,
+    depthWrite: false,
   });
-  return new THREE.Mesh(geom, mat);
+  const mesh = new THREE.Mesh(geom, mat);
+  mesh.renderOrder = 999;
+  return mesh;
 }
 
 // FBX 모델 로드 및 HumanoidRigResult 정규화
@@ -115,7 +119,8 @@ export async function loadFbxMannequin(
   JOINT_DEFINITIONS.forEach((def) => {
     const bone = bonesMap.get(def.name);
     if (bone) {
-      const collider = createColliderSphere(def.name === 'Head' ? 0.12 : 0.08);
+      const radius = def.name === 'Head' ? 0.18 : def.name === 'Hips' ? 0.16 : 0.12;
+      const collider = createColliderSphere(radius);
       collider.userData = { boneName: def.name };
       bone.add(collider);
       collidersMap.set(def.name, collider);

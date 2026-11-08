@@ -4,6 +4,27 @@ import { THEMES_DATA } from '@/data/themesSolo/themesData';
 import { SoloThemeId } from '@/types/themeSolo';
 import { Dices, MapPin, Sun } from 'lucide-react';
 
+function formatEnvironmentKo(env: string, idx: number, themeTitle: string): string {
+  if (/sunlit brick|brick backstreet/i.test(env)) return `${idx + 1}. 햇살 드는 벽돌 골목길`;
+  if (/neon/i.test(env)) return `${idx + 1}. 네온 조명 스트리트`;
+  if (/penthouse|skyline/i.test(env)) return `${idx + 1}. 도심 스카이라인 펜트하우스`;
+  if (/yacht|pool/i.test(env)) return `${idx + 1}. 럭셔리 요트 갑판 & 풀`;
+  if (/balcony|terrace/i.test(env)) return `${idx + 1}. 야외 테라스 & 발코니`;
+  if (/window|glass/i.test(env)) return `${idx + 1}. 통유리창 자연광 라운지`;
+  if (/couch|sofa|velvet/i.test(env)) return `${idx + 1}. 벨벳 소파 & 응접실`;
+  if (/bed|bedroom/i.test(env)) return `${idx + 1}. 아늑한 침실 인테리어`;
+  return `${idx + 1}. ${themeTitle} 세부 장소 #${idx + 1}`;
+}
+
+function formatLightingKo(light: string, idx: number): string {
+  if (/golden hour|sunset/i.test(light)) return `${idx + 1}. 황금빛 석양 골든아워`;
+  if (/neon|dramatic/i.test(light)) return `${idx + 1}. 선명한 네온 컬러 앰비언트`;
+  if (/soft|diffused|studio/i.test(light)) return `${idx + 1}. 부드러운 스튜디오 확산광`;
+  if (/morning|sunrise|daylight/i.test(light)) return `${idx + 1}. 맑은 아침 자연광`;
+  if (/night|dark|moody/i.test(light)) return `${idx + 1}. 딥 나이트 무드 조명`;
+  return `${idx + 1}. 프리미엄 앰비언트 조명 #${idx + 1}`;
+}
+
 export const ThemeEnvironmentTab: React.FC = () => {
   const {
     selectedThemeId,
@@ -77,7 +98,7 @@ export const ThemeEnvironmentTab: React.FC = () => {
         >
           {currentTheme.environments.map((env, idx) => (
             <option key={idx} value={idx}>
-              {idx + 1}. {env.replace(/^in a brand-new background environment |^on |^beside /i, '').slice(0, 45)}...
+              {formatEnvironmentKo(env, idx, currentTheme.titleKo)}
             </option>
           ))}
         </select>
@@ -99,7 +120,7 @@ export const ThemeEnvironmentTab: React.FC = () => {
         >
           {currentTheme.lightings.map((light, idx) => (
             <option key={idx} value={idx}>
-              {idx + 1}. {light.replace(/^with /i, '').slice(0, 45)}...
+              {formatLightingKo(light, idx)}
             </option>
           ))}
         </select>

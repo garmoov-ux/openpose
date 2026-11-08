@@ -76,3 +76,4 @@ export const ThemeStudioDrawer: React.FC<ThemeStudioDrawerProps> = ({ sceneManag
     </div>
   );
 };
+

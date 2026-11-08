@@ -153,18 +153,20 @@ export function createProceduralHumanoid(): HumanoidRigResult {
   skinnedMesh.receiveShadow = true;
   group.add(skinnedMesh);
 
-  // 5. 각 조인트에 피킹용 콜라이더 구체 부착
+  // 5. 각 조인트에 피킹용 콜라이더 구체 부착 (투명 렌더링으로 레이캐스터 100% 감지)
   const colliderMaterial = new THREE.MeshBasicMaterial({
-    color: 0x00e676,
-    wireframe: true,
-    visible: false, // 기본은 숨김, 선택 시 시각화
+    visible: true,
+    transparent: true,
+    opacity: 0.0,
+    depthWrite: false,
   });
-  const sphereGeom = new THREE.SphereGeometry(0.05, 12, 12);
+  const sphereGeom = new THREE.SphereGeometry(0.12, 12, 12);
 
   JOINT_DEFINITIONS.forEach((def) => {
     const bone = bonesMap.get(def.name);
     if (!bone) return;
-    const collider = new THREE.Mesh(sphereGeom, colliderMaterial.clone());
+    const collider = new THREE.Mesh(sphereGeom, colliderMaterial);
+    collider.renderOrder = 999;
     collider.name = `Collider_${def.name}`;
     collider.userData = { boneName: def.name };
     bone.add(collider);

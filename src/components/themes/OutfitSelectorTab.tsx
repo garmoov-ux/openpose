@@ -111,7 +111,7 @@ export const OutfitSelectorTab: React.FC = () => {
                   >
                     #{item.id}
                   </span>
-                  <span className="font-semibold text-[11px] truncate">{item.nameEn}</span>
+                  <span className="font-semibold text-[11px] truncate">{item.nameKo || item.nameEn}</span>
                 </div>
                 <p
                   className={`text-[10px] line-clamp-2 leading-relaxed ${

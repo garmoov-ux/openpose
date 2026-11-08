@@ -48,6 +48,23 @@ export function getJointScreenPositions(
   return result;
 }
 
+export const JOINT_COLORS: Record<string, string> = {
+  Head: 'rgb(255, 0, 0)',
+  Neck: 'rgb(255, 85, 0)',
+  RightArm: 'rgb(255, 170, 0)',
+  RightForeArm: 'rgb(255, 255, 0)',
+  RightHand: 'rgb(170, 255, 0)',
+  LeftArm: 'rgb(85, 255, 0)',
+  LeftForeArm: 'rgb(0, 255, 0)',
+  LeftHand: 'rgb(0, 255, 85)',
+  RightUpLeg: 'rgb(0, 255, 170)',
+  RightLeg: 'rgb(0, 255, 255)',
+  RightFoot: 'rgb(0, 170, 255)',
+  LeftUpLeg: 'rgb(0, 85, 255)',
+  LeftLeg: 'rgb(0, 0, 255)',
+  LeftFoot: 'rgb(255, 0, 255)',
+};
+
 export function drawOpenPoseSkeleton(
   ctx: CanvasRenderingContext2D,
   positions: Map<string, { x: number; y: number; visible: boolean }>,
@@ -58,8 +75,8 @@ export function drawOpenPoseSkeleton(
   ctx.fillRect(0, 0, width, height);
 
   const scale = width / 512;
-  const lineWidth = Math.max(3, Math.round(4 * scale));
-  const jointRadius = Math.max(3, Math.round(4 * scale));
+  const lineWidth = Math.max(3, Math.round(4.5 * scale));
+  const jointRadius = Math.max(3, Math.round(4.5 * scale));
 
   // 1. 관절 연결선(Limbs) 드로잉
   ctx.lineCap = 'round';
@@ -78,10 +95,11 @@ export function drawOpenPoseSkeleton(
     }
   });
 
-  // 2. 관절 포인트(Joints) 드로잉
-  positions.forEach((pos) => {
+  // 2. 관절 포인트(Joints) 드로잉 - 표준 COCO 키포인트 컬러 매핑
+  positions.forEach((pos, name) => {
     if (!pos.visible) return;
-    ctx.fillStyle = '#00ff88';
+    const color = JOINT_COLORS[name] || '#00ff88';
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(pos.x, pos.y, jointRadius, 0, Math.PI * 2);
     ctx.fill();

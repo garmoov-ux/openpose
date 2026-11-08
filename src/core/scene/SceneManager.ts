@@ -15,7 +15,9 @@ import {
   backupBoneRotations,
   restoreBoneRotations,
   applyMaterialToHierarchy,
+  createStylizedSkeletonHelper,
 } from './modelSwapHelper';
+import { pickBoneFromRaycast } from './smartPicker';
 import {
   getJointScreenPositions,
   drawOpenPoseSkeleton,
@@ -83,8 +85,7 @@ export class SceneManager {
     this.scene.add(this.humanoid.group);
 
     // 스켈레톤 도우미
-    this.skeletonHelper = new THREE.SkeletonHelper(this.humanoid.group);
-    (this.skeletonHelper.material as THREE.LineBasicMaterial).linewidth = 2;
+    this.skeletonHelper = createStylizedSkeletonHelper(this.humanoid.group);
     this.scene.add(this.skeletonHelper);
 
     // 6. 컨트롤러
@@ -127,7 +128,6 @@ export class SceneManager {
   }
 
   private onPointerDown = (event: PointerEvent): void => {
-    // 기즈모 조작 중이면 무시
     if (this.transformControls.dragging) return;
 
     const rect = this.canvas.getBoundingClientRect();
@@ -136,11 +136,14 @@ export class SceneManager {
 
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const colliders = Array.from(this.humanoid.colliders.values());
-    const intersects = this.raycaster.intersectObjects(colliders, false);
+    const boneName = pickBoneFromRaycast(
+      this.raycaster,
+      colliders,
+      this.humanoid.group,
+      this.humanoid.bones
+    );
 
-    if (intersects.length > 0) {
-      const hit = intersects[0].object as THREE.Mesh;
-      const boneName = hit.userData.boneName as string;
+    if (boneName) {
       this.selectBone(boneName);
     }
   };
@@ -224,8 +227,7 @@ export class SceneManager {
     this.currentModelId = modelId;
     this.scene.add(this.humanoid.group);
 
-    this.skeletonHelper = new THREE.SkeletonHelper(this.humanoid.group);
-    (this.skeletonHelper.material as THREE.LineBasicMaterial).linewidth = 2;
+    this.skeletonHelper = createStylizedSkeletonHelper(this.humanoid.group);
     this.scene.add(this.skeletonHelper);
 
     this.setRenderMode(this.currentMode);

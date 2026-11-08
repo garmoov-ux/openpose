@@ -17,6 +17,7 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
     gizmoMode,
     gizmoSpace,
     cameraPreset,
+    selectedBoneName,
     setSelectedBoneName,
   } = useEditorStore();
 
@@ -63,6 +64,13 @@ export const ViewportCanvas: React.FC<ViewportCanvasProps> = ({ onSceneReady }) 
   useEffect(() => {
     managerRef.current?.setCameraPreset(cameraPreset);
   }, [cameraPreset]);
+
+  useEffect(() => {
+    const currentAttached = managerRef.current?.transformControls?.object?.name || null;
+    if (currentAttached !== selectedBoneName) {
+      managerRef.current?.selectBone(selectedBoneName);
+    }
+  }, [selectedBoneName]);
 
   return (
     <div className="relative w-full h-full bg-neutral-950 overflow-hidden">

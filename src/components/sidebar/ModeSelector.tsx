@@ -14,40 +14,40 @@ export const ModeSelector: React.FC = () => {
   }> = [
     {
       id: 'shading',
-      label: '마네킹 (Shading)',
-      sublabel: 'PBR 기본 3D 뷰',
+      label: '3D 마네킹 셰이딩',
+      sublabel: 'PBR 사실적 입체 뷰',
       icon: <Sun className="w-3.5 h-3.5" />,
     },
     {
       id: 'openpose',
-      label: 'OpenPose',
-      sublabel: 'COCO 18 키포인트',
+      label: '오픈포즈 (관절선)',
+      sublabel: 'COCO 18 표준 관절 맵',
       icon: <Activity className="w-3.5 h-3.5 text-[#0066ff]" />,
     },
     {
       id: 'depth',
-      label: 'Depth Map',
-      sublabel: '선형 Z-버퍼 명암',
+      label: '깊이 맵 (Depth)',
+      sublabel: '거리별 선형 깊이 버퍼',
       icon: <Layers className="w-3.5 h-3.5" />,
     },
     {
       id: 'normal',
-      label: 'Surface Normal',
-      sublabel: '뷰 공간 법선 RGB',
+      label: '표면 법선 (Normal)',
+      sublabel: '표면 입체 방향 RGB 맵',
       icon: <Box className="w-3.5 h-3.5" />,
     },
     {
       id: 'canny',
-      label: 'Canny / Lineart',
-      sublabel: '외곽선 윤곽선 엣지',
+      label: '외곽 윤곽선 (Canny)',
+      sublabel: '인체 라인아트 윤곽선',
       icon: <Grid className="w-3.5 h-3.5" />,
     },
   ];
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-[11px] font-semibold text-[#707070] uppercase tracking-wider px-1">
-        ControlNet 렌더링 모드
+      <div className="text-[11px] font-semibold text-zinc-500 tracking-tight px-1">
+        인공지능 제어 맵 렌더 모드
       </div>
 
       <div className="grid grid-cols-1 gap-1.5">

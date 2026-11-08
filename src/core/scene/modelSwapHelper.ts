@@ -29,3 +29,16 @@ export function applyMaterialToHierarchy(root: THREE.Object3D, material: THREE.M
     }
   });
 }
+
+export function createStylizedSkeletonHelper(root: THREE.Object3D): THREE.SkeletonHelper {
+  const helper = new THREE.SkeletonHelper(root);
+  const mat = helper.material as THREE.LineBasicMaterial;
+  mat.color = new THREE.Color(0x38bdf8);
+  mat.transparent = true;
+  mat.opacity = 0.55;
+  mat.depthTest = false;
+  helper.renderOrder = 998;
+  return helper;
+}
+
+
